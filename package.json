@@ -1,0 +1,53 @@
+{
+  "name": "learningEnglishWordsApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "start-ios": "react-native run-ios --simulator='iPhone SE' && npm run lint-watch",
+    "start-android": "react-native run-android && npm run lint-watch",
+    "lint": "esw src/**",
+    "lint-watch": "esw -w --changed src/**",
+    "flow": "flow status"
+  },
+  "precommit": "lint",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "react": "16.8.3",
+    "react-native": "0.59.8",
+    "react-native-gesture-handler": "^1.2.1",
+    "react-native-vector-icons": "^6.4.2",
+    "react-navigation": "^3.11.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/runtime": "7.4.4",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "24.8.0",
+    "babel-preset-airbnb": "^3.2.1",
+    "babel-preset-react-native": "^4.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-native": "^3.7.0",
+    "eslint-watch": "^5.1.2",
+    "flow-bin": "^0.98.1",
+    "jest": "24.8.0",
+    "metro-react-native-babel-preset": "0.54.1",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.17.1",
+    "prettier-eslint": "^8.8.2",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
