@@ -1,6 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
-import Ionicons from 'react-native-vector-icons/FontAwesome5'
+import { Icon, } from './components'
 import { TasksScreen, WordsScreen, TagsScreen, } from './screens'
 
 const TabNavigator = createBottomTabNavigator(
@@ -19,7 +19,6 @@ const TabNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation, }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor, }) => {
         const { routeName, } = navigation.state
-        const IconComponent = Ionicons
         let iconName
 
         if (routeName === 'Home') {
@@ -29,7 +28,7 @@ const TabNavigator = createBottomTabNavigator(
         } else if (routeName === 'Tasks') {
           iconName = 'edit'
           return (
-            <IconComponent
+            <Icon
               name='edit'
               size={25}
               color={tintColor}
@@ -39,7 +38,7 @@ const TabNavigator = createBottomTabNavigator(
         }
 
         return (
-          <IconComponent
+          <Icon
             name={iconName}
             size={25}
             color={tintColor}
