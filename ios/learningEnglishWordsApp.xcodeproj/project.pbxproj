@@ -58,6 +58,14 @@
 		153106E21B9B4F40B2F54F4D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0FCBF15FC694BA2A735C9E2 /* Zocial.ttf */; };
 		1AFA94D7DBFE4953868DC2CC /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F93163209D4452BAFB3962 /* libRNVectorIcons.a */; };
 		E4CF68AE3EDA4A4CA391C15E /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B8D044766C14E4FA2107DDC /* libRNVectorIcons-tvOS.a */; };
+		4B0DF0E971E74B6EA8BC965D /* FFF_Tusj.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A9900864F198457098922363 /* FFF_Tusj.ttf */; };
+		2AD3997C378949328F726AD3 /* OpenSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 74FAF1AE5E52420ABB59D946 /* OpenSans.ttf */; };
+		D8579C2291A74761901FC236 /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3279AAE8EDF14F84A1A92DA1 /* Pacifico.ttf */; };
+		99F631EEF3C64BC9B95E3CDE /* PlayfairDisplay.otf in Resources */ = {isa = PBXBuildFile; fileRef = ACC055DA614942E39622C8B9 /* PlayfairDisplay.otf */; };
+		52FC32BBFAD140078E510B54 /* vincHand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DD0D5B085EB409EA22577AB /* vincHand.ttf */; };
+		A3D9F2C69CE045BA94261CF5 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98B6159FB42344198F18EFBA /* OpenSans-Bold.ttf */; };
+		82CD96BDBF9E4649988F2D8B /* Chunkfive.otf in Resources */ = {isa = PBXBuildFile; fileRef = A838FC04031C4AEBBFA0B574 /* Chunkfive.otf */; };
+		A5419AE7999B4AC3BDFB6EF5 /* Norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = BBFA29DB1E844EBFB5EAD162 /* Norwester.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +394,14 @@
 		98737E7FAA634C1FA8E07F5A /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; name = "RNVectorIcons.xcodeproj"; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		D1F93163209D4452BAFB3962 /* libRNVectorIcons.a */ = {isa = PBXFileReference; name = "libRNVectorIcons.a"; path = "libRNVectorIcons.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		2B8D044766C14E4FA2107DDC /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; name = "libRNVectorIcons-tvOS.a"; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		A9900864F198457098922363 /* FFF_Tusj.ttf */ = {isa = PBXFileReference; name = "FFF_Tusj.ttf"; path = "../assets/fonts/FFF_Tusj.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		74FAF1AE5E52420ABB59D946 /* OpenSans.ttf */ = {isa = PBXFileReference; name = "OpenSans.ttf"; path = "../assets/fonts/OpenSans.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3279AAE8EDF14F84A1A92DA1 /* Pacifico.ttf */ = {isa = PBXFileReference; name = "Pacifico.ttf"; path = "../assets/fonts/Pacifico.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		ACC055DA614942E39622C8B9 /* PlayfairDisplay.otf */ = {isa = PBXFileReference; name = "PlayfairDisplay.otf"; path = "../assets/fonts/PlayfairDisplay.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		1DD0D5B085EB409EA22577AB /* vincHand.ttf */ = {isa = PBXFileReference; name = "vincHand.ttf"; path = "../assets/fonts/vincHand.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		98B6159FB42344198F18EFBA /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A838FC04031C4AEBBFA0B574 /* Chunkfive.otf */ = {isa = PBXFileReference; name = "Chunkfive.otf"; path = "../assets/fonts/Chunkfive.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BBFA29DB1E844EBFB5EAD162 /* Norwester.otf */ = {isa = PBXFileReference; name = "Norwester.otf"; path = "../assets/fonts/Norwester.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -675,6 +691,14 @@
 				79ED38B472DC4B2FB16F982E /* Octicons.ttf */,
 				CE816C0619CD4C7184FC0B57 /* SimpleLineIcons.ttf */,
 				D0FCBF15FC694BA2A735C9E2 /* Zocial.ttf */,
+				A9900864F198457098922363 /* FFF_Tusj.ttf */,
+				74FAF1AE5E52420ABB59D946 /* OpenSans.ttf */,
+				3279AAE8EDF14F84A1A92DA1 /* Pacifico.ttf */,
+				ACC055DA614942E39622C8B9 /* PlayfairDisplay.otf */,
+				1DD0D5B085EB409EA22577AB /* vincHand.ttf */,
+				98B6159FB42344198F18EFBA /* OpenSans-Bold.ttf */,
+				A838FC04031C4AEBBFA0B574 /* Chunkfive.otf */,
+				BBFA29DB1E844EBFB5EAD162 /* Norwester.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1141,6 +1165,14 @@
 				2099ABBEAC754633A7DF2B08 /* Octicons.ttf in Resources */,
 				D0B5483225E646339F73A24B /* SimpleLineIcons.ttf in Resources */,
 				153106E21B9B4F40B2F54F4D /* Zocial.ttf in Resources */,
+				4B0DF0E971E74B6EA8BC965D /* FFF_Tusj.ttf in Resources */,
+				2AD3997C378949328F726AD3 /* OpenSans.ttf in Resources */,
+				D8579C2291A74761901FC236 /* Pacifico.ttf in Resources */,
+				99F631EEF3C64BC9B95E3CDE /* PlayfairDisplay.otf in Resources */,
+				52FC32BBFAD140078E510B54 /* vincHand.ttf in Resources */,
+				A3D9F2C69CE045BA94261CF5 /* OpenSans-Bold.ttf in Resources */,
+				82CD96BDBF9E4649988F2D8B /* Chunkfive.otf in Resources */,
+				A5419AE7999B4AC3BDFB6EF5 /* Norwester.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

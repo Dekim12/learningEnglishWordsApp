@@ -1,8 +1,12 @@
 import React, { Component, } from 'react'
 import { StyleSheet, View, } from 'react-native'
-import { WordList, } from '../components'
+import { WordList, TouchableButton, Icon, } from '../components'
 
 class WordsScreen extends Component {
+  static navigationOptions = {
+    title: 'All Words',
+  }
+
   data = [
     {
       id: 1,
@@ -36,14 +40,20 @@ class WordsScreen extends Component {
     }
   ]
 
-  static navigationOptions = {
-    title: 'Words',
+  openDescription = (id, word) => {
+    this.props.navigation.navigate('WordDetails', { id, word, })
   }
 
   render() {
+    const { container, addButton, } = styles
+
     return (
-      <View style={styles.container}>
-        <WordList data={this.data} />
+      <View style={container}>
+        <WordList data={this.data} openDescription={this.openDescription} />
+        <TouchableButton
+          content={<Icon name='plus' size={33} color='#ffffff' />}
+          style={addButton}
+        />
       </View>
     )
   }
@@ -54,6 +64,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
+  },
+  addButton: {
+    width: 55,
+    height: 55,
+    position: 'absolute',
+    bottom: 10,
+    right: 43,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FF8A00',
   },
 })
 

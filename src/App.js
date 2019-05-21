@@ -1,12 +1,48 @@
 import React from 'react'
-import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+} from 'react-navigation'
 import { Icon, } from './components'
-import { TasksScreen, WordsScreen, TagsScreen, } from './screens'
+import {
+  TasksScreen,
+  WordsScreen,
+  TagsScreen,
+  WordDescriptionScreen,
+} from './screens'
 
-const TabNavigator = createBottomTabNavigator(
+const WordsScreensNavigator = createStackNavigator(
   {
-    Home: {
+    Words: {
       screen: WordsScreen,
+    },
+    WordDetails: {
+      screen: WordDescriptionScreen,
+    },
+  },
+  {
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#100E17',
+        height: 42,
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        flex: 1,
+        textAlign: 'center',
+        fontWeight: '300',
+        fontSize: 30,
+        fontFamily: 'FFF_Tusj',
+      },
+    },
+  }
+)
+
+const RootTabNavigator = createBottomTabNavigator(
+  {
+    Words: {
+      screen: WordsScreensNavigator,
     },
     Tags: {
       screen: TagsScreen,
@@ -21,7 +57,7 @@ const TabNavigator = createBottomTabNavigator(
         const { routeName, } = navigation.state
         let iconName
 
-        if (routeName === 'Home') {
+        if (routeName === 'Words') {
           iconName = 'star'
         } else if (routeName === 'Tags') {
           iconName = 'tasks'
@@ -32,7 +68,7 @@ const TabNavigator = createBottomTabNavigator(
               name='edit'
               size={25}
               color={tintColor}
-              style={{ paddingLeft: 8, fontSize: 28, }}
+              style={{ paddingLeft: 7, fontSize: 28, }}
             />
           )
         }
@@ -57,21 +93,13 @@ const TabNavigator = createBottomTabNavigator(
       },
       tabStyle: {
         height: 55,
-        paddingVertical: 3,
       },
       labelStyle: {
-        fontSize: 12,
+        fontSize: 14,
+        fontFamily: 'Norwester',
       },
     },
   }
 )
 
-export default createAppContainer(TabNavigator)
-
-// tabBarOptions: {
-
-//   labelStyle: {
-//     fontSize: 12,
-//     padding: 3,
-//   },
-// },
+export default createAppContainer(RootTabNavigator)

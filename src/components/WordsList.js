@@ -5,10 +5,14 @@ import { screenSize, } from '../utils'
 
 class WordList extends React.Component {
   renderItems = ({ item, index, }) => {
-    const { data, } = this.props
+    const { data, openDescription, } = this.props
 
     return (
-      <WordCard description={item} isLastCard={index === data.length - 1} />
+      <WordCard
+        description={item}
+        isLastCard={index === data.length - 1}
+        goToDetails={openDescription}
+      />
     )
   }
 
