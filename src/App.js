@@ -1,64 +1,14 @@
 import React from 'react'
-import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
-import { TasksScreen, TagsScreen, } from './screens'
-import { WordsScreensNavigator, } from './navigators'
-import { Icon, } from './components'
+import { Provider, } from 'react-redux'
+import store from './redux/store'
+import { RootNavigator, } from './navigators'
 
-const RootTabNavigator = createBottomTabNavigator(
-  {
-    Words: {
-      screen: WordsScreensNavigator,
-    },
-    Tags: {
-      screen: TagsScreen,
-    },
-    Tasks: {
-      screen: TasksScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: ({ navigation, }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor, }) => {
-        const { routeName, } = navigation.state
-        let styleForTasks = null
-        let iconName
-
-        if (routeName === 'Words') {
-          iconName = 'star'
-        } else if (routeName === 'Tags') {
-          iconName = 'tasks'
-        } else if (routeName === 'Tasks') {
-          iconName = 'edit'
-          styleForTasks = { paddingLeft: 7, }
-        }
-
-        return (
-          <Icon
-            name={iconName}
-            size={25}
-            color={tintColor}
-            style={[{ fontSize: 28, }, styleForTasks]}
-          />
-        )
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: '#FF4F1B',
-      activeBackgroundColor: '#2d273f',
-      inactiveTintColor: '#ffffff',
-      inactiveBackgroundColor: '#100E17',
-      style: {
-        height: 55,
-      },
-      tabStyle: {
-        height: 55,
-      },
-      labelStyle: {
-        fontSize: 14,
-        fontFamily: 'Norwester',
-      },
-    },
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <RootNavigator />
+      </Provider>
+    )
   }
-)
-
-export default createAppContainer(RootTabNavigator)
+}

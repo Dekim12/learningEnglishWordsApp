@@ -5,12 +5,12 @@ import styles from './style'
 
 class WordList extends React.Component {
   renderItems = ({ item, index, }) => {
-    const { data, openDescription, } = this.props
+    const { wordsList, openDescription, } = this.props
 
     return (
       <WordCard
         description={item}
-        isLastCard={index === data.length - 1}
+        isLastCard={index === wordsList.length - 1}
         goToDetails={openDescription}
       />
     )
@@ -19,12 +19,12 @@ class WordList extends React.Component {
   _keyExtractor = ({ id, }) => id.toString()
 
   render() {
-    const { data, } = this.props
+    const { wordsList, } = this.props
     const { container, } = styles
 
     return (
       <FlatList
-        data={data}
+        data={wordsList}
         renderItem={this.renderItems}
         keyExtractor={this._keyExtractor}
         style={container}
