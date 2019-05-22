@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
   },
   wordText: {
     fontSize: 24,
-    // fontWeight: 'bold',
     color: 'black',
     marginRight: 15,
     fontFamily: 'Chunkfive',
