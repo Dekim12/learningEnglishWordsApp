@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
-import { StyleSheet, Text, View, Button, } from 'react-native'
+import { Text, View, Button, } from 'react-native'
+import styles from './style'
 
 class TasksScreen extends Component {
   static navigationOptions = {
@@ -20,13 +21,5 @@ class TasksScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-})
 
 export { TasksScreen, }

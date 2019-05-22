@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
-import { StyleSheet, Text, View, } from 'react-native'
+import { Text, View, } from 'react-native'
+import styles from './style'
 
 class WordDescriptionScreen extends Component {
   static navigationOptions = ({ navigation, }) => {
@@ -26,13 +27,5 @@ class WordDescriptionScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-})
 
 export { WordDescriptionScreen, }

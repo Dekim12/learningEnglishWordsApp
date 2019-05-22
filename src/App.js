@@ -1,43 +1,8 @@
 import React from 'react'
-import {
-  createBottomTabNavigator,
-  createAppContainer,
-  createStackNavigator,
-} from 'react-navigation'
+import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
+import { TasksScreen, TagsScreen, } from './screens'
+import { WordsScreensNavigator, } from './navigators'
 import { Icon, } from './components'
-import {
-  TasksScreen,
-  WordsScreen,
-  TagsScreen,
-  WordDescriptionScreen,
-} from './screens'
-
-const WordsScreensNavigator = createStackNavigator(
-  {
-    Words: {
-      screen: WordsScreen,
-    },
-    WordDetails: {
-      screen: WordDescriptionScreen,
-    },
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#100E17',
-        height: 42,
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        flex: 1,
-        textAlign: 'center',
-        fontWeight: '300',
-        fontSize: 30,
-        fontFamily: 'FFF_Tusj',
-      },
-    },
-  }
-)
 
 const RootTabNavigator = createBottomTabNavigator(
   {
@@ -55,6 +20,7 @@ const RootTabNavigator = createBottomTabNavigator(
     defaultNavigationOptions: ({ navigation, }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor, }) => {
         const { routeName, } = navigation.state
+        let styleForTasks = null
         let iconName
 
         if (routeName === 'Words') {
@@ -63,14 +29,7 @@ const RootTabNavigator = createBottomTabNavigator(
           iconName = 'tasks'
         } else if (routeName === 'Tasks') {
           iconName = 'edit'
-          return (
-            <Icon
-              name='edit'
-              size={25}
-              color={tintColor}
-              style={{ paddingLeft: 7, fontSize: 28, }}
-            />
-          )
+          styleForTasks = { paddingLeft: 7, }
         }
 
         return (
@@ -78,7 +37,7 @@ const RootTabNavigator = createBottomTabNavigator(
             name={iconName}
             size={25}
             color={tintColor}
-            style={{ fontSize: 28, }}
+            style={[{ fontSize: 28, }, styleForTasks]}
           />
         )
       },

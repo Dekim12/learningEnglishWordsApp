@@ -1,6 +1,7 @@
 import React, { Component, } from 'react'
-import { StyleSheet, View, } from 'react-native'
-import { WordList, TouchableButton, Icon, } from '../components'
+import { View, } from 'react-native'
+import { WordList, TouchableButton, Icon, } from '../../components'
+import styles from './style'
 
 class WordsScreen extends Component {
   static navigationOptions = {
@@ -41,7 +42,11 @@ class WordsScreen extends Component {
   ]
 
   openDescription = (id, word) => {
-    this.props.navigation.navigate('WordDetails', { id, word, })
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('WordDetails', { id, word, })
   }
 
   render() {
@@ -58,24 +63,5 @@ class WordsScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-  addButton: {
-    width: 55,
-    height: 55,
-    position: 'absolute',
-    bottom: 10,
-    right: 43,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#FF8A00',
-  },
-})
 
 export { WordsScreen, }

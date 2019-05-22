@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, FlatList, } from 'react-native'
-import { WordCard, } from './index'
-import { screenSize, } from '../utils'
+import { FlatList, } from 'react-native'
+import { WordCard, } from '../index'
+import styles from './style'
 
 class WordList extends React.Component {
   renderItems = ({ item, index, }) => {
@@ -32,11 +32,5 @@ class WordList extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: screenSize.width,
-  },
-})
 
 export { WordList, }
