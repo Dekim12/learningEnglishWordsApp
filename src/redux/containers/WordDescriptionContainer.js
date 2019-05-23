@@ -1,18 +1,19 @@
 import { connect, } from 'react-redux'
-// import { bindActionCreators, } from 'redux'
+import { bindActionCreators, } from 'redux'
 import { find, } from 'lodash'
 import { WordDescriptionScreen, } from '../../screens/WordDescriptionScreen/WordDescriptionScreen'
+import { deleteWord, } from '../actions'
 
 const mapStateToProps = state => ({
   wordsList: state.wordsDataState.wordsList,
 })
 
-// const mapDispatchToProps = dispatch => bindActionCreators(
-//   {
-//     getAllBeers,
-//   },
-//   dispatch
-// )
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    deleteWord,
+  },
+  dispatch
+)
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, } = stateProps
@@ -26,6 +27,6 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
   mergeProps
 )(WordDescriptionScreen)

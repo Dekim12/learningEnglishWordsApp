@@ -1,4 +1,4 @@
-import { fakeData, } from '../../constants'
+import { fakeData, DELETE_WORD, } from '../../constants'
 
 const initialState = {
   wordsList: fakeData,
@@ -6,8 +6,11 @@ const initialState = {
 
 const wordsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'TYPE':
-      return { wordsList: [1, 2, 3], }
+    case DELETE_WORD: {
+      const newList = state.wordsList.filter(word => word.id !== action.payload)
+      return { ...state, wordsList: newList, }
+    }
+
     default:
       return state
   }

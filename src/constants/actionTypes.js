@@ -1,0 +1,3 @@
+const DELETE_WORD = 'DELETE_WORD'
+
+export { DELETE_WORD, }

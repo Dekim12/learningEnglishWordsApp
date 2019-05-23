@@ -7,6 +7,7 @@ const WordCard = ({
   description: { id, transcription, word, translation, },
   isLastCard,
   goToDetails,
+  deleteWord,
 }) => {
   const {
     cardContainer,
@@ -21,6 +22,8 @@ const WordCard = ({
   const onPress = () => {
     goToDetails(id, word)
   }
+
+  const deleteCurrentWord = () => deleteWord(id)
 
   return (
     <TouchableOpacity
@@ -37,7 +40,7 @@ const WordCard = ({
         </View>
         <Text style={translationText}>{translation}</Text>
       </View>
-      <TouchableOpacity onPress={() => {}} style={iconBtn}>
+      <TouchableOpacity onPress={deleteCurrentWord} style={iconBtn}>
         <Icon name='trash-alt' size={29} color='#FF402E' />
       </TouchableOpacity>
     </TouchableOpacity>

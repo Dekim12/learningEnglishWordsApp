@@ -23,10 +23,9 @@ class WordsScreen extends Component {
     return (
       <View style={container}>
         <WordListContainer openDescription={this.openDescription} />
-        <TouchableButton
-          content={<Icon name='plus' size={33} color='#ffffff' />}
-          style={addButton}
-        />
+        <TouchableButton style={addButton}>
+          <Icon name='plus' size={33} color='#ffffff' />
+        </TouchableButton>
       </View>
     )
   }

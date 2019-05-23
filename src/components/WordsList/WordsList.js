@@ -5,13 +5,14 @@ import styles from './style'
 
 class WordList extends React.Component {
   renderItems = ({ item, index, }) => {
-    const { wordsList, openDescription, } = this.props
+    const { wordsList, openDescription, deleteWord, } = this.props
 
     return (
       <WordCard
         description={item}
         isLastCard={index === wordsList.length - 1}
         goToDetails={openDescription}
+        deleteWord={deleteWord}
       />
     )
   }
