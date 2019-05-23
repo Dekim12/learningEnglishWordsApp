@@ -1,6 +1,9 @@
 import { createStackNavigator, } from 'react-navigation'
-import { WordDescriptionContainer, } from '../redux/containers'
-import { WordsScreen, WordDescriptionScreen, } from '../screens'
+import {
+  WordDescriptionContainer,
+  EditWordContainer,
+} from '../redux/containers'
+import { WordsScreen, NewWordScreen, } from '../screens'
 
 export const WordsScreensNavigator = createStackNavigator(
   {
@@ -9,6 +12,12 @@ export const WordsScreensNavigator = createStackNavigator(
     },
     WordDetails: {
       screen: WordDescriptionContainer,
+    },
+    NewWord: {
+      screen: NewWordScreen,
+    },
+    EditWord: {
+      screen: EditWordContainer,
     },
   },
   {

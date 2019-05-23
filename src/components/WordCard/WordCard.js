@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, } from 'react-native'
 import { Icon, } from '../index'
+import { createLine, } from '../../utils'
 import styles from './style'
 
 const WordCard = ({
@@ -38,7 +39,7 @@ const WordCard = ({
           <Text style={wordText}>{word}</Text>
           <Text style={transcriptionText}>{`[${transcription}]`}</Text>
         </View>
-        <Text style={translationText}>{translation}</Text>
+        <Text style={translationText}>{createLine(translation)}</Text>
       </View>
       <TouchableOpacity onPress={deleteCurrentWord} style={iconBtn}>
         <Icon name='trash-alt' size={29} color='#FF402E' />

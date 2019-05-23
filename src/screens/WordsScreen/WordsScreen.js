@@ -9,7 +9,7 @@ class WordsScreen extends Component {
     title: 'All Words',
   }
 
-  openDescription = (id, word) => {
+  toDescription = (id, word) => {
     const {
       navigation: { navigate, },
     } = this.props
@@ -17,13 +17,21 @@ class WordsScreen extends Component {
     navigate('WordDetails', { id, word, })
   }
 
+  toNewWord = () => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('NewWord')
+  }
+
   render() {
     const { container, addButton, } = styles
 
     return (
       <View style={container}>
-        <WordListContainer openDescription={this.openDescription} />
-        <TouchableButton style={addButton}>
+        <WordListContainer openDescription={this.toDescription} />
+        <TouchableButton style={addButton} onPress={this.toNewWord}>
           <Icon name='plus' size={33} color='#ffffff' />
         </TouchableButton>
       </View>

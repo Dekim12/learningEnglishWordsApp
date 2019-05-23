@@ -8,3 +8,5 @@ export const screenSize = {
 const getRandomNumber = () => Math.floor(Math.random() * (250 - 50)) + 50
 
 export const getRandomColor = () => `rgb(${getRandomNumber()}, ${getRandomNumber()}, ${getRandomNumber()})`
+
+export const createLine = arr => arr.reduce((sum, word) => `${sum}, ${word}`)

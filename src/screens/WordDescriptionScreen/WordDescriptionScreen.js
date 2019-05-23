@@ -2,7 +2,7 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, Image, ActivityIndicator, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, } from '../../components'
-import { getRandomColor, } from '../../utils'
+import { getRandomColor, createLine, } from '../../utils'
 import styles from './style'
 
 class WordDescriptionScreen extends Component {
@@ -15,7 +15,7 @@ class WordDescriptionScreen extends Component {
     return {
       title: word.join(''),
       headerTitleContainerStyle: {
-        marginRight: 55,
+        marginRight: 50,
       },
     }
   }
@@ -40,6 +40,12 @@ class WordDescriptionScreen extends Component {
 
     navigation.goBack()
     deleteWord(wordData.id)
+  }
+
+  toEditWordScreen = () => {
+    const { wordData, navigation, } = this.props
+
+    navigation.navigate('EditWord', { id: wordData.id, })
   }
 
   render() {
@@ -73,8 +79,10 @@ class WordDescriptionScreen extends Component {
           </Text>
         </Text>
         <Text style={definition}>
-          MAIN TRANSLATION:
-          <Text style={textValue}>{` ${wordData.translation}`}</Text>
+          TRANSLATION:
+          <Text style={textValue}>
+            {` ${createLine(wordData.translation)}`}
+          </Text>
         </Text>
         <View style={imageContainer}>
           {this.state.loading && (
@@ -97,7 +105,7 @@ class WordDescriptionScreen extends Component {
           <TouchableButton style={btn} onPress={this.deleteCurrentWord}>
             <Icon name='trash-alt' size={26} color='white' />
           </TouchableButton>
-          <TouchableButton style={btn}>
+          <TouchableButton style={btn} onPress={this.toEditWordScreen}>
             <Icon name='highlighter' size={26} color='white' />
           </TouchableButton>
         </View>

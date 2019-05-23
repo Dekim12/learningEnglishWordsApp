@@ -1,3 +1,4 @@
 const DELETE_WORD = 'DELETE_WORD'
+const EDIT_WORD = 'EDIT_WORD'
 
-export { DELETE_WORD, }
+export { DELETE_WORD, EDIT_WORD, }

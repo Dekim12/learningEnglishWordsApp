@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   example: {
     width: screenSize.width - 33,
-    fontSize: 18,
+    fontSize: 19,
     fontFamily: 'OpenSans',
     color: 'black',
   },
