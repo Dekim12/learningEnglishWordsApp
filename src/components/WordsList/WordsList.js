@@ -1,9 +1,15 @@
 import React from 'react'
-import { FlatList, } from 'react-native'
-import { WordCard, } from '../index'
+import { FlatList, ScrollView, } from 'react-native'
+import { WordCard, SearchInput, } from '../index'
+// import createFuse from '../../utils/fuse'
 import styles from './style'
 
 class WordList extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { dataList: this.props.wordsList, }
+  }
+
   renderItems = ({ item, index, }) => {
     const { wordsList, openDescription, deleteWord, } = this.props
 
@@ -20,16 +26,21 @@ class WordList extends React.Component {
   _keyExtractor = ({ id, }) => id.toString()
 
   render() {
-    const { wordsList, } = this.props
+    const { dataList, } = this.state
     const { container, } = styles
 
+    // console.log(this.fuse)
+
     return (
-      <FlatList
-        data={wordsList}
-        renderItem={this.renderItems}
-        keyExtractor={this._keyExtractor}
-        style={container}
-      />
+      <ScrollView>
+        <SearchInput placeholder='Find word...' />
+        <FlatList
+          data={dataList}
+          renderItem={this.renderItems}
+          keyExtractor={this._keyExtractor}
+          style={container}
+        />
+      </ScrollView>
     )
   }
 }

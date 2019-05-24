@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, } from 'redux'
-import axios from 'axios'
-import axiosMiddleware from 'redux-axios-middleware'
+import { createStore, } from 'redux'
+// import axios from 'axios'
+// import axiosMiddleware from 'redux-axios-middleware'
 // import { composeWithDevTools, } from 'redux-devtools-extension'
 import rootReducer from './reducers'
 

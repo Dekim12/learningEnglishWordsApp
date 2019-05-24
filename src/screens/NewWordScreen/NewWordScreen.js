@@ -1,6 +1,6 @@
 import React, { Component, } from 'react'
 import { View, Text, } from 'react-native'
-import { TouchableButton, Icon, } from '../../components'
+import {} from '../../components'
 import styles from './style'
 
 class NewWordScreen extends Component {
