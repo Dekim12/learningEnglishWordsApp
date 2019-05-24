@@ -7,17 +7,25 @@ class Input extends Component {
   }
 
   handleSubmitEditing = () => {
-    const { onSubmit, } = this.props
+    const { onSubmit, type, } = this.props
     const { text, } = this.state
 
     if (text) {
-      onSubmit(text)
+      onSubmit(text.replace(/^\s+/g, ''), type)
       this.setState({ text: '', })
     }
   }
 
   handleChangeText = (text) => {
     this.setState({ text, })
+  }
+
+  componentDidUpdate = () => {
+    const { submit, } = this.props
+
+    if (submit) {
+      this.handleSubmitEditing()
+    }
   }
 
   render() {

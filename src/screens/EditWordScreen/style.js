@@ -31,13 +31,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    marginTop: 8,
+    marginTop: 2,
   },
   translationItem: {
     flexDirection: 'row',
     alignItems: 'center',
     marginHorizontal: 5,
-    marginBottom: 8,
+    marginBottom: 5,
+    marginTop: 3,
     paddingTop: 3,
     paddingBottom: 7,
     paddingLeft: 15,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
   examplesBlock: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 10,
+    marginBottom: 1,
   },
   exampleItem: {
     width: screenSize.width - 20,
@@ -88,7 +89,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     marginHorizontal: 5,
-    marginBottom: 8,
+    marginTop: 8,
+    marginBottom: 3,
     paddingTop: 3,
     paddingBottom: 7,
     paddingLeft: 15,
@@ -102,7 +104,8 @@ const styles = StyleSheet.create({
   tagItem: {
     justifyContent: 'center',
     marginHorizontal: 5,
-    marginBottom: 10,
+    marginTop: 5,
+    marginBottom: 5,
     paddingTop: 3,
     paddingBottom: 5,
     paddingHorizontal: 15,
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
     borderColor: '#808080',
   },
   editBtn: {
+    marginTop: 5,
     marginBottom: 18,
     paddingVertical: 7,
     paddingHorizontal: 20,

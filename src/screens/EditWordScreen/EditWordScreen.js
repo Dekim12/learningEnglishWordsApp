@@ -4,8 +4,13 @@ import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import styles from './style'
 
+const WORD = 'translationWord'
+const STRING = 'exampleString'
+const URL = 'urlString'
+const TAG = 'tagString'
+
 class EditWordScreen extends Component {
-  state = { ...this.props.wordData, }
+  state = { ...this.props.wordData, submit: false, }
 
   static navigationOptions = {
     title: 'Edit Word',
@@ -14,70 +19,157 @@ class EditWordScreen extends Component {
     },
   }
 
-  generateTranslation = translationList => translationList.map(word => (
-    <View style={styles.translationItem} key={uuidv4()}>
-      <Text
-        style={{
-          fontFamily: 'OpenSans',
-          color: 'white',
-          fontSize: 20,
-        }}
-      >
-        {word}
-      </Text>
-      <TouchableButton style={{ marginLeft: 12, marginTop: 3, }}>
-        <Icon name='times-circle' size={22} color='#ffb380' />
-      </TouchableButton>
-    </View>
-  ))
+  deleteWordOrExample = (value, type) => {
+    if (type === WORD) {
+      this.setState(prevState => ({
+        translation: prevState.translation.filter(word => word !== value),
+      }))
+    } else if (type === STRING) {
+      this.setState(prevState => ({
+        examples: prevState.examples.filter(string => string !== value),
+      }))
+    }
+  }
 
-  generateExamples = examples => examples.map(item => (
-    <View style={styles.exampleItem} key={uuidv4()}>
-      <Text
-        style={{
-          fontFamily: 'OpenSans',
-          color: 'white',
-          fontSize: 18,
-        }}
-      >
-        {item}
-      </Text>
-      <TouchableButton style={styles.exampleButton}>
-        <Icon name='times-circle' size={22} color='#ffb380' />
-      </TouchableButton>
-    </View>
-  ))
+  addTagOrUrl = (value, type) => {
+    if (type === URL) {
+      this.setState({ url: value, })
+    } else if (type === TAG) {
+      this.setState({
+        tagName: value,
+      })
+    }
+  }
+
+  addWordOrExample = (value, type) => {
+    if (type === WORD) {
+      this.setState(prevState => ({
+        submit: false,
+        translation: prevState.translation.concat(value),
+      }))
+    } else if (type === STRING) {
+      this.setState(prevState => ({
+        submit: false,
+        examples: prevState.examples.concat(value),
+      }))
+    }
+  }
+
+  generateTranslation = translationList => translationList.map((word) => {
+    const deleteCurrentValue = () => this.deleteWordOrExample(word, WORD)
+
+    return (
+      <View style={styles.translationItem} key={uuidv4()}>
+        <Text
+          style={{
+            fontFamily: 'OpenSans',
+            color: 'white',
+            fontSize: 20,
+          }}
+        >
+          {word}
+        </Text>
+        <TouchableButton
+          style={{ marginLeft: 12, marginTop: 4, }}
+          onPress={deleteCurrentValue}
+        >
+          <Icon name='times-circle' size={22} color='#ffb380' />
+        </TouchableButton>
+      </View>
+    )
+  })
+
+  generateExamples = examples => examples.map((item) => {
+    const deleteCurrentValue = () => this.deleteWordOrExample(item, STRING)
+
+    return (
+      <View style={styles.exampleItem} key={uuidv4()}>
+        <Text
+          style={{
+            fontFamily: 'OpenSans',
+            color: 'white',
+            fontSize: 18,
+          }}
+        >
+          {item}
+        </Text>
+        <TouchableButton
+          style={styles.exampleButton}
+          onPress={deleteCurrentValue}
+        >
+          <Icon name='times-circle' size={22} color='#ffb380' />
+        </TouchableButton>
+      </View>
+    )
+  })
 
   generateTags = (currentTag, tagsList) => {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
 
-    return tagsList.map((tag, index) => (
-      <TouchableButton
-        style={[
-          styles.tagItem,
-          index === currentTagIndex ? { backgroundColor: '#2d862d', } : {}
-        ]}
-        key={uuidv4()}
-      >
-        <Text
+    return tagsList.map((tag, index) => {
+      const addTag = () => this.addTagOrUrl(tag, TAG)
+
+      return (
+        <TouchableButton
           style={[
-            {
-              fontFamily: 'OpenSans',
-              color: '#484848',
-              fontSize: 16,
-            },
-            index === currentTagIndex ? { color: 'white', } : {}
+            styles.tagItem,
+            index === currentTagIndex ? { backgroundColor: '#2d862d', } : {}
           ]}
+          key={uuidv4()}
+          onPress={addTag}
         >
-          {tag}
-        </Text>
-      </TouchableButton>
-    ))
+          <Text
+            style={[
+              {
+                fontFamily: 'OpenSans',
+                color: '#484848',
+                fontSize: 16,
+              },
+              index === currentTagIndex ? { color: 'white', } : {}
+            ]}
+          >
+            {tag}
+          </Text>
+        </TouchableButton>
+      )
+    })
+  }
+
+  edit = () => {
+    const { editWord, navigation, } = this.props
+    const {
+      id,
+      word,
+      transcription,
+      translation,
+      url,
+      examples,
+      tagName,
+    } = this.state
+
+    editWord({
+      id,
+      word,
+      transcription,
+      translation,
+      url,
+      examples,
+      tagName,
+    })
+
+    navigation.navigate('WordDetails', { id, word, })
   }
 
   render() {
-    const { editWord, tagsList, } = this.props
-    const { word, transcription, translation, tagName, examples, } = this.state
+    const { tagsList, } = this.props
+    const {
+      word,
+      transcription,
+      translation,
+      tagName,
+      examples,
+      submit,
+    } = this.state
 
     const {
       container,
@@ -107,16 +199,30 @@ class EditWordScreen extends Component {
           <Input
             placeholder='Add translation...'
             style={textInput}
-            onSubmit={() => {}}
+            submit={submit}
+            type={WORD}
+            onSubmit={this.addWordOrExample}
           />
-          <TouchableButton style={inputBtn}>
+          <TouchableButton
+            style={inputBtn}
+            onPress={() => this.setState({ submit: true, })}
+          >
             <Icon name='plus-circle' size={33} color='white' />
           </TouchableButton>
         </View>
         <Text style={definition}>NEW IMAGE:</Text>
         <View style={inputBlock}>
-          <Input placeholder='Url...' style={textInput} onSubmit={() => {}} />
-          <TouchableButton style={inputBtn}>
+          <Input
+            placeholder='Url...'
+            style={textInput}
+            submit={submit}
+            type={URL}
+            onSubmit={this.addTagOrUrl}
+          />
+          <TouchableButton
+            style={inputBtn}
+            onPress={() => this.setState({ submit: true, })}
+          >
             <Icon name='plus-circle' size={35} color='white' />
           </TouchableButton>
         </View>
@@ -126,9 +232,14 @@ class EditWordScreen extends Component {
           <Input
             placeholder='Add example...'
             style={textInput}
-            onSubmit={() => {}}
+            submit={submit}
+            type={STRING}
+            onSubmit={this.addWordOrExample}
           />
-          <TouchableButton style={inputBtn}>
+          <TouchableButton
+            style={inputBtn}
+            onPress={() => this.setState({ submit: true, })}
+          >
             <Icon name='plus-circle' size={35} color='white' />
           </TouchableButton>
         </View>
@@ -136,7 +247,7 @@ class EditWordScreen extends Component {
         <View style={[translationBlock, { marginBottom: 20, }]}>
           {this.generateTags(tagName, tagsList)}
         </View>
-        <TouchableButton style={editBtn}>
+        <TouchableButton style={editBtn} onPress={this.edit}>
           <Text style={editText}>EDIT</Text>
         </TouchableButton>
       </ScrollView>
