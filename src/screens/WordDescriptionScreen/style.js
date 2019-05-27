@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     flex: 1,
     borderRadius: 7,
+    resizeMode: 'cover',
   },
   exampleBlock: {
     flexDirection: 'row',

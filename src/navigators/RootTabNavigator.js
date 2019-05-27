@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
-import { TasksScreen, TagsScreen, } from '../screens'
-import { WordsScreensNavigator, } from './index'
+import { TasksScreen, } from '../screens'
+import { WordsScreensNavigator, TagsScreensNavigator, } from './index'
 import { Icon, } from '../components'
 
 const RootTabNavigator = createBottomTabNavigator(
@@ -10,13 +10,14 @@ const RootTabNavigator = createBottomTabNavigator(
       screen: WordsScreensNavigator,
     },
     Tags: {
-      screen: TagsScreen,
+      screen: TagsScreensNavigator,
     },
     Tasks: {
       screen: TasksScreen,
     },
   },
   {
+    resetOnBlur: true,
     defaultNavigationOptions: ({ navigation, }) => ({
       tabBarIcon: ({ tintColor, }) => {
         const { routeName, } = navigation.state

@@ -1,10 +1,30 @@
+import {} from '../../constants'
+
+const TAGS_LIST = [
+  'myTagList',
+  'secondTag',
+  'sfjk',
+  '112',
+  'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
+  'myTagList',
+  'secondTag',
+  'sfjk',
+  '112',
+  'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
+  'myTagList',
+  'secondTag',
+  'sfjk',
+  '112',
+  'sdlfjakljasdlfjlsfgd fgdlsgfsdf'
+]
+
 const initialState = {
-  tagsList: ['myTagList', 'secondTag', 'sfjk', '#12'],
+  tagsList: TAGS_LIST,
 }
 
 const tagsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'DELETE_WORD': {
+    case 'DELETE': {
       return { ...state, }
     }
 

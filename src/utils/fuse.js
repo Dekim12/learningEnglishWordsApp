@@ -2,7 +2,7 @@ import * as Fuse from 'fuse.js'
 
 const FuseConstructor = Fuse.default
 
-const options = {
+const wordsOptions = {
   shouldSort: true,
   threshold: 0.3,
   location: 0,
@@ -12,9 +12,6 @@ const options = {
   keys: ['word', 'translation'],
 }
 
-const createFuse = (list) => {
-  const fuse = new FuseConstructor(list, options)
-  return fuse
-}
+const createFuse = list => new FuseConstructor(list, wordsOptions)
 
 export default createFuse

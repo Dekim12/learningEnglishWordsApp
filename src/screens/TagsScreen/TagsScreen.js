@@ -1,5 +1,7 @@
 import React, { Component, } from 'react'
-import { Text, View, Button, } from 'react-native'
+import { View, } from 'react-native'
+import { TouchableButton, Icon, } from '../../components'
+import { TagsListContainer, } from '../../redux/containers'
 import styles from './style'
 
 class TagsScreen extends Component {
@@ -7,15 +9,31 @@ class TagsScreen extends Component {
     title: 'Tags',
   }
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>TagsScreen</Text>
+  toDetails = (tagName) => {
+    const {
+      navigation: { navigate, },
+    } = this.props
 
-        <Button
-          title='Go to Home'
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
+    navigate('TagDetails', { tagName, })
+  }
+
+  toEdit = (tagName) => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('EditTag', { tagName, })
+  }
+
+  render() {
+    const { container, createBtn, } = styles
+
+    return (
+      <View style={container}>
+        <TagsListContainer toDetails={this.toDetails} toEdit={this.toEdit} />
+        <TouchableButton style={createBtn} onPress={() => {}}>
+          <Icon name='plus' size={33} color='#ffffff' />
+        </TouchableButton>
       </View>
     )
   }
