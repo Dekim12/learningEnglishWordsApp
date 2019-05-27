@@ -1,13 +1,17 @@
 import React from 'react'
-import { FlatList, ScrollView, } from 'react-native'
-import { WordCard, SearchInput, } from '../index'
-// import createFuse from '../../utils/fuse'
+import { FlatList, ScrollView, Text, } from 'react-native'
+import { WordCard, SearchInput, TouchableButton, } from '../index'
+import createFuse from '../../utils/fuse'
 import styles from './style'
 
 class WordList extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { dataList: this.props.wordsList, }
+    const { wordsList, } = this.props
+
+    this.state = { searchString: '', }
+
+    this.fuse = createFuse(wordsList)
   }
 
   renderItems = ({ item, index, }) => {
@@ -23,21 +27,39 @@ class WordList extends React.Component {
     )
   }
 
-  _keyExtractor = ({ id, }) => id.toString()
+  keyExtractor = ({ id, }) => id.toString()
+
+  findWord = (text) => {
+    this.setState({ searchString: text, })
+  }
+
+  navigate = () => {
+    const { navigate, } = this.props
+    const { searchString, } = this.state
+
+    navigate('NewWord', { newWord: searchString, })
+  }
 
   render() {
-    const { dataList, } = this.state
-    const { container, } = styles
+    const { wordsList, } = this.props
+    const { searchString, } = this.state
+    const { container, addWordBlock, definition, valueStyle, } = styles
 
-    // console.log(this.fuse)
+    const filteredDataList = this.fuse.search(searchString)
 
     return (
       <ScrollView>
-        <SearchInput placeholder='Find word...' />
+        <SearchInput placeholder='Find word...' onChange={this.findWord} />
+        {searchString && !filteredDataList.length ? (
+          <TouchableButton style={addWordBlock} onPress={this.navigate}>
+            <Text style={definition}>Add word</Text>
+            <Text style={valueStyle}>{`${searchString}`}</Text>
+          </TouchableButton>
+        ) : null}
         <FlatList
-          data={dataList}
+          data={!searchString ? wordsList : filteredDataList}
           renderItem={this.renderItems}
-          keyExtractor={this._keyExtractor}
+          keyExtractor={this.keyExtractor}
           style={container}
         />
       </ScrollView>

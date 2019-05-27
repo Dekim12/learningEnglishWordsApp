@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   addButton: {
-    width: 55,
-    height: 55,
+    width: 54,
+    height: 54,
     position: 'absolute',
     bottom: 10,
     right: 43,
@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FF8A00',
+    borderWidth: 1,
+    borderColor: '#ffd1b3',
   },
 })
 

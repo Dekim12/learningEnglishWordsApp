@@ -20,12 +20,10 @@ const styles = StyleSheet.create({
     color: '#404040',
   },
   wordTranscription: {
+    marginBottom: 22,
     fontFamily: 'PlayfairDisplay',
     color: '#888888',
     fontSize: 25,
-  },
-  underLine: {
-    marginBottom: 25,
   },
   translationBlock: {
     flexDirection: 'row',

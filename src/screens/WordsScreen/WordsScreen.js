@@ -26,11 +26,15 @@ class WordsScreen extends Component {
   }
 
   render() {
+    const { navigation, } = this.props
     const { container, addButton, } = styles
 
     return (
       <View style={container}>
-        <WordListContainer openDescription={this.toDescription} />
+        <WordListContainer
+          openDescription={this.toDescription}
+          navigate={navigation.navigate}
+        />
         <TouchableButton style={addButton} onPress={this.toNewWord}>
           <Icon name='plus' size={33} color='#ffffff' />
         </TouchableButton>

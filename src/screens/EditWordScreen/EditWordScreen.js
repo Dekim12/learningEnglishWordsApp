@@ -176,7 +176,6 @@ class EditWordScreen extends Component {
       definition,
       currentWord,
       wordTranscription,
-      underLine,
       translationBlock,
       inputBlock,
       inputBtn,
@@ -190,7 +189,6 @@ class EditWordScreen extends Component {
       <ScrollView contentContainerStyle={container}>
         <Text style={currentWord}>{word}</Text>
         <Text style={wordTranscription}>{`[${transcription}]`}</Text>
-        <View style={underLine} />
         <Text style={definition}>TRANSLATION:</Text>
         <View style={translationBlock}>
           {this.generateTranslation(translation)}

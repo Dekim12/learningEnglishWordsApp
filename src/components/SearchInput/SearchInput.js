@@ -1,10 +1,11 @@
 import React, { Component, } from 'react'
-import { TextInput, } from 'react-native'
+import { TextInput, View, } from 'react-native'
+import { TouchableButton, Icon, } from '../index'
 import styles from './style'
 
 class SearchInput extends Component {
   state = {
-    text: '',
+    queryString: '',
     isFocused: false,
   }
 
@@ -13,41 +14,55 @@ class SearchInput extends Component {
   handleInputEdit = () => this.setState({ isFocused: false, })
 
   handleSubmitEditing = () => {
-    const { onSubmit, type, } = this.props
-    const { text, } = this.state
+    const { onChange, } = this.props
+    const { queryString, } = this.state
 
-    if (text) {
-      onSubmit(text.replace(/^\s+/g, ''), type)
-      this.setState({ text: '', })
+    if (queryString) {
+      onChange(queryString.replace(/^\s+/g, ''))
     }
   }
 
   handleChangeText = (text) => {
-    this.setState({ text, })
+    const { onChange, } = this.props
+
+    this.setState({ queryString: text, })
+    onChange(text.replace(/^\s+/g, ''))
+  }
+
+  clearInput = () => {
+    const { onChange, } = this.props
+
+    this.setState({ queryString: '', })
+    onChange('')
   }
 
   render() {
     const { placeholder, } = this.props
-    const { text, isFocused, } = this.state
+    const { queryString, isFocused, } = this.state
+    const { inputStyle, closeBtn, searchContainer, } = styles
 
     return (
-      <TextInput
-        value={text}
-        placeholder={placeholder}
-        placeholderTextColor='white'
-        onFocus={this.handleInputFocus}
-        onEndEditing={this.handleInputEdit}
-        style={[
-          styles.inputStyle,
-          isFocused ? { backgroundColor: '#d4d0e2', } : {}
-        ]}
-        autoCorrect={false}
-        clearButtonMode='always'
-        underlineColorAndroid='transparent'
-        autoCapitalize='words'
-        onChangeText={this.handleChangeText}
-        onSubmitEditing={this.handleSubmitEditing}
-      />
+      <View style={searchContainer}>
+        <TextInput
+          value={queryString}
+          placeholder={placeholder}
+          placeholderTextColor='white'
+          onFocus={this.handleInputFocus}
+          onEndEditing={this.handleInputEdit}
+          style={[inputStyle, isFocused ? { backgroundColor: '#d4d0e2', } : {}]}
+          autoCorrect={false}
+          clearButtonMode='always'
+          underlineColorAndroid='transparent'
+          autoCapitalize='words'
+          onChangeText={this.handleChangeText}
+          onSubmitEditing={this.handleSubmitEditing}
+        />
+        {!!queryString && (
+          <TouchableButton style={closeBtn} onPress={this.clearInput}>
+            <Icon name='times' size={40} color='#ADB5BD' />
+          </TouchableButton>
+        )}
+      </View>
     )
   }
 }
