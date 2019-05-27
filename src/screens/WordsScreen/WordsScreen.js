@@ -25,15 +25,22 @@ class WordsScreen extends Component {
     navigate('NewWord')
   }
 
+  addNewWord = (word) => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('NewWord', { newWord: word, })
+  }
+
   render() {
-    const { navigation, } = this.props
     const { container, addButton, } = styles
 
     return (
       <View style={container}>
         <WordListContainer
           openDescription={this.toDescription}
-          navigate={navigation.navigate}
+          addNewWord={this.addNewWord}
         />
         <TouchableButton style={addButton} onPress={this.toNewWord}>
           <Icon name='plus' size={33} color='#ffffff' />

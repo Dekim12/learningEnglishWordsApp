@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, } from 'react'
 import { View, Text, TouchableOpacity, } from 'react-native'
 import { Icon, } from '../index'
 import { createLine, } from '../../utils'
@@ -20,15 +20,17 @@ const WordCard = ({
     wrapper,
   } = styles
 
-  const onPress = () => {
+  const openDetails = useCallback(() => {
     goToDetails(id, word)
-  }
+  }, [id, word])
 
-  const deleteCurrentWord = () => deleteWord(id)
+  const deleteCurrentWord = useCallback(() => {
+    deleteWord(id)
+  }, [id])
 
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={openDetails}
       style={[
         cardContainer,
         isLastCard && { borderBottomWidth: 1, marginBottom: 100, }

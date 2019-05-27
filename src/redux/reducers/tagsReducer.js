@@ -6,16 +6,16 @@ const TAGS_LIST = [
   'sfjk',
   '112',
   'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
-  'myTagList',
-  'secondTag',
-  'sfjk',
-  '112',
-  'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
-  'myTagList',
-  'secondTag',
-  'sfjk',
-  '112',
-  'sdlfjakljasdlfjlsfgd fgdlsgfsdf'
+  'firstTag',
+  'peoples',
+  'verbs',
+  'fruits',
+  'sfds sf hgh 1154f',
+  'dffjkkdkf',
+  '1111111',
+  'TTTshdf',
+  'tTgs',
+  'tttttt'
 ]
 
 const initialState = {

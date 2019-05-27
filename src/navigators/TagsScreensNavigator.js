@@ -13,6 +13,9 @@ export const TagsScreensNavigator = createStackNavigator(
     EditTag: {
       screen: EditTagContainer,
     },
+    // NewTag: {
+    //   screen: NewTagContainer
+    // }
   },
   {
     defaultNavigationOptions: {

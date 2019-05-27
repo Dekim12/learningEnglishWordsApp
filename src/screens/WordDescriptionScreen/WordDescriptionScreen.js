@@ -20,10 +20,8 @@ class WordDescriptionScreen extends Component {
     }
   }
 
-  keyExtractor = () => uuidv4().toString()
-
   renderExamples = list => list.map(item => (
-    <View style={styles.exampleBlock} key={this.keyExtractor()}>
+    <View style={styles.exampleBlock} key={uuidv4()}>
       <View
         style={[styles.exampleLabel, { backgroundColor: getRandomColor(), }]}
       />

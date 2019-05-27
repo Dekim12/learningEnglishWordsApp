@@ -29,15 +29,15 @@ class WordList extends React.Component {
 
   keyExtractor = ({ id, }) => id.toString()
 
-  findWord = (text) => {
+  updateSearchString = (text) => {
     this.setState({ searchString: text, })
   }
 
-  navigate = () => {
-    const { navigate, } = this.props
+  addWord = () => {
+    const { addNewWord, } = this.props
     const { searchString, } = this.state
 
-    navigate('NewWord', { newWord: searchString, })
+    addNewWord(searchString)
   }
 
   render() {
@@ -49,9 +49,12 @@ class WordList extends React.Component {
 
     return (
       <ScrollView>
-        <SearchInput placeholder='Find word...' onChange={this.findWord} />
+        <SearchInput
+          placeholder='Find word...'
+          onChange={this.updateSearchString}
+        />
         {searchString && !filteredDataList.length ? (
-          <TouchableButton style={addWordBlock} onPress={this.navigate}>
+          <TouchableButton style={addWordBlock} onPress={this.addWord}>
             <Text style={definition}>Add word</Text>
             <Text style={valueStyle}>{`${searchString}`}</Text>
           </TouchableButton>

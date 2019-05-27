@@ -10,7 +10,13 @@ const URL = 'urlString'
 const TAG = 'tagString'
 
 class EditWordScreen extends Component {
-  state = { ...this.props.wordData, submit: false, }
+  constructor(props) {
+    super(props)
+
+    const { wordData, } = this.props
+
+    this.state = { ...wordData, submit: false, }
+  }
 
   static navigationOptions = {
     title: 'Edit Word',
@@ -137,27 +143,11 @@ class EditWordScreen extends Component {
 
   edit = () => {
     const { editWord, navigation, } = this.props
-    const {
-      id,
-      word,
-      transcription,
-      translation,
-      url,
-      examples,
-      tagName,
-    } = this.state
+    const newWord = { ...this.state, }
+    delete newWord.submit
 
-    editWord({
-      id,
-      word,
-      transcription,
-      translation,
-      url,
-      examples,
-      tagName,
-    })
-
-    navigation.navigate('WordDetails', { id, word, })
+    editWord(newWord)
+    navigation.navigate('WordDetails', { id: newWord.id, word: newWord.word, })
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from 'react'
-import { FlatList, ScrollView, } from 'react-native'
+import { FlatList, ScrollView, Text, } from 'react-native'
 import uuidv4 from 'uuid/v4'
-import { TagCard, SearchInput, } from '../index'
+import { TagCard, SearchInput, TouchableButton, } from '../index'
 import styles from './style'
 
 class TagsList extends React.Component {
@@ -24,15 +24,44 @@ class TagsList extends React.Component {
     )
   }
 
+  filterTagList = (list, searchString) => list.filter(
+    elem => elem.toLowerCase().indexOf(searchString.toLowerCase()) > -1
+  )
+
+  updateSearchString = (text) => {
+    this.setState({ searchString: text, })
+  }
+
+  addTag = () => {
+    const { addNewTag, } = this.props
+    const { searchString, } = this.state
+
+    addNewTag(searchString)
+  }
+
   render() {
     const { tagsList, } = this.props
-    const { container, } = styles
+    const { searchString, } = this.state
+    const { container, addTagBlock, definition, valueStyle, } = styles
 
     return (
       <ScrollView>
-        <SearchInput placeholder='Find tag...' />
+        <SearchInput
+          placeholder='Find tag...'
+          onChange={this.updateSearchString}
+        />
+        {searchString && !this.filterTagList(tagsList, searchString).length ? (
+          <TouchableButton style={addTagBlock} onPress={this.addTag}>
+            <Text style={definition}>Add tag</Text>
+            <Text style={valueStyle}>{`${searchString}`}</Text>
+          </TouchableButton>
+        ) : null}
         <FlatList
-          data={tagsList}
+          data={
+            !searchString
+              ? tagsList
+              : this.filterTagList(tagsList, searchString)
+          }
           renderItem={this.renderItems}
           keyExtractor={uuidv4}
           style={container}
