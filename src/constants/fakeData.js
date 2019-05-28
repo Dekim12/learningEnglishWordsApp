@@ -23,7 +23,7 @@ export const fakeData = [
       'You dirty dog!',
       'That dog barks all day long.'
     ],
-    tagName: 'myTagList',
+    tagName: 'secondTag',
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ export const fakeData = [
       'I like to go fishing on weekends',
       'Dad really loves to fish.'
     ],
-    tagName: 'myTagList',
+    tagName: 'secondTag',
   },
   {
     id: 4,
@@ -76,7 +76,7 @@ export const fakeData = [
       'The tempest crashes down the forest.',
       'Be quiet whilst the tempest lasts. (W. M. Thackeray)'
     ],
-    tagName: 'myTagList',
+    tagName: 'secondTag',
   },
 
   {
@@ -87,7 +87,7 @@ export const fakeData = [
     url:
       'https://cs4.pikabu.ru/post_img/big/2014/12/17/8/1418818385_687166354.jpg',
     examples: [],
-    tagName: 'myTagList',
+    tagName: '112',
   },
   {
     id: 9,
@@ -127,6 +127,6 @@ export const fakeData = [
       'I will find a way to do it.',
       'I cannot find my gloves!'
     ],
-    tagName: 'myTagList',
+    tagName: '112',
   }
 ]
