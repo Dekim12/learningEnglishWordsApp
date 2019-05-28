@@ -32,7 +32,7 @@ class TagsScreen extends Component {
   }
 
   render() {
-    const { addTag, } = this.props
+    const { addTag, tagsList, } = this.props
     const { isNewTag, newTagName, } = this.state
     const { container, createBtn, } = styles
 
@@ -51,6 +51,7 @@ class TagsScreen extends Component {
             closePopup={this.togglePopup}
             name={newTagName}
             addTag={addTag}
+            tagsList={tagsList}
           />
         )}
       </View>

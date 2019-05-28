@@ -4,6 +4,7 @@ import { screenSize, } from '../../utils'
 const styles = StyleSheet.create({
   container: {
     width: screenSize.width,
+    paddingBottom: 90,
   },
   addTagBlock: {
     width: screenSize.width,

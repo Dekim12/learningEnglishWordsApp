@@ -15,12 +15,12 @@ class WordList extends React.Component {
   }
 
   renderItems = ({ item, index, }) => {
-    const { wordsList, openDescription, deleteWord, } = this.props
+    const { openDescription, deleteWord, } = this.props
 
     return (
       <WordCard
         description={item}
-        isLastCard={index === wordsList.length - 1}
+        isFirstCard={index === 0}
         goToDetails={openDescription}
         deleteWord={deleteWord}
       />

@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     width: screenSize.width,
     flexDirection: 'row',
     alignItems: 'center',
-    borderTopWidth: 1.5,
+    borderBottomWidth: 1.5,
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderColor: '#4d446f',

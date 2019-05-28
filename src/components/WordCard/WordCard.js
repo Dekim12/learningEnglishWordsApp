@@ -6,7 +6,7 @@ import styles from './style'
 
 const WordCard = ({
   description: { id, transcription, word, translation, },
-  isLastCard,
+  isFirstCard,
   goToDetails,
   deleteWord,
 }) => {
@@ -31,10 +31,7 @@ const WordCard = ({
   return (
     <TouchableOpacity
       onPress={openDetails}
-      style={[
-        cardContainer,
-        isLastCard && { borderBottomWidth: 1, marginBottom: 100, }
-      ]}
+      style={[cardContainer, isFirstCard && { borderTopWidth: 1.5, }]}
     >
       <View style={wrapper}>
         <View style={[wordsContainer]}>

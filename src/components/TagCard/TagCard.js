@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, } from 'react-native'
 import { Icon, } from '../index'
 import styles from './style'
 
-const TagCard = ({ name, toEdit, isLastCard, toDetails, }) => {
+const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
   const { container, tagName, } = styles
 
   const openDetails = () => {
@@ -17,10 +17,7 @@ const TagCard = ({ name, toEdit, isLastCard, toDetails, }) => {
   return (
     <TouchableOpacity
       onPress={openDetails}
-      style={[
-        container,
-        isLastCard && { borderBottomWidth: 1, marginBottom: 100, }
-      ]}
+      style={[container, isFirstCard && { borderTopWidth: 1.5, }]}
     >
       <Text style={tagName}>
         <Text style={{ color: '#B0B0B0', }}>#</Text>

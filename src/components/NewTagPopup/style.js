@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   createBtn: {
     paddingVertical: 7,
     paddingHorizontal: 20,
+    marginTop: 10,
     marginBottom: 7,
     backgroundColor: '#D97604',
     borderWidth: 1,
@@ -37,7 +38,8 @@ const styles = StyleSheet.create({
     width: screenSize.width - 90,
     paddingHorizontal: 20,
     justifyContent: 'center',
-    marginVertical: 15,
+    marginTop: 15,
+    marginBottom: 5,
     backgroundColor: '#DCDCDC',
     borderWidth: 1,
     borderColor: '#787878',
@@ -50,6 +52,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 7,
     right: 15,
+  },
+  alert: {
+    color: '#b30000',
+    fontSize: 16,
+    fontFamily: 'PlayfairDisplay',
   },
 })
 

@@ -12,12 +12,12 @@ class TagsList extends React.Component {
   }
 
   renderItems = ({ item, index, }) => {
-    const { tagsList, toDetails, toEdit, } = this.props
+    const { toDetails, toEdit, } = this.props
 
     return (
       <TagCard
         name={item}
-        isLastCard={index === tagsList.length - 1}
+        isFirstCard={index === 0}
         toDetails={toDetails}
         toEdit={toEdit}
       />
