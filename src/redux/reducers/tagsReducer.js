@@ -1,4 +1,4 @@
-import {} from '../../constants'
+import { ADD_TAG, } from '../../constants'
 
 const TAGS_LIST = [
   'myTagList',
@@ -24,8 +24,10 @@ const initialState = {
 
 const tagsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'DELETE': {
-      return { ...state, }
+    case ADD_TAG: {
+      const newTagList = state.tagsList.concat(action.payload)
+
+      return { ...state, tagsList: newTagList, }
     }
 
     default:

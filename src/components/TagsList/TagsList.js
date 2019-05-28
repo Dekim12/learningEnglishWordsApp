@@ -8,7 +8,7 @@ class TagsList extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { searchString: '', }
+    this.state = { searchString: '', clearInput: false, }
   }
 
   renderItems = ({ item, index, }) => {
@@ -29,25 +29,27 @@ class TagsList extends React.Component {
   )
 
   updateSearchString = (text) => {
-    this.setState({ searchString: text, })
+    this.setState({ searchString: text, clearInput: false, })
   }
 
   addTag = () => {
     const { addNewTag, } = this.props
     const { searchString, } = this.state
 
-    addNewTag(searchString)
+    addNewTag(searchString.replace(/^\s+/g, ''))
+    this.setState({ clearInput: true, })
   }
 
   render() {
     const { tagsList, } = this.props
-    const { searchString, } = this.state
+    const { searchString, clearInput, } = this.state
     const { container, addTagBlock, definition, valueStyle, } = styles
 
     return (
       <ScrollView>
         <SearchInput
           placeholder='Find tag...'
+          clearInput={clearInput}
           onChange={this.updateSearchString}
         />
         {searchString && !this.filterTagList(tagsList, searchString).length ? (

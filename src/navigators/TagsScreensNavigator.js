@@ -1,11 +1,14 @@
 import { createStackNavigator, } from 'react-navigation'
-import { TagsScreen, } from '../screens'
-import { TagDetailsContainer, EditTagContainer, } from '../redux/containers'
+import {
+  TagDetailsContainer,
+  EditTagContainer,
+  TagsScreenContainer,
+} from '../redux/containers'
 
 export const TagsScreensNavigator = createStackNavigator(
   {
     Tags: {
-      screen: TagsScreen,
+      screen: TagsScreenContainer,
     },
     TagDetails: {
       screen: TagDetailsContainer,
@@ -13,9 +16,6 @@ export const TagsScreensNavigator = createStackNavigator(
     EditTag: {
       screen: EditTagContainer,
     },
-    // NewTag: {
-    //   screen: NewTagContainer
-    // }
   },
   {
     defaultNavigationOptions: {

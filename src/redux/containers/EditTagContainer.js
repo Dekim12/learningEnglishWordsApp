@@ -8,23 +8,9 @@ const mapStateToProps = state => ({
 
 // const mapDispatchToProps = dispatch => bindActionCreators(
 //   {
-//     editWord,
+//     deleteWord,
 //   },
 //   dispatch
 // )
 
-// const mergeProps = (stateProps, dispatchProps, ownProps) => {
-//   const { wordsList, tagsList, } = stateProps
-//   const { navigation, } = ownProps
-
-//   const id = navigation.getParam('id')
-//   const wordData = find(wordsList, word => word.id === id)
-
-//   return { wordData, tagsList, ...dispatchProps, ...ownProps, }
-// }
-
-export default connect(
-  mapStateToProps
-  // mapDispatchToProps,
-  // mergeProps
-)(EditTagScreen)
+export default connect(mapStateToProps)(EditTagScreen)

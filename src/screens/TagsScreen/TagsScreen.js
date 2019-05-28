@@ -1,10 +1,12 @@
 import React, { Component, } from 'react'
 import { View, } from 'react-native'
-import { TouchableButton, Icon, } from '../../components'
+import { TouchableButton, Icon, NewTagPopup, } from '../../components'
 import { TagsListContainer, } from '../../redux/containers'
 import styles from './style'
 
 class TagsScreen extends Component {
+  state = { isNewTag: false, newTagName: '', }
+
   static navigationOptions = {
     title: 'All Tags',
   }
@@ -25,15 +27,13 @@ class TagsScreen extends Component {
     navigate('EditTag', { tagName, })
   }
 
-  toNewTag = (newTag) => {
-    const {
-      navigation: { navigate, },
-    } = this.props
-
-    navigate('NewTag', { newTag, })
+  togglePopup = (newTagName = '') => {
+    this.setState(prevState => ({ isNewTag: !prevState.isNewTag, newTagName, }))
   }
 
   render() {
+    const { addTag, } = this.props
+    const { isNewTag, newTagName, } = this.state
     const { container, createBtn, } = styles
 
     return (
@@ -41,11 +41,18 @@ class TagsScreen extends Component {
         <TagsListContainer
           toDetails={this.toDetails}
           toEdit={this.toEdit}
-          addNewTag={this.toNewTag}
+          addNewTag={this.togglePopup}
         />
-        <TouchableButton style={createBtn} onPress={() => {}}>
+        <TouchableButton style={createBtn} onPress={() => this.togglePopup('')}>
           <Icon name='plus' size={33} color='#ffffff' />
         </TouchableButton>
+        {isNewTag && (
+          <NewTagPopup
+            closePopup={this.togglePopup}
+            name={newTagName}
+            addTag={addTag}
+          />
+        )}
       </View>
     )
   }

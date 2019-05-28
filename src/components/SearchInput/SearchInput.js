@@ -36,6 +36,13 @@ class SearchInput extends Component {
     onChange('')
   }
 
+  componentDidUpdate = () => {
+    const { clearInput, } = this.props
+    if (clearInput) {
+      this.clearInput()
+    }
+  }
+
   render() {
     const { placeholder, } = this.props
     const { queryString, isFocused, } = this.state
