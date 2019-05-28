@@ -51,7 +51,7 @@ class WordDescriptionScreen extends Component {
     const {
       container,
       definition,
-      textValue,
+      translationStyle,
       transcript,
       imageStyle,
       imageContainer,
@@ -59,6 +59,7 @@ class WordDescriptionScreen extends Component {
       controlPanel,
       btn,
       indicator,
+      currentWord,
     } = styles
 
     if (!wordData) {
@@ -67,21 +68,11 @@ class WordDescriptionScreen extends Component {
 
     return (
       <ScrollView contentContainerStyle={container}>
-        <Text style={definition}>
-          WORD: <Text style={textValue}>{` ${wordData.word}`}</Text>
-        </Text>
-        <Text style={definition}>
-          TRANSCRIPTION :
-          <Text style={[textValue, transcript]}>
-            {`  [${wordData.transcription}]`}
-          </Text>
-        </Text>
-        <Text style={definition}>
-          TRANSLATION:
-          <Text style={textValue}>
-            {` ${createLine(wordData.translation)}`}
-          </Text>
-        </Text>
+        <Text style={currentWord}>{wordData.word}</Text>
+        {/* <Text style={definition}>TRANSCRIPTION</Text> */}
+        <Text style={transcript}>{`[${wordData.transcription}]`}</Text>
+        <Text style={definition}>TRANSLATION</Text>
+        <Text style={translationStyle}>{createLine(wordData.translation)}</Text>
         <View style={imageContainer}>
           {this.state.loading && (
             <ActivityIndicator color='#E8453B' style={indicator} size='large' />
@@ -92,11 +83,9 @@ class WordDescriptionScreen extends Component {
             onLoad={this.handleLoad}
           />
         </View>
-        {!!wordData.examples.length && (
-          <Text style={[definition, { alignSelf: 'center', }]}>EXAMPLES</Text>
-        )}
+        {!!wordData.examples.length && <Text style={definition}>EXAMPLES</Text>}
         {wordData.examples && this.renderExamples(wordData.examples)}
-        <Text style={[definition, { marginTop: 20, }]}>
+        <Text style={[definition, { marginTop: 20, alignSelf: 'flex-start', }]}>
           TAG NAME: <Text style={tagText}>{`  ${wordData.tagName}  `}</Text>
         </Text>
         <View style={controlPanel}>

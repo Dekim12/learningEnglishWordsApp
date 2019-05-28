@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   tagName: {
     flex: 1,
     flexWrap: 'wrap',
-    fontSize: 25,
+    fontSize: 24,
     fontFamily: 'Chunkfive',
     color: '#000000',
   },

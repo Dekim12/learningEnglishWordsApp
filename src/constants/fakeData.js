@@ -82,8 +82,8 @@ export const fakeData = [
   {
     id: 8,
     word: 'otherworldly',
-    transcription: 'jcity',
-    translation: ['потусторонний', 'иной'],
+    transcription: 'ʌðr̩ˈwɝːldli',
+    translation: ['потусторонний', 'иной', 'не от мира сего'],
     url:
       'https://cs4.pikabu.ru/post_img/big/2014/12/17/8/1418818385_687166354.jpg',
     examples: [],

@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     color: '#FF8A00',
   },
   currentWord: {
+    textAlign: 'center',
     fontSize: 48,
     fontFamily: 'Chunkfive',
-    textAlign: 'center',
     color: '#404040',
   },
   wordTranscription: {

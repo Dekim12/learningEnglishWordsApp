@@ -3,30 +3,42 @@ import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 3,
+    paddingVertical: 10,
     paddingHorizontal: 10,
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
   },
   definition: {
-    alignSelf: 'flex-start',
-    fontSize: 20,
+    fontSize: 28,
+    lineHeight: 32,
     fontFamily: 'Norwester',
     color: '#FF8A00',
   },
-  textValue: {
-    fontSize: 29,
+  currentWord: {
+    textAlign: 'center',
+    fontSize: 48,
+    lineHeight: 50,
+    fontFamily: 'Chunkfive',
+    color: '#404040',
+  },
+  translationStyle: {
+    marginBottom: 17,
+    fontSize: 31,
+    lineHeight: 33,
     fontFamily: 'OpenSans',
+    textAlign: 'center',
     color: '#101010',
   },
   transcript: {
+    marginBottom: 20,
+    textAlign: 'center',
     fontFamily: 'PlayfairDisplay',
     color: '#888888',
-    fontSize: 27,
+    fontSize: 25,
   },
   imageContainer: {
-    marginTop: 25,
-    marginBottom: 30,
+    marginTop: 3,
+    marginBottom: 25,
     width: 300,
     aspectRatio: 1.35,
     borderRadius: 7,
@@ -73,6 +85,7 @@ const styles = StyleSheet.create({
     fontFamily: 'PlayfairDisplay',
     backgroundColor: '#7575a3',
     paddingBottom: 5,
+    lineHeight: 32,
   },
   controlPanel: {
     width: screenSize.width - 100,
