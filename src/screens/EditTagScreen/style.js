@@ -1,0 +1,95 @@
+import { StyleSheet, } from 'react-native'
+import { screenSize, } from '../../utils'
+
+const styles = StyleSheet.create({
+  container: {
+    width: screenSize.width,
+    paddingTop: 5,
+    paddingBottom: 15,
+    paddingHorizontal: 10,
+  },
+  currentWord: {
+    marginBottom: 8,
+    textAlign: 'center',
+    fontSize: 48,
+    fontFamily: 'Chunkfive',
+    color: '#404040',
+  },
+  definition: {
+    fontSize: 28,
+    fontFamily: 'Norwester',
+    color: '#FF8A00',
+  },
+  inputBlock: {
+    flexDirection: 'row',
+    marginBottom: 5,
+    marginTop: 5,
+  },
+  inputBtn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopRightRadius: 7,
+    borderBottomRightRadius: 7,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#FF8A00',
+    borderWidth: 1,
+    borderColor: '#787878',
+    borderLeftWidth: 0,
+  },
+  textInput: {
+    backgroundColor: '#DCDCDC',
+    borderWidth: 1,
+    borderColor: '#787878',
+    color: '#303030',
+    width: 270,
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    fontSize: 18,
+    borderTopLeftRadius: 7,
+    borderBottomLeftRadius: 7,
+    fontFamily: 'OpenSans',
+  },
+  wordsBlock: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  wordItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 5,
+    marginBottom: 5,
+    marginTop: 5,
+    paddingTop: 3,
+    paddingBottom: 7,
+    paddingLeft: 15,
+    paddingRight: 10,
+    borderRadius: 20,
+    backgroundColor: '#2d862d',
+    borderWidth: 1,
+    borderColor: '#006600',
+  },
+  editBtn: {
+    marginTop: 30,
+    marginBottom: 25,
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    backgroundColor: '#D97604',
+    borderWidth: 1,
+    borderColor: '#ffcc80',
+    borderRadius: 7,
+  },
+  editText: {
+    color: 'white',
+    fontSize: 30,
+    fontFamily: 'FFF_Tusj',
+  },
+  alert: {
+    color: '#b30000',
+    fontSize: 16,
+    fontFamily: 'PlayfairDisplay',
+  },
+})
+
+export default styles

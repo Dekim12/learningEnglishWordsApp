@@ -1,4 +1,5 @@
-import { ADD_TAG, } from '../../constants'
+import { sortBy, } from 'lodash'
+import { ADD_TAG, EDIT_TAG, } from '../../constants'
 
 const TAGS_LIST = [
   'myTagList',
@@ -19,7 +20,7 @@ const TAGS_LIST = [
 ]
 
 const initialState = {
-  tagsList: TAGS_LIST,
+  tagsList: sortBy(TAGS_LIST, tag => tag.toLowerCase()),
 }
 
 const tagsReducer = (state = initialState, action) => {
@@ -29,7 +30,17 @@ const tagsReducer = (state = initialState, action) => {
 
       return { ...state, tagsList: newTagList, }
     }
+    case EDIT_TAG: {
+      const { prevName, newName, } = action.payload
+      const newTagsList = state.tagsList.map((tag) => {
+        if (tag === prevName) {
+          return newName
+        }
+        return tag
+      })
 
+      return { ...state, tagsList: newTagsList, }
+    }
     default:
       return state
   }

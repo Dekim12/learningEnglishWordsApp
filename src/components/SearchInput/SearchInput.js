@@ -18,7 +18,7 @@ class SearchInput extends Component {
     const { queryString, } = this.state
 
     if (queryString) {
-      onChange(queryString.replace(/^\s+/g, ''))
+      onChange(queryString.replace(/^\s+|\s+$/g, ''))
     }
   }
 
@@ -26,7 +26,7 @@ class SearchInput extends Component {
     const { onChange, } = this.props
 
     this.setState({ queryString: text, })
-    onChange(text.replace(/^\s+/g, ''))
+    onChange(text.replace(/^\s+|\s+$/g, ''))
   }
 
   clearInput = () => {

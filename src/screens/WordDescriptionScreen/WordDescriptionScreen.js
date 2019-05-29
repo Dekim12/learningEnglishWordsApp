@@ -69,7 +69,6 @@ class WordDescriptionScreen extends Component {
     return (
       <ScrollView contentContainerStyle={container}>
         <Text style={currentWord}>{wordData.word}</Text>
-        {/* <Text style={definition}>TRANSCRIPTION</Text> */}
         <Text style={transcript}>{`[${wordData.transcription}]`}</Text>
         <Text style={definition}>TRANSLATION</Text>
         <Text style={translationStyle}>{createLine(wordData.translation)}</Text>

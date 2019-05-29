@@ -14,7 +14,7 @@ class NewTagPopup extends React.Component {
   handleChangeText = (name) => {
     const { tagsList, } = this.props
 
-    const isNameExist = tagsList.indexOf(name.replace(/^\s+/g, '')) >= 0
+    const isNameExist = tagsList.indexOf(name.replace(/^\s+|\s+$/g, '')) >= 0
     this.setState({ name, isNameExist, })
   }
 
@@ -22,7 +22,7 @@ class NewTagPopup extends React.Component {
     const { name, isNameExist, } = this.state
     const { addTag, closePopup, } = this.props
 
-    const preparedTagName = name.replace(/^\s+/g, '')
+    const preparedTagName = name.replace(/^\s+|\s+$/g, '')
     if (!isNameExist && preparedTagName) {
       addTag(preparedTagName)
       closePopup('')

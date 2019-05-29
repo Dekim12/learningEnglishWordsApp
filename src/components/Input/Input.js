@@ -11,7 +11,7 @@ class Input extends Component {
     const { text, } = this.state
 
     if (text) {
-      onSubmit(text.replace(/^\s+/g, ''), type)
+      onSubmit(text.replace(/^\s+|\s+$/g, ''), type)
       this.setState({ text: '', })
     }
   }

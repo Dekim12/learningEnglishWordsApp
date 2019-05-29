@@ -7,10 +7,11 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
   },
   headline: {
-    fontSize: 35,
-    fontFamily: 'Norwester',
-    color: '#FF8A00',
     textAlign: 'center',
+    fontSize: 45,
+    fontFamily: 'Chunkfive',
+    color: '#404040',
+    lineHeight: 48,
   },
   wordItem: {
     width: screenSize.width - 40,

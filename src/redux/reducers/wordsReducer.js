@@ -1,7 +1,13 @@
-import { fakeData, DELETE_WORD, EDIT_WORD, } from '../../constants'
+import { sortBy, } from 'lodash'
+import {
+  fakeData,
+  DELETE_WORD,
+  EDIT_WORD,
+  EDIT_WORDS_LIST,
+} from '../../constants'
 
 const initialState = {
-  wordsList: fakeData,
+  wordsList: sortBy(fakeData, data => data.word),
 }
 
 const wordsReducer = (state = initialState, action) => {
@@ -18,6 +24,21 @@ const wordsReducer = (state = initialState, action) => {
         return word
       })
       return { ...state, wordsList: newList, }
+    }
+    case EDIT_WORDS_LIST: {
+      const { prevName, newName, deletedWordList, } = action.payload
+
+      const filteredList = state.wordsList.filter(
+        word => deletedWordList.indexOf(word.id) === -1
+      )
+
+      filteredList.forEach((word) => {
+        if (word.tagName === prevName) {
+          word.tagName = newName
+        }
+      })
+
+      return { ...state, wordsList: filteredList, }
     }
     default:
       return state

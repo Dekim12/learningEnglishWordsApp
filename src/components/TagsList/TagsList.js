@@ -36,7 +36,7 @@ class TagsList extends React.Component {
     const { addNewTag, } = this.props
     const { searchString, } = this.state
 
-    addNewTag(searchString.replace(/^\s+/g, ''))
+    addNewTag(searchString.replace(/^\s+|\s+$/g, ''))
     this.setState({ clearInput: true, })
   }
 

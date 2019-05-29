@@ -44,6 +44,7 @@
     "no-console": "error",
     "no-use-before-define": "warn",
     "jsx-quotes": ["error", "prefer-single"],
+    "no-param-reassign": "warn",
     "comma-dangle": [
       "error",
       {
