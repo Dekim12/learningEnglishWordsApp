@@ -26,12 +26,13 @@ const initialState = {
 const tagsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TAG: {
-      const newTagList = state.tagsList.concat(action.payload)
+      const newTagList = sortBy(state.tagsList.concat(action.payload), tag => tag.toLowerCase())
 
       return { ...state, tagsList: newTagList, }
     }
     case EDIT_TAG: {
       const { prevName, newName, } = action.payload
+
       const newTagsList = state.tagsList.map((tag) => {
         if (tag === prevName) {
           return newName

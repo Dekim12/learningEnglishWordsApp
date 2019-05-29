@@ -81,7 +81,7 @@ class EditTagScreen extends Component {
     const { editCurrentTag, navigation, tagName, } = this.props
     const { currentName, deletedWordsList, } = this.state
 
-    if (currentName && deletedWordsList.length) {
+    if (currentName || deletedWordsList.length) {
       editCurrentTag(tagName, currentName, deletedWordsList)
     }
     navigation.navigate('Tags')

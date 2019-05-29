@@ -25,6 +25,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const editCurrentTag = (prevName, newName, deletedWordList) => {
     dispatchProps.editTag(prevName, newName)
+
     if (tagWords.length) {
       dispatchProps.editWordsList(prevName, newName, deletedWordList)
     }
