@@ -7,7 +7,6 @@ import styles from './style'
 class EditTagScreen extends Component {
   constructor(props) {
     super(props)
-
     const { tagName, tagWords, } = this.props
 
     this.state = {
