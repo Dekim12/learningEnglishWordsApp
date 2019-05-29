@@ -1,7 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
 import { TasksScreen, } from '../screens'
-import { WordsScreensNavigator, TagsScreensNavigator, } from '.'
+import { TagsScreensNavigator, WordsScreensNavigator, } from './index'
 import { Icon, } from '../components'
 
 const RootTabNavigator = createBottomTabNavigator(
