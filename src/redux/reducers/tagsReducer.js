@@ -1,26 +1,8 @@
 import { sortBy, } from 'lodash'
-import { ADD_TAG, EDIT_TAG, } from '../../constants'
-
-const TAGS_LIST = [
-  'myTagList',
-  'secondTag',
-  'sfjk',
-  '112',
-  'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
-  'firstTag',
-  'peoples',
-  'verbs',
-  'fruits',
-  'sfds sf hgh 1154f',
-  'dffjkkdkf',
-  '1111111',
-  'TTTshdf',
-  'tTgs',
-  'tttttt'
-]
+import { fakeTagList, ADD_TAG, EDIT_TAG, DELETE_TAG, } from '../../constants'
 
 const initialState = {
-  tagsList: sortBy(TAGS_LIST, tag => tag.toLowerCase()),
+  tagsList: sortBy(fakeTagList, tag => tag.toLowerCase()),
 }
 
 const tagsReducer = (state = initialState, action) => {
@@ -41,6 +23,11 @@ const tagsReducer = (state = initialState, action) => {
       })
 
       return { ...state, tagsList: newTagsList, }
+    }
+    case DELETE_TAG: {
+      const newTagList = state.tagsList.filter(tag => tag !== action.payload)
+
+      return { ...state, tagsList: newTagList, }
     }
     default:
       return state

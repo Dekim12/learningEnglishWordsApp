@@ -86,6 +86,13 @@ class EditTagScreen extends Component {
     navigation.navigate('Tags')
   }
 
+  deleteTag = () => {
+    const { deleteCurrentTag, navigation, } = this.props
+
+    navigation.navigate('Tags')
+    deleteCurrentTag()
+  }
+
   render() {
     const { currentName, wordsList, isTagExist, } = this.state
     const {
@@ -96,8 +103,8 @@ class EditTagScreen extends Component {
       textInput,
       inputBtn,
       wordsBlock,
-      editBtn,
-      editText,
+      btn,
+      btnText,
       alert,
     } = styles
 
@@ -131,8 +138,17 @@ class EditTagScreen extends Component {
           <Text style={alert}>The words list is empty</Text>
         )}
         <View style={wordsBlock}>{this.generateWordsList(wordsList)}</View>
-        <TouchableButton style={editBtn} onPress={this.edit}>
-          <Text style={editText}>EDIT</Text>
+        <TouchableButton
+          style={[btn, { marginTop: 30, backgroundColor: '#ac3939', }]}
+          onPress={this.deleteTag}
+        >
+          <Text style={btnText}>DELETE</Text>
+        </TouchableButton>
+        <TouchableButton
+          style={[btn, { marginBottom: 27, }]}
+          onPress={this.edit}
+        >
+          <Text style={btnText}>EDIT</Text>
         </TouchableButton>
       </ScrollView>
     )

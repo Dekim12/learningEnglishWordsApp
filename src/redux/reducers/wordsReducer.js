@@ -4,6 +4,7 @@ import {
   DELETE_WORD,
   EDIT_WORD,
   EDIT_WORDS_LIST,
+  DELETE_WORDS_LIST,
 } from '../../constants'
 
 const initialState = {
@@ -14,6 +15,7 @@ const wordsReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_WORD: {
       const newList = state.wordsList.filter(word => word.id !== action.payload)
+
       return { ...state, wordsList: newList, }
     }
     case EDIT_WORD: {
@@ -39,6 +41,13 @@ const wordsReducer = (state = initialState, action) => {
       })
 
       return { ...state, wordsList: filteredList, }
+    }
+    case DELETE_WORDS_LIST: {
+      const newList = state.wordsList.filter(
+        word => word.tagName !== action.payload
+      )
+
+      return { ...state, wordsList: newList, }
     }
     default:
       return state

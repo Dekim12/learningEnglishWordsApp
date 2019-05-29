@@ -70,17 +70,17 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#006600',
   },
-  editBtn: {
-    marginTop: 30,
-    marginBottom: 25,
+  btn: {
+    alignItems: 'center',
+    width: 170,
+    marginBottom: 10,
     paddingVertical: 7,
-    paddingHorizontal: 20,
     backgroundColor: '#D97604',
     borderWidth: 1,
     borderColor: '#ffcc80',
     borderRadius: 7,
   },
-  editText: {
+  btnText: {
     color: 'white',
     fontSize: 30,
     fontFamily: 'FFF_Tusj',
