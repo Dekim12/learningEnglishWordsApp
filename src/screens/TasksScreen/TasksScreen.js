@@ -1,5 +1,8 @@
 import React, { Component, } from 'react'
-import { Text, View, Button, } from 'react-native'
+import { Text, View, ScrollView, } from 'react-native'
+import uuidv4 from 'uuid/v4'
+import { Icon, TouchableButton, } from '../../components'
+import { taskNameList, } from '../../constants'
 import styles from './style'
 
 class TasksScreen extends Component {
@@ -7,17 +10,67 @@ class TasksScreen extends Component {
     title: 'Tasks',
   }
 
-  render() {
-    const { navigate, } = this.props.navigation
+  toSettings = () => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('Settings')
+  }
+
+  toStatistic = () => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('Statistic')
+  }
+
+  generateTasks = taskList => taskList.map((task) => {
+    const toCurrentTask = () => {
+      const {
+        navigation: { navigate, },
+      } = this.props
+
+      navigate('CurrentTask', { taskName: task, })
+    }
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>TasksScreen</Text>
-        <Button
-          title='Go to Tags'
-          onPress={() => navigate('Tags', { otherParam: 'other Param', })}
-        />
-      </View>
+      <TouchableButton
+        key={uuidv4()}
+        style={styles.taskLabel}
+        onPress={toCurrentTask}
+      >
+        <Text style={styles.taskText}>{task}</Text>
+      </TouchableButton>
+    )
+  })
+
+  render() {
+    const { container, btnBlock, } = styles
+
+    return (
+      <ScrollView
+        style={container}
+        contentContainerStyle={{ alignItems: 'center', }}
+      >
+        <View style={btnBlock}>
+          <TouchableButton onPress={this.toStatistic}>
+            <Icon
+              name='award'
+              size={40}
+              color='#ffaa00'
+              style={{ marginLeft: 3, }}
+            />
+          </TouchableButton>
+          <TouchableButton onPress={this.toSettings}>
+            <Icon name='cogs' size={37} color='#606060' />
+          </TouchableButton>
+        </View>
+        <View style={{ marginBottom: 25, }}>
+          {this.generateTasks(taskNameList)}
+        </View>
+      </ScrollView>
     )
   }
 }

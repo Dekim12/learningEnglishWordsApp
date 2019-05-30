@@ -1,20 +1,17 @@
 import React from 'react'
 import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
-import { TasksScreen, } from '../screens'
-import { TagsScreensNavigator, WordsScreensNavigator, } from './index'
+import {
+  TagsScreensNavigator,
+  WordsScreensNavigator,
+  TasksScreenNavigator,
+} from './index'
 import { Icon, } from '../components'
 
 const RootTabNavigator = createBottomTabNavigator(
   {
-    Words: {
-      screen: WordsScreensNavigator,
-    },
-    Tags: {
-      screen: TagsScreensNavigator,
-    },
-    Tasks: {
-      screen: TasksScreen,
-    },
+    Words: WordsScreensNavigator,
+    Tags: TagsScreensNavigator,
+    Tasks: TasksScreenNavigator,
   },
   {
     resetOnBlur: true,

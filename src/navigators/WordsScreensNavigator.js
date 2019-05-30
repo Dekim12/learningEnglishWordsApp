@@ -7,18 +7,10 @@ import { WordsScreen, NewWordScreen, } from '../screens'
 
 export const WordsScreensNavigator = createStackNavigator(
   {
-    Words: {
-      screen: WordsScreen,
-    },
-    WordDetails: {
-      screen: WordDescriptionContainer,
-    },
-    NewWord: {
-      screen: NewWordScreen,
-    },
-    EditWord: {
-      screen: EditWordContainer,
-    },
+    Words: WordsScreen,
+    WordDetails: WordDescriptionContainer,
+    NewWord: NewWordScreen,
+    EditWord: EditWordContainer,
   },
   {
     defaultNavigationOptions: {

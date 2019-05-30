@@ -1,15 +1,13 @@
 import { createStackNavigator, } from 'react-navigation'
-import {
-  TagDetailsContainer,
-  EditTagContainer,
-  TagsScreenContainer,
-} from '../redux/containers'
+import { StatisticsScreenContainer, } from '../redux/containers'
+import { TasksScreen, SettingsScreen, CurrentTaskScreen, } from '../screens'
 
-export const TagsScreensNavigator = createStackNavigator(
+export const TasksScreenNavigator = createStackNavigator(
   {
-    Tags: TagsScreenContainer,
-    TagDetails: TagDetailsContainer,
-    EditTag: EditTagContainer,
+    Tasks: TasksScreen,
+    Statistic: StatisticsScreenContainer,
+    Settings: SettingsScreen,
+    CurrentTask: CurrentTaskScreen,
   },
   {
     defaultNavigationOptions: {
