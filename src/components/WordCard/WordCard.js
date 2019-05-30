@@ -24,10 +24,6 @@ const WordCard = ({
     goToDetails(id, word)
   }, [id, word])
 
-  const deleteCurrentWord = useCallback(() => {
-    deleteWord(id)
-  }, [id])
-
   return (
     <TouchableOpacity
       onPress={openDetails}
@@ -40,7 +36,7 @@ const WordCard = ({
         </View>
         <Text style={translationText}>{createLine(translation)}</Text>
       </View>
-      <TouchableOpacity onPress={deleteCurrentWord} style={iconBtn}>
+      <TouchableOpacity onPress={deleteWord} style={iconBtn}>
         <Icon name='trash-alt' size={29} color='#FF402E' />
       </TouchableOpacity>
     </TouchableOpacity>

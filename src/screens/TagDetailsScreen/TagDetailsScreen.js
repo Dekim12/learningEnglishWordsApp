@@ -1,10 +1,15 @@
 import React, { Component, } from 'react'
-import { Text, FlatList, ScrollView, } from 'react-native'
-import { Icon, TouchableButton, } from '../../components'
+import { Text, FlatList, ScrollView, View, } from 'react-native'
+import { Icon, TouchableButton, PermissionPopup, } from '../../components'
 import { createLine, } from '../../utils'
 import styles from './style'
 
 class TagDetailsScreen extends Component {
+  state = {
+    permissionVisible: false,
+    permissionResolve: null,
+  }
+
   static navigationOptions = ({ navigation, }) => ({
     title: `Tag ${navigation.getParam('tagName')}`,
     headerTitleContainerStyle: {
@@ -22,7 +27,8 @@ class TagDetailsScreen extends Component {
       deleteBtn,
     } = styles
 
-    const deleteCurrentWord = () => deleteWord(item.id)
+    const deleteCurrentWord = () => this.setPermissionFunctions(() => deleteWord(item.id))
+
     const toWordScreen = () => navigation.navigate('WordDetails', {
       id: item.id,
       word: item.word,
@@ -50,25 +56,49 @@ class TagDetailsScreen extends Component {
 
   keyExtractor = ({ id, }) => id.toString()
 
+  setPermissionFunctions = (resolve) => {
+    this.setState({
+      permissionVisible: true,
+      permissionResolve: resolve,
+    })
+  }
+
+  refreshPermission = () => {
+    this.setState({
+      permissionVisible: false,
+      permissionResolve: null,
+    })
+  }
+
   render() {
     const { tagsWordsList, tagName, } = this.props
+    const { permissionVisible, permissionResolve, } = this.state
     const { container, headline, addBtn, addText, } = styles
 
     return (
-      <ScrollView
-        style={container}
-        contentContainerStyle={{ alignItems: 'center', }}
-      >
-        <Text style={headline}>{tagName}</Text>
-        <FlatList
-          data={tagsWordsList}
-          renderItem={this.renderWords}
-          keyExtractor={this.keyExtractor}
-        />
-        <TouchableButton style={addBtn} onPress={this.toCreateWordScreen}>
-          <Text style={addText}>ADD NEW WORD</Text>
-        </TouchableButton>
-      </ScrollView>
+      <View style={{ flex: 1, }}>
+        <ScrollView
+          style={container}
+          contentContainerStyle={{ alignItems: 'center', }}
+        >
+          <Text style={headline}>{tagName}</Text>
+          <FlatList
+            data={tagsWordsList}
+            renderItem={this.renderWords}
+            keyExtractor={this.keyExtractor}
+          />
+          <TouchableButton style={addBtn} onPress={this.toCreateWordScreen}>
+            <Text style={addText}>ADD NEW WORD</Text>
+          </TouchableButton>
+        </ScrollView>
+        {permissionVisible && (
+          <PermissionPopup
+            resolve={permissionResolve}
+            refresh={this.refreshPermission}
+            isWord
+          />
+        )}
+      </View>
     )
   }
 }

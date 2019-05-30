@@ -1,7 +1,7 @@
 import React, { Component, } from 'react'
 import { ScrollView, Text, View, TextInput, } from 'react-native'
 import uuidv4 from 'uuid/v4'
-import { TouchableButton, Icon, } from '../../components'
+import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import styles from './style'
 
 class EditTagScreen extends Component {
@@ -15,6 +15,7 @@ class EditTagScreen extends Component {
       deletedWordsList: [],
       isTagExist: false,
       changeInputQuery: '',
+      permissionVisible: false,
     }
   }
 
@@ -86,6 +87,14 @@ class EditTagScreen extends Component {
     navigation.navigate('Tags')
   }
 
+  refreshPermission = () => this.setState({
+    permissionVisible: false,
+  })
+
+  handlePermission = () => this.setState({
+    permissionVisible: true,
+  })
+
   deleteTag = () => {
     const { deleteCurrentTag, navigation, } = this.props
 
@@ -94,7 +103,7 @@ class EditTagScreen extends Component {
   }
 
   render() {
-    const { currentName, wordsList, isTagExist, } = this.state
+    const { currentName, wordsList, isTagExist, permissionVisible, } = this.state
     const {
       container,
       currentWord,
@@ -109,48 +118,58 @@ class EditTagScreen extends Component {
     } = styles
 
     return (
-      <ScrollView
-        style={container}
-        contentContainerStyle={{ alignItems: 'center', }}
-      >
-        <Text style={currentWord}>{currentName}</Text>
-        <Text style={definition}>NEW TAG NAME</Text>
-        <View style={inputBlock}>
-          <TextInput
-            defaultValue={currentName}
-            placeholder='New tag name...'
-            placeholderTextColor='white'
-            style={textInput}
-            autoCorrect={false}
-            clearButtonMode='always'
-            underlineColorAndroid='transparent'
-            autoCapitalize='words'
-            onChangeText={this.handleChangeText}
-            onSubmitEditing={this.handleSubmit}
-          />
-          <TouchableButton style={inputBtn} onPress={this.handleSubmit}>
-            <Icon name='plus-circle' size={35} color='white' />
+      <View style={{ flex: 1, }}>
+        <ScrollView
+          style={container}
+          contentContainerStyle={{ alignItems: 'center', }}
+        >
+          <Text style={currentWord}>{currentName}</Text>
+          <Text style={definition}>NEW TAG NAME</Text>
+          <View style={inputBlock}>
+            <TextInput
+              defaultValue={currentName}
+              placeholder='New tag name...'
+              placeholderTextColor='white'
+              style={textInput}
+              autoCorrect={false}
+              clearButtonMode='always'
+              underlineColorAndroid='transparent'
+              autoCapitalize='words'
+              onChangeText={this.handleChangeText}
+              onSubmitEditing={this.handleSubmit}
+            />
+            <TouchableButton style={inputBtn} onPress={this.handleSubmit}>
+              <Icon name='plus-circle' size={35} color='white' />
+            </TouchableButton>
+          </View>
+          {isTagExist && (
+            <Text style={alert}>This tag name already exists.</Text>
+          )}
+          <Text style={[definition, { marginTop: 30, }]}>WORDS</Text>
+          {!wordsList.length && (
+            <Text style={alert}>The words list is empty</Text>
+          )}
+          <View style={wordsBlock}>{this.generateWordsList(wordsList)}</View>
+          <TouchableButton
+            style={[btn, { marginTop: 30, backgroundColor: '#ac3939', }]}
+            onPress={this.handlePermission}
+          >
+            <Text style={btnText}>DELETE</Text>
           </TouchableButton>
-        </View>
-        {isTagExist && <Text style={alert}>This tag name already exists.</Text>}
-        <Text style={[definition, { marginTop: 30, }]}>WORDS</Text>
-        {!wordsList.length && (
-          <Text style={alert}>The words list is empty</Text>
+          <TouchableButton
+            style={[btn, { marginBottom: 27, }]}
+            onPress={this.edit}
+          >
+            <Text style={btnText}>EDIT</Text>
+          </TouchableButton>
+        </ScrollView>
+        {permissionVisible && (
+          <PermissionPopup
+            resolve={this.deleteTag}
+            refresh={this.refreshPermission}
+          />
         )}
-        <View style={wordsBlock}>{this.generateWordsList(wordsList)}</View>
-        <TouchableButton
-          style={[btn, { marginTop: 30, backgroundColor: '#ac3939', }]}
-          onPress={this.deleteTag}
-        >
-          <Text style={btnText}>DELETE</Text>
-        </TouchableButton>
-        <TouchableButton
-          style={[btn, { marginBottom: 27, }]}
-          onPress={this.edit}
-        >
-          <Text style={btnText}>EDIT</Text>
-        </TouchableButton>
-      </ScrollView>
+      </View>
     )
   }
 }

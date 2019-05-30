@@ -15,14 +15,19 @@ class WordList extends React.Component {
   }
 
   renderItems = ({ item, index, }) => {
-    const { openDescription, deleteWord, } = this.props
+    const { openDescription, deleteWord, setPermission, } = this.props
+
+    const deleteCurrentWord = () => {
+      const resolve = () => deleteWord(item.id)
+      setPermission(resolve)
+    }
 
     return (
       <WordCard
         description={item}
         isFirstCard={index === 0}
         goToDetails={openDescription}
-        deleteWord={deleteWord}
+        deleteWord={deleteCurrentWord}
       />
     )
   }
