@@ -1,11 +1,16 @@
-import {} from '../../constants'
+import { SET_SETTINGS, } from '../../constants'
 
-const initialState = {}
+const initialState = {
+  allTags: true,
+  tagsForTask: [],
+  amountOfWords: 25,
+  random: false,
+}
 
 const tasksReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'TASK': {
-      return { ...state, }
+    case SET_SETTINGS: {
+      return { ...state, ...action.payload, }
     }
     default:
       return state

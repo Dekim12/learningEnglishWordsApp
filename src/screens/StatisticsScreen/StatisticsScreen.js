@@ -34,7 +34,7 @@ class StatisticsScreen extends Component {
 
         <Text style={definition}>CORRECT ANSWER RATE</Text>
         <View style={rate}>
-          <Text style={rateText}>100%</Text>
+          <Text style={rateText}>73%</Text>
         </View>
       </View>
     )

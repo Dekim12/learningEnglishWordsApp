@@ -16,3 +16,5 @@ export const createLine = (arr) => {
 
   return arr.reduce((sum, word) => `${sum}, ${word}`)
 }
+
+export const isNumber = n => !isNaN(parseFloat(n)) && isFinite(n)

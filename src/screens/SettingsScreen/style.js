@@ -94,6 +94,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'FFF_Tusj',
   },
+  alert: {
+    marginTop: 4,
+    color: '#b30000',
+    fontSize: 16,
+    fontFamily: 'PlayfairDisplay',
+  },
 })
 
 export default styles
