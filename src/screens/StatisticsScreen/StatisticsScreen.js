@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
 import { Text, View, } from 'react-native'
+import { screenSize, } from '../../utils'
 import styles from './style'
 
 class StatisticsScreen extends Component {
@@ -19,6 +20,7 @@ class StatisticsScreen extends Component {
       statisticElem,
       rate,
       rateText,
+      coefficientStyle,
     } = styles
 
     return (
@@ -34,7 +36,14 @@ class StatisticsScreen extends Component {
 
         <Text style={definition}>CORRECT ANSWER RATE</Text>
         <View style={rate}>
-          <Text style={rateText}>73%</Text>
+          <View
+            style={[
+              coefficientStyle,
+              { width: ((screenSize.width - 30) * 73) / 100, }
+            ]}
+          >
+            <Text style={rateText}>73%</Text>
+          </View>
         </View>
       </View>
     )

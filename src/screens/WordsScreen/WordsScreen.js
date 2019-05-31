@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { View, } from 'react-native'
+import { View, StatusBar, } from 'react-native'
 import { WordListContainer, } from '../../redux/containers'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import styles from './style'
@@ -58,6 +58,7 @@ class WordsScreen extends Component {
 
     return (
       <View style={container}>
+        <StatusBar hidden />
         <WordListContainer
           openDescription={this.toDescription}
           setPermission={this.setPermissionFunctions}
