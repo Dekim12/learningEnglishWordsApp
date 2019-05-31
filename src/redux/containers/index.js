@@ -8,3 +8,5 @@ export { default as TagsScreenContainer, } from './TagsScreenContainer'
 export {
   default as StatisticsScreenContainer,
 } from './StatisticsScreenContainer'
+export { default as SettingsScreenContainer, } from './SettingsScreenContainer'
+export { default as TaskContainer, } from './TaskContainer'

@@ -12,7 +12,14 @@ class StatisticsScreen extends Component {
 
   render() {
     const { tagsList, wordsList, } = this.props
-    const { container, definition, valueStyle, statisticElem, } = styles
+    const {
+      container,
+      definition,
+      valueStyle,
+      statisticElem,
+      rate,
+      rateText,
+    } = styles
 
     return (
       <View style={container}>
@@ -26,6 +33,9 @@ class StatisticsScreen extends Component {
         </View>
 
         <Text style={definition}>CORRECT ANSWER RATE</Text>
+        <View style={rate}>
+          <Text style={rateText}>100%</Text>
+        </View>
       </View>
     )
   }

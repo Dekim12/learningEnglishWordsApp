@@ -26,6 +26,24 @@ const styles = StyleSheet.create({
     fontFamily: 'Chunkfive',
     color: '#404040',
   },
+  rate: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 200,
+    height: 200,
+    marginTop: 15,
+    borderRadius: 100,
+    borderWidth: 5,
+    backgroundColor: '#c2c2d6',
+    borderColor: '#400080',
+  },
+  rateText: {
+    marginLeft: 13,
+    marginBottom: 7,
+    fontSize: 60,
+    fontFamily: 'Chunkfive',
+    color: '#404040',
+  },
 })
 
 export default styles
