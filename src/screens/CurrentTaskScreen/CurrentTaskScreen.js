@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
-import { Text, View, } from 'react-native'
+import { ScrollView, } from 'react-native'
+import { TASK_LIST, } from '../../constants'
 import styles from './style'
 
 class CurrentTaskScreen extends Component {
@@ -11,15 +12,22 @@ class CurrentTaskScreen extends Component {
   }
 
   render() {
-    const { navigation, } = this.props
+    const { wordsForTask, taskName, wordsList, } = this.props
     const { container, } = styles
 
-    const taskName = navigation.getParam('taskName')
+    const Task = TASK_LIST[taskName]
 
     return (
-      <View style={container}>
-        <Text>{taskName}</Text>
-      </View>
+      <ScrollView
+        style={container}
+        contentContainerStyle={{ alignItems: 'center', }}
+      >
+        <Task
+          name={taskName}
+          allWords={wordsList}
+          wordsForTask={wordsForTask}
+        />
+      </ScrollView>
     )
   }
 }

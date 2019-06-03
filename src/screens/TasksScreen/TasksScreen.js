@@ -2,7 +2,7 @@ import React, { Component, } from 'react'
 import { Text, View, ScrollView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, } from '../../components'
-import { taskNameList, } from '../../constants'
+import { TASK_NAMES_LIST, } from '../../constants'
 import styles from './style'
 
 class TasksScreen extends Component {
@@ -68,7 +68,7 @@ class TasksScreen extends Component {
           </TouchableButton>
         </View>
         <View style={{ marginBottom: 25, }}>
-          {this.generateTasks(taskNameList)}
+          {this.generateTasks(TASK_NAMES_LIST)}
         </View>
       </ScrollView>
     )

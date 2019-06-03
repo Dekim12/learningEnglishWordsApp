@@ -3,7 +3,7 @@ import { SET_SETTINGS, } from '../../constants'
 const initialState = {
   allTags: true,
   tagsForTask: [],
-  amountOfWords: 25,
+  amountOfWords: 10,
   random: false,
 }
 

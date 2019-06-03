@@ -46,6 +46,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "no-param-reassign": "warn",
     "no-restricted-globals": "warn",
+    "no-plusplus": "off",
     "comma-dangle": [
       "error",
       {
