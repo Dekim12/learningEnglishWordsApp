@@ -13,13 +13,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: '#ffffff',
   },
-  progressBarStyle: {
-    width: screenSize.width,
-    height: 7,
-    backgroundColor: 'green',
-    borderWidth: 1,
-    borderColor: 'gray',
-  },
   wordStyle: {
     textAlign: 'center',
     fontSize: 48,
@@ -43,17 +36,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 3,
     marginBottom: 8,
-    backgroundColor: '#C8C8C8',
     borderRadius: 10,
     borderWidth: 2,
     borderColor: '#cc6600',
+    backgroundColor: '#C8C8C8',
   },
   answerText: {
+    width: screenSize.width - 45,
     textAlign: 'center',
-    height: 25,
+    lineHeight: 22,
     fontSize: 19,
-    color: '#080808',
     fontFamily: 'OpenSans',
+    color: '#080808',
   },
 })
 

@@ -11,6 +11,14 @@ class CurrentTaskScreen extends Component {
     },
   }
 
+  toAllTask = () => {
+    const {
+      navigation: { navigate, },
+    } = this.props
+
+    navigate('Tasks')
+  }
+
   render() {
     const { wordsForTask, taskName, wordsList, } = this.props
     const { container, } = styles
@@ -26,6 +34,7 @@ class CurrentTaskScreen extends Component {
           name={taskName}
           allWords={wordsList}
           wordsForTask={wordsForTask}
+          toTasksScreen={this.toAllTask}
         />
       </ScrollView>
     )
