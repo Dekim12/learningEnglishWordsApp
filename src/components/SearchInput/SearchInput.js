@@ -38,6 +38,7 @@ class SearchInput extends Component {
 
   componentDidUpdate = () => {
     const { clearInput, } = this.props
+
     if (clearInput) {
       this.clearInput()
     }

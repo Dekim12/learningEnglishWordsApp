@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, ScrollView, Text, } from 'react-native'
+import uuidv4 from 'uuid/v4'
 import { WordCard, SearchInput, TouchableButton, } from '../index'
 import createFuse from '../../utils/fuse'
 import styles from './style'
@@ -32,7 +33,7 @@ class WordList extends React.Component {
     )
   }
 
-  keyExtractor = ({ id, }) => id.toString()
+  keyExtractor = () => uuidv4()
 
   updateSearchString = (text) => {
     this.setState({ searchString: text, })

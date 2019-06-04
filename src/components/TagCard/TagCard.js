@@ -1,6 +1,6 @@
 import React from 'react'
-import { Text, TouchableOpacity, } from 'react-native'
-import { Icon, } from '../index'
+import { Text, } from 'react-native'
+import { Icon, TouchableButton, } from '../index'
 import styles from './style'
 
 const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
@@ -15,7 +15,7 @@ const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
   }
 
   return (
-    <TouchableOpacity
+    <TouchableButton
       onPress={openDetails}
       style={[container, isFirstCard && { borderTopWidth: 1.5, }]}
     >
@@ -23,10 +23,10 @@ const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
         <Text style={{ color: '#B0B0B0', }}>#</Text>
         {name}
       </Text>
-      <TouchableOpacity onPress={editTag} style={{ marginLeft: 5, }}>
+      <TouchableButton onPress={editTag} style={{ marginLeft: 5, }}>
         <Icon name='pen-square' size={40} color='#2d862d' />
-      </TouchableOpacity>
-    </TouchableOpacity>
+      </TouchableButton>
+    </TouchableButton>
   )
 }
 

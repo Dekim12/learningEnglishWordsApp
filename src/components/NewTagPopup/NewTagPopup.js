@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, } from 'react-native'
+import { View, Text, TextInput, KeyboardAvoidingView, } from 'react-native'
 import { Icon, TouchableButton, } from '../index'
 import styles from './style'
 
@@ -46,7 +46,7 @@ class NewTagPopup extends React.Component {
     } = styles
 
     return (
-      <View style={container}>
+      <KeyboardAvoidingView style={container} behavior='padding'>
         <View style={popupForm}>
           <Text style={headline}>NEW TAG</Text>
           <TextInput
@@ -71,7 +71,7 @@ class NewTagPopup extends React.Component {
             <Icon name='times' size={40} color='#C8C8C8' />
           </TouchableButton>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

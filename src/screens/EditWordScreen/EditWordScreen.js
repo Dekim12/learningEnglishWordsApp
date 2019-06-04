@@ -1,5 +1,5 @@
 import React, { Component, } from 'react'
-import { ScrollView, Text, View, } from 'react-native'
+import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import styles from './style'
@@ -176,69 +176,71 @@ class EditWordScreen extends Component {
     } = styles
 
     return (
-      <ScrollView contentContainerStyle={container}>
-        <Text style={currentWord}>{word}</Text>
-        <Text style={wordTranscription}>{`[${transcription}]`}</Text>
-        <Text style={definition}>TRANSLATION:</Text>
-        <View style={translationBlock}>
-          {this.generateTranslation(translation)}
-        </View>
-        <View style={inputBlock}>
-          <Input
-            placeholder='Add translation...'
-            style={textInput}
-            submit={submit}
-            type={WORD}
-            onSubmit={this.addWordOrExample}
-          />
-          <TouchableButton
-            style={inputBtn}
-            onPress={() => this.setState({ submit: true, })}
-          >
-            <Icon name='plus-circle' size={33} color='white' />
+      <KeyboardAvoidingView behavior='padding'>
+        <ScrollView contentContainerStyle={container}>
+          <Text style={currentWord}>{word}</Text>
+          <Text style={wordTranscription}>{`[${transcription}]`}</Text>
+          <Text style={definition}>TRANSLATION:</Text>
+          <View style={translationBlock}>
+            {this.generateTranslation(translation)}
+          </View>
+          <View style={inputBlock}>
+            <Input
+              placeholder='Add translation...'
+              style={textInput}
+              submit={submit}
+              type={WORD}
+              onSubmit={this.addWordOrExample}
+            />
+            <TouchableButton
+              style={inputBtn}
+              onPress={() => this.setState({ submit: true, })}
+            >
+              <Icon name='plus-circle' size={33} color='white' />
+            </TouchableButton>
+          </View>
+          <Text style={definition}>NEW IMAGE:</Text>
+          <View style={inputBlock}>
+            <Input
+              placeholder='Url...'
+              style={textInput}
+              submit={submit}
+              type={URL}
+              onSubmit={this.addTagOrUrl}
+            />
+            <TouchableButton
+              style={inputBtn}
+              onPress={() => this.setState({ submit: true, })}
+            >
+              <Icon name='plus-circle' size={35} color='white' />
+            </TouchableButton>
+          </View>
+          <Text style={definition}>EXAMPLES:</Text>
+          <View style={examplesBlock}>{this.generateExamples(examples)}</View>
+          <View style={inputBlock}>
+            <Input
+              placeholder='Add example...'
+              style={textInput}
+              submit={submit}
+              type={STRING}
+              onSubmit={this.addWordOrExample}
+            />
+            <TouchableButton
+              style={inputBtn}
+              onPress={() => this.setState({ submit: true, })}
+            >
+              <Icon name='plus-circle' size={35} color='white' />
+            </TouchableButton>
+          </View>
+          <Text style={definition}>TAGS:</Text>
+          <View style={[translationBlock, { marginBottom: 20, }]}>
+            {this.generateTags(tagName, tagsList)}
+          </View>
+          <TouchableButton style={editBtn} onPress={this.edit}>
+            <Text style={editText}>EDIT</Text>
           </TouchableButton>
-        </View>
-        <Text style={definition}>NEW IMAGE:</Text>
-        <View style={inputBlock}>
-          <Input
-            placeholder='Url...'
-            style={textInput}
-            submit={submit}
-            type={URL}
-            onSubmit={this.addTagOrUrl}
-          />
-          <TouchableButton
-            style={inputBtn}
-            onPress={() => this.setState({ submit: true, })}
-          >
-            <Icon name='plus-circle' size={35} color='white' />
-          </TouchableButton>
-        </View>
-        <Text style={definition}>EXAMPLES:</Text>
-        <View style={examplesBlock}>{this.generateExamples(examples)}</View>
-        <View style={inputBlock}>
-          <Input
-            placeholder='Add example...'
-            style={textInput}
-            submit={submit}
-            type={STRING}
-            onSubmit={this.addWordOrExample}
-          />
-          <TouchableButton
-            style={inputBtn}
-            onPress={() => this.setState({ submit: true, })}
-          >
-            <Icon name='plus-circle' size={35} color='white' />
-          </TouchableButton>
-        </View>
-        <Text style={definition}>TAGS:</Text>
-        <View style={[translationBlock, { marginBottom: 20, }]}>
-          {this.generateTags(tagName, tagsList)}
-        </View>
-        <TouchableButton style={editBtn} onPress={this.edit}>
-          <Text style={editText}>EDIT</Text>
-        </TouchableButton>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }

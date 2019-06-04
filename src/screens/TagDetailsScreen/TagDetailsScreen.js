@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
 import { Text, FlatList, ScrollView, View, } from 'react-native'
+import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, PermissionPopup, } from '../../components'
 import { createLine, } from '../../utils'
 import styles from './style'
@@ -54,7 +55,7 @@ class TagDetailsScreen extends Component {
     navigate('NewWord')
   }
 
-  keyExtractor = ({ id, }) => id.toString()
+  keyExtractor = () => uuidv4()
 
   setPermissionFunctions = (resolve) => {
     this.setState({

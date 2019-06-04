@@ -4,7 +4,7 @@ import { TouchableButton, } from '../../index'
 import { screenSize, } from '../../../utils'
 
 const ResultPopup = ({ result, goToTasks, }) => {
-  const { container, popupBlock, headline, createBtn, createBtnText, } = styles
+  const { container, popupBlock, headline, btnText, btn, } = styles
 
   const rightAnswers = result.reduce((sum, elem) => {
     if (elem) {
@@ -30,8 +30,8 @@ const ResultPopup = ({ result, goToTasks, }) => {
           <Text style={headline}>WRONG ANSWERS:</Text>
           <Text style={styles.resultStyle}>{wrongAnswers}</Text>
         </View>
-        <TouchableButton style={createBtn} onPress={finishTask}>
-          <Text style={createBtnText}>NEXT TASK</Text>
+        <TouchableButton style={btn} onPress={finishTask}>
+          <Text style={btnText}>NEXT TASK</Text>
         </TouchableButton>
       </View>
     </View>
@@ -67,17 +67,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headline: { fontSize: 32, fontFamily: 'Norwester', color: '#FF8A00', },
-  createBtn: {
+  btn: {
     paddingVertical: 7,
     paddingHorizontal: 20,
     marginTop: 10,
     marginBottom: 7,
     backgroundColor: '#006600',
     borderWidth: 1,
-    borderColor: '#00e600',
+    borderColor: '#004d00',
     borderRadius: 7,
   },
-  createBtnText: { color: '#ffffff', fontSize: 30, fontFamily: 'FFF_Tusj', },
+  btnText: { color: '#ffffff', fontSize: 30, fontFamily: 'FFF_Tusj', },
   resultStyle: {
     textAlign: 'center',
     fontSize: 43,

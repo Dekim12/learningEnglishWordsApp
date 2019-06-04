@@ -1,6 +1,6 @@
 import React, { useCallback, } from 'react'
-import { View, Text, TouchableOpacity, } from 'react-native'
-import { Icon, } from '../index'
+import { View, Text, } from 'react-native'
+import { Icon, TouchableButton, } from '../index'
 import { createLine, } from '../../utils'
 import styles from './style'
 
@@ -25,7 +25,7 @@ const WordCard = ({
   }, [id, word])
 
   return (
-    <TouchableOpacity
+    <TouchableButton
       onPress={openDetails}
       style={[cardContainer, isFirstCard && { borderTopWidth: 1.5, }]}
     >
@@ -36,10 +36,10 @@ const WordCard = ({
         </View>
         <Text style={translationText}>{createLine(translation)}</Text>
       </View>
-      <TouchableOpacity onPress={deleteWord} style={iconBtn}>
+      <TouchableButton onPress={deleteWord} style={iconBtn}>
         <Icon name='trash-alt' size={29} color='#FF402E' />
-      </TouchableOpacity>
-    </TouchableOpacity>
+      </TouchableButton>
+    </TouchableButton>
   )
 }
 

@@ -1,5 +1,11 @@
 import React, { Component, } from 'react'
-import { Text, View, ScrollView, TextInput, } from 'react-native'
+import {
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  KeyboardAvoidingView,
+} from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
@@ -145,72 +151,74 @@ class SettingsScreen extends Component {
     const totalAmountOfWords = this.defineTotalAmountOfWords()
 
     return (
-      <ScrollView
-        style={container}
-        contentContainerStyle={{ alignItems: 'center', }}
-      >
-        <Text style={definition}>TAGS FOR TRAINING</Text>
-        <View style={tagsBlock}>{this.generateTagsItems(tagsList)}</View>
-        <TouchableButton
-          style={[
-            tagItem,
-            { paddingHorizontal: 110, marginBottom: 35, },
-            allTags && activeTag
-          ]}
-          onPress={this.handlerAllTaskButton}
+      <KeyboardAvoidingView behavior='padding'>
+        <ScrollView
+          style={container}
+          contentContainerStyle={{ alignItems: 'center', }}
         >
-          <Text style={[textStyle, allTags && { color: '#ffffff', }]}>
-            All Tags
-          </Text>
-        </TouchableButton>
-        <View style={wordsBlock}>
-          <Text style={definition}>AMOUNT OF WORDS - </Text>
-          <Text style={valueStyle}>{totalAmountOfWords}</Text>
-        </View>
-        {!totalAmountOfWords && (
-          <Text style={alert}>Please select some tag with words.</Text>
-        )}
-        <View style={[wordsBlock]}>
-          <Text style={definition}>FOR TRAINING - </Text>
-          <TextInput
-            style={inputStyle}
-            defaultValue={amountOfWords.toString()}
-            placeholder='Number'
-            keyboardType='numeric'
-            placeholderTextColor='white'
-            autoCorrect={false}
-            clearButtonMode='always'
-            underlineColorAndroid='transparent'
-            autoCapitalize='words'
-            onChangeText={this.handleChangeText}
-          />
-        </View>
-        {!isAmountCorrect && (
-          <Text style={alert}>New amount of words is not correct.</Text>
-        )}
-        <Text style={[definition, { marginTop: 35, }]}>WORDS ORDER</Text>
-        <View style={tagsBlock}>
+          <Text style={definition}>TAGS FOR TRAINING</Text>
+          <View style={tagsBlock}>{this.generateTagsItems(tagsList)}</View>
           <TouchableButton
-            style={[orderItem, !isRandom && activeTag]}
-            onPress={isRandom ? this.handleRandom : () => {}}
+            style={[
+              tagItem,
+              { paddingHorizontal: 110, marginBottom: 35, },
+              allTags && activeTag
+            ]}
+            onPress={this.handlerAllTaskButton}
           >
-            <Text style={[textStyle, !isRandom && { color: '#ffffff', }]}>
-              sequential
+            <Text style={[textStyle, allTags && { color: '#ffffff', }]}>
+              All Tags
             </Text>
           </TouchableButton>
-          <TouchableButton
-            style={[orderItem, isRandom && activeTag]}
-            onPress={!isRandom ? this.handleRandom : () => {}}
-          >
-            <Text style={[textStyle, isRandom && { color: '#ffffff', }]}>
-              random
-            </Text>
+          <View style={wordsBlock}>
+            <Text style={definition}>AMOUNT OF WORDS - </Text>
+            <Text style={valueStyle}>{totalAmountOfWords}</Text>
+          </View>
+          {!totalAmountOfWords && (
+            <Text style={alert}>Please select some tag with words.</Text>
+          )}
+          <View style={[wordsBlock]}>
+            <Text style={definition}>FOR TRAINING - </Text>
+            <TextInput
+              style={inputStyle}
+              defaultValue={amountOfWords.toString()}
+              placeholder='Number'
+              keyboardType='numeric'
+              placeholderTextColor='white'
+              autoCorrect={false}
+              clearButtonMode='always'
+              underlineColorAndroid='transparent'
+              autoCapitalize='words'
+              onChangeText={this.handleChangeText}
+            />
+          </View>
+          {!isAmountCorrect && (
+            <Text style={alert}>New amount of words is not correct.</Text>
+          )}
+          <Text style={[definition, { marginTop: 35, }]}>WORDS ORDER</Text>
+          <View style={tagsBlock}>
+            <TouchableButton
+              style={[orderItem, !isRandom && activeTag]}
+              onPress={isRandom ? this.handleRandom : () => {}}
+            >
+              <Text style={[textStyle, !isRandom && { color: '#ffffff', }]}>
+                sequential
+              </Text>
+            </TouchableButton>
+            <TouchableButton
+              style={[orderItem, isRandom && activeTag]}
+              onPress={!isRandom ? this.handleRandom : () => {}}
+            >
+              <Text style={[textStyle, isRandom && { color: '#ffffff', }]}>
+                random
+              </Text>
+            </TouchableButton>
+          </View>
+          <TouchableButton style={editBtn} onPress={this.confirmSettings}>
+            <Text style={editText}>CONFIRM</Text>
           </TouchableButton>
-        </View>
-        <TouchableButton style={editBtn} onPress={this.confirmSettings}>
-          <Text style={editText}>CONFIRM</Text>
-        </TouchableButton>
-      </ScrollView>
+        </ScrollView>
+      </KeyboardAvoidingView>
     )
   }
 }

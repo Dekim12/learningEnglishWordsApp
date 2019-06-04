@@ -24,6 +24,8 @@ class TagsList extends React.Component {
     )
   }
 
+  keyExtractor = () => uuidv4()
+
   filterTagList = (list, searchString) => list.filter(
     elem => elem.toLowerCase().indexOf(searchString.toLowerCase()) > -1
   )
@@ -45,6 +47,8 @@ class TagsList extends React.Component {
     const { searchString, clearInput, } = this.state
     const { container, addTagBlock, definition, valueStyle, } = styles
 
+    const filteredTags = this.filterTagList(tagsList, searchString)
+
     return (
       <ScrollView>
         <SearchInput
@@ -52,20 +56,16 @@ class TagsList extends React.Component {
           clearInput={clearInput}
           onChange={this.updateSearchString}
         />
-        {searchString && !this.filterTagList(tagsList, searchString).length ? (
+        {searchString && !filteredTags.length ? (
           <TouchableButton style={addTagBlock} onPress={this.addTag}>
             <Text style={definition}>Add tag</Text>
             <Text style={valueStyle}>{`${searchString}`}</Text>
           </TouchableButton>
         ) : null}
         <FlatList
-          data={
-            !searchString
-              ? tagsList
-              : this.filterTagList(tagsList, searchString)
-          }
+          data={!searchString ? tagsList : filteredTags}
           renderItem={this.renderItems}
-          keyExtractor={uuidv4}
+          keyExtractor={this.keyExtractor}
           style={container}
         />
       </ScrollView>
