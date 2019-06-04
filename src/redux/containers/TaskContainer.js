@@ -1,7 +1,7 @@
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
 import { CurrentTaskScreen, } from '../../screens'
-import {} from '../actions'
+import { setAnswers, } from '../actions'
 import { getNecessaryWords, } from '../../utils'
 
 const mapStateToProps = state => ({
@@ -13,7 +13,12 @@ const mapStateToProps = state => ({
   allTags: state.tasksState.allTags,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators(
+  {
+    setAnswers,
+  },
+  dispatch
+)
 
 const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const {
@@ -32,7 +37,10 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     word => necessaryTags.indexOf(word.tagName) >= 0
   )
 
-  const goToTasks = () => navigation.navigate('Tasks')
+  const goToTasks = (allAnswers, rightAnswers) => {
+    dispatchProps.setAnswers(allAnswers, rightAnswers)
+    navigation.navigate('Tasks')
+  }
 
   return {
     wordsForTask: getNecessaryWords(+amountOfWords, wordsForLearning, random),

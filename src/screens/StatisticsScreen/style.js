@@ -27,29 +27,30 @@ const styles = StyleSheet.create({
     color: '#404040',
   },
   rate: {
-    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
     width: screenSize.width - 30,
     height: 80,
     marginTop: 15,
-    borderRadius: 15,
     borderWidth: 4,
     backgroundColor: '#d1e0e0',
     borderColor: '#2d273f',
   },
   coefficientStyle: {
-    flex: 1,
+    height: 72,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRightWidth: 2,
-    borderTopLeftRadius: 9,
-    borderBottomLeftRadius: 9,
     backgroundColor: '#267326',
-    borderColor: '#79d2a6',
   },
   rateText: {
     fontSize: 50,
     fontFamily: 'Chunkfive',
     color: '#ffffff',
+  },
+  smallCoefficientStyle: {
+    marginLeft: 10,
+    color: '#808080',
   },
 })
 

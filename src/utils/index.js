@@ -66,3 +66,5 @@ export const getRandomAnswers = (valueArr, answersArr) => {
 
   return shuffle(wrongAnswers.slice(0, 3).concat(rightAnswer))
 }
+
+export const definePerformanceCoefficient = (max, current) => Math.round(((current * 100) / max) * 10) / 10

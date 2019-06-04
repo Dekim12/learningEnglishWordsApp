@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, } from 'react'
 import { View, StyleSheet, Text, } from 'react-native'
 import { TouchableButton, } from '../../index'
 import { screenSize, } from '../../../utils'
@@ -15,6 +15,10 @@ const ResultPopup = ({ result, goToTasks, }) => {
 
   const wrongAnswers = result.length - rightAnswers
 
+  const finishTask = useCallback(() => {
+    goToTasks(result.length, rightAnswers)
+  }, [result.length, rightAnswers])
+
   return (
     <View style={container}>
       <View style={popupBlock}>
@@ -26,7 +30,7 @@ const ResultPopup = ({ result, goToTasks, }) => {
           <Text style={headline}>WRONG ANSWERS:</Text>
           <Text style={styles.resultStyle}>{wrongAnswers}</Text>
         </View>
-        <TouchableButton style={createBtn} onPress={goToTasks}>
+        <TouchableButton style={createBtn} onPress={finishTask}>
           <Text style={createBtnText}>NEXT TASK</Text>
         </TouchableButton>
       </View>

@@ -1,6 +1,6 @@
 import React, { Component, } from 'react'
 import { Text, View, } from 'react-native'
-import { screenSize, } from '../../utils'
+import { screenSize, definePerformanceCoefficient, } from '../../utils'
 import styles from './style'
 
 class StatisticsScreen extends Component {
@@ -12,7 +12,7 @@ class StatisticsScreen extends Component {
   }
 
   render() {
-    const { tagsList, wordsList, } = this.props
+    const { tagsList, wordsList, allAnswers, rightAnswers, } = this.props
     const {
       container,
       definition,
@@ -22,6 +22,11 @@ class StatisticsScreen extends Component {
       rateText,
       coefficientStyle,
     } = styles
+
+    const coefficient =
+      allAnswers === rightAnswers
+        ? 100
+        : definePerformanceCoefficient(allAnswers, rightAnswers)
 
     return (
       <View style={container}>
@@ -39,11 +44,18 @@ class StatisticsScreen extends Component {
           <View
             style={[
               coefficientStyle,
-              { width: ((screenSize.width - 30) * 73) / 100, }
+              { width: ((screenSize.width - 38) * coefficient) / 100, }
             ]}
           >
-            <Text style={rateText}>73%</Text>
+            {coefficient > 25 && (
+              <Text style={rateText}>{`${coefficient}%`}</Text>
+            )}
           </View>
+          {coefficient <= 25 && (
+            <Text style={[rateText, styles.smallCoefficientStyle]}>
+              {`${coefficient}%`}
+            </Text>
+          )}
         </View>
       </View>
     )
