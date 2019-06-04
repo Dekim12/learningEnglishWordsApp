@@ -25,7 +25,7 @@ class SettingsScreen extends Component {
   handleChangeText = (text) => {
     const { isAmountCorrect, } = this.state
 
-    if (isNumber(text)) {
+    if (isNumber(text) && Number(text) !== 0) {
       this.newWordsAmount = text
 
       if (!isAmountCorrect) {
@@ -111,7 +111,7 @@ class SettingsScreen extends Component {
     const { setSettings, navigation, } = this.props
     const { tagsForTask, isRandom, allTags, isAmountCorrect, } = this.state
 
-    if (isAmountCorrect) {
+    if (isAmountCorrect && this.defineTotalAmountOfWords()) {
       setSettings({
         tagsForTask,
         allTags,
@@ -142,6 +142,8 @@ class SettingsScreen extends Component {
       alert,
     } = styles
 
+    const totalAmountOfWords = this.defineTotalAmountOfWords()
+
     return (
       <ScrollView
         style={container}
@@ -163,8 +165,11 @@ class SettingsScreen extends Component {
         </TouchableButton>
         <View style={wordsBlock}>
           <Text style={definition}>AMOUNT OF WORDS - </Text>
-          <Text style={valueStyle}>{this.defineTotalAmountOfWords()}</Text>
+          <Text style={valueStyle}>{totalAmountOfWords}</Text>
         </View>
+        {!totalAmountOfWords && (
+          <Text style={alert}>Please select some tag with words.</Text>
+        )}
         <View style={[wordsBlock]}>
           <Text style={definition}>FOR TRAINING - </Text>
           <TextInput

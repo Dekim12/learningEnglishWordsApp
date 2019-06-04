@@ -1,4 +1,8 @@
-import { FindTranslation, } from '../components/Tasks'
+import {
+  FindTranslation,
+  FindUsingTranslation,
+  FindUsingImage,
+} from '../components/Tasks'
 
 export const TASK_NAMES_LIST = [
   'Find the translation',
@@ -8,6 +12,6 @@ export const TASK_NAMES_LIST = [
 
 export const TASK_LIST = {
   'Find the translation': FindTranslation,
-  'Find the word using a translation': 'task2',
-  'Find the word using an images': 'task3',
+  'Find the word using a translation': FindUsingTranslation,
+  'Find the word using an images': FindUsingImage,
 }

@@ -1,29 +1,19 @@
 import React, { Component, } from 'react'
 import { Text, } from 'react-native'
 import { TouchableButton, } from '../../index'
+import styles from './style'
 
 class SelectableAnswer extends Component {
   state = {
     btnColor: {},
     textColor: {},
-    correct: true,
   }
 
-  toBlink = () => new Promise(() => {
-    setTimeout(() => {
-      this.setState({
-        btnColor: {},
-        textColor: {},
-      })
-    }, 850)
-  })
-
-  nextWord = () => {
-    const { toNextWord, } = this.props
-    const { correct, } = this.state
+  nextWord = (isRight) => {
+    const { checkResult, } = this.props
 
     return new Promise(() => {
-      setTimeout(() => toNextWord(correct), 700)
+      setTimeout(() => checkResult(isRight), 600)
     })
   }
 
@@ -36,25 +26,27 @@ class SelectableAnswer extends Component {
         textColor: { color: '#ffffff', },
       })
 
-      await this.nextWord()
+      await this.nextWord(isRightAnswer)
     } else {
       this.setState({
         btnColor: { backgroundColor: 'rgba(179, 0, 0, 0.6)', },
         textColor: { color: '#ffffff', },
-        correct: false,
       })
 
-      await this.toBlink()
+      await this.nextWord(isRightAnswer)
     }
   }
 
   render() {
-    const { style, currentAnswer, textStyle, } = this.props
+    const { currentAnswer, } = this.props
     const { btnColor, textColor, } = this.state
 
     return (
-      <TouchableButton style={[style, btnColor]} onPress={this.check}>
-        <Text style={[textStyle, textColor]}>{currentAnswer}</Text>
+      <TouchableButton
+        style={[styles.answerBtn, btnColor]}
+        onPress={this.check}
+      >
+        <Text style={[styles.answerText, textColor]}>{currentAnswer}</Text>
       </TouchableButton>
     )
   }

@@ -3,10 +3,10 @@ import { View, StyleSheet, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { screenSize, } from '../../../utils'
 
-const ProgressBar = ({ answersResults, answerList, }) => {
+const ProgressBar = ({ answersResults, countWords, }) => {
   const { progressBarStyle, rightPartStyle, wrongPartStyle, } = styles
 
-  const partWidth = screenSize.width / answerList.length
+  const partWidth = screenSize.width / countWords
 
   const generateProgressParts = partsList => partsList.map(isCorrect => (
     <View
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     width: screenSize.width,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginBottom: 10,
+    marginVertical: 10,
     height: 10,
     backgroundColor: '#E8E8E8',
     borderTopWidth: 1.5,

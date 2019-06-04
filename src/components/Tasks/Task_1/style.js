@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     height: screenSize.height - 97,
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 10,
+    paddingBottom: 10,
     paddingHorizontal: 5,
     backgroundColor: '#ffffff',
   },

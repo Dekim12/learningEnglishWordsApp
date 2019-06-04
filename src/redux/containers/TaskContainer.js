@@ -32,10 +32,13 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     word => necessaryTags.indexOf(word.tagName) >= 0
   )
 
+  const goToTasks = () => navigation.navigate('Tasks')
+
   return {
     wordsForTask: getNecessaryWords(+amountOfWords, wordsForLearning, random),
     taskName,
     wordsList,
+    goToTasks,
     ...dispatchProps,
     ...ownProps,
   }
