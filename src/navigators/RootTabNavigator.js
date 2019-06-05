@@ -1,44 +1,26 @@
-import React from 'react'
 import { createBottomTabNavigator, createAppContainer, } from 'react-navigation'
 import {
   TagsScreensNavigator,
   WordsScreensNavigator,
   TasksScreenNavigator,
 } from './index'
-import { Icon, } from '../components'
+import {
+  ROOT_WORDS_SCREEN,
+  ROOT_TAGS_SCREEN,
+  ROOT_TASKS_SCREEN,
+} from '../constants'
+import { defineTabBarIcons, } from '../utils/navigationUtils'
 
 const RootTabNavigator = createBottomTabNavigator(
   {
-    Words: WordsScreensNavigator,
-    Tags: TagsScreensNavigator,
-    Tasks: TasksScreenNavigator,
+    [ROOT_WORDS_SCREEN]: WordsScreensNavigator,
+    [ROOT_TAGS_SCREEN]: TagsScreensNavigator,
+    [ROOT_TASKS_SCREEN]: TasksScreenNavigator,
   },
   {
     resetOnBlur: true,
     defaultNavigationOptions: ({ navigation, }) => ({
-      tabBarIcon: ({ tintColor, }) => {
-        const { routeName, } = navigation.state
-        let styleForTasks = null
-        let iconName
-
-        if (routeName === 'Words') {
-          iconName = 'star'
-        } else if (routeName === 'Tags') {
-          iconName = 'tasks'
-        } else if (routeName === 'Tasks') {
-          iconName = 'edit'
-          styleForTasks = { paddingLeft: 7, }
-        }
-
-        return (
-          <Icon
-            name={iconName}
-            size={25}
-            color={tintColor}
-            style={[{ fontSize: 28, }, styleForTasks]}
-          />
-        )
-      },
+      tabBarIcon: defineTabBarIcons.bind(null, navigation),
     }),
     tabBarOptions: {
       activeTintColor: '#FF4F1B',

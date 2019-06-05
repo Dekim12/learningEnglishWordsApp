@@ -4,12 +4,17 @@ import {
   EditTagContainer,
   TagsScreenContainer,
 } from '../redux/containers'
+import {
+  ROOT_TAGS_SCREEN,
+  TAG_DETAILS_SCREEN,
+  EDIT_TAG_SCREEN,
+} from '../constants'
 
 export const TagsScreensNavigator = createStackNavigator(
   {
-    Tags: TagsScreenContainer,
-    TagDetails: TagDetailsContainer,
-    EditTag: EditTagContainer,
+    [ROOT_TAGS_SCREEN]: TagsScreenContainer,
+    [TAG_DETAILS_SCREEN]: TagDetailsContainer,
+    [EDIT_TAG_SCREEN]: EditTagContainer,
   },
   {
     defaultNavigationOptions: {

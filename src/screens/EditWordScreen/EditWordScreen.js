@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
+import { WORDS_DETAILS_SCREEN, } from '../../constants'
 import styles from './style'
 
 const WORD = 'translationWord'
@@ -66,17 +67,9 @@ class EditWordScreen extends Component {
 
     return (
       <View style={styles.translationItem} key={uuidv4()}>
-        <Text
-          style={{
-            fontFamily: 'OpenSans',
-            color: 'white',
-            fontSize: 20,
-          }}
-        >
-          {word}
-        </Text>
+        <Text style={styles.itemText}>{word}</Text>
         <TouchableButton
-          style={{ marginLeft: 12, marginTop: 4, }}
+          style={styles.deleteItemBtn}
           onPress={deleteCurrentValue}
         >
           <Icon name='times-circle' size={22} color='#ffb380' />
@@ -90,15 +83,7 @@ class EditWordScreen extends Component {
 
     return (
       <View style={styles.exampleItem} key={uuidv4()}>
-        <Text
-          style={{
-            fontFamily: 'OpenSans',
-            color: 'white',
-            fontSize: 18,
-          }}
-        >
-          {item}
-        </Text>
+        <Text style={styles.itemText}>{item}</Text>
         <TouchableButton
           style={styles.exampleButton}
           onPress={deleteCurrentValue}
@@ -119,19 +104,15 @@ class EditWordScreen extends Component {
         <TouchableButton
           style={[
             styles.tagItem,
-            index === currentTagIndex ? { backgroundColor: '#2d862d', } : {}
+            index === currentTagIndex && styles.activeTagColor
           ]}
           key={uuidv4()}
           onPress={addTag}
         >
           <Text
             style={[
-              {
-                fontFamily: 'OpenSans',
-                color: '#484848',
-                fontSize: 16,
-              },
-              index === currentTagIndex ? { color: 'white', } : {}
+              styles.tagItemText,
+              index === currentTagIndex && styles.inactiveTagColor
             ]}
           >
             {tag}
@@ -141,13 +122,18 @@ class EditWordScreen extends Component {
     })
   }
 
+  setSubmit = () => this.setState({ submit: true, })
+
   edit = () => {
     const { editWord, navigation, } = this.props
     const newWord = { ...this.state, }
     delete newWord.submit
 
     editWord(newWord)
-    navigation.navigate('WordDetails', { id: newWord.id, word: newWord.word, })
+    navigation.navigate(WORDS_DETAILS_SCREEN, {
+      id: newWord.id,
+      word: newWord.word,
+    })
   }
 
   render() {
@@ -161,83 +147,62 @@ class EditWordScreen extends Component {
       submit,
     } = this.state
 
-    const {
-      container,
-      definition,
-      currentWord,
-      wordTranscription,
-      translationBlock,
-      inputBlock,
-      inputBtn,
-      textInput,
-      examplesBlock,
-      editBtn,
-      editText,
-    } = styles
-
     return (
       <KeyboardAvoidingView behavior='padding'>
-        <ScrollView contentContainerStyle={container}>
-          <Text style={currentWord}>{word}</Text>
-          <Text style={wordTranscription}>{`[${transcription}]`}</Text>
-          <Text style={definition}>TRANSLATION:</Text>
-          <View style={translationBlock}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.currentWord}>{word}</Text>
+          <Text style={styles.wordTranscription}>{`[${transcription}]`}</Text>
+          <Text style={styles.definition}>TRANSLATION:</Text>
+          <View style={styles.translationBlock}>
             {this.generateTranslation(translation)}
           </View>
-          <View style={inputBlock}>
+          <View style={styles.inputBlock}>
             <Input
               placeholder='Add translation...'
-              style={textInput}
+              style={styles.textInput}
               submit={submit}
               type={WORD}
               onSubmit={this.addWordOrExample}
             />
-            <TouchableButton
-              style={inputBtn}
-              onPress={() => this.setState({ submit: true, })}
-            >
+            <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
               <Icon name='plus-circle' size={33} color='white' />
             </TouchableButton>
           </View>
-          <Text style={definition}>NEW IMAGE:</Text>
-          <View style={inputBlock}>
+          <Text style={styles.definition}>NEW IMAGE:</Text>
+          <View style={styles.inputBlock}>
             <Input
               placeholder='Url...'
-              style={textInput}
+              style={styles.textInput}
               submit={submit}
               type={URL}
               onSubmit={this.addTagOrUrl}
             />
-            <TouchableButton
-              style={inputBtn}
-              onPress={() => this.setState({ submit: true, })}
-            >
+            <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
               <Icon name='plus-circle' size={35} color='white' />
             </TouchableButton>
           </View>
-          <Text style={definition}>EXAMPLES:</Text>
-          <View style={examplesBlock}>{this.generateExamples(examples)}</View>
-          <View style={inputBlock}>
+          <Text style={styles.definition}>EXAMPLES:</Text>
+          <View style={styles.examplesBlock}>
+            {this.generateExamples(examples)}
+          </View>
+          <View style={styles.inputBlock}>
             <Input
               placeholder='Add example...'
-              style={textInput}
+              style={styles.textInput}
               submit={submit}
               type={STRING}
               onSubmit={this.addWordOrExample}
             />
-            <TouchableButton
-              style={inputBtn}
-              onPress={() => this.setState({ submit: true, })}
-            >
+            <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
               <Icon name='plus-circle' size={35} color='white' />
             </TouchableButton>
           </View>
-          <Text style={definition}>TAGS:</Text>
-          <View style={[translationBlock, { marginBottom: 20, }]}>
+          <Text style={styles.definition}>TAGS:</Text>
+          <View style={[styles.translationBlock, styles.tagsBlock]}>
             {this.generateTags(tagName, tagsList)}
           </View>
-          <TouchableButton style={editBtn} onPress={this.edit}>
-            <Text style={editText}>EDIT</Text>
+          <TouchableButton style={styles.editBtn} onPress={this.edit}>
+            <Text style={styles.editText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>
       </KeyboardAvoidingView>

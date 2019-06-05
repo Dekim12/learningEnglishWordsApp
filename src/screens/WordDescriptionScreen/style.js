@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     backgroundColor: '#2d862d',
   },
+  tagName: { marginTop: 20, alignSelf: 'flex-start', },
 })
 
 export default styles

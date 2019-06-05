@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { View, StatusBar, } from 'react-native'
 import { WordListContainer, } from '../../redux/containers'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
+import { WORDS_DETAILS_SCREEN, NEW_WORD_SCREEN, } from '../../constants'
 import styles from './style'
 
 class WordsScreen extends Component {
@@ -19,23 +20,19 @@ class WordsScreen extends Component {
       navigation: { navigate, },
     } = this.props
 
-    navigate('WordDetails', { id, word, })
+    navigate(WORDS_DETAILS_SCREEN, { id, word, })
   }
 
-  toNewWord = () => {
+  toNewWord = (word) => {
     const {
       navigation: { navigate, },
     } = this.props
 
-    navigate('NewWord')
-  }
-
-  addNewWord = (word) => {
-    const {
-      navigation: { navigate, },
-    } = this.props
-
-    navigate('NewWord', { newWord: word, })
+    if (!word) {
+      navigate(NEW_WORD_SCREEN)
+    } else {
+      navigate(NEW_WORD_SCREEN, { newWord: word, })
+    }
   }
 
   setPermissionFunctions = (resolve) => {
@@ -62,7 +59,7 @@ class WordsScreen extends Component {
         <WordListContainer
           openDescription={this.toDescription}
           setPermission={this.setPermissionFunctions}
-          addNewWord={this.addNewWord}
+          addNewWord={this.toNewWord}
         />
         <TouchableButton style={addButton} onPress={this.toNewWord}>
           <Icon name='plus' size={33} color='#ffffff' />

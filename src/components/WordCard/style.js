@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
+  firstElemStyle: { borderTopWidth: 1.5, },
 })
 
 export default styles

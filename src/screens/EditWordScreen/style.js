@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
     borderColor: '#006600',
   },
   exampleButton: { position: 'absolute', right: 10, },
+  tagsBlock: { marginBottom: 20, },
   tagItem: {
     justifyContent: 'center',
     marginHorizontal: 5,
@@ -126,6 +127,19 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30,
     fontFamily: 'FFF_Tusj',
+  },
+  itemText: {
+    fontFamily: 'OpenSans',
+    color: 'white',
+    fontSize: 18,
+  },
+  deleteItemBtn: { marginLeft: 12, marginTop: 4, },
+  activeTagColor: { backgroundColor: '#2d862d', },
+  inactiveTagColor: { color: '#ffffff', },
+  tagItemText: {
+    fontFamily: 'OpenSans',
+    color: '#484848',
+    fontSize: 16,
   },
 })
 

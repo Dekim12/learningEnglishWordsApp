@@ -3,6 +3,7 @@ import { ScrollView, Text, View, Image, ActivityIndicator, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { getRandomColor, createLine, } from '../../utils'
+import { EDIT_WORD_SCREEN, } from '../../constants'
 import styles from './style'
 
 class WordDescriptionScreen extends Component {
@@ -43,7 +44,7 @@ class WordDescriptionScreen extends Component {
   toEditWordScreen = () => {
     const { wordData, navigation, } = this.props
 
-    navigation.navigate('EditWord', { id: wordData.id, })
+    navigation.navigate(EDIT_WORD_SCREEN, { id: wordData.id, })
   }
 
   handlePermission = () => this.setState({
@@ -57,19 +58,6 @@ class WordDescriptionScreen extends Component {
   render() {
     const { wordData, } = this.props
     const { loading, permissionVisible, } = this.state
-    const {
-      container,
-      definition,
-      translationStyle,
-      transcript,
-      imageStyle,
-      imageContainer,
-      tagText,
-      controlPanel,
-      btn,
-      indicator,
-      currentWord,
-    } = styles
 
     if (!wordData) {
       return null
@@ -77,41 +65,41 @@ class WordDescriptionScreen extends Component {
 
     return (
       <View>
-        <ScrollView contentContainerStyle={container}>
-          <Text style={currentWord}>{wordData.word}</Text>
-          <Text style={transcript}>{`[${wordData.transcription}]`}</Text>
-          <Text style={definition}>TRANSLATION</Text>
-          <Text style={translationStyle}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.currentWord}>{wordData.word}</Text>
+          <Text style={styles.transcript}>{`[${wordData.transcription}]`}</Text>
+          <Text style={styles.definition}>TRANSLATION</Text>
+          <Text style={styles.translationStyle}>
             {createLine(wordData.translation)}
           </Text>
-          <View style={imageContainer}>
+          <View style={styles.imageContainer}>
             {loading && (
               <ActivityIndicator
                 color='#E8453B'
-                style={indicator}
+                style={styles.indicator}
                 size='large'
               />
             )}
             <Image
-              style={imageStyle}
+              style={styles.imageStyle}
               source={{ uri: wordData.url, }}
               onLoad={this.handleLoad}
             />
           </View>
           {!!wordData.examples.length && (
-            <Text style={definition}>EXAMPLES</Text>
+            <Text style={styles.definition}>EXAMPLES</Text>
           )}
           {wordData.examples && this.renderExamples(wordData.examples)}
           <Text
-            style={[definition, { marginTop: 20, alignSelf: 'flex-start', }]}
+            style={[styles.definition, styles.tagName]}
           >
-            TAG NAME: <Text style={tagText}>{`  ${wordData.tagName}  `}</Text>
+            TAG NAME: <Text style={styles.tagText}>{`  ${wordData.tagName}  `}</Text>
           </Text>
-          <View style={controlPanel}>
-            <TouchableButton style={btn} onPress={this.handlePermission}>
+          <View style={styles.controlPanel}>
+            <TouchableButton style={styles.btn} onPress={this.handlePermission}>
               <Icon name='trash-alt' size={26} color='white' />
             </TouchableButton>
-            <TouchableButton style={btn} onPress={this.toEditWordScreen}>
+            <TouchableButton style={styles.btn} onPress={this.toEditWordScreen}>
               <Icon name='highlighter' size={26} color='white' />
             </TouchableButton>
           </View>

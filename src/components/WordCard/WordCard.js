@@ -10,16 +10,6 @@ const WordCard = ({
   goToDetails,
   deleteWord,
 }) => {
-  const {
-    cardContainer,
-    wordsContainer,
-    wordText,
-    transcriptionText,
-    translationText,
-    iconBtn,
-    wrapper,
-  } = styles
-
   const openDetails = useCallback(() => {
     goToDetails(id, word)
   }, [id, word])
@@ -27,16 +17,16 @@ const WordCard = ({
   return (
     <TouchableButton
       onPress={openDetails}
-      style={[cardContainer, isFirstCard && { borderTopWidth: 1.5, }]}
+      style={[styles.cardContainer, isFirstCard && styles.firstElemStyle]}
     >
-      <View style={wrapper}>
-        <View style={[wordsContainer]}>
-          <Text style={wordText}>{word}</Text>
-          <Text style={transcriptionText}>{`[${transcription}]`}</Text>
+      <View style={styles.wrapper}>
+        <View style={styles.wordsContainer}>
+          <Text style={styles.wordText}>{word}</Text>
+          <Text style={styles.transcriptionText}>{`[${transcription}]`}</Text>
         </View>
-        <Text style={translationText}>{createLine(translation)}</Text>
+        <Text style={styles.translationText}>{createLine(translation)}</Text>
       </View>
-      <TouchableButton onPress={deleteWord} style={iconBtn}>
+      <TouchableButton onPress={deleteWord} style={styles.iconBtn}>
         <Icon name='trash-alt' size={29} color='#FF402E' />
       </TouchableButton>
     </TouchableButton>

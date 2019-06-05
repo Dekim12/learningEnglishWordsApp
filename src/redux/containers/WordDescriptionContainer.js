@@ -1,7 +1,7 @@
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
 import { find, } from 'lodash'
-import { WordDescriptionScreen, } from '../../screens/WordDescriptionScreen/WordDescriptionScreen'
+import { WordDescriptionScreen, } from '../../screens'
 import { deleteWord, } from '../actions'
 
 const mapStateToProps = state => ({

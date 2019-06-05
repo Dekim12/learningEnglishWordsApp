@@ -4,13 +4,19 @@ import {
   EditWordContainer,
 } from '../redux/containers'
 import { WordsScreen, NewWordScreen, } from '../screens'
+import {
+  ROOT_WORDS_SCREEN,
+  WORDS_DETAILS_SCREEN,
+  NEW_WORD_SCREEN,
+  EDIT_WORD_SCREEN,
+} from '../constants'
 
 export const WordsScreensNavigator = createStackNavigator(
   {
-    Words: WordsScreen,
-    WordDetails: WordDescriptionContainer,
-    NewWord: NewWordScreen,
-    EditWord: EditWordContainer,
+    [ROOT_WORDS_SCREEN]: WordsScreen,
+    [WORDS_DETAILS_SCREEN]: WordDescriptionContainer,
+    [NEW_WORD_SCREEN]: NewWordScreen,
+    [EDIT_WORD_SCREEN]: EditWordContainer,
   },
   {
     defaultNavigationOptions: {

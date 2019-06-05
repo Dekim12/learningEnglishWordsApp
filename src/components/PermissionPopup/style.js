@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'FFF_Tusj',
   },
+  rejectBtn: { backgroundColor: '#D97604', borderColor: '#ffcc80', },
 })
 
 export default styles
