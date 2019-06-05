@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: '#ffffff',
   },
+  taskCondition: { alignItems: 'center', },
   wordStyle: {
     textAlign: 'center',
     fontSize: 48,

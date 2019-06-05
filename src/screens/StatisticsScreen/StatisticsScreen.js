@@ -1,6 +1,11 @@
 import React, { Component, } from 'react'
 import { Text, View, } from 'react-native'
 import { screenSize, definePerformanceCoefficient, } from '../../utils'
+import {
+  MAX_COEFFICIENT,
+  SMALL_COEFFICIENT,
+  SUM_RATE_INDENTS,
+} from '../../constants'
 import styles from './style'
 
 class StatisticsScreen extends Component {
@@ -13,46 +18,41 @@ class StatisticsScreen extends Component {
 
   render() {
     const { tagsList, wordsList, allAnswers, rightAnswers, } = this.props
-    const {
-      container,
-      definition,
-      valueStyle,
-      statisticElem,
-      rate,
-      rateText,
-      coefficientStyle,
-    } = styles
 
     const coefficient =
       allAnswers === rightAnswers
-        ? 100
+        ? MAX_COEFFICIENT
         : definePerformanceCoefficient(allAnswers, rightAnswers)
 
     return (
-      <View style={container}>
-        <View style={statisticElem}>
-          <Text style={definition}>AMOUNT OF WORDS - </Text>
-          <Text style={valueStyle}>{wordsList.length}</Text>
+      <View style={styles.container}>
+        <View style={styles.statisticElem}>
+          <Text style={styles.definition}>AMOUNT OF WORDS - </Text>
+          <Text style={styles.valueStyle}>{wordsList.length}</Text>
         </View>
-        <View style={[statisticElem, { marginBottom: 25, }]}>
-          <Text style={definition}>AMOUNT OF TAGS - </Text>
-          <Text style={valueStyle}>{tagsList.length}</Text>
+        <View style={[styles.statisticElem, styles.splitStyle]}>
+          <Text style={styles.definition}>AMOUNT OF TAGS - </Text>
+          <Text style={styles.valueStyle}>{tagsList.length}</Text>
         </View>
 
-        <Text style={definition}>CORRECT ANSWER RATE</Text>
-        <View style={rate}>
+        <Text style={styles.definition}>CORRECT ANSWER RATE</Text>
+        <View style={styles.rate}>
           <View
             style={[
-              coefficientStyle,
-              { width: ((screenSize.width - 38) * coefficient) / 100, }
+              styles.coefficientStyle,
+              {
+                width:
+                  ((screenSize.width - SUM_RATE_INDENTS) * coefficient) /
+                  MAX_COEFFICIENT,
+              }
             ]}
           >
-            {coefficient > 25 && (
-              <Text style={rateText}>{`${coefficient}%`}</Text>
+            {coefficient > SMALL_COEFFICIENT && (
+              <Text style={styles.rateText}>{`${coefficient}%`}</Text>
             )}
           </View>
-          {coefficient <= 25 && (
-            <Text style={[rateText, styles.smallCoefficientStyle]}>
+          {coefficient <= SMALL_COEFFICIENT && (
+            <Text style={[styles.rateText, styles.smallCoefficientStyle]}>
               {`${coefficient}%`}
             </Text>
           )}

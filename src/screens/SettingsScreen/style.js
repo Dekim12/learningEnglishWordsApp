@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
     backgroundColor: '#FFFFFF',
   },
+  contentContainer: { alignItems: 'center', },
   definition: {
     marginTop: 5,
     textAlign: 'center',
@@ -42,6 +43,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 5,
   },
+  selectAllBtn: { paddingHorizontal: 110, marginBottom: 35, },
+  allTagsActive: { color: '#ffffff', },
   wordsBlock: {
     marginTop: 5,
     alignSelf: 'flex-start',
@@ -100,6 +103,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'PlayfairDisplay',
   },
+  wordOrderStyle: { marginTop: 35, },
+  activeOrderStyle: { color: '#ffffff', },
 })
 
 export default styles

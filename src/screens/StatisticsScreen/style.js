@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: '#808080',
   },
+  splitStyle: { marginBottom: 25, },
 })
 
 export default styles

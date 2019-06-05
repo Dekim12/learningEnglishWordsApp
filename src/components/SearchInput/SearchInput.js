@@ -47,7 +47,7 @@ class SearchInput extends Component {
   render() {
     const { placeholder, } = this.props
     const { queryString, isFocused, } = this.state
-    const { inputStyle, closeBtn, searchContainer, } = styles
+    const { inputStyle, closeBtn, searchContainer, focusedInput, } = styles
 
     return (
       <View style={searchContainer}>
@@ -57,7 +57,7 @@ class SearchInput extends Component {
           placeholderTextColor='white'
           onFocus={this.handleInputFocus}
           onEndEditing={this.handleInputEdit}
-          style={[inputStyle, isFocused ? { backgroundColor: '#d4d0e2', } : {}]}
+          style={[inputStyle, isFocused && focusedInput]}
           autoCorrect={false}
           clearButtonMode='always'
           underlineColorAndroid='transparent'

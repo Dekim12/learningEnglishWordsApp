@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom: 20,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupBlock: {

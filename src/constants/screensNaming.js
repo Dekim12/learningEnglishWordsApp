@@ -1,6 +1,6 @@
 export const ROOT_WORDS_SCREEN = 'Words'
 export const ROOT_TAGS_SCREEN = 'Tags'
-export const ROOT_TASKS_SCREEN = 'Task'
+export const ROOT_TASKS_SCREEN = 'Tasks'
 export const TAG_DETAILS_SCREEN = 'TagDetails'
 export const EDIT_TAG_SCREEN = 'EditTag'
 export const WORDS_DETAILS_SCREEN = 'WordDetails'

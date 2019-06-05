@@ -4,10 +4,12 @@ import { screenSize, } from '../../utils'
 const styles = StyleSheet.create({
   container: {
     width: screenSize.width,
+    minHeight: screenSize.height - 90,
     paddingTop: 5,
     paddingBottom: 15,
     paddingHorizontal: 10,
   },
+  contentContainer: { alignItems: 'center', },
   currentWord: {
     marginBottom: 8,
     textAlign: 'center',
@@ -22,7 +24,7 @@ const styles = StyleSheet.create({
   },
   inputBlock: {
     flexDirection: 'row',
-    marginBottom: 5,
+    marginBottom: 35,
     marginTop: 5,
   },
   inputBtn: {
@@ -73,13 +75,14 @@ const styles = StyleSheet.create({
   btn: {
     alignItems: 'center',
     width: 170,
-    marginBottom: 10,
+    marginBottom: 27,
     paddingVertical: 7,
     backgroundColor: '#D97604',
     borderWidth: 1,
     borderColor: '#ffcc80',
     borderRadius: 7,
   },
+  deleteBtn: { marginTop: 30, marginBottom: 10, backgroundColor: '#ac3939', },
   btnText: {
     color: 'white',
     fontSize: 30,
@@ -90,6 +93,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'PlayfairDisplay',
   },
+  wordItemText: {
+    fontFamily: 'OpenSans',
+    color: 'white',
+    fontSize: 20,
+  },
+  wordItemDeleteBtn: { marginLeft: 12, marginTop: 4, },
 })
 
 export default styles

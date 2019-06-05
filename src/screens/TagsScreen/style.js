@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ffd1b3',
   },
+  iconStyle: { marginLeft: 3, },
 })
 
 export default styles

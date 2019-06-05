@@ -2,7 +2,12 @@ import React, { Component, } from 'react'
 import { Text, View, ScrollView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, } from '../../components'
-import { TASK_NAMES_LIST, } from '../../constants'
+import {
+  TASK_NAMES_LIST,
+  SETTINGS_SCREEN,
+  STATISTIC_SCREEN,
+  CURRENT_TASK_SCREEN,
+} from '../../constants'
 import styles from './style'
 
 class TasksScreen extends Component {
@@ -15,7 +20,7 @@ class TasksScreen extends Component {
       navigation: { navigate, },
     } = this.props
 
-    navigate('Settings')
+    navigate(SETTINGS_SCREEN)
   }
 
   toStatistic = () => {
@@ -23,7 +28,7 @@ class TasksScreen extends Component {
       navigation: { navigate, },
     } = this.props
 
-    navigate('Statistic')
+    navigate(STATISTIC_SCREEN)
   }
 
   generateTasks = taskList => taskList.map((task) => {
@@ -32,7 +37,7 @@ class TasksScreen extends Component {
         navigation: { navigate, },
       } = this.props
 
-      navigate('CurrentTask', { taskName: task, })
+      navigate(CURRENT_TASK_SCREEN, { taskName: task, })
     }
 
     return (
@@ -47,7 +52,7 @@ class TasksScreen extends Component {
   })
 
   render() {
-    const { container, btnBlock, } = styles
+    const { container, btnBlock, taskBlock, iconStyle, } = styles
 
     return (
       <ScrollView
@@ -56,20 +61,13 @@ class TasksScreen extends Component {
       >
         <View style={btnBlock}>
           <TouchableButton onPress={this.toStatistic}>
-            <Icon
-              name='award'
-              size={40}
-              color='#ffaa00'
-              style={{ marginLeft: 3, }}
-            />
+            <Icon name='award' size={40} color='#ffaa00' style={iconStyle} />
           </TouchableButton>
           <TouchableButton onPress={this.toSettings}>
             <Icon name='cogs' size={37} color='#606060' />
           </TouchableButton>
         </View>
-        <View style={{ marginBottom: 25, }}>
-          {this.generateTasks(TASK_NAMES_LIST)}
-        </View>
+        <View style={taskBlock}>{this.generateTasks(TASK_NAMES_LIST)}</View>
       </ScrollView>
     )
   }

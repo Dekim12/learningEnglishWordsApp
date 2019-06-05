@@ -44,7 +44,7 @@ class Connector extends Component {
       countWordsForTask,
       answersResult,
     } = this.props
-    const { container, wordStyle, transcriptionStyle, } = styles
+    const { container, wordStyle, transcriptionStyle, taskCondition, } = styles
 
     return (
       <View style={container}>
@@ -52,7 +52,7 @@ class Connector extends Component {
           answersResults={answersResult}
           countWords={countWordsForTask}
         />
-        <View style={{ alignItems: 'center', }}>
+        <View style={taskCondition}>
           <Text style={wordStyle}>{currentWord.word}</Text>
           <Text style={transcriptionStyle}>
             {`[${currentWord.transcription}]`}

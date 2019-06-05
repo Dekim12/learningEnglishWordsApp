@@ -10,6 +10,7 @@ import {
   SETTINGS_SCREEN,
   STATISTIC_SCREEN,
   CURRENT_TASK_SCREEN,
+  COMMON_STACK_NAVIGATOR_OPTIONS,
 } from '../constants'
 
 export const TasksScreenNavigator = createStackNavigator(
@@ -20,19 +21,6 @@ export const TasksScreenNavigator = createStackNavigator(
     [CURRENT_TASK_SCREEN]: TaskContainer,
   },
   {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#100E17',
-        height: 42,
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        flex: 1,
-        textAlign: 'center',
-        fontWeight: '300',
-        fontSize: 30,
-        fontFamily: 'FFF_Tusj',
-      },
-    },
+    defaultNavigationOptions: COMMON_STACK_NAVIGATOR_OPTIONS,
   }
 )

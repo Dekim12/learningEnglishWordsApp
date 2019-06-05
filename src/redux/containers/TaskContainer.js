@@ -3,6 +3,7 @@ import { bindActionCreators, } from 'redux'
 import { CurrentTaskScreen, } from '../../screens'
 import { setAnswers, } from '../actions'
 import { getNecessaryWords, } from '../../utils'
+import { ROOT_TASKS_SCREEN, } from '../../constants'
 
 const mapStateToProps = state => ({
   wordsList: state.wordsDataState.wordsList,
@@ -39,7 +40,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const goToTasks = (allAnswers, rightAnswers) => {
     dispatchProps.setAnswers(allAnswers, rightAnswers)
-    navigation.navigate('Tasks')
+    navigation.navigate(ROOT_TASKS_SCREEN)
   }
 
   return {

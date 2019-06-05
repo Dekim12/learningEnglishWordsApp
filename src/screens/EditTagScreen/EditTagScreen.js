@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, TextInput, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
+import { ROOT_TAGS_SCREEN, } from '../../constants'
 import styles from './style'
 
 class EditTagScreen extends Component {
@@ -58,17 +59,9 @@ class EditTagScreen extends Component {
 
     return (
       <View style={styles.wordItem} key={uuidv4()}>
-        <Text
-          style={{
-            fontFamily: 'OpenSans',
-            color: 'white',
-            fontSize: 20,
-          }}
-        >
-          {word}
-        </Text>
+        <Text style={styles.wordItemText}>{word}</Text>
         <TouchableButton
-          style={{ marginLeft: 12, marginTop: 4, }}
+          style={styles.wordItemDeleteBtn}
           onPress={deleteCurrentWord}
         >
           <Icon name='times-circle' size={22} color='#ffb380' />
@@ -84,7 +77,7 @@ class EditTagScreen extends Component {
     if (currentName || deletedWordsList.length) {
       editCurrentTag(tagName, currentName, deletedWordsList)
     }
-    navigation.navigate('Tags')
+    navigation.navigate(ROOT_TAGS_SCREEN)
   }
 
   refreshPermission = () => this.setState({
@@ -98,39 +91,27 @@ class EditTagScreen extends Component {
   deleteTag = () => {
     const { deleteCurrentTag, navigation, } = this.props
 
-    navigation.navigate('Tags')
+    navigation.navigate(ROOT_TAGS_SCREEN)
     deleteCurrentTag()
   }
 
   render() {
     const { currentName, wordsList, isTagExist, permissionVisible, } = this.state
-    const {
-      container,
-      currentWord,
-      definition,
-      inputBlock,
-      textInput,
-      inputBtn,
-      wordsBlock,
-      btn,
-      btnText,
-      alert,
-    } = styles
 
     return (
-      <View style={{ flex: 1, }}>
+      <View>
         <ScrollView
-          style={container}
-          contentContainerStyle={{ alignItems: 'center', }}
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
         >
-          <Text style={currentWord}>{currentName}</Text>
-          <Text style={definition}>NEW TAG NAME</Text>
-          <View style={inputBlock}>
+          <Text style={styles.currentWord}>{currentName}</Text>
+          <Text style={styles.definition}>NEW TAG NAME</Text>
+          <View style={styles.inputBlock}>
             <TextInput
               defaultValue={currentName}
               placeholder='New tag name...'
               placeholderTextColor='white'
-              style={textInput}
+              style={styles.textInput}
               autoCorrect={false}
               clearButtonMode='always'
               underlineColorAndroid='transparent'
@@ -138,29 +119,31 @@ class EditTagScreen extends Component {
               onChangeText={this.handleChangeText}
               onSubmitEditing={this.handleSubmit}
             />
-            <TouchableButton style={inputBtn} onPress={this.handleSubmit}>
+            <TouchableButton
+              style={styles.inputBtn}
+              onPress={this.handleSubmit}
+            >
               <Icon name='plus-circle' size={35} color='white' />
             </TouchableButton>
           </View>
           {isTagExist && (
-            <Text style={alert}>This tag name already exists.</Text>
+            <Text style={styles.alert}>This tag name already exists.</Text>
           )}
-          <Text style={[definition, { marginTop: 30, }]}>WORDS</Text>
+          <Text style={styles.definition}>WORDS</Text>
           {!wordsList.length && (
-            <Text style={alert}>The words list is empty</Text>
+            <Text style={styles.alert}>The words list is empty</Text>
           )}
-          <View style={wordsBlock}>{this.generateWordsList(wordsList)}</View>
+          <View style={styles.wordsBlock}>
+            {this.generateWordsList(wordsList)}
+          </View>
           <TouchableButton
-            style={[btn, { marginTop: 30, backgroundColor: '#ac3939', }]}
+            style={[styles.btn, styles.deleteBtn]}
             onPress={this.handlePermission}
           >
-            <Text style={btnText}>DELETE</Text>
+            <Text style={styles.btnText}>DELETE</Text>
           </TouchableButton>
-          <TouchableButton
-            style={[btn, { marginBottom: 27, }]}
-            onPress={this.edit}
-          >
-            <Text style={btnText}>EDIT</Text>
+          <TouchableButton style={styles.btn} onPress={this.edit}>
+            <Text style={styles.btnText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>
         {permissionVisible && (

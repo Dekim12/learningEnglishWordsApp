@@ -4,8 +4,6 @@ import { TouchableButton, } from '../../index'
 import { screenSize, } from '../../../utils'
 
 const ResultPopup = ({ result, goToTasks, }) => {
-  const { container, popupBlock, headline, btnText, btn, } = styles
-
   const rightAnswers = result.reduce((sum, elem) => {
     if (elem) {
       return sum + 1
@@ -20,18 +18,18 @@ const ResultPopup = ({ result, goToTasks, }) => {
   }, [result.length, rightAnswers])
 
   return (
-    <View style={container}>
-      <View style={popupBlock}>
+    <View style={styles.container}>
+      <View style={styles.popupBlock}>
         <View style={styles.definitionBlock}>
-          <Text style={headline}>RIGHT ANSWERS:</Text>
+          <Text style={styles.headline}>RIGHT ANSWERS:</Text>
           <Text style={styles.resultStyle}>{rightAnswers}</Text>
         </View>
         <View style={styles.definitionBlock}>
-          <Text style={headline}>WRONG ANSWERS:</Text>
+          <Text style={styles.headline}>WRONG ANSWERS:</Text>
           <Text style={styles.resultStyle}>{wrongAnswers}</Text>
         </View>
-        <TouchableButton style={btn} onPress={finishTask}>
-          <Text style={btnText}>NEXT TASK</Text>
+        <TouchableButton style={styles.btn} onPress={finishTask}>
+          <Text style={styles.btnText}>NEXT TASK</Text>
         </TouchableButton>
       </View>
     </View>

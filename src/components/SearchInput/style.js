@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     right: 8,
     top: 5,
   },
+  focusedInput: { backgroundColor: '#d4d0e2', },
 })
 
 export default styles

@@ -1,4 +1,10 @@
 import { Dimensions, } from 'react-native'
+import {
+  COLOR_VALUES,
+  MAX_COEFFICIENT,
+  COUNT_WRONG_RANDOM_ANSWERS,
+  ROUNDING_DEGREE,
+} from '../constants'
 
 export const screenSize = {
   width: Dimensions.get('window').width,
@@ -7,10 +13,13 @@ export const screenSize = {
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min)) + min
 
-export const getRandomColor = () => `rgb(${getRandomNumber(50, 250)}, ${getRandomNumber(
-  50,
-  250
-)}, ${getRandomNumber(50, 250)})`
+export const getRandomColor = () => `rgb(${getRandomNumber(
+  COLOR_VALUES.min,
+  COLOR_VALUES.max
+)}, ${getRandomNumber(COLOR_VALUES.min, COLOR_VALUES.max)}, ${getRandomNumber(
+  COLOR_VALUES.min,
+  COLOR_VALUES.max
+)})`
 
 export const createLine = (arr) => {
   if (!arr.length) {
@@ -58,13 +67,21 @@ export const shuffle = (arr) => {
 
 export const getRandomAnswers = (valueArr, answersArr) => {
   const rightAnswer = createLine(valueArr)
-  const answers = takeRandomWords(answersArr, 5)
+  const answers = takeRandomWords(
+    answersArr,
+    COUNT_WRONG_RANDOM_ANSWERS.possible
+  )
 
   const wrongAnswers = answers
     .map(word => createLine(word.translation))
     .filter(translation => translation !== rightAnswer)
 
-  return shuffle(wrongAnswers.slice(0, 3).concat(rightAnswer))
+  return shuffle(
+    wrongAnswers
+      .slice(0, COUNT_WRONG_RANDOM_ANSWERS.necessary)
+      .concat(rightAnswer)
+  )
 }
 
-export const definePerformanceCoefficient = (max, current) => Math.round(((current * 100) / max) * 10) / 10
+export const definePerformanceCoefficient = (max, current) => Math.round(((current * MAX_COEFFICIENT) / max) * ROUNDING_DEGREE) /
+  ROUNDING_DEGREE

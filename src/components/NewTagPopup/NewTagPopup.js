@@ -23,6 +23,7 @@ class NewTagPopup extends React.Component {
     const { addTag, closePopup, } = this.props
 
     const preparedTagName = name.replace(/^\s+|\s+$/g, '')
+
     if (!isNameExist && preparedTagName) {
       addTag(preparedTagName)
       closePopup('')
@@ -34,23 +35,13 @@ class NewTagPopup extends React.Component {
   render() {
     const { name, isNameExist, } = this.state
     const { closePopup, } = this.props
-    const {
-      container,
-      popupForm,
-      headline,
-      createBtn,
-      createBtnText,
-      inputStyle,
-      closeBtn,
-      alert,
-    } = styles
 
     return (
-      <KeyboardAvoidingView style={container} behavior='padding'>
-        <View style={popupForm}>
-          <Text style={headline}>NEW TAG</Text>
+      <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <View style={styles.popupForm}>
+          <Text style={styles.headline}>NEW TAG</Text>
           <TextInput
-            style={inputStyle}
+            style={styles.inputStyle}
             value={name}
             placeholder='Tag name...'
             placeholderTextColor='white'
@@ -62,12 +53,12 @@ class NewTagPopup extends React.Component {
             onChangeText={this.handleChangeText}
           />
           {isNameExist && (
-            <Text style={alert}>This tag name already exists.</Text>
+            <Text style={styles.alert}>This tag name already exists.</Text>
           )}
-          <TouchableButton style={createBtn} onPress={this.addNewTag}>
-            <Text style={createBtnText}>CREATE TAG</Text>
+          <TouchableButton style={styles.createBtn} onPress={this.addNewTag}>
+            <Text style={styles.createBtnText}>CREATE TAG</Text>
           </TouchableButton>
-          <TouchableButton style={closeBtn} onPress={() => closePopup('')}>
+          <TouchableButton style={styles.closeBtn} onPress={closePopup}>
             <Icon name='times' size={40} color='#C8C8C8' />
           </TouchableButton>
         </View>

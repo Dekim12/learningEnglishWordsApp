@@ -1,6 +1,7 @@
 import React, { Component, } from 'react'
 import { Text, } from 'react-native'
 import { TouchableButton, } from '../../index'
+import { ANSWER_DELAY, } from '../../../constants'
 import styles from './style'
 
 class SelectableAnswer extends Component {
@@ -13,7 +14,7 @@ class SelectableAnswer extends Component {
     const { checkResult, } = this.props
 
     return new Promise(() => {
-      setTimeout(() => checkResult(isRight), 600)
+      setTimeout(() => checkResult(isRight), ANSWER_DELAY)
     })
   }
 

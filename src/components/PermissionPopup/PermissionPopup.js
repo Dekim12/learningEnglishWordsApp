@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, } from 'react-native'
 import { TouchableButton, } from '../index'
+import { PERMISSION_QUESTIONS, } from '../../constants'
 import styles from './style'
 
 const PermissionPopup = ({ isWord, resolve, refresh, }) => {
@@ -13,9 +14,7 @@ const PermissionPopup = ({ isWord, resolve, refresh, }) => {
     <View style={styles.container}>
       <View style={styles.popupBlock}>
         <Text style={styles.headline}>
-          {isWord
-            ? 'Are you sure you want to remove this word?'
-            : 'Are you sure you want to remove this tag with all its words?'}
+          {isWord ? PERMISSION_QUESTIONS.word : PERMISSION_QUESTIONS.tag}
         </Text>
         <View style={styles.bottomsBlock}>
           <TouchableButton style={styles.btn} onPress={confirm}>

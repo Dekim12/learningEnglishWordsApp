@@ -3,9 +3,11 @@ import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
+    minHeight: screenSize.height - 90,
     paddingHorizontal: 15,
     paddingVertical: 15,
   },
+  contentStyle: { alignItems: 'center', },
   headline: {
     textAlign: 'center',
     fontSize: 45,

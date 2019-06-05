@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     fontFamily: 'FFF_Tusj',
     color: '#ffffff',
   },
+  taskBlock: { marginBottom: 25, },
 })
 
 export default styles

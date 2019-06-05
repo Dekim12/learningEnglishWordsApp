@@ -3,6 +3,7 @@ import { Text, FlatList, ScrollView, View, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, PermissionPopup, } from '../../components'
 import { createLine, } from '../../utils'
+import { WORDS_DETAILS_SCREEN, NEW_WORD_SCREEN, } from '../../constants'
 import styles from './style'
 
 class TagDetailsScreen extends Component {
@@ -20,27 +21,22 @@ class TagDetailsScreen extends Component {
 
   renderWords = ({ item, }) => {
     const { deleteWord, navigation, } = this.props
-    const {
-      wordItem,
-      wordStyle,
-      transcriptionStyle,
-      translationStyle,
-      deleteBtn,
-    } = styles
 
     const deleteCurrentWord = () => this.setPermissionFunctions(() => deleteWord(item.id))
 
-    const toWordScreen = () => navigation.navigate('WordDetails', {
+    const toWordScreen = () => navigation.navigate(WORDS_DETAILS_SCREEN, {
       id: item.id,
       word: item.word,
     })
 
     return (
-      <TouchableButton style={wordItem} onPress={toWordScreen}>
-        <Text style={wordStyle}>{item.word}</Text>
-        <Text style={transcriptionStyle}>{item.transcription}</Text>
-        <Text style={translationStyle}>{createLine(item.translation)}</Text>
-        <TouchableButton style={deleteBtn} onPress={deleteCurrentWord}>
+      <TouchableButton style={styles.wordItem} onPress={toWordScreen}>
+        <Text style={styles.wordStyle}>{item.word}</Text>
+        <Text style={styles.transcriptionStyle}>{item.transcription}</Text>
+        <Text style={styles.translationStyle}>
+          {createLine(item.translation)}
+        </Text>
+        <TouchableButton style={styles.deleteBtn} onPress={deleteCurrentWord}>
           <Icon name='trash-alt' size={29} color='#2d862d' />
         </TouchableButton>
       </TouchableButton>
@@ -52,7 +48,7 @@ class TagDetailsScreen extends Component {
       navigation: { navigate, },
     } = this.props
 
-    navigate('NewWord')
+    navigate(NEW_WORD_SCREEN)
   }
 
   keyExtractor = () => uuidv4()
@@ -72,24 +68,25 @@ class TagDetailsScreen extends Component {
   }
 
   render() {
-    const { tagsWordsList, tagName, } = this.props
+    const { tagsWordsList, } = this.props
     const { permissionVisible, permissionResolve, } = this.state
-    const { container, headline, addBtn, addText, } = styles
 
     return (
-      <View style={{ flex: 1, }}>
+      <View>
         <ScrollView
-          style={container}
-          contentContainerStyle={{ alignItems: 'center', }}
+          style={styles.container}
+          contentContainerStyle={styles.contentStyle}
         >
-          <Text style={headline}>{tagName}</Text>
           <FlatList
             data={tagsWordsList}
             renderItem={this.renderWords}
             keyExtractor={this.keyExtractor}
           />
-          <TouchableButton style={addBtn} onPress={this.toCreateWordScreen}>
-            <Text style={addText}>ADD NEW WORD</Text>
+          <TouchableButton
+            style={styles.addBtn}
+            onPress={this.toCreateWordScreen}
+          >
+            <Text style={styles.addText}>ADD NEW WORD</Text>
           </TouchableButton>
         </ScrollView>
         {permissionVisible && (

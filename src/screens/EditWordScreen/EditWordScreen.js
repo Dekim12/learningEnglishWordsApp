@@ -2,13 +2,8 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
-import { WORDS_DETAILS_SCREEN, } from '../../constants'
+import { WORDS_DETAILS_SCREEN, EDIT_TYPES, } from '../../constants'
 import styles from './style'
-
-const WORD = 'translationWord'
-const STRING = 'exampleString'
-const URL = 'urlString'
-const TAG = 'tagString'
 
 class EditWordScreen extends Component {
   constructor(props) {
@@ -27,11 +22,11 @@ class EditWordScreen extends Component {
   }
 
   deleteWordOrExample = (value, type) => {
-    if (type === WORD) {
+    if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         translation: prevState.translation.filter(word => word !== value),
       }))
-    } else if (type === STRING) {
+    } else if (type === EDIT_TYPES.string) {
       this.setState(prevState => ({
         examples: prevState.examples.filter(string => string !== value),
       }))
@@ -39,9 +34,9 @@ class EditWordScreen extends Component {
   }
 
   addTagOrUrl = (value, type) => {
-    if (type === URL) {
+    if (type === EDIT_TYPES.url) {
       this.setState({ url: value, })
-    } else if (type === TAG) {
+    } else if (type === EDIT_TYPES.tag) {
       this.setState({
         tagName: value,
       })
@@ -49,12 +44,12 @@ class EditWordScreen extends Component {
   }
 
   addWordOrExample = (value, type) => {
-    if (type === WORD) {
+    if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         submit: false,
         translation: prevState.translation.concat(value),
       }))
-    } else if (type === STRING) {
+    } else if (type === EDIT_TYPES.string) {
       this.setState(prevState => ({
         submit: false,
         examples: prevState.examples.concat(value),
@@ -63,7 +58,7 @@ class EditWordScreen extends Component {
   }
 
   generateTranslation = translationList => translationList.map((word) => {
-    const deleteCurrentValue = () => this.deleteWordOrExample(word, WORD)
+    const deleteCurrentValue = () => this.deleteWordOrExample(word, EDIT_TYPES.word)
 
     return (
       <View style={styles.translationItem} key={uuidv4()}>
@@ -79,7 +74,7 @@ class EditWordScreen extends Component {
   })
 
   generateExamples = examples => examples.map((item) => {
-    const deleteCurrentValue = () => this.deleteWordOrExample(item, STRING)
+    const deleteCurrentValue = () => this.deleteWordOrExample(item, EDIT_TYPES.string)
 
     return (
       <View style={styles.exampleItem} key={uuidv4()}>
@@ -98,7 +93,7 @@ class EditWordScreen extends Component {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
 
     return tagsList.map((tag, index) => {
-      const addTag = () => this.addTagOrUrl(tag, TAG)
+      const addTag = () => this.addTagOrUrl(tag, EDIT_TYPES.tag)
 
       return (
         <TouchableButton
@@ -161,7 +156,7 @@ class EditWordScreen extends Component {
               placeholder='Add translation...'
               style={styles.textInput}
               submit={submit}
-              type={WORD}
+              type={EDIT_TYPES.word}
               onSubmit={this.addWordOrExample}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
@@ -174,7 +169,7 @@ class EditWordScreen extends Component {
               placeholder='Url...'
               style={styles.textInput}
               submit={submit}
-              type={URL}
+              type={EDIT_TYPES.url}
               onSubmit={this.addTagOrUrl}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
@@ -190,7 +185,7 @@ class EditWordScreen extends Component {
               placeholder='Add example...'
               style={styles.textInput}
               submit={submit}
-              type={STRING}
+              type={EDIT_TYPES.string}
               onSubmit={this.addWordOrExample}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>

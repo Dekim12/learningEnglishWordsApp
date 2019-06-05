@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Chunkfive',
     color: '#000000',
   },
+  firstElem: { borderTopWidth: 1.5, },
+  hashtag: { color: '#B0B0B0', },
+  editBtn: { marginLeft: 5, },
 })
 
 export default styles

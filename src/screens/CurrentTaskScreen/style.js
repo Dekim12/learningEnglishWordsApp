@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     width: screenSize.width,
     backgroundColor: '#FFFFFF',
   },
+  contentContainer: { alignItems: 'center', },
 })
 
 export default styles
