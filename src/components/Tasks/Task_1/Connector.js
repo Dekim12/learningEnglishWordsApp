@@ -44,17 +44,16 @@ class Connector extends Component {
       countWordsForTask,
       answersResult,
     } = this.props
-    const { container, wordStyle, transcriptionStyle, taskCondition, } = styles
 
     return (
-      <View style={container}>
+      <View style={styles.container}>
         <ProgressBar
           answersResults={answersResult}
           countWords={countWordsForTask}
         />
-        <View style={taskCondition}>
-          <Text style={wordStyle}>{currentWord.word}</Text>
-          <Text style={transcriptionStyle}>
+        <View style={styles.taskCondition}>
+          <Text style={styles.wordStyle}>{currentWord.word}</Text>
+          <Text style={styles.transcriptionStyle}>
             {`[${currentWord.transcription}]`}
           </Text>
         </View>

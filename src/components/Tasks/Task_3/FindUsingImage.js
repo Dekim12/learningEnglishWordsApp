@@ -6,10 +6,8 @@ class FindUsingImage extends Component {
   state = {}
 
   render() {
-    const { container, } = styles
-
     return (
-      <View style={container}>
+      <View style={styles.container}>
         <Text>Find Word Using Image Task </Text>
       </View>
     )

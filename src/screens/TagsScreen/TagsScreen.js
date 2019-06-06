@@ -38,16 +38,15 @@ class TagsScreen extends Component {
   render() {
     const { addTag, tagsList, } = this.props
     const { isNewTag, newTagName, } = this.state
-    const { container, createBtn, } = styles
 
     return (
-      <View style={container}>
+      <View style={styles.container}>
         <TagsListContainer
           toDetails={this.toDetails}
           toEdit={this.toEdit}
           addNewTag={this.togglePopup}
         />
-        <TouchableButton style={createBtn} onPress={this.openPopup}>
+        <TouchableButton style={styles.createBtn} onPress={this.openPopup}>
           <Icon name='plus' size={33} color='#ffffff' />
         </TouchableButton>
         {isNewTag && (

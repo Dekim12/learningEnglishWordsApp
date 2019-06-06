@@ -12,10 +12,8 @@ class NewWordScreen extends Component {
   }
 
   render() {
-    const { container, } = styles
-
     return (
-      <View style={container}>
+      <View style={styles.container}>
         <Text>NewWordScreen</Text>
       </View>
     )

@@ -51,17 +51,16 @@ class WordsScreen extends Component {
 
   render() {
     const { permissionVisible, permissionResolve, } = this.state
-    const { container, addButton, } = styles
 
     return (
-      <View style={container}>
+      <View style={styles.container}>
         <StatusBar hidden />
         <WordListContainer
           openDescription={this.toDescription}
           setPermission={this.setPermissionFunctions}
           addNewWord={this.toNewWord}
         />
-        <TouchableButton style={addButton} onPress={this.toNewWord}>
+        <TouchableButton style={styles.addButton} onPress={this.toNewWord}>
           <Icon name='plus' size={33} color='#ffffff' />
         </TouchableButton>
         {permissionVisible && (

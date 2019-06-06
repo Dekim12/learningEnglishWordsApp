@@ -1,4 +1,5 @@
 import React from 'react'
+import { StyleSheet, } from 'react-native'
 import { Icon, } from '../components'
 import {
   ROOT_WORDS_SCREEN,
@@ -17,7 +18,7 @@ export const defineTabBarIcons = (navigation, { tintColor, }) => {
     iconName = 'tasks'
   } else if (routeName === ROOT_TASKS_SCREEN) {
     iconName = 'edit'
-    styleForTasks = { paddingLeft: 7, }
+    styleForTasks = styles.tasksTag
   }
 
   return (
@@ -25,7 +26,12 @@ export const defineTabBarIcons = (navigation, { tintColor, }) => {
       name={iconName}
       size={25}
       color={tintColor}
-      style={[{ fontSize: 28, }, styleForTasks]}
+      style={[styles.icon, styleForTasks]}
     />
   )
 }
+
+const styles = StyleSheet.create({
+  icon: { fontSize: 28, },
+  tasksTag: { paddingLeft: 7, },
+})

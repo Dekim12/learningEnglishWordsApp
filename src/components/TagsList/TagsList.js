@@ -45,7 +45,6 @@ class TagsList extends React.Component {
   render() {
     const { tagsList, } = this.props
     const { searchString, clearInput, } = this.state
-    const { container, addTagBlock, definition, valueStyle, } = styles
 
     const filteredTags = this.filterTagList(tagsList, searchString)
 
@@ -57,16 +56,16 @@ class TagsList extends React.Component {
           onChange={this.updateSearchString}
         />
         {searchString && !filteredTags.length ? (
-          <TouchableButton style={addTagBlock} onPress={this.addTag}>
-            <Text style={definition}>Add tag</Text>
-            <Text style={valueStyle}>{`${searchString}`}</Text>
+          <TouchableButton style={styles.addTagBlock} onPress={this.addTag}>
+            <Text style={styles.definition}>Add tag</Text>
+            <Text style={styles.valueStyle}>{`${searchString}`}</Text>
           </TouchableButton>
         ) : null}
         <FlatList
           data={!searchString ? tagsList : filteredTags}
           renderItem={this.renderItems}
           keyExtractor={this.keyExtractor}
-          style={container}
+          style={styles.container}
         />
       </ScrollView>
     )

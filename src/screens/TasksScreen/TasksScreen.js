@@ -52,22 +52,27 @@ class TasksScreen extends Component {
   })
 
   render() {
-    const { container, btnBlock, taskBlock, iconStyle, } = styles
-
     return (
       <ScrollView
-        style={container}
-        contentContainerStyle={{ alignItems: 'center', }}
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
       >
-        <View style={btnBlock}>
+        <View style={styles.btnBlock}>
           <TouchableButton onPress={this.toStatistic}>
-            <Icon name='award' size={40} color='#ffaa00' style={iconStyle} />
+            <Icon
+              name='award'
+              size={40}
+              color='#ffaa00'
+              style={styles.iconStyle}
+            />
           </TouchableButton>
           <TouchableButton onPress={this.toSettings}>
             <Icon name='cogs' size={37} color='#606060' />
           </TouchableButton>
         </View>
-        <View style={taskBlock}>{this.generateTasks(TASK_NAMES_LIST)}</View>
+        <View style={styles.taskBlock}>
+          {this.generateTasks(TASK_NAMES_LIST)}
+        </View>
       </ScrollView>
     )
   }

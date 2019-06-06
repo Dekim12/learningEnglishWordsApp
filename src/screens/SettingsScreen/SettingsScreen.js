@@ -73,7 +73,6 @@ class SettingsScreen extends Component {
 
   generateTagsItems = (tagsList) => {
     const { tagsForTask, } = this.state
-    const { activeTag, tagItem, textStyle, activeOrderStyle, } = styles
 
     return tagsList.map((tag) => {
       const isTagSelected = tagsForTask.indexOf(tag) !== -1
@@ -84,11 +83,13 @@ class SettingsScreen extends Component {
 
       return (
         <TouchableButton
-          style={[tagItem, isTagSelected && activeTag]}
+          style={[styles.tagItem, isTagSelected && styles.activeTag]}
           onPress={addTag}
           key={uuidv4()}
         >
-          <Text style={[textStyle, isTagSelected && activeOrderStyle]}>
+          <Text
+            style={[styles.textStyle, isTagSelected && styles.activeOrderStyle]}
+          >
             {tag}
           </Text>
         </TouchableButton>

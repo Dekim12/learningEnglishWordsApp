@@ -13,12 +13,13 @@ class CurrentTaskScreen extends Component {
 
   render() {
     const { wordsForTask, taskName, wordsList, goToTasks, } = this.props
-    const { container, contentContainer, } = styles
-
     const Task = TASK_LIST[taskName]
 
     return (
-      <ScrollView style={container} contentContainerStyle={contentContainer}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.contentContainer}
+      >
         <Task
           name={taskName}
           allWords={wordsList}

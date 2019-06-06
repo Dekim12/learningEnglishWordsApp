@@ -85,10 +85,8 @@ class WordDescriptionScreen extends Component {
               style={styles.imageStyle}
               source={{
                 uri: wordData.url,
-                headers: { Authorization: 'someAuthToken', },
                 priority: FastImage.priority.high,
               }}
-              resizeMode={FastImage.resizeMode.cover}
               onLoad={this.handleLoad}
             />
           </View>

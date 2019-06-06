@@ -4,22 +4,20 @@ import uuidv4 from 'uuid/v4'
 import { screenSize, } from '../../../utils'
 
 const ProgressBar = ({ answersResults, countWords, }) => {
-  const { progressBarStyle, rightPartStyle, wrongPartStyle, } = styles
-
   const partWidth = screenSize.width / countWords
 
   const generateProgressParts = partsList => partsList.map(isCorrect => (
     <View
       style={[
         { width: partWidth, },
-        isCorrect ? rightPartStyle : wrongPartStyle
+        isCorrect ? styles.rightPartStyle : styles.wrongPartStyle
       ]}
       key={uuidv4()}
     />
   ))
 
   return (
-    <View style={progressBarStyle}>
+    <View style={styles.progressBarStyle}>
       {generateProgressParts(answersResults)}
     </View>
   )

@@ -47,17 +47,16 @@ class SearchInput extends Component {
   render() {
     const { placeholder, } = this.props
     const { queryString, isFocused, } = this.state
-    const { inputStyle, closeBtn, searchContainer, focusedInput, } = styles
 
     return (
-      <View style={searchContainer}>
+      <View style={styles.searchContainer}>
         <TextInput
           value={queryString}
           placeholder={placeholder}
           placeholderTextColor='white'
           onFocus={this.handleInputFocus}
           onEndEditing={this.handleInputEdit}
-          style={[inputStyle, isFocused && focusedInput]}
+          style={[styles.inputStyle, isFocused && styles.focusedInput]}
           autoCorrect={false}
           clearButtonMode='always'
           underlineColorAndroid='transparent'
@@ -66,7 +65,7 @@ class SearchInput extends Component {
           onSubmitEditing={this.handleSubmitEditing}
         />
         {!!queryString && (
-          <TouchableButton style={closeBtn} onPress={this.clearInput}>
+          <TouchableButton style={styles.closeBtn} onPress={this.clearInput}>
             <Icon name='times' size={40} color='#ADB5BD' />
           </TouchableButton>
         )}

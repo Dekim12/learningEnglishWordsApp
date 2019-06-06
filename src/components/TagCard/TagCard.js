@@ -4,8 +4,6 @@ import { Icon, TouchableButton, } from '../index'
 import styles from './style'
 
 const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
-  const { container, tagName, firstElem, hashtag, editBtn, } = styles
-
   const openDetails = () => {
     toDetails(name)
   }
@@ -17,13 +15,13 @@ const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
   return (
     <TouchableButton
       onPress={openDetails}
-      style={[container, isFirstCard && firstElem]}
+      style={[styles.container, isFirstCard && styles.firstElem]}
     >
-      <Text style={tagName}>
-        <Text style={hashtag}>#</Text>
+      <Text style={styles.tagName}>
+        <Text style={styles.hashtag}>#</Text>
         {name}
       </Text>
-      <TouchableButton onPress={editTag} style={editBtn}>
+      <TouchableButton onPress={editTag} style={styles.editBtn}>
         <Icon name='pen-square' size={40} color='#2d862d' />
       </TouchableButton>
     </TouchableButton>

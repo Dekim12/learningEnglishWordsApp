@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#FFFFFF',
   },
+  contentContainer: { alignItems: 'center', },
   btnBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',

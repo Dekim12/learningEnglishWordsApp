@@ -49,7 +49,6 @@ class WordList extends React.Component {
   render() {
     const { wordsList, } = this.props
     const { searchString, } = this.state
-    const { container, addWordBlock, definition, valueStyle, } = styles
 
     const filteredDataList = this.fuse.search(searchString)
 
@@ -60,16 +59,16 @@ class WordList extends React.Component {
           onChange={this.updateSearchString}
         />
         {searchString && !filteredDataList.length ? (
-          <TouchableButton style={addWordBlock} onPress={this.addWord}>
-            <Text style={definition}>Add word</Text>
-            <Text style={valueStyle}>{`${searchString}`}</Text>
+          <TouchableButton style={styles.addWordBlock} onPress={this.addWord}>
+            <Text style={styles.definition}>Add word</Text>
+            <Text style={styles.valueStyle}>{`${searchString}`}</Text>
           </TouchableButton>
         ) : null}
         <FlatList
           data={!searchString ? wordsList : filteredDataList}
           renderItem={this.renderItems}
           keyExtractor={this.keyExtractor}
-          style={container}
+          style={styles.container}
         />
       </ScrollView>
     )
