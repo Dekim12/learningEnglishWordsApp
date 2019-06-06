@@ -1,16 +1,18 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   cardContainer: {
+    flex: 1,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     borderBottomWidth: 1.5,
     paddingVertical: 5,
     paddingHorizontal: 10,
     borderColor: '#4d446f',
+    backgroundColor: '#ffffff',
   },
   wrapper: {
-    width: screenSize.width - 60,
+    flex: 1,
   },
   wordsContainer: {
     flexDirection: 'row',

@@ -1,10 +1,10 @@
 import React, { Component, } from 'react'
 import { Text, View, } from 'react-native'
-import { screenSize, definePerformanceCoefficient, } from '../../utils'
+import { definePerformanceCoefficient, } from '../../utils'
 import {
   MAX_COEFFICIENT,
   SMALL_COEFFICIENT,
-  SUM_RATE_INDENTS,
+  MAX_RATE_WIDTH,
 } from '../../constants'
 import styles from './style'
 
@@ -41,9 +41,7 @@ class StatisticsScreen extends Component {
             style={[
               styles.coefficientStyle,
               {
-                width:
-                  ((screenSize.width - SUM_RATE_INDENTS) * coefficient) /
-                  MAX_COEFFICIENT,
+                width: (MAX_RATE_WIDTH * coefficient) / MAX_COEFFICIENT,
               }
             ]}
           >

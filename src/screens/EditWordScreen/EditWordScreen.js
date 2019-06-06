@@ -57,37 +57,33 @@ class EditWordScreen extends Component {
     }
   }
 
-  generateTranslation = translationList => translationList.map((word) => {
-    const deleteCurrentValue = () => this.deleteWordOrExample(word, EDIT_TYPES.word)
+  generateItem = (itemsList, type) => {
+    const currentStyle = {}
 
-    return (
-      <View style={styles.translationItem} key={uuidv4()}>
-        <Text style={styles.itemText}>{word}</Text>
-        <TouchableButton
-          style={styles.deleteItemBtn}
-          onPress={deleteCurrentValue}
-        >
-          <Icon name='times-circle' size={22} color='#ffb380' />
-        </TouchableButton>
-      </View>
-    )
-  })
+    if (type === EDIT_TYPES.word) {
+      currentStyle.item = styles.translationItem
+      currentStyle.btn = styles.deleteItemBtn
+    } else {
+      currentStyle.item = styles.exampleItem
+      currentStyle.btn = styles.exampleButton
+    }
 
-  generateExamples = examples => examples.map((item) => {
-    const deleteCurrentValue = () => this.deleteWordOrExample(item, EDIT_TYPES.string)
+    return itemsList.map((item) => {
+      const deleteCurrentValue = () => this.deleteWordOrExample(item, type)
 
-    return (
-      <View style={styles.exampleItem} key={uuidv4()}>
-        <Text style={styles.itemText}>{item}</Text>
-        <TouchableButton
-          style={styles.exampleButton}
-          onPress={deleteCurrentValue}
-        >
-          <Icon name='times-circle' size={22} color='#ffb380' />
-        </TouchableButton>
-      </View>
-    )
-  })
+      return (
+        <View style={currentStyle.item} key={uuidv4()}>
+          <Text style={styles.itemText}>{item}</Text>
+          <TouchableButton
+            style={currentStyle.btn}
+            onPress={deleteCurrentValue}
+          >
+            <Icon name='times-circle' size={22} color='#ffb380' />
+          </TouchableButton>
+        </View>
+      )
+    })
+  }
 
   generateTags = (currentTag, tagsList) => {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
@@ -149,7 +145,7 @@ class EditWordScreen extends Component {
           <Text style={styles.wordTranscription}>{`[${transcription}]`}</Text>
           <Text style={styles.definition}>TRANSLATION:</Text>
           <View style={styles.translationBlock}>
-            {this.generateTranslation(translation)}
+            {this.generateItem(translation, EDIT_TYPES.word)}
           </View>
           <View style={styles.inputBlock}>
             <Input
@@ -178,7 +174,7 @@ class EditWordScreen extends Component {
           </View>
           <Text style={styles.definition}>EXAMPLES:</Text>
           <View style={styles.examplesBlock}>
-            {this.generateExamples(examples)}
+            {this.generateItem(examples, EDIT_TYPES.string)}
           </View>
           <View style={styles.inputBlock}>
             <Input

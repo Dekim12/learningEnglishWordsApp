@@ -21,21 +21,14 @@ class SelectableAnswer extends Component {
   check = async () => {
     const { isRightAnswer, } = this.props
 
-    if (isRightAnswer) {
-      this.setState({
-        btnColor: { backgroundColor: '#339933', },
-        textColor: { color: '#ffffff', },
-      })
+    this.setState({
+      btnColor: isRightAnswer
+        ? { backgroundColor: '#339933', }
+        : { backgroundColor: 'rgba(179, 0, 0, 0.6)', },
+      textColor: { color: '#ffffff', },
+    })
 
-      await this.nextWord(isRightAnswer)
-    } else {
-      this.setState({
-        btnColor: { backgroundColor: 'rgba(179, 0, 0, 0.6)', },
-        textColor: { color: '#ffffff', },
-      })
-
-      await this.nextWord(isRightAnswer)
-    }
+    await this.nextWord(isRightAnswer)
   }
 
   render() {

@@ -99,7 +99,7 @@ class EditTagScreen extends Component {
     const { currentName, wordsList, isTagExist, permissionVisible, } = this.state
 
     return (
-      <View>
+      <View style={styles.wrapper}>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}

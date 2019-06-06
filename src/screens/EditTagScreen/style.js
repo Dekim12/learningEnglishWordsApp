@@ -1,10 +1,8 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, },
   container: {
-    width: screenSize.width,
-    minHeight: screenSize.height - 90,
     paddingTop: 5,
     paddingBottom: 15,
     paddingHorizontal: 10,

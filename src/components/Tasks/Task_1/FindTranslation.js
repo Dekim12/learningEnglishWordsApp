@@ -1,8 +1,9 @@
 import React, { Component, } from 'react'
-import { View, } from 'react-native'
+import { ScrollView, } from 'react-native'
 import { getRandomAnswers, } from '../../../utils'
 import { Connector, } from './Connector'
 import { ResultPopup, } from './ResultPopup'
+import styles from './style'
 
 class FindTranslation extends Component {
   state = {
@@ -38,7 +39,7 @@ class FindTranslation extends Component {
     )
 
     return (
-      <View>
+      <ScrollView style={styles.rootBlock}>
         <Connector
           defaultResult
           countWordsForTask={wordsForTask.length}
@@ -50,7 +51,7 @@ class FindTranslation extends Component {
         {hasTaskDone && (
           <ResultPopup result={answersResult} goToTasks={goToTasks} />
         )}
-      </View>
+      </ScrollView>
     )
   }
 }

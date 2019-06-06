@@ -1,5 +1,4 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
@@ -79,10 +78,11 @@ const styles = StyleSheet.create({
   examplesBlock: {
     flex: 1,
     justifyContent: 'flex-start',
+    alignSelf: 'stretch',
     marginBottom: 1,
   },
   exampleItem: {
-    width: screenSize.width - 20,
+    alignSelf: 'stretch',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

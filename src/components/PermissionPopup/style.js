@@ -1,5 +1,4 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupBlock: {
-    width: screenSize.width - 40,
+    maxWidth: 380,
     alignItems: 'center',
     paddingVertical: 20,
     paddingHorizontal: 10,

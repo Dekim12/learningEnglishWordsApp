@@ -95,7 +95,7 @@ class WordDescriptionScreen extends Component {
           )}
           {wordData.examples && this.renderExamples(wordData.examples)}
           <Text style={[styles.definition, styles.tagName]}>
-            TAG NAME:{' '}
+            TAG NAME:
             <Text style={styles.tagText}>{`  ${wordData.tagName}  `}</Text>
           </Text>
           <View style={styles.controlPanel}>

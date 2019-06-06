@@ -1,5 +1,4 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +56,8 @@ const styles = StyleSheet.create({
   },
   exampleBlock: {
     flexDirection: 'row',
+    alignSelf: 'flex-start',
+    marginRight: 3,
     marginTop: 3,
   },
   exampleLabel: {
@@ -65,10 +66,8 @@ const styles = StyleSheet.create({
     marginTop: 9,
     marginRight: 5,
     borderRadius: 50,
-    backgroundColor: 'green',
   },
   example: {
-    width: screenSize.width - 33,
     fontSize: 19,
     fontFamily: 'OpenSans',
     color: 'black',
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     lineHeight: 32,
   },
   controlPanel: {
-    width: screenSize.width - 100,
+    width: 300,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 30,

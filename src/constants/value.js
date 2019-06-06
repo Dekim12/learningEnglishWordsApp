@@ -26,8 +26,8 @@ export const PERMISSION_QUESTIONS = {
 }
 
 export const MAX_COEFFICIENT = 100
-export const SMALL_COEFFICIENT = 25
-export const SUM_RATE_INDENTS = 38
+export const SMALL_COEFFICIENT = 30
+export const MAX_RATE_WIDTH = 292
 export const ANSWER_DELAY = 500
 export const COLOR_VALUES = { min: 50, max: 250, }
 export const COUNT_WRONG_RANDOM_ANSWERS = {

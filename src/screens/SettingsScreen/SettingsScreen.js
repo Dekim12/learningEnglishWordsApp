@@ -17,7 +17,12 @@ class SettingsScreen extends Component {
     super(props)
     const { tagsForTask, amountOfWords, isRandom, allTags, } = this.props
 
-    this.state = { tagsForTask, isRandom, allTags, isAmountCorrect: true, }
+    this.state = {
+      tagsForTask,
+      isRandom,
+      useAllTags: allTags,
+      isAmountCorrect: true,
+    }
 
     this.newWordsAmount = amountOfWords
   }
@@ -50,24 +55,24 @@ class SettingsScreen extends Component {
     if (tagsForTask.indexOf(tagName) !== -1) {
       this.setState({
         tagsForTask: tagsForTask.filter(tag => tag !== tagName),
-        allTags: false,
+        useAllTags: false,
       })
     } else {
       const newList = tagsForTask.concat(tagName)
       const isAllTags = tagsList.length === newList.length
 
-      this.setState({ tagsForTask: newList, allTags: isAllTags, })
+      this.setState({ tagsForTask: newList, useAllTags: isAllTags, })
     }
   }
 
   handlerAllTaskButton = () => {
-    const { allTags, } = this.state
+    const { useAllTags, } = this.state
     const { tagsList, } = this.props
 
-    if (allTags) {
-      this.setState({ allTags: false, tagsForTask: [], })
+    if (useAllTags) {
+      this.setState({ useAllTags: false, tagsForTask: [], })
     } else {
-      this.setState({ allTags: true, tagsForTask: tagsList, })
+      this.setState({ useAllTags: true, tagsForTask: tagsList, })
     }
   }
 
@@ -99,9 +104,9 @@ class SettingsScreen extends Component {
 
   defineTotalAmountOfWords = () => {
     const { wordsList, } = this.props
-    const { tagsForTask, allTags, } = this.state
+    const { tagsForTask, useAllTags, } = this.state
 
-    if (allTags) {
+    if (useAllTags) {
       return wordsList.length
     }
 
@@ -117,12 +122,12 @@ class SettingsScreen extends Component {
 
   confirmSettings = () => {
     const { setSettings, navigation, } = this.props
-    const { tagsForTask, isRandom, allTags, isAmountCorrect, } = this.state
+    const { tagsForTask, isRandom, useAllTags, isAmountCorrect, } = this.state
 
     if (isAmountCorrect && this.defineTotalAmountOfWords()) {
       setSettings({
         tagsForTask,
-        allTags,
+        useAllTags,
         random: isRandom,
         amountOfWords: this.newWordsAmount,
       })
@@ -133,7 +138,7 @@ class SettingsScreen extends Component {
 
   render() {
     const { tagsList, amountOfWords, } = this.props
-    const { allTags, isRandom, isAmountCorrect, } = this.state
+    const { useAllTags, isRandom, isAmountCorrect, } = this.state
 
     const totalAmountOfWords = this.defineTotalAmountOfWords()
 
@@ -151,11 +156,13 @@ class SettingsScreen extends Component {
             style={[
               styles.tagItem,
               styles.selectAllBtn,
-              allTags && styles.activeTag
+              useAllTags && styles.activeTag
             ]}
             onPress={this.handlerAllTaskButton}
           >
-            <Text style={[styles.textStyle, allTags && styles.allTagsActive]}>
+            <Text
+              style={[styles.textStyle, useAllTags && styles.allTagsActive]}
+            >
               All Tags
             </Text>
           </TouchableButton>

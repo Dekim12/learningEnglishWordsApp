@@ -1,13 +1,10 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
     paddingBottom: 90,
   },
   addTagBlock: {
-    width: screenSize.width,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',

@@ -72,7 +72,7 @@ class TagDetailsScreen extends Component {
     const { permissionVisible, permissionResolve, } = this.state
 
     return (
-      <View>
+      <View style={styles.wrapper}>
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentStyle}

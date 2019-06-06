@@ -1,17 +1,16 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   searchContainer: {
-    width: screenSize.width,
+    alignItems: 'stretch',
+    backgroundColor: 'gold',
   },
   inputStyle: {
-    width: screenSize.width,
+    flex: 1,
     backgroundColor: '#669999',
     color: '#00264d',
     paddingLeft: 15,
     paddingRight: 40,
-    alignSelf: 'center',
     fontSize: 24,
     fontFamily: 'OpenSans',
   },

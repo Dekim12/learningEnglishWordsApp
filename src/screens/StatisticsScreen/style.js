@@ -1,9 +1,8 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
+    flex: 1,
     paddingVertical: 15,
     paddingHorizontal: 15,
     alignItems: 'center',
@@ -27,10 +26,10 @@ const styles = StyleSheet.create({
     color: '#404040',
   },
   rate: {
+    width: 300,
     justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
-    width: screenSize.width - 30,
     height: 80,
     marginTop: 15,
     borderWidth: 4,

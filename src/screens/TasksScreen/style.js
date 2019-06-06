@@ -1,25 +1,29 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
+    flex: 1,
     paddingTop: 5,
     paddingBottom: 15,
     paddingHorizontal: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ffffff',
   },
   contentContainer: { alignItems: 'center', },
   btnBlock: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: screenSize.width - 26,
+    alignSelf: 'stretch',
     marginTop: 5,
     marginBottom: 10,
   },
+  taskBlock: {
+    maxWidth: 600,
+    marginBottom: 25,
+    alignItems: 'center',
+  },
   taskLabel: {
-    width: screenSize.width - 30,
-    height: 100,
+    minHeight: 100,
+    alignSelf: 'stretch',
     justifyContent: 'center',
     marginBottom: 20,
     paddingVertical: 15,
@@ -36,7 +40,6 @@ const styles = StyleSheet.create({
     fontFamily: 'FFF_Tusj',
     color: '#ffffff',
   },
-  taskBlock: { marginBottom: 25, },
 })
 
 export default styles

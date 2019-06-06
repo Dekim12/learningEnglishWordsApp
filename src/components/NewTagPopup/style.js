@@ -1,5 +1,4 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,16 +12,24 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupForm: {
-    width: screenSize.width - 40,
+    flexGrow: 1,
+    maxWidth: 380,
+    // alignSelf: 'stretch',
     alignItems: 'center',
     paddingVertical: 30,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     borderRadius: 7,
     borderWidth: 1,
     borderColor: '#808080',
     backgroundColor: '#ffffff',
   },
-  headline: { fontSize: 34, fontFamily: 'Norwester', color: '#FF8A00', },
+  headline: {
+    alignItems: 'stretch',
+    textAlign: 'center',
+    fontSize: 34,
+    fontFamily: 'Norwester',
+    color: '#FF8A00',
+  },
   createBtn: {
     paddingVertical: 7,
     paddingHorizontal: 20,
@@ -35,7 +42,8 @@ const styles = StyleSheet.create({
   },
   createBtnText: { color: 'white', fontSize: 30, fontFamily: 'FFF_Tusj', },
   inputStyle: {
-    width: screenSize.width - 90,
+    // width: screenSize.width - 90,
+    alignSelf: 'stretch',
     paddingHorizontal: 20,
     justifyContent: 'center',
     marginTop: 15,

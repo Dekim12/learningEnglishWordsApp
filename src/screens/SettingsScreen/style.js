@@ -1,9 +1,7 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
     paddingTop: 15,
     paddingHorizontal: 7,
     paddingBottom: 50,
@@ -37,10 +35,11 @@ const styles = StyleSheet.create({
   },
   textStyle: { fontFamily: 'OpenSans', color: '#808080', fontSize: 20, },
   tagsBlock: {
-    width: screenSize.width - 14,
+    alignSelf: 'stretch',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    marginVertical: 7,
     marginTop: 5,
   },
   selectAllBtn: { paddingHorizontal: 110, marginBottom: 35, },

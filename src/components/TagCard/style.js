@@ -1,9 +1,7 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1.5,

@@ -1,13 +1,11 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
   container: {
-    width: screenSize.width,
     paddingBottom: 90,
   },
   addWordBlock: {
-    width: screenSize.width,
+    alignSelf: 'stretch',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',

@@ -1,9 +1,8 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../utils'
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, },
   container: {
-    minHeight: screenSize.height - 90,
     paddingHorizontal: 15,
     paddingVertical: 15,
   },
@@ -16,10 +15,11 @@ const styles = StyleSheet.create({
     lineHeight: 48,
   },
   wordItem: {
-    width: screenSize.width - 40,
-    alignItems: 'center',
+    maxWidth: 500,
+    alignSelf: 'stretch',
     marginTop: 7,
     marginBottom: 10,
+    marginHorizontal: 10,
     paddingVertical: 5,
     paddingHorizontal: 15,
     borderTopLeftRadius: 35,
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans',
   },
   deleteBtn: {
+    alignSelf: 'center',
     paddingVertical: 4,
     paddingHorizontal: 25,
     borderRadius: 7,
