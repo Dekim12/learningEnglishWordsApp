@@ -1,5 +1,6 @@
 import React, { Component, } from 'react'
-import { ScrollView, Text, View, Image, ActivityIndicator, } from 'react-native'
+import { ScrollView, Text, View, ActivityIndicator, } from 'react-native'
+import FastImage from 'react-native-fast-image'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { getRandomColor, createLine, } from '../../utils'
@@ -80,9 +81,14 @@ class WordDescriptionScreen extends Component {
                 size='large'
               />
             )}
-            <Image
+            <FastImage
               style={styles.imageStyle}
-              source={{ uri: wordData.url, }}
+              source={{
+                uri: wordData.url,
+                headers: { Authorization: 'someAuthToken', },
+                priority: FastImage.priority.high,
+              }}
+              resizeMode={FastImage.resizeMode.cover}
               onLoad={this.handleLoad}
             />
           </View>
@@ -90,10 +96,9 @@ class WordDescriptionScreen extends Component {
             <Text style={styles.definition}>EXAMPLES</Text>
           )}
           {wordData.examples && this.renderExamples(wordData.examples)}
-          <Text
-            style={[styles.definition, styles.tagName]}
-          >
-            TAG NAME: <Text style={styles.tagText}>{`  ${wordData.tagName}  `}</Text>
+          <Text style={[styles.definition, styles.tagName]}>
+            TAG NAME:{' '}
+            <Text style={styles.tagText}>{`  ${wordData.tagName}  `}</Text>
           </Text>
           <View style={styles.controlPanel}>
             <TouchableButton style={styles.btn} onPress={this.handlePermission}>
