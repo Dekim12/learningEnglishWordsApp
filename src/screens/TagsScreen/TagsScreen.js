@@ -47,7 +47,7 @@ class TagsScreen extends Component {
           addNewTag={this.togglePopup}
         />
         <TouchableButton style={styles.createBtn} onPress={this.openPopup}>
-          <Icon name='plus' size={33} color='#ffffff' />
+          <Icon name='plus' size={33} />
         </TouchableButton>
         {isNewTag && (
           <NewTagPopup

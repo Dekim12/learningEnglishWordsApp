@@ -26,12 +26,12 @@ export const defineTabBarIcons = (navigation, { tintColor, }) => {
       name={iconName}
       size={25}
       color={tintColor}
-      style={[styles.icon, styleForTasks]}
+      style={[styles.tagStyle, styleForTasks]}
     />
   )
 }
 
 const styles = StyleSheet.create({
-  icon: { fontSize: 28, },
+  tagStyle: { fontSize: 28, },
   tasksTag: { paddingLeft: 7, },
 })

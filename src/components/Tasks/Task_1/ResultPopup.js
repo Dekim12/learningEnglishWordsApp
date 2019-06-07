@@ -1,7 +1,6 @@
 import React, { useCallback, } from 'react'
 import { View, StyleSheet, Text, } from 'react-native'
 import { TouchableButton, } from '../../index'
-import { screenSize, } from '../../../utils'
 
 const ResultPopup = ({ result, goToTasks, }) => {
   const rightAnswers = result.reduce((sum, elem) => {
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   popupBlock: {
-    width: screenSize.width - 40,
+    width: 380,
     alignItems: 'center',
     paddingTop: 25,
     paddingBottom: 30,

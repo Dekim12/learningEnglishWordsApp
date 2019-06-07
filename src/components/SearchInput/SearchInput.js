@@ -66,7 +66,7 @@ class SearchInput extends Component {
         />
         {!!queryString && (
           <TouchableButton style={styles.closeBtn} onPress={this.clearInput}>
-            <Icon name='times' size={40} color='#ADB5BD' />
+            <Icon name='times' color='#ADB5BD' />
           </TouchableButton>
         )}
       </View>

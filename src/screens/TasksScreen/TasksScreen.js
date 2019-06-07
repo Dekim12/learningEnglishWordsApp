@@ -59,12 +59,7 @@ class TasksScreen extends Component {
       >
         <View style={styles.btnBlock}>
           <TouchableButton onPress={this.toStatistic}>
-            <Icon
-              name='award'
-              size={40}
-              color='#ffaa00'
-              style={styles.iconStyle}
-            />
+            <Icon name='award' color='#ffaa00' style={styles.iconStyle} />
           </TouchableButton>
           <TouchableButton onPress={this.toSettings}>
             <Icon name='cogs' size={37} color='#606060' />

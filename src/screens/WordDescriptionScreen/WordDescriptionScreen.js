@@ -100,10 +100,10 @@ class WordDescriptionScreen extends Component {
           </Text>
           <View style={styles.controlPanel}>
             <TouchableButton style={styles.btn} onPress={this.handlePermission}>
-              <Icon name='trash-alt' size={26} color='white' />
+              <Icon name='trash-alt' size={26} />
             </TouchableButton>
             <TouchableButton style={styles.btn} onPress={this.toEditWordScreen}>
-              <Icon name='highlighter' size={26} color='white' />
+              <Icon name='highlighter' size={26} />
             </TouchableButton>
           </View>
         </ScrollView>

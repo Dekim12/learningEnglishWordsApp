@@ -1,31 +1,54 @@
-import React from 'react'
+import React, { Component, } from 'react'
 import { View, StyleSheet, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { screenSize, } from '../../../utils'
 
-const ProgressBar = ({ answersResults, countWords, }) => {
-  const partWidth = screenSize.width / countWords
+class ProgressBar extends Component {
+  constructor(props) {
+    super(props)
+    const { countWords, } = this.props
 
-  const generateProgressParts = partsList => partsList.map(isCorrect => (
-    <View
-      style={[
-        { width: partWidth, },
-        isCorrect ? styles.rightPartStyle : styles.wrongPartStyle
-      ]}
-      key={uuidv4()}
-    />
-  ))
+    this.state = { partWidth: screenSize.width / countWords, }
+  }
 
-  return (
-    <View style={styles.progressBarStyle}>
-      {generateProgressParts(answersResults)}
-    </View>
-  )
+  generateProgressParts = (partsList) => {
+    const { partWidth, } = this.state
+
+    return partsList.map(isCorrect => (
+      <View
+        style={[
+          { width: partWidth, },
+          isCorrect ? styles.rightPartStyle : styles.wrongPartStyle
+        ]}
+        key={uuidv4()}
+      />
+    ))
+  }
+
+  handleLayout = (event) => {
+    const { countWords, } = this.props
+    const { partWidth, } = this.state
+
+    const currentWidth = event.nativeEvent.layout.width / countWords
+
+    if (partWidth !== currentWidth) {
+      this.setState({ partWidth: currentWidth, })
+    }
+  }
+
+  render() {
+    const { answersResults, } = this.props
+
+    return (
+      <View style={styles.progressBarStyle} onLayout={this.handleLayout}>
+        {this.generateProgressParts(answersResults)}
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   progressBarStyle: {
-    width: screenSize.width,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginVertical: 10,

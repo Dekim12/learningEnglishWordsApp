@@ -1,19 +1,17 @@
 import { StyleSheet, } from 'react-native'
-import { screenSize, } from '../../../utils'
 
 const styles = StyleSheet.create({
+  rootBlock: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    left: 0,
-    right: 0,
-    height: screenSize.height - 97,
-    alignItems: 'center',
+    alignSelf: 'stretch',
+    alignItems: 'stretch',
     justifyContent: 'space-between',
     paddingBottom: 10,
-    paddingHorizontal: 5,
-    backgroundColor: '#ffffff',
   },
-  taskCondition: { alignItems: 'center', },
+  taskCondition: { alignItems: 'center', paddingHorizontal: 10, },
   wordStyle: {
     textAlign: 'center',
     fontSize: 48,
@@ -31,19 +29,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   answerBtn: {
-    width: screenSize.width - 25,
     height: 70,
     justifyContent: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     paddingVertical: 3,
     marginBottom: 8,
+    marginHorizontal: 10,
     borderRadius: 10,
     borderWidth: 2,
     borderColor: '#cc6600',
     backgroundColor: '#C8C8C8',
   },
   answerText: {
-    width: screenSize.width - 45,
     textAlign: 'center',
     lineHeight: 22,
     fontSize: 19,

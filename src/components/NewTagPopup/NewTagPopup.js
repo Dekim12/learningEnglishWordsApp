@@ -59,7 +59,7 @@ class NewTagPopup extends React.Component {
             <Text style={styles.createBtnText}>CREATE TAG</Text>
           </TouchableButton>
           <TouchableButton style={styles.closeBtn} onPress={closePopup}>
-            <Icon name='times' size={40} color='#C8C8C8' />
+            <Icon name='times' color='#C8C8C8' />
           </TouchableButton>
         </View>
       </KeyboardAvoidingView>

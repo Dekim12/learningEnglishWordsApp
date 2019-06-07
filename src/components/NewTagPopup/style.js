@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupForm: {
-    flexGrow: 1,
-    maxWidth: 380,
-    // alignSelf: 'stretch',
+    minWidth: 380,
     alignItems: 'center',
     paddingVertical: 30,
     paddingHorizontal: 20,
@@ -24,7 +22,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   headline: {
-    alignItems: 'stretch',
     textAlign: 'center',
     fontSize: 34,
     fontFamily: 'Norwester',
@@ -42,7 +39,6 @@ const styles = StyleSheet.create({
   },
   createBtnText: { color: 'white', fontSize: 30, fontFamily: 'FFF_Tusj', },
   inputStyle: {
-    // width: screenSize.width - 90,
     alignSelf: 'stretch',
     paddingHorizontal: 20,
     justifyContent: 'center',

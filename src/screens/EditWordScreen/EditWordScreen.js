@@ -156,7 +156,7 @@ class EditWordScreen extends Component {
               onSubmit={this.addWordOrExample}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
-              <Icon name='plus-circle' size={33} color='white' />
+              <Icon name='plus-circle' size={33} />
             </TouchableButton>
           </View>
           <Text style={styles.definition}>NEW IMAGE:</Text>
@@ -169,7 +169,7 @@ class EditWordScreen extends Component {
               onSubmit={this.addTagOrUrl}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
-              <Icon name='plus-circle' size={35} color='white' />
+              <Icon name='plus-circle' size={35} />
             </TouchableButton>
           </View>
           <Text style={styles.definition}>EXAMPLES:</Text>
@@ -185,7 +185,7 @@ class EditWordScreen extends Component {
               onSubmit={this.addWordOrExample}
             />
             <TouchableButton style={styles.inputBtn} onPress={this.setSubmit}>
-              <Icon name='plus-circle' size={35} color='white' />
+              <Icon name='plus-circle' size={35} />
             </TouchableButton>
           </View>
           <Text style={styles.definition}>TAGS:</Text>

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
   },
-  contentContainer: { alignItems: 'center', },
+  contentContainer: { flexGrow: 1, },
 })
 
 export default styles

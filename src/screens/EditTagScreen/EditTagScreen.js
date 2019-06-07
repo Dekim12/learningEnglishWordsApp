@@ -123,7 +123,7 @@ class EditTagScreen extends Component {
               style={styles.inputBtn}
               onPress={this.handleSubmit}
             >
-              <Icon name='plus-circle' size={35} color='white' />
+              <Icon name='plus-circle' size={35} />
             </TouchableButton>
           </View>
           {isTagExist && (

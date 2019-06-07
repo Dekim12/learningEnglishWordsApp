@@ -22,7 +22,7 @@ const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
         {name}
       </Text>
       <TouchableButton onPress={editTag} style={styles.editBtn}>
-        <Icon name='pen-square' size={40} color='#2d862d' />
+        <Icon name='pen-square' color='#2d862d' />
       </TouchableButton>
     </TouchableButton>
   )
