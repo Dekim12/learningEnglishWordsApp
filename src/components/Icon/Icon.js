@@ -1,8 +1,8 @@
 import React from 'react'
-import Ionicons from 'react-native-vector-icons/FontAwesome5'
+import Icons from 'react-native-vector-icons/FontAwesome5'
 
 const Icon = ({ name, size = 40, color = '#ffffff', style, }) => {
-  const IconComponent = Ionicons
+  const IconComponent = Icons
 
   return <IconComponent name={name} size={size} color={color} style={style} />
 }
