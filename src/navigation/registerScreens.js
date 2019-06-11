@@ -7,6 +7,8 @@ import {
   NewWordScreen,
   WordDescriptionContainer,
   EditWordContainer,
+  TagDetailsContainer,
+  EditTagContainer,
 } from '../screens'
 
 import {
@@ -16,6 +18,8 @@ import {
   NEW_WORD_SCREEN,
   WORDS_DETAILS_SCREEN,
   EDIT_WORD_SCREEN,
+  TAG_DETAILS_SCREEN,
+  EDIT_TAG_SCREEN,
 } from '../constants'
 
 const registerScreens = () => {
@@ -25,6 +29,8 @@ const registerScreens = () => {
   Navigation.registerComponent(NEW_WORD_SCREEN, () => NewWordScreen)
   Navigation.registerComponent(WORDS_DETAILS_SCREEN, () => WrappedComponent(WordDescriptionContainer))
   Navigation.registerComponent(EDIT_WORD_SCREEN, () => WrappedComponent(EditWordContainer))
+  Navigation.registerComponent(TAG_DETAILS_SCREEN, () => WrappedComponent(TagDetailsContainer))
+  Navigation.registerComponent(EDIT_TAG_SCREEN, () => WrappedComponent(EditTagContainer))
 }
 
 export default registerScreens

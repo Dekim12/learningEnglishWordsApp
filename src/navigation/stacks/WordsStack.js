@@ -78,7 +78,7 @@ export const WordsStack = {
     options: {
       bottomTab: {
         text: 'Words',
-        icon: require('../../assets/icon/words.png'),
+        icon: require('../../../assets/icons/words.png'),
       },
     },
   },

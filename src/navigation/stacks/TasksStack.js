@@ -12,7 +12,7 @@ export const TasksStack = {
     options: {
       bottomTab: {
         text: 'Tasks',
-        icon: require('../../assets/icon/tasks.png'),
+        icon: require('../../../assets/icons/tasks.png'),
       },
     },
   },
