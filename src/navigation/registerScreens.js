@@ -9,6 +9,9 @@ import {
   EditWordContainer,
   TagDetailsContainer,
   EditTagContainer,
+  SettingsContainer,
+  StatisticsContainer,
+  CurrentTaskContainer,
 } from '../screens'
 
 import {
@@ -20,6 +23,9 @@ import {
   EDIT_WORD_SCREEN,
   TAG_DETAILS_SCREEN,
   EDIT_TAG_SCREEN,
+  SETTINGS_SCREEN,
+  STATISTIC_SCREEN,
+  CURRENT_TASK_SCREEN,
 } from '../constants'
 
 const registerScreens = () => {
@@ -31,6 +37,9 @@ const registerScreens = () => {
   Navigation.registerComponent(EDIT_WORD_SCREEN, () => WrappedComponent(EditWordContainer))
   Navigation.registerComponent(TAG_DETAILS_SCREEN, () => WrappedComponent(TagDetailsContainer))
   Navigation.registerComponent(EDIT_TAG_SCREEN, () => WrappedComponent(EditTagContainer))
+  Navigation.registerComponent(SETTINGS_SCREEN, () => WrappedComponent(SettingsContainer))
+  Navigation.registerComponent(STATISTIC_SCREEN, () => WrappedComponent(StatisticsContainer))
+  Navigation.registerComponent(CURRENT_TASK_SCREEN, () => WrappedComponent(CurrentTaskContainer))
 }
 
 export default registerScreens
