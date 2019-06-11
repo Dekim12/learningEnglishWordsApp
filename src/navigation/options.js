@@ -2,12 +2,11 @@ export const defaultOptions = {
   topBar: {
     height: 50,
     visible: true,
-    hideOnScroll: true,
     drawBehind: false,
     testID: 'topBar',
     subtitle: {
-      text: 'Subtitle',
-      fontSize: 27,
+      fontSize: 30,
+      fontFamily: 'FFF_Tusj',
       color: '#ffffff',
       alignment: 'center',
     },
@@ -18,10 +17,6 @@ export const defaultOptions = {
     background: {
       color: '#100E17',
     },
-  },
-  statusBar: {
-    visible: true,
-    style: 'light',
   },
   layout: {
     direction: 'ltr',

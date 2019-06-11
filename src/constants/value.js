@@ -5,21 +5,6 @@ export const EDIT_TYPES = {
   tag: 'tagString',
 }
 
-export const COMMON_STACK_NAVIGATOR_OPTIONS = {
-  headerStyle: {
-    backgroundColor: '#100E17',
-    height: 42,
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    flex: 1,
-    textAlign: 'center',
-    fontWeight: '300',
-    fontSize: 30,
-    fontFamily: 'FFF_Tusj',
-  },
-}
-
 export const PERMISSION_QUESTIONS = {
   word: 'Are you sure you want to remove this word?',
   tag: 'Are you sure you want to remove this tag with all its words?',

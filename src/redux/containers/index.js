@@ -1,1 +1,1 @@
-export { default as TagsScreenContainer, } from './TagsScreenContainer'
+export * from './WordListContainer'

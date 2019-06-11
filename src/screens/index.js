@@ -1,3 +1,6 @@
-export * from './TagsScreen/TagsScreen'
+export * from './TagsScreen'
 export * from './WordsScreen/WordsScreen'
 export * from './TasksScreen/TasksScreen'
+export * from './NewWordScreen/NewWordScreen'
+export * from './WordDescriptionScreen'
+export * from './EditWordScreen'
