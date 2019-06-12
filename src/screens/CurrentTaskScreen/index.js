@@ -30,6 +30,8 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     allTags,
   } = stateProps
 
+  const { goBack, componentId, } = ownProps
+
   const necessaryTags = allTags ? tagsList : tagsForTask
   const wordsForLearning = wordsList.filter(
     word => necessaryTags.indexOf(word.tagName) >= 0
@@ -37,7 +39,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const goToTasks = (allAnswers, rightAnswers) => {
     dispatchProps.setAnswers(allAnswers, rightAnswers)
-    // navigation.navigate(ROOT_TASKS_SCREEN)
+    goBack(componentId)
   }
 
   return {

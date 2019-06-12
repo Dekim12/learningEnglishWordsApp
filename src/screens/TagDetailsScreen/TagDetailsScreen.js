@@ -12,16 +12,11 @@ class TagDetailsScreen extends Component {
   }
 
   renderWords = ({ item, }) => {
-    const { deleteWord, } = this.props
+    const { deleteWord, toWordDescription, componentId, } = this.props
 
     const deleteCurrentWord = () => this.setPermissionFunctions(() => deleteWord(item.id))
 
-    // const toWordScreen = () => navigation.navigate(WORDS_DETAILS_SCREEN, {
-    //   id: item.id,
-    //   word: item.word,
-    // })
-
-    const toWordScreen = () => {}
+    const toWordScreen = () => toWordDescription(componentId, item.id, item.word)
 
     return (
       <TouchableButton style={styles.wordItem} onPress={toWordScreen}>

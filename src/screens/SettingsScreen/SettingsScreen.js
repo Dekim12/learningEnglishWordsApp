@@ -119,7 +119,7 @@ class SettingsScreen extends Component {
     if (isAmountCorrect && this.defineTotalAmountOfWords()) {
       setSettings({
         tagsForTask,
-        useAllTags,
+        allTags: useAllTags,
         random: isRandom,
         amountOfWords: this.newWordsAmount,
       })
