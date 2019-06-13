@@ -10,6 +10,7 @@ import FastImage from 'react-native-fast-image'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { getRandomColor, createLine, } from '../../utils'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class WordDescriptionScreen extends Component {
@@ -29,15 +30,16 @@ class WordDescriptionScreen extends Component {
   }
 
   deleteCurrentWord = () => {
-    const { deleteWord, wordData, goBack, componentId, } = this.props
+    const { deleteWord, wordData, changeScreen, componentId, } = this.props
 
     deleteWord(wordData.id)
-    goBack(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
   toEditWordScreen = () => {
-    const { wordData, toEditWord, componentId, } = this.props
-    toEditWord(componentId, wordData.id)
+    const { wordData, componentId, changeScreen, } = this.props
+
+    changeScreen(MOVEMENT_FUNC_NAMES.editWord, componentId, wordData.id)
   }
 
   handlePermission = () => this.setState({

@@ -9,6 +9,7 @@ import {
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class SettingsScreen extends Component {
@@ -113,7 +114,7 @@ class SettingsScreen extends Component {
   handleRandom = () => this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
 
   confirmSettings = () => {
-    const { setSettings, goBack, componentId, } = this.props
+    const { setSettings, changeScreen, componentId, } = this.props
     const { tagsForTask, isRandom, useAllTags, isAmountCorrect, } = this.state
 
     if (isAmountCorrect && this.defineTotalAmountOfWords()) {
@@ -124,7 +125,7 @@ class SettingsScreen extends Component {
         amountOfWords: this.newWordsAmount,
       })
 
-      goBack(componentId)
+      changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
     }
   }
 

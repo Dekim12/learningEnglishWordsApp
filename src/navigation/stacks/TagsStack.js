@@ -1,5 +1,4 @@
 import { ROOT_TAGS_SCREEN, } from '../../constants'
-import { toTagDetails, toEditTag, } from './movementFunctions'
 
 export const TagsStack = {
   stack: {
@@ -7,10 +6,6 @@ export const TagsStack = {
       {
         component: {
           name: ROOT_TAGS_SCREEN,
-          passProps: {
-            toTagDetails,
-            toEditTag,
-          },
           options: {
             topBar: {
               subtitle: {

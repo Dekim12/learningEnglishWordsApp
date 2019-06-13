@@ -9,6 +9,7 @@ export const defaultOptions = {
       fontFamily: 'FFF_Tusj',
       color: '#ffffff',
       alignment: 'center',
+      largeTitle: true,
     },
     backButton: {
       color: '#ffffff',

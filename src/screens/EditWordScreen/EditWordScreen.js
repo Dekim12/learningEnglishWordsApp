@@ -2,7 +2,8 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
-import { EDIT_TYPES, } from '../../constants'
+import { EDIT_TYPES, MOVEMENT_FUNC_NAMES, } from '../../constants'
+
 import styles from './style'
 
 class EditWordScreen extends Component {
@@ -109,11 +110,11 @@ class EditWordScreen extends Component {
   setSubmit = () => this.setState({ submit: true, })
 
   edit = () => {
-    const { editWord, goBack, componentId, } = this.props
+    const { editWord, changeScreen, componentId, } = this.props
     const newWord = { ...this.state, }
     delete newWord.submit
     editWord(newWord)
-    goBack(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
   render() {

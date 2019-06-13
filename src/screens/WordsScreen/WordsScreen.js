@@ -2,22 +2,24 @@ import React, { Component, } from 'react'
 import { View, StatusBar, } from 'react-native'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class WordsScreen extends Component {
-  state = {
-    permissionVisible: false,
-    permissionResolve: null,
+  constructor(props) {
+    super(props)
+
+    this.state = { permissionVisible: false, permissionResolve: null, }
   }
 
   toDescription = (id, word) => {
-    const { componentId, toWordDescription, } = this.props
-    toWordDescription(componentId, id, word)
+    const { componentId, changeScreen, } = this.props
+    changeScreen(MOVEMENT_FUNC_NAMES.wordDescription, componentId, id, word)
   }
 
   toNewWord = (word) => {
-    const { componentId, createNewWord, } = this.props
-    createNewWord(componentId, word)
+    const { componentId, changeScreen, } = this.props
+    changeScreen(MOVEMENT_FUNC_NAMES.newWord, componentId, word)
   }
 
   setPermissionFunctions = (resolve) => {

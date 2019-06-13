@@ -2,19 +2,20 @@ import React, { Component, } from 'react'
 import { View, } from 'react-native'
 import { TouchableButton, Icon, NewTagPopup, } from '../../components'
 import { TagsListContainer, } from '../../redux/containers'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class TagsScreen extends Component {
   state = { isNewTag: false, newTagName: '', }
 
   toDetails = (tagName) => {
-    const { toTagDetails, componentId, } = this.props
-    toTagDetails(componentId, tagName)
+    const { changeScreen, componentId, } = this.props
+    changeScreen(MOVEMENT_FUNC_NAMES.tagDetails, componentId, tagName)
   }
 
   toEdit = (tagName) => {
-    const { toEditTag, componentId, } = this.props
-    toEditTag(componentId, tagName)
+    const { changeScreen, componentId, } = this.props
+    changeScreen(MOVEMENT_FUNC_NAMES.editTag, componentId, tagName)
   }
 
   togglePopup = newTagName => this.setState(prevState => ({ isNewTag: !prevState.isNewTag, newTagName, }))

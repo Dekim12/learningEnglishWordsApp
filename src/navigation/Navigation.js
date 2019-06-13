@@ -5,7 +5,7 @@ import { WordsStack, TagsStack, TasksStack, } from './stacks'
 
 registerScreens()
 
-export const pushTabsScreen = async () => {
+export const pushTabsScreen = () => {
   Navigation.setDefaultOptions(defaultOptions)
 
   Navigation.setRoot({

@@ -2,21 +2,21 @@ import React, { useCallback, } from 'react'
 import { Text, View, ScrollView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, } from '../../components'
-import { TASK_NAMES_LIST, } from '../../constants'
+import { TASK_NAMES_LIST, MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
-const TasksScreen = ({ componentId, toSettings, toStatistic, openTask, }) => {
+const TasksScreen = ({ componentId, changeScreen, }) => {
   const openSettings = useCallback(() => {
-    toSettings(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.settings, componentId)
   }, [componentId])
 
   const openStatistic = useCallback(() => {
-    toStatistic(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.statistic, componentId)
   }, [componentId])
 
   const generateTasks = taskList => taskList.map((task) => {
     const toCurrentTask = useCallback(() => {
-      openTask(componentId, task)
+      changeScreen(MOVEMENT_FUNC_NAMES.task, componentId, task)
     }, [componentId, task])
 
     return (

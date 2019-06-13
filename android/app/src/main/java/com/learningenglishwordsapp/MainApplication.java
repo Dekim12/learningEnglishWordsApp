@@ -19,39 +19,31 @@ import com.reactnativenavigation.react.ReactGateway;
 import java.util.Arrays;
 import java.util.List;
 
-
 public class MainApplication extends NavigationApplication {
 
-    @Override
-    protected ReactGateway createReactGateway() {
-        ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
-            @Override
-            protected String getJSMainModuleName() {
-                return "index";
-            }
-        };
-        return new ReactGateway(this, isDebug(), host);
-    }
+  @Override
+  protected ReactGateway createReactGateway() {
+    ReactNativeHost host = new NavigationReactNativeHost(this, isDebug(), createAdditionalReactPackages()) {
+      @Override
+      protected String getJSMainModuleName() {
+        return "index";
+      }
+    };
+    return new ReactGateway(this, isDebug(), host);
+  }
 
-    @Override
-    public boolean isDebug() {
-        return BuildConfig.DEBUG;
-    }
+  @Override
+  public boolean isDebug() {
+    return BuildConfig.DEBUG;
+  }
 
-    protected List<ReactPackage> getPackages() {
-        // Add additional packages you require here
-        // No need to add RnnPackage and MainReactPackage
-        return Arrays.<ReactPackage>asList(
-            new MainReactPackage(),
-            new FastImageViewPackage(),
-            new SvgPackage(),
-            new VectorIconsPackage(),
-            new RNGestureHandlerPackage()
-        );
-    }
+  protected List<ReactPackage> getPackages() {
+    return Arrays.<ReactPackage>asList(new MainReactPackage(), new FastImageViewPackage(), new SvgPackage(),
+        new VectorIconsPackage(), new RNGestureHandlerPackage());
+  }
 
-    @Override
-    public List<ReactPackage> createAdditionalReactPackages() {
-        return getPackages();
-    }
+  @Override
+  public List<ReactPackage> createAdditionalReactPackages() {
+    return getPackages();
+  }
 }

@@ -1,5 +1,4 @@
 import { ROOT_WORDS_SCREEN, } from '../../constants'
-import { createNewWord, toWordDescription, } from './movementFunctions'
 
 export const WordsStack = {
   stack: {
@@ -7,10 +6,7 @@ export const WordsStack = {
       {
         component: {
           name: ROOT_WORDS_SCREEN,
-          passProps: {
-            createNewWord,
-            toWordDescription,
-          },
+          id: 'wordStack',
           options: {
             topBar: {
               subtitle: {

@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { ScrollView, Text, View, TextInput, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class EditTagScreen extends Component {
@@ -63,14 +64,14 @@ class EditTagScreen extends Component {
   })
 
   edit = () => {
-    const { editCurrentTag, tagName, goBack, componentId, } = this.props
+    const { editCurrentTag, tagName, changeScreen, componentId, } = this.props
     const { currentName, deletedWordsList, } = this.state
 
     if (currentName || deletedWordsList.length) {
       editCurrentTag(tagName, currentName, deletedWordsList)
     }
 
-    goBack(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
   refreshPermission = () => this.setState({
@@ -82,10 +83,10 @@ class EditTagScreen extends Component {
   })
 
   deleteTag = () => {
-    const { deleteCurrentTag, goBack, componentId, } = this.props
+    const { deleteCurrentTag, changeScreen, componentId, } = this.props
 
     deleteCurrentTag()
-    goBack(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
   render() {

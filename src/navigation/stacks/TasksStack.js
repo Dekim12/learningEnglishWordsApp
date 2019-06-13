@@ -1,5 +1,4 @@
 import { ROOT_TASKS_SCREEN, } from '../../constants'
-import { toSettings, toStatistic, openTask, } from './movementFunctions'
 
 export const TasksStack = {
   stack: {
@@ -7,7 +6,6 @@ export const TasksStack = {
       {
         component: {
           name: ROOT_TASKS_SCREEN,
-          passProps: { toSettings, toStatistic, openTask, },
           options: {
             topBar: {
               subtitle: {

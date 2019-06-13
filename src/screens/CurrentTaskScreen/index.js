@@ -2,6 +2,7 @@ import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
 import { CurrentTaskScreen, } from './CurrentTaskScreen'
 import { setAnswers, } from '../../redux/actions'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { getNecessaryWords, } from '../../utils'
 
 const mapStateToProps = state => ({
@@ -30,7 +31,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     allTags,
   } = stateProps
 
-  const { goBack, componentId, } = ownProps
+  const { changeScreen, componentId, } = ownProps
 
   const necessaryTags = allTags ? tagsList : tagsForTask
   const wordsForLearning = wordsList.filter(
@@ -39,7 +40,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const goToTasks = (allAnswers, rightAnswers) => {
     dispatchProps.setAnswers(allAnswers, rightAnswers)
-    goBack(componentId)
+    changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
   return {

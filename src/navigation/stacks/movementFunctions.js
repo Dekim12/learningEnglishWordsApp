@@ -31,10 +31,7 @@ export const createNewWord = (componentId, word) => Navigation.push(componentId,
 export const toEditWord = (componentId, id) => Navigation.push(componentId, {
   component: {
     name: EDIT_WORD_SCREEN,
-    passProps: {
-      id,
-      goBack,
-    },
+    passProps: { id, },
     options: {
       topBar: {
         subtitle: {
@@ -50,8 +47,6 @@ export const toWordDescription = (componentId, id, word) => Navigation.push(comp
     name: WORDS_DETAILS_SCREEN,
     passProps: {
       id,
-      goBack,
-      toEditWord,
     },
     options: {
       topBar: {
@@ -66,9 +61,6 @@ export const toWordDescription = (componentId, id, word) => Navigation.push(comp
 export const toStatistic = componentId => Navigation.push(componentId, {
   component: {
     name: STATISTIC_SCREEN,
-    passProps: {
-      goBack,
-    },
     options: {
       topBar: {
         subtitle: {
@@ -82,9 +74,6 @@ export const toStatistic = componentId => Navigation.push(componentId, {
 export const toSettings = componentId => Navigation.push(componentId, {
   component: {
     name: SETTINGS_SCREEN,
-    passProps: {
-      goBack,
-    },
     options: {
       topBar: {
         subtitle: {
@@ -100,7 +89,6 @@ export const openTask = (componentId, taskName) => Navigation.push(componentId, 
     name: CURRENT_TASK_SCREEN,
     passProps: {
       taskName,
-      goBack,
     },
     options: {
       topBar: {
@@ -117,7 +105,6 @@ export const toEditTag = (componentId, tagName) => Navigation.push(componentId, 
     name: EDIT_TAG_SCREEN,
     passProps: {
       tagName,
-      goBack,
     },
     options: {
       topBar: {
@@ -129,19 +116,11 @@ export const toEditTag = (componentId, tagName) => Navigation.push(componentId, 
   },
 })
 
-// export const toCurrentWord = componentId => Navigation.mergeOptions(componentId, {
-//   bottomTabs: {
-//     currentTabIndex: 1,
-//   },
-// })
-
 export const toTagDetails = (componentId, tagName) => Navigation.push(componentId, {
   component: {
     name: TAG_DETAILS_SCREEN,
     passProps: {
       tagName,
-      createNewWord,
-      toWordDescription,
     },
     options: {
       topBar: {

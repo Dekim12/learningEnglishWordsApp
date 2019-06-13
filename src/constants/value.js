@@ -11,7 +11,7 @@ export const PERMISSION_QUESTIONS = {
 }
 
 export const MAX_COEFFICIENT = 100
-export const SMALL_COEFFICIENT = 30
+export const SMALL_COEFFICIENT = 35
 export const MAX_RATE_WIDTH = 292
 export const ANSWER_DELAY = 500
 export const COLOR_VALUES = { min: 50, max: 250, }
@@ -20,3 +20,15 @@ export const COUNT_WRONG_RANDOM_ANSWERS = {
   necessary: 3,
 }
 export const ROUNDING_DEGREE = 10
+
+export const MOVEMENT_FUNC_NAMES = {
+  back: 'goBack',
+  newWord: 'createNewWord',
+  editWord: 'toEditWord',
+  wordDescription: 'toWordDescription',
+  statistic: 'toStatistic',
+  settings: 'toSettings',
+  task: 'openTask',
+  editTag: 'toEditTag',
+  tagDetails: 'toTagDetails',
+}

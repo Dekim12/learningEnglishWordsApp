@@ -2,6 +2,7 @@ import React, { Component, } from 'react'
 import { Text, FlatList, ScrollView, View, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, PermissionPopup, } from '../../components'
+import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { createLine, } from '../../utils'
 import styles from './style'
 
@@ -12,11 +13,16 @@ class TagDetailsScreen extends Component {
   }
 
   renderWords = ({ item, }) => {
-    const { deleteWord, toWordDescription, componentId, } = this.props
+    const { deleteWord, changeScreen, componentId, } = this.props
 
     const deleteCurrentWord = () => this.setPermissionFunctions(() => deleteWord(item.id))
 
-    const toWordScreen = () => toWordDescription(componentId, item.id, item.word)
+    const toWordScreen = () => changeScreen(
+      MOVEMENT_FUNC_NAMES.wordDescription,
+      componentId,
+      item.id,
+      item.word
+    )
 
     return (
       <TouchableButton style={styles.wordItem} onPress={toWordScreen}>
@@ -33,8 +39,8 @@ class TagDetailsScreen extends Component {
   }
 
   toCreateWordScreen = () => {
-    const { createNewWord, componentId, } = this.props
-    createNewWord(componentId)
+    const { changeScreen, componentId, } = this.props
+    changeScreen(MOVEMENT_FUNC_NAMES.newWord, componentId)
   }
 
   keyExtractor = () => uuidv4()
