@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupForm: {
-    minWidth: 380,
+    width: '95%',
+    maxWidth: 430,
     alignItems: 'center',
     paddingVertical: 30,
     paddingHorizontal: 20,

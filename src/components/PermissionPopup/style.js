@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
   },
   popupBlock: {
-    maxWidth: 380,
+    width: '95%',
+    maxWidth: 430,
     alignItems: 'center',
     paddingVertical: 20,
     paddingHorizontal: 10,

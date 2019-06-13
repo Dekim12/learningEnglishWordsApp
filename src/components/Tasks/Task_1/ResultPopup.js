@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   popupBlock: {
-    width: 380,
+    width: '95%',
+    maxWidth: 430,
     alignItems: 'center',
     paddingTop: 25,
     paddingBottom: 30,
