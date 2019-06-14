@@ -1,7 +1,7 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
-  "plugins": ["react", "react-native", "jsx-a11y", "import"],
+  "extends": ["airbnb"],
+  "plugins": ["react", "react-native", "jsx-a11y", "import", "jest"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -64,5 +64,8 @@
     "expect": "off",
     "describe": "off",
     "navigator": "off"
+  },
+  "env": {
+    "jest/globals": true
   }
 }

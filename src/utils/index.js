@@ -22,7 +22,7 @@ export const getRandomColor = () => `rgb(${getRandomNumber(
 )})`
 
 export const createLine = (arr) => {
-  if (!arr.length) {
+  if (!Array.isArray(arr) || !arr.length) {
     return ''
   }
 
@@ -31,7 +31,7 @@ export const createLine = (arr) => {
 
 export const isNumber = n => !isNaN(parseFloat(n)) && isFinite(n)
 
-export const takeRandomWords = (list, wordsCount) => {
+export const takeRandomWords = (list = [], wordsCount = 0) => {
   const newWordList = []
   const maxIndex = list.length > wordsCount ? wordsCount : list.length
 
@@ -46,7 +46,7 @@ export const takeRandomWords = (list, wordsCount) => {
   return newWordList
 }
 
-export const getNecessaryWords = (amount, wordsList, random) => {
+export const getNecessaryWords = (amount = 0, wordsList = [], random) => {
   if (random) {
     return takeRandomWords(wordsList, amount)
   }
@@ -54,7 +54,7 @@ export const getNecessaryWords = (amount, wordsList, random) => {
   return wordsList.slice(0, amount)
 }
 
-export const shuffle = (arr) => {
+export const shuffle = (arr = []) => {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     const temp = arr[j]
@@ -83,5 +83,5 @@ export const getRandomAnswers = (valueArr, answersArr) => {
   )
 }
 
-export const definePerformanceCoefficient = (max, current) => Math.round(((current * MAX_COEFFICIENT) / max) * ROUNDING_DEGREE) /
+export const definePerformanceCoefficient = (max = 100, current = 0) => Math.round(((current * MAX_COEFFICIENT) / max) * ROUNDING_DEGREE) /
   ROUNDING_DEGREE
