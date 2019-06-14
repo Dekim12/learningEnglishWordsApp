@@ -8,7 +8,7 @@ const store = mockStore()
 describe('tasksActions', () => {
   const settings = {
     random: false,
-    allTags: ['tag1', 'tag2', 'tag3'],
+    allTags: false,
     tagsForTask: ['tag1'],
     amountOfWords: 3,
   }

@@ -9,7 +9,7 @@ describe('wordsActions', () => {
   const wordData = {
     id: 12,
     word: 'hello',
-    transcription: ['привет'],
+    translate: ['привет'],
   }
   const prevName = 'hello'
   const newName = 'hi'
