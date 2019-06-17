@@ -1,14 +1,11 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb"],
+  "extends": ["airbnb", "plugin:jest/recommended"],
   "plugins": ["react", "react-native", "jsx-a11y", "import", "jest"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     }
-  },
-  "env": {
-    "react-native/react-native": true
   },
   "rules": {
     "react-native/no-unused-styles": 0,
@@ -66,6 +63,7 @@
     "navigator": "off"
   },
   "env": {
+    "react-native/react-native": true,
     "jest/globals": true
   }
 }

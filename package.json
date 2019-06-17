@@ -42,6 +42,8 @@
     "babel-preset-airbnb": "^3.2.1",
     "babel-preset-react-native": "^4.0.1",
     "babel-root-slash-import": "^1.1.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.2.0",
@@ -58,6 +60,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^1.17.1",
     "prettier-eslint": "^8.8.2",
+    "react-dom": "^16.8.6",
     "react-test-renderer": "16.8.3",
     "redux-mock-store": "^1.5.3"
   },

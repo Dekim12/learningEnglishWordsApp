@@ -16,12 +16,12 @@ describe('utils functions', () => {
   const expectedString = 'my, name, is, Nick'
   const rightAnswer = ['c']
 
-  test('getRandomColor functions', () => {
+  test('getRandomColor function', () => {
     expect(getRandomColor()).toMatch(/rgb/)
     expect(typeof getRandomColor()).toBe('string')
   })
 
-  test('createLine functions', () => {
+  test('createLine function', () => {
     expect(createLine(arrayOfString)).toEqual(expectedString)
     expect(createLine([])).toBe('')
     expect(createLine('abc')).toBe('')
@@ -29,7 +29,7 @@ describe('utils functions', () => {
     expect(createLine(undefined)).toBe('')
   })
 
-  test('isNumber functions', () => {
+  test('isNumber function', () => {
     expect(isNumber(12)).toBeTruthy()
     expect(isNumber(Infinity)).toBeFalsy()
     expect(isNumber(null)).toBeFalsy()
@@ -40,7 +40,7 @@ describe('utils functions', () => {
     expect(isNumber([1, 2, 3])).toBeFalsy()
   })
 
-  test('takeRandomWords functions', () => {
+  test('takeRandomWords function', () => {
     expect(Array.isArray(takeRandomWords(wordList, 4))).toBeTruthy()
     expect(takeRandomWords(wordList, 4)).toHaveLength(4)
     expect(wordList).toEqual(
@@ -49,7 +49,7 @@ describe('utils functions', () => {
     expect(takeRandomWords()).toStrictEqual([])
   })
 
-  test('getNecessaryWords functions', () => {
+  test('getNecessaryWords function', () => {
     expect(Array.isArray(getNecessaryWords(4, wordList))).toBeTruthy()
     expect(getNecessaryWords()).toStrictEqual([])
     expect(getNecessaryWords(4, wordList, true)).toHaveLength(4)
@@ -59,21 +59,21 @@ describe('utils functions', () => {
     )
   })
 
-  test('shuffle functions', () => {
+  test('shuffle function', () => {
     expect(Array.isArray(shuffle(wordList))).toBeTruthy()
     expect(shuffle(wordList)).toHaveLength(wordList.length)
     expect(wordList).toEqual(expect.arrayContaining(shuffle(wordList)))
     expect(shuffle()).toStrictEqual([])
   })
 
-  test('getRandomAnswers functions', () => {
+  test('getRandomAnswers function', () => {
     expect(Array.isArray(getRandomAnswers(rightAnswer, wordList))).toBeTruthy()
     expect(getRandomAnswers(rightAnswer, wordList)).toHaveLength(
       COUNT_WRONG_RANDOM_ANSWERS.necessary + 1
     )
   })
 
-  test('definePerformanceCoefficient functions', () => {
+  test('definePerformanceCoefficient function', () => {
     expect(definePerformanceCoefficient(100, 20)).toBe(20)
     expect(definePerformanceCoefficient(11, 4)).toBe(36.4)
     expect(definePerformanceCoefficient(5, 0)).toBe(0)
