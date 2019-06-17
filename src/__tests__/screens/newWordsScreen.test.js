@@ -1,4 +1,5 @@
 import React from 'react'
+import sinon from 'sinon'
 import { shallow, } from 'enzyme'
 import { View, Text, } from 'react-native'
 import { NewWordScreen, } from '../../screens'
