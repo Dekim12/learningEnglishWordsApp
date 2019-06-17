@@ -42,7 +42,7 @@ describe('utils functions', () => {
 
   test('takeRandomWords functions', () => {
     expect(Array.isArray(takeRandomWords(wordList, 4))).toBeTruthy()
-    expect(takeRandomWords(wordList, 4).length).toBe(4)
+    expect(takeRandomWords(wordList, 4)).toHaveLength(4)
     expect(wordList).toEqual(
       expect.arrayContaining(takeRandomWords(wordList, 4))
     )
@@ -52,8 +52,8 @@ describe('utils functions', () => {
   test('getNecessaryWords functions', () => {
     expect(Array.isArray(getNecessaryWords(4, wordList))).toBeTruthy()
     expect(getNecessaryWords()).toStrictEqual([])
-    expect(getNecessaryWords(4, wordList, true).length).toBe(4)
-    expect(getNecessaryWords(4, wordList, false).length).toBe(4)
+    expect(getNecessaryWords(4, wordList, true)).toHaveLength(4)
+    expect(getNecessaryWords(4, wordList, false)).toHaveLength(4)
     expect(wordList).toEqual(
       expect.arrayContaining(getNecessaryWords(4, wordList, true))
     )
@@ -61,14 +61,14 @@ describe('utils functions', () => {
 
   test('shuffle functions', () => {
     expect(Array.isArray(shuffle(wordList))).toBeTruthy()
-    expect(shuffle(wordList).length).toEqual(wordList.length)
+    expect(shuffle(wordList)).toHaveLength(wordList.length)
     expect(wordList).toEqual(expect.arrayContaining(shuffle(wordList)))
     expect(shuffle()).toStrictEqual([])
   })
 
   test('getRandomAnswers functions', () => {
     expect(Array.isArray(getRandomAnswers(rightAnswer, wordList))).toBeTruthy()
-    expect(getRandomAnswers(rightAnswer, wordList).length).toEqual(
+    expect(getRandomAnswers(rightAnswer, wordList)).toHaveLength(
       COUNT_WRONG_RANDOM_ANSWERS.necessary + 1
     )
   })
