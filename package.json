@@ -56,6 +56,7 @@
     "eslint-watch": "^5.1.2",
     "flow-bin": "^0.98.1",
     "jest": "24.8.0",
+    "jest-fetch-mock": "^2.1.2",
     "metro-react-native-babel-preset": "0.54.1",
     "pre-commit": "^1.2.2",
     "prettier": "^1.17.1",
@@ -65,7 +66,26 @@
     "redux-mock-store": "^1.5.3"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?)$",
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "setupFiles": [
+      "<rootDir>enzyme.config.js"
+    ],
+    "testPathIgnorePatterns": [
+      "\\\\node_modules\\\\"
+    ]
   },
   "rnpm": {
     "assets": [

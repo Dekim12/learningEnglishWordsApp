@@ -10,8 +10,8 @@ import {
 
 const sortedWordsList = sortBy(fakeData, data => data.word)
 
-describe('INITIAL_STATE', () => {
-  test('is correct', () => {
+describe('wordsReducer', () => {
+  test('should return a correct state after receiving a nonexistent action', () => {
     const action = { type: 'NON_EXISTENT_ACTION', }
     const initialState = {
       wordsList: sortedWordsList,
@@ -19,10 +19,8 @@ describe('INITIAL_STATE', () => {
 
     expect(wordsReducer(undefined, action)).toStrictEqual(initialState)
   })
-})
 
-describe('DELETE_WORD', () => {
-  test('returns the correct state after DELETE_WORD action', () => {
+  test('should delete a word in wordList by id after receiving the DELETE_WORD action', () => {
     const id = 1
     const action = {
       type: DELETE_WORD,
@@ -37,10 +35,8 @@ describe('DELETE_WORD', () => {
 
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('EDIT_WORD', () => {
-  test('returns the correct state after EDIT_WORD action', () => {
+  test('should change a data of word by edited data object in wordList after receiving the EDIT_WORD action', () => {
     const newWordData = { id: 1, word: 'hello', translate: ['привет'], }
     const action = {
       type: EDIT_WORD,
@@ -60,10 +56,8 @@ describe('EDIT_WORD', () => {
 
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('DELETE_WORDS_LIST', () => {
-  test('returns the correct state after DELETE_WORDS_LIST action', () => {
+  test('should delete some words in wordList by tag name after receiving the DELETE_WORDS_LIST action', () => {
     const tagName = '112'
     const action = {
       type: DELETE_WORDS_LIST,
@@ -77,10 +71,8 @@ describe('DELETE_WORDS_LIST', () => {
 
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('EDIT_WORDS_LIST', () => {
-  test('returns the correct state after EDIT_WORDS_LIST action', () => {
+  test('should change a tagName property in some words in wordList using a previous and new tag name after receiving the EDIT_WORDS_LIST action', () => {
     const prevTagName = '112'
     const newTagName = '11211'
     const deletedWordList = [1, 2, 3]

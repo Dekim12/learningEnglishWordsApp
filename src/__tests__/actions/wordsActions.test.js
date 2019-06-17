@@ -20,8 +20,8 @@ describe('wordsActions', () => {
     store.clearActions()
   })
 
-  test('deleteWord action', () => {
-    const expectedActions = [
+  test('deleteWord action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: actionTypes.DELETE_WORD,
         payload: 12,
@@ -29,11 +29,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.deleteWord(12))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('editWord action', () => {
-    const expectedActions = [
+  test('editWord action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: actionTypes.EDIT_WORD,
         payload: wordData,
@@ -41,11 +41,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.editWord(wordData))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('editWordsList action', () => {
-    const expectedActions = [
+  test('editWordsList action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: actionTypes.EDIT_WORDS_LIST,
         payload: { prevName, newName, deletedWordList: wordList, },
@@ -53,11 +53,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.editWordsList(prevName, newName, wordList))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('deleteWordList action', () => {
-    const expectedActions = [
+  test('deleteWordList action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: actionTypes.DELETE_WORDS_LIST,
         payload: tagName,
@@ -65,6 +65,6 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.deleteWordList(tagName))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 })

@@ -1,8 +1,8 @@
 import tasksReducer from '../../redux/reducers/tasksReducer'
 import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
 
-describe('INITIAL_STATE', () => {
-  test('is correct', () => {
+describe('tasksReducer', () => {
+  test('should return a correct state after receiving a nonexistent action', () => {
     const action = { type: 'NON_EXISTENT_ACTION', }
     const initialState = {
       allTags: true,
@@ -15,10 +15,8 @@ describe('INITIAL_STATE', () => {
 
     expect(tasksReducer(undefined, action)).toStrictEqual(initialState)
   })
-})
 
-describe('SET_SETTINGS', () => {
-  test('returns the correct state after SET_SETTINGS action', () => {
+  test('should change allTags, random, tagsForTask and amountOfWord properties in the state after receiving the SET_SETTINGS action', () => {
     const action = {
       type: SET_SETTINGS,
       payload: {
@@ -39,10 +37,8 @@ describe('SET_SETTINGS', () => {
 
     expect(tasksReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('SET_ANSWERS', () => {
-  test('returns the correct state after SET_ANSWERS action', () => {
+  test('should change allAnswers and rightAnswers properties in the state after receiving the SET_ANSWERS action', () => {
     const action = {
       type: SET_ANSWERS,
       payload: {

@@ -20,8 +20,8 @@ describe('tasksActions', () => {
     store.clearActions()
   })
 
-  test('setSettings action', () => {
-    const expectedActions = [
+  test('setSettings action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: SET_SETTINGS,
         payload: settings,
@@ -29,11 +29,11 @@ describe('tasksActions', () => {
     ]
 
     store.dispatch(tasksActions.setSettings(settings))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('setAnswers action', () => {
-    const expectedActions = [
+  test('setAnswers action creator have to send an expected action', () => {
+    const expectedAction = [
       {
         type: SET_ANSWERS,
         payload: { allAnswers, rightAnswers, },
@@ -41,6 +41,6 @@ describe('tasksActions', () => {
     ]
 
     store.dispatch(tasksActions.setAnswers(allAnswers, rightAnswers))
-    expect(store.getActions()).toStrictEqual(expectedActions)
+    expect(store.getActions()).toStrictEqual(expectedAction)
   })
 })

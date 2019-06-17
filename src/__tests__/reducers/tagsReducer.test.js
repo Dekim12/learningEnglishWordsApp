@@ -14,8 +14,8 @@ const sortedTagList = [
   'verbs'
 ]
 
-describe('INITIAL_STATE', () => {
-  test('is correct', () => {
+describe('tagsReducer', () => {
+  test('should return a correct state after receiving a nonexistent action', () => {
     const action = { type: 'NON_EXISTENT_ACTION', }
     const initialState = {
       tagsList: sortedTagList,
@@ -23,10 +23,8 @@ describe('INITIAL_STATE', () => {
 
     expect(tagsReducer(undefined, action)).toStrictEqual(initialState)
   })
-})
 
-describe('ADD_TAG', () => {
-  test('returns the correct state after ADD_TAG action', () => {
+  test('should add a new tag name in tagList after receiving the ADD_TAG action', () => {
     const action = { type: ADD_TAG, payload: 'newTag', }
     const newTagList = [
       '112',
@@ -48,10 +46,8 @@ describe('ADD_TAG', () => {
 
     expect(tagsReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('EDIT_TAG', () => {
-  test('returns the correct state after EDIT_TAG action', () => {
+  test('should change a previous tag name to a new tag name in tagList after receiving the EDIT_TAG action', () => {
     const action = {
       type: EDIT_TAG,
       payload: { prevName: 'peoples', newName: 'PEOPLES', },
@@ -75,10 +71,8 @@ describe('EDIT_TAG', () => {
 
     expect(tagsReducer(undefined, action)).toStrictEqual(expectedState)
   })
-})
 
-describe('DELETE_TAG', () => {
-  test('returns the correct state after DELETE_TAG action', () => {
+  test('should delete tag name in tagList after receiving the DELETE_TAG action', () => {
     const action = {
       type: DELETE_TAG,
       payload: 'myTagList',
