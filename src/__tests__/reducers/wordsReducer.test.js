@@ -11,7 +11,7 @@ import {
 const sortedWordsList = sortBy(fakeData, data => data.word)
 
 describe('wordsReducer', () => {
-  test('should return a correct state after receiving a nonexistent action', () => {
+  test('should return a default state after receiving a nonexistent action', () => {
     const action = { type: 'NON_EXISTENT_ACTION', }
     const initialState = {
       wordsList: sortedWordsList,
@@ -36,7 +36,7 @@ describe('wordsReducer', () => {
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
 
-  test('should change a data of word by edited data object in wordList after receiving the EDIT_WORD action', () => {
+  test('should updates single item in wordList after receiving the EDIT_WORD action', () => {
     const newWordData = { id: 1, word: 'hello', translate: ['привет'], }
     const action = {
       type: EDIT_WORD,
@@ -72,30 +72,51 @@ describe('wordsReducer', () => {
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
 
-  test('should change a tagName property in some words in wordList using a previous and new tag name after receiving the EDIT_WORDS_LIST action', () => {
+  test('should remove words by in wordList after receiving the EDIT_WORDS_LIST action', () => {
+    const deletedWordList = [1, 2, 3]
+    const action = {
+      type: EDIT_WORDS_LIST,
+      payload: { deletedWordList, },
+    }
+
+    const defaultWordsList = wordsReducer(undefined, {}).wordsList
+
+    const updatedList = wordsReducer(undefined, action).wordsList.filter(
+      elem => deletedWordList.indexOf(elem.id) === -1
+    )
+
+    expect(updatedList.length).toBe(
+      defaultWordsList.length - deletedWordList.length
+    )
+  })
+
+  test('should change a tagName property in some words using a previous and new tag name after receiving the EDIT_WORDS_LIST action', () => {
     const prevTagName = '112'
     const newTagName = '11211'
-    const deletedWordList = [1, 2, 3]
 
     const action = {
       type: EDIT_WORDS_LIST,
-      payload: { prevName: prevTagName, newName: newTagName, deletedWordList, },
+      payload: {
+        prevName: prevTagName,
+        newName: newTagName,
+        deletedWordList: [],
+      },
     }
 
-    const newList = sortedWordsList.reduce((res, elem) => {
-      if (deletedWordList.indexOf(elem.id) === -1) {
-        if (elem.tagName === prevTagName) {
-          elem.tagName = newTagName
-        }
-        return res.concat(elem)
+    const necessaryWords = []
+    wordsReducer(undefined, {}).wordsList.forEach((elem) => {
+      if (elem.tagName === prevTagName) {
+        necessaryWords.push(elem.id)
       }
+    })
 
-      return res
-    }, [])
-    const expectedState = {
-      wordsList: newList,
-    }
+    const updatedWords = []
+    wordsReducer(undefined, action).wordsList.forEach((elem) => {
+      if (elem.tagName === newTagName) {
+        updatedWords.push(elem.id)
+      }
+    })
 
-    expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
+    expect(updatedWords).toEqual(necessaryWords)
   })
 })

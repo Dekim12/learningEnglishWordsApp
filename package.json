@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
     "start-ios": "react-native run-ios --simulator='iPhone SE' && npm run lint-watch",
@@ -59,16 +59,21 @@
     "jest": "24.8.0",
     "jest-enzyme": "^7.0.2",
     "jest-fetch-mock": "^2.1.2",
+    "jsdom": "^15.1.1",
     "metro-react-native-babel-preset": "0.54.1",
     "pre-commit": "^1.2.2",
     "prettier": "^1.17.1",
     "prettier-eslint": "^8.8.2",
     "react-dom": "^16.8.6",
+    "react-native-mock-render": "^0.1.4",
     "react-test-renderer": "16.8.3",
     "redux-mock-store": "^1.5.3"
   },
   "jest": {
     "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "<rootDir>setup-tests.js"
+    ],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
@@ -79,14 +84,12 @@
       "json",
       "node"
     ],
-    "modulePaths": [
-      "<rootDir>"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>enzyme.config.js"
-    ],
     "testPathIgnorePatterns": [
       "\\\\node_modules\\\\"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/jest"
     ]
   },
   "rnpm": {

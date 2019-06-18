@@ -13,7 +13,7 @@ const PermissionPopup = ({ isWord, resolve, refresh, }) => {
   return (
     <View style={styles.container}>
       <View style={styles.popupBlock}>
-        <Text style={styles.headline}>
+        <Text style={styles.headline} testID='permission-alert'>
           {isWord ? PERMISSION_QUESTIONS.word : PERMISSION_QUESTIONS.tag}
         </Text>
         <View style={styles.bottomsBlock}>

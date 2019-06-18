@@ -14,7 +14,7 @@ describe('tagsActions', () => {
     store.clearActions()
   })
 
-  test('addTag action creator have to send an expected action', () => {
+  test('should dispatch the addTag action', () => {
     const expectedAction = [
       {
         type: ADD_TAG,
@@ -26,7 +26,7 @@ describe('tagsActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('editTag action creator have to send an expected action', () => {
+  test('should dispatch the editTag action', () => {
     const expectedAction = [
       {
         type: EDIT_TAG,
@@ -38,7 +38,7 @@ describe('tagsActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('deleteTag action creator have to send an expected action', () => {
+  test('should dispatch the deleteTag action', () => {
     const expectedAction = [
       {
         type: DELETE_TAG,

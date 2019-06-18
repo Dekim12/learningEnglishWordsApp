@@ -15,7 +15,7 @@ const sortedTagList = [
 ]
 
 describe('tagsReducer', () => {
-  test('should return a correct state after receiving a nonexistent action', () => {
+  test('should return a default state after receiving a nonexistent action', () => {
     const action = { type: 'NON_EXISTENT_ACTION', }
     const initialState = {
       tagsList: sortedTagList,

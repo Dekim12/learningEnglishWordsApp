@@ -2,8 +2,12 @@ import React, { Component, } from 'react'
 import { TextInput, } from 'react-native'
 
 class Input extends Component {
-  state = {
-    text: '',
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      text: '',
+    }
   }
 
   handleSubmitEditing = () => {

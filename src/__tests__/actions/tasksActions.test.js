@@ -20,7 +20,7 @@ describe('tasksActions', () => {
     store.clearActions()
   })
 
-  test('setSettings action creator have to send an expected action', () => {
+  test('should dispatch the setSettings action', () => {
     const expectedAction = [
       {
         type: SET_SETTINGS,
@@ -32,7 +32,7 @@ describe('tasksActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('setAnswers action creator have to send an expected action', () => {
+  test('should dispatch the setAnswers action', () => {
     const expectedAction = [
       {
         type: SET_ANSWERS,

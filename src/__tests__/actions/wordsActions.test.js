@@ -20,7 +20,7 @@ describe('wordsActions', () => {
     store.clearActions()
   })
 
-  test('deleteWord action creator have to send an expected action', () => {
+  test('should dispatch the deleteWord action', () => {
     const expectedAction = [
       {
         type: actionTypes.DELETE_WORD,
@@ -32,7 +32,7 @@ describe('wordsActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('editWord action creator have to send an expected action', () => {
+  test('should dispatch the editWord action', () => {
     const expectedAction = [
       {
         type: actionTypes.EDIT_WORD,
@@ -44,7 +44,7 @@ describe('wordsActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('editWordsList action creator have to send an expected action', () => {
+  test('should dispatch the editWordsList action', () => {
     const expectedAction = [
       {
         type: actionTypes.EDIT_WORDS_LIST,
@@ -56,7 +56,7 @@ describe('wordsActions', () => {
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 
-  test('deleteWordList action creator have to send an expected action', () => {
+  test('should dispatch the deleteWordList action', () => {
     const expectedAction = [
       {
         type: actionTypes.DELETE_WORDS_LIST,
