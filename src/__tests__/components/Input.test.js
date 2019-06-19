@@ -28,7 +28,7 @@ describe('check Input component', () => {
     instance.handleChangeText = jest.fn()
     instance.forceUpdate()
 
-    wrapper.find('TextInput').simulate('ChangeText', 'hello')
+    wrapper.simulate('ChangeText', 'hello')
 
     expect(instance.handleChangeText).toHaveBeenCalledTimes(1)
     expect(instance.handleChangeText).toHaveBeenCalledWith('hello')

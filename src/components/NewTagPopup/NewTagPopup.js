@@ -53,7 +53,9 @@ class NewTagPopup extends React.Component {
             onChangeText={this.handleChangeText}
           />
           {isNameExist && (
-            <Text style={styles.alert}>This tag name already exists.</Text>
+            <Text style={styles.alert} testID='tag-alert'>
+              This tag name already exists.
+            </Text>
           )}
           <TouchableButton style={styles.createBtn} onPress={this.addNewTag}>
             <Text style={styles.createBtnText}>CREATE TAG</Text>
