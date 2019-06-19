@@ -4,9 +4,13 @@ import { TouchableButton, Icon, } from '../index'
 import styles from './style'
 
 class SearchInput extends Component {
-  state = {
-    queryString: '',
-    isFocused: false,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      queryString: '',
+      isFocused: false,
+    }
   }
 
   handleInputFocus = () => this.setState({ isFocused: true, })

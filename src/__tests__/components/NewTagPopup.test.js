@@ -19,6 +19,9 @@ describe('check Input component', () => {
   beforeEach(() => {
     wrapper = shallow(<NewTagPopup {...props} />)
     instance = wrapper.instance()
+  })
+
+  afterEach(() => {
     closePopup.mockClear()
     addTag.mockClear()
   })
