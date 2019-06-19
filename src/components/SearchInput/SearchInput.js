@@ -8,8 +8,8 @@ class SearchInput extends Component {
     super(props)
 
     this.state = {
-      queryString: '',
       isFocused: false,
+      queryString: '',
     }
   }
 

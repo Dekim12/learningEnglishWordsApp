@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow, } from 'enzyme'
 import { NewTagPopup, } from '../../components'
 
-describe('check Input component', () => {
+describe('check NewTagPopup component', () => {
   const closePopup = jest.fn()
   const addTag = jest.fn()
   const newTagName = 'superTag'
@@ -33,15 +33,15 @@ describe('check Input component', () => {
   })
 
   test('should handle user input a new tag name', () => {
-    instance.handleChangeText = jest.spyOn(instance, 'handleChangeText')
+    const spy = jest.spyOn(instance, 'handleChangeText')
     instance.forceUpdate()
 
     wrapper.find('TextInput').simulate('ChangeText', newTagName)
 
     expect(wrapper.state().name).toEqual(newTagName)
     expect(wrapper.state().isNameExist).toBeFalsy()
-    expect(instance.handleChangeText).toHaveBeenCalledTimes(1)
-    expect(instance.handleChangeText).toHaveBeenCalledWith(newTagName)
+    expect(spy).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledWith(newTagName)
 
     wrapper.find('TextInput').simulate('ChangeText', existedTagName)
 
@@ -49,7 +49,7 @@ describe('check Input component', () => {
   })
 
   test('should add a new tag', () => {
-    instance.addNewTag = jest.spyOn(instance, 'addNewTag')
+    const spy = jest.spyOn(instance, 'addNewTag')
     instance.forceUpdate()
 
     wrapper.find('TextInput').simulate('ChangeText', newTagName)
@@ -58,13 +58,13 @@ describe('check Input component', () => {
       .at(0)
       .simulate('press')
 
-    expect(instance.addNewTag).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(addTag).toHaveBeenCalledWith(newTagName)
     expect(closePopup).toHaveBeenCalledTimes(1)
   })
 
   test('should not add an existed tag', () => {
-    instance.addNewTag = jest.spyOn(instance, 'addNewTag')
+    const spy = jest.spyOn(instance, 'addNewTag')
     instance.forceUpdate()
 
     wrapper.find('TextInput').simulate('ChangeText', existedTagName)
@@ -73,13 +73,13 @@ describe('check Input component', () => {
       .at(0)
       .simulate('press')
 
-    expect(instance.addNewTag).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(addTag).not.toHaveBeenCalled()
     expect(closePopup).not.toHaveBeenCalled()
   })
 
   test('should not add an incorrect tag name', () => {
-    instance.addNewTag = jest.spyOn(instance, 'addNewTag')
+    const spy = jest.spyOn(instance, 'addNewTag')
     instance.forceUpdate()
 
     wrapper.find('TextInput').simulate('ChangeText', '         ')
@@ -88,7 +88,7 @@ describe('check Input component', () => {
       .at(0)
       .simulate('press')
 
-    expect(instance.addNewTag).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(addTag).not.toHaveBeenCalled()
     expect(closePopup).not.toHaveBeenCalled()
     expect(wrapper.state().name).toEqual('')

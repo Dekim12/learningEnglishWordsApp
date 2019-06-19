@@ -40,11 +40,11 @@ describe('check Input component', () => {
   })
 
   test('should call handleSubmitEditing and call onSubmit depending on conditions', () => {
-    instance.handleSubmitEditing = jest.spyOn(instance, 'handleSubmitEditing')
+    const spy = jest.spyOn(instance, 'handleSubmitEditing')
     instance.forceUpdate()
     wrapper.simulate('SubmitEditing')
 
-    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledTimes(1)
     expect(onSubmit).toHaveBeenCalledTimes(0)
 
     wrapper.simulate('ChangeText', 'hello')
@@ -58,12 +58,12 @@ describe('check Input component', () => {
   })
 
   test('should call handleSubmitEditing after componentDidUpdate', () => {
-    instance.handleSubmitEditing = jest.spyOn(instance, 'handleSubmitEditing')
+    const spy = jest.spyOn(instance, 'handleSubmitEditing')
     instance.forceUpdate()
 
-    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(0)
+    expect(spy).toHaveBeenCalledTimes(0)
 
     wrapper.setProps({ submit: true, })
-    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(1)
+    expect(spy).toHaveBeenCalledTimes(1)
   })
 })
