@@ -35,8 +35,8 @@ describe('check PermissionPopup component', () => {
       .at(0)
       .simulate('press')
 
-    expect(mockResolve.mock.calls.length).toBe(1)
-    expect(mockRefresh.mock.calls.length).toBe(1)
+    expect(mockResolve).toHaveBeenCalledTimes(1)
+    expect(mockRefresh).toHaveBeenCalledTimes(1)
   })
 
   test('should call necessary functions after a reject of the permission', () => {
@@ -45,7 +45,7 @@ describe('check PermissionPopup component', () => {
       .at(1)
       .simulate('press')
 
-    expect(mockResolve.mock.calls.length).toBe(0)
-    expect(mockRefresh.mock.calls.length).toBe(1)
+    expect(mockResolve).toHaveBeenCalledTimes(0)
+    expect(mockRefresh).toHaveBeenCalledTimes(1)
   })
 })

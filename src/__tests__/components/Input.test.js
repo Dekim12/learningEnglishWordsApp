@@ -1,40 +1,69 @@
 import React from 'react'
-import sinon from 'sinon'
-import { TextInput, } from 'react-native'
 import { shallow, } from 'enzyme'
 import { EDIT_TYPES, } from '../../constants'
 import { Input, } from '../../components'
 
 describe('check Input component', () => {
+  const onSubmit = jest.fn()
   const props = {
     type: EDIT_TYPES.word,
-    onSubmit: jest.fn(),
+    onSubmit,
     submit: false,
     style: { color: 'red', },
     placeholder: 'Add translation...',
   }
 
-  const wrapper = shallow(<Input {...props} />)
-  const instance = wrapper.instance()
-
-  // console.log(instance)
-
-  // test('should pass the placeholder from props', () => {
-  //   expect(wrapper.find(TextInput).props().placeholder).toBe(
-  //     'Add translation...'
-  //   )
-  // })
-
-  test('should handle user input', () => {
-    const newF = sinon.spy('handleChangeText')
-    const wrapper = shallow(<Input {...props} />)
-    wrapper.find('TextInput').simulate('ChangeText', 'hello')
-
-    expect(newF.calledOnce).toBe(1)
+  let wrapper
+  let instance
+  beforeEach(() => {
+    wrapper = shallow(<Input {...props} />)
+    instance = wrapper.instance()
   })
 
-  // test('should handle user text and enter it to state', () => {
-  //   wrapper.simulate('ChangeText', 'hello')
-  //   expect(wrapper.state('text')).toEqual('hello')
-  // })
+  test('should pass the placeholder from props', () => {
+    expect(wrapper.props().placeholder).toBe('Add translation...')
+  })
+
+  test('should handle user input', () => {
+    instance.handleChangeText = jest.fn()
+    instance.forceUpdate()
+
+    wrapper.find('TextInput').simulate('ChangeText', 'hello')
+
+    expect(instance.handleChangeText).toHaveBeenCalledTimes(1)
+    expect(instance.handleChangeText).toHaveBeenCalledWith('hello')
+  })
+
+  test('should handle user text and enter it to state', () => {
+    wrapper.simulate('ChangeText', 'hello')
+    expect(wrapper.state('text')).toEqual('hello')
+  })
+
+  test('should call handleSubmitEditing and call onSubmit depending on conditions', () => {
+    instance.handleSubmitEditing = jest.spyOn(instance, 'handleSubmitEditing')
+    instance.forceUpdate()
+    wrapper.simulate('SubmitEditing')
+
+    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(1)
+    expect(onSubmit).toHaveBeenCalledTimes(0)
+
+    wrapper.simulate('ChangeText', 'hello')
+    expect(wrapper.state('text')).toEqual('hello')
+
+    wrapper.simulate('SubmitEditing')
+
+    expect(onSubmit).toHaveBeenCalledTimes(1)
+    expect(onSubmit).toHaveBeenCalledWith('hello', props.type)
+    expect(wrapper.state('text')).toEqual('')
+  })
+
+  test('should call handleSubmitEditing after componentDidUpdate', () => {
+    instance.handleSubmitEditing = jest.spyOn(instance, 'handleSubmitEditing')
+    instance.forceUpdate()
+
+    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(0)
+
+    wrapper.setProps({ submit: true, })
+    expect(instance.handleSubmitEditing).toHaveBeenCalledTimes(1)
+  })
 })
