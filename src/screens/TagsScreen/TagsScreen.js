@@ -6,7 +6,11 @@ import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class TagsScreen extends Component {
-  state = { isNewTag: false, newTagName: '', }
+  constructor(props) {
+    super(props)
+
+    this.state = { isNewTag: false, newTagName: '', }
+  }
 
   toDetails = (tagName) => {
     const { changeScreen, componentId, } = this.props

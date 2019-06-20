@@ -7,9 +7,13 @@ import { createLine, } from '../../utils'
 import styles from './style'
 
 class TagDetailsScreen extends Component {
-  state = {
-    permissionVisible: false,
-    permissionResolve: null,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      permissionVisible: false,
+      permissionResolve: null,
+    }
   }
 
   renderWords = ({ item, }) => {
@@ -25,7 +29,11 @@ class TagDetailsScreen extends Component {
     )
 
     return (
-      <TouchableButton style={styles.wordItem} onPress={toWordScreen}>
+      <TouchableButton
+        style={styles.wordItem}
+        onPress={toWordScreen}
+        testID='tag-word-btn'
+      >
         <Text style={styles.wordStyle}>{item.word}</Text>
         <Text style={styles.transcriptionStyle}>{item.transcription}</Text>
         <Text style={styles.translationStyle}>

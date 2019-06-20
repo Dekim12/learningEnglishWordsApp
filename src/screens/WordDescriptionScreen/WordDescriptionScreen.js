@@ -14,7 +14,11 @@ import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
 class WordDescriptionScreen extends Component {
-  state = { loading: true, permissionVisible: false, }
+  constructor(props) {
+    super(props)
+
+    this.state = { loading: true, permissionVisible: false, }
+  }
 
   renderExamples = list => list.map(item => (
     <View style={styles.exampleBlock} key={uuidv4()}>

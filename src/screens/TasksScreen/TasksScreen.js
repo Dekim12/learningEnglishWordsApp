@@ -21,6 +21,7 @@ const TasksScreen = ({ componentId, changeScreen, }) => {
 
     return (
       <TouchableButton
+        testID='task-btn'
         key={uuidv4()}
         style={styles.taskLabel}
         onPress={toCurrentTask}

@@ -19,7 +19,11 @@ class WordsScreen extends Component {
 
   toNewWord = (word) => {
     const { componentId, changeScreen, } = this.props
-    changeScreen(MOVEMENT_FUNC_NAMES.newWord, componentId, word)
+    changeScreen(
+      MOVEMENT_FUNC_NAMES.newWord,
+      componentId,
+      typeof word === 'string' ? word : ''
+    )
   }
 
   setPermissionFunctions = (resolve) => {
