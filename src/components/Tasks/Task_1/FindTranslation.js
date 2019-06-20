@@ -6,10 +6,14 @@ import { ResultPopup, } from './ResultPopup'
 import styles from './style'
 
 class FindTranslation extends Component {
-  state = {
-    currentWord: 0,
-    answersResult: [],
-    hasTaskDone: false,
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentWord: 0,
+      answersResult: [],
+      hasTaskDone: false,
+    }
   }
 
   toNextWord = (isCorrectResult) => {

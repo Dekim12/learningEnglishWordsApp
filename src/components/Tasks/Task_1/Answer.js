@@ -5,9 +5,13 @@ import { ANSWER_DELAY, } from '../../../constants'
 import styles from './style'
 
 class SelectableAnswer extends Component {
-  state = {
-    btnColor: {},
-    textColor: {},
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      btnColor: {},
+      textColor: {},
+    }
   }
 
   nextWord = (isRight) => {
