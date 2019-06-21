@@ -76,7 +76,7 @@ const wordsForTask = [
   }
 ]
 
-describe('check FindTranslation task component', () => {
+describe('check FindTranslation component', () => {
   const props = {
     name: 'Find the translation',
     wordsForTask,
@@ -209,8 +209,11 @@ describe('check Connector component', () => {
 })
 
 describe('check SelectableAnswer component', () => {
-  const checkResult = jest.fn()
-  const props = { checkResult, isRightAnswer: true, currentAnswer: 'dog', }
+  const props = {
+    checkResult: jest.fn(),
+    isRightAnswer: true,
+    currentAnswer: 'dog',
+  }
 
   let wrapper
   let instance
@@ -219,7 +222,7 @@ describe('check SelectableAnswer component', () => {
     instance = wrapper.instance()
   })
 
-  test('should check a result and pass to the next word', async () => {
+  test('should check a result and pass to the next word', () => {
     const checkFunctionSpy = jest.spyOn(instance, 'check')
     const toNextWordSpy = jest.spyOn(instance, 'nextWord')
     instance.forceUpdate()

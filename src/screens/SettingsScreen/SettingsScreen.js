@@ -31,7 +31,7 @@ class SettingsScreen extends Component {
     const { isAmountCorrect, } = this.state
 
     if (isNumber(text) && Number(text) !== 0) {
-      this.newWordsAmount = text
+      this.newWordsAmount = Number(text)
 
       if (!isAmountCorrect) {
         this.setState({ isAmountCorrect: true, })
@@ -84,6 +84,7 @@ class SettingsScreen extends Component {
           style={[styles.tagItem, isTagSelected && styles.activeTag]}
           onPress={addTag}
           key={uuidv4()}
+          testID='tag-btn'
         >
           <Text
             style={[styles.textStyle, isTagSelected && styles.activeOrderStyle]}
@@ -111,7 +112,9 @@ class SettingsScreen extends Component {
     }, 0)
   }
 
-  handleRandom = () => this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
+  handleRandom = () => {
+    this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
+  }
 
   confirmSettings = () => {
     const { setSettings, changeScreen, componentId, } = this.props
@@ -152,6 +155,7 @@ class SettingsScreen extends Component {
               useAllTags && styles.activeTag
             ]}
             onPress={this.handlerAllTaskButton}
+            testID='all-tags-btn'
           >
             <Text
               style={[styles.textStyle, useAllTags && styles.allTagsActive]}
@@ -164,7 +168,9 @@ class SettingsScreen extends Component {
             <Text style={styles.valueStyle}>{totalAmountOfWords}</Text>
           </View>
           {!totalAmountOfWords && (
-            <Text style={styles.alert}>Please select some tag with words.</Text>
+            <Text style={styles.alert} testID='tags-alert'>
+              Please select some tag with words.
+            </Text>
           )}
           <View style={styles.wordsBlock}>
             <Text style={styles.definition}>FOR TRAINING - </Text>
@@ -182,7 +188,7 @@ class SettingsScreen extends Component {
             />
           </View>
           {!isAmountCorrect && (
-            <Text style={styles.alert}>
+            <Text style={styles.alert} testID='words-amount-alert'>
               New amount of words is not correct.
             </Text>
           )}
@@ -193,6 +199,7 @@ class SettingsScreen extends Component {
             <TouchableButton
               style={[styles.orderItem, !isRandom && styles.activeTag]}
               onPress={isRandom ? this.handleRandom : null}
+              testID='cancel-random-btn'
             >
               <Text
                 style={[styles.textStyle, !isRandom && styles.activeOrderStyle]}
@@ -203,6 +210,7 @@ class SettingsScreen extends Component {
             <TouchableButton
               style={[styles.orderItem, isRandom && styles.activeTag]}
               onPress={!isRandom ? this.handleRandom : null}
+              testID='add-random-btn'
             >
               <Text
                 style={[styles.textStyle, isRandom && styles.activeOrderStyle]}
@@ -214,6 +222,7 @@ class SettingsScreen extends Component {
           <TouchableButton
             style={styles.editBtn}
             onPress={this.confirmSettings}
+            testID='confirm-btn'
           >
             <Text style={styles.editText}>CONFIRM</Text>
           </TouchableButton>

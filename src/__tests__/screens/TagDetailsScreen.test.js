@@ -35,12 +35,11 @@ const tagsWordsList = [
 
 describe('check TagDetailsScreen', () => {
   const changeScreen = jest.fn()
-  const deleteWord = jest.fn()
   const props = {
     componentId: 1233,
     tagName: 'myTagList',
     changeScreen,
-    deleteWord,
+    deleteWord: jest.fn(),
     tagsWordsList,
   }
 
@@ -49,10 +48,6 @@ describe('check TagDetailsScreen', () => {
   beforeEach(() => {
     wrapper = shallow(<TagDetailsScreen {...props} />)
     instance = wrapper.instance()
-  })
-
-  afterEach(() => {
-    changeScreen.mockClear()
   })
 
   test('should render word items', () => {
@@ -66,22 +61,22 @@ describe('check TagDetailsScreen', () => {
     expect(keyExtractor).toHaveBeenCalledTimes(3)
   })
 
-  // test('should show and hide the permission popup', () => {
-  //   const spy = jest.spyOn(instance, 'handlePermission')
-  //   instance.forceUpdate()
+  test('should pass to the new word screen', () => {
+    wrapper.find('TouchableButton').simulate('press')
 
-  //   expect(wrapper.exists('PermissionPopup')).toBeFalsy()
+    expect(changeScreen).toHaveBeenCalledWith(
+      'createNewWord',
+      props.componentId
+    )
+  })
 
-  //   wrapper
-  //     .find('TouchableButton')
-  //     .at(0)
-  //     .simulate('press')
+  test('should show or hide the permission popup', () => {
+    expect(wrapper.exists('PermissionPopup')).toBeFalsy()
 
-  //   expect(wrapper.exists('PermissionPopup')).toBeTruthy()
-  //   expect(spy).toHaveBeenCalled()
+    instance.setPermissionFunctions()
+    expect(wrapper.exists('PermissionPopup')).toBeTruthy()
 
-  //   instance.refreshPermission()
-
-  //   expect(wrapper.exists('PermissionPopup')).toBeFalsy()
-  // })
+    instance.refreshPermission()
+    expect(wrapper.exists('PermissionPopup')).toBeFalsy()
+  })
 })

@@ -3,7 +3,6 @@ import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import { EDIT_TYPES, MOVEMENT_FUNC_NAMES, } from '../../constants'
-
 import styles from './style'
 
 class EditWordScreen extends Component {
@@ -53,10 +52,12 @@ class EditWordScreen extends Component {
 
   generateItem = (itemsList, type) => {
     const currentStyle = {}
+    let testID = 'example-item'
 
     if (type === EDIT_TYPES.word) {
       currentStyle.item = styles.translationItem
       currentStyle.btn = styles.deleteItemBtn
+      testID = 'translation-item'
     } else {
       currentStyle.item = styles.exampleItem
       currentStyle.btn = styles.exampleButton
@@ -66,7 +67,7 @@ class EditWordScreen extends Component {
       const deleteCurrentValue = () => this.deleteWordOrExample(item, type)
 
       return (
-        <View style={currentStyle.item} key={uuidv4()}>
+        <View style={currentStyle.item} key={uuidv4()} testID={testID}>
           <Text style={styles.itemText}>{item}</Text>
           <TouchableButton
             style={currentStyle.btn}
@@ -93,6 +94,7 @@ class EditWordScreen extends Component {
           ]}
           key={uuidv4()}
           onPress={addTag}
+          testID='tag-item'
         >
           <Text
             style={[
@@ -111,9 +113,8 @@ class EditWordScreen extends Component {
 
   edit = () => {
     const { editWord, changeScreen, componentId, } = this.props
-    const newWord = { ...this.state, }
-    delete newWord.submit
-    editWord(newWord)
+    const { submit, ...newWordData } = this.state
+    editWord(newWordData)
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
@@ -182,7 +183,11 @@ class EditWordScreen extends Component {
           <View style={[styles.translationBlock, styles.tagsBlock]}>
             {this.generateTags(tagName, tagsList)}
           </View>
-          <TouchableButton style={styles.editBtn} onPress={this.edit}>
+          <TouchableButton
+            style={styles.editBtn}
+            onPress={this.edit}
+            testID='edit-word-btn'
+          >
             <Text style={styles.editText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>

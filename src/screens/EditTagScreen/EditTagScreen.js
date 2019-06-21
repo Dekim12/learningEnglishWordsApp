@@ -51,7 +51,7 @@ class EditTagScreen extends Component {
     const deleteCurrentWord = () => this.deleteWord(id)
 
     return (
-      <View style={styles.wordItem} key={uuidv4()}>
+      <View style={styles.wordItem} key={uuidv4()} testID='tag-word-item'>
         <Text style={styles.wordItemText}>{word}</Text>
         <TouchableButton
           style={styles.wordItemDeleteBtn}
@@ -121,7 +121,9 @@ class EditTagScreen extends Component {
             </TouchableButton>
           </View>
           {isTagExist && (
-            <Text style={styles.alert}>This tag name already exists.</Text>
+            <Text style={styles.alert} testID='existed-tag-alert'>
+              This tag name already exists.
+            </Text>
           )}
           <Text style={styles.definition}>WORDS</Text>
           {!wordsList.length && (
@@ -133,10 +135,11 @@ class EditTagScreen extends Component {
           <TouchableButton
             style={[styles.btn, styles.deleteBtn]}
             onPress={this.handlePermission}
+            testID = 'delete-tag-btn'
           >
             <Text style={styles.btnText}>DELETE</Text>
           </TouchableButton>
-          <TouchableButton style={styles.btn} onPress={this.edit}>
+          <TouchableButton style={styles.btn} onPress={this.edit} testID='edit-tag-btn'>
             <Text style={styles.btnText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>
