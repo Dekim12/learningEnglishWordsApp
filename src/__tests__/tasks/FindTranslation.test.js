@@ -6,80 +6,12 @@ import { ProgressBar, } from '../../components/Tasks/Task_1/ProgressBar'
 import { SelectableAnswer, } from '../../components/Tasks/Task_1/Answer'
 import { Connector, } from '../../components/Tasks/Task_1/Connector'
 import { fakeData, } from '../../constants'
-
-const wordsForTask = [
-  {
-    id: 1,
-    word: 'home',
-    transcription: 'hoʊm',
-    translation: ['дом', 'жилище', 'родина', 'домашний'],
-    url: 'http://lokhousing.com/wp-content/uploads/2019/03/Home-1-.jpeg',
-    examples: [
-      'Daddy went home to sleep',
-      'Now go home and get some rest',
-      'Alex had provided the money to remodel the home, but insisted that it stay in her name only'
-    ],
-    tagName: 'myTagList',
-  },
-  {
-    id: 2,
-    word: 'dog',
-    transcription: 'dɒɡ',
-    translation: ['собака', 'пес', 'собачка'],
-    url: 'https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg',
-    examples: [
-      'He dogged her every move.',
-      'You dirty dog!',
-      'That dog barks all day long.'
-    ],
-    tagName: 'secondTag',
-  },
-  {
-    id: 3,
-    word: 'fish',
-    transcription: 'fɪʃ',
-    translation: ['рыба', 'ловить рыбу', 'рыбачить'],
-    url:
-      'https://www.fishkeepingworld.com/wp-content/uploads/2018/06/Clownfish.png',
-    examples: [
-      'Did you catch any fish?',
-      'I like to go fishing on weekends',
-      'Dad really loves to fish.'
-    ],
-    tagName: 'secondTag',
-  },
-  {
-    id: 4,
-    word: 'ruby',
-    transcription: 'ˈruːbi',
-    translation: ['рубин', 'рубиновый'],
-    url:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmWsHoVVaxbXRM8YV9Zg4cyHuAkqpDXW5qtX6olmI8Wd9OHaj',
-    examples: [
-      'Ruby blew out all her candles at one go.',
-      'The ruby was once possessed by an ancient queen.'
-    ],
-    tagName: 'myTagList',
-  },
-  {
-    id: 6,
-    word: 'though',
-    transcription: 'ðoʊ',
-    translation: ['хотя', 'однако', 'несмотря на', 'все же'],
-    url:
-      'https://media.tenor.com/images/b445b5ed4d22e96a36bd74b23f3f0c39/tenor.png',
-    examples: [
-      'It is hard work. I enjoy it though.',
-      'Though it was raining, we went hiking.'
-    ],
-    tagName: 'myTagList',
-  }
-]
+import { WORDS_MOCK_LIST, } from '../mock'
 
 describe('check FindTranslation component', () => {
   const props = {
     name: 'Find the translation',
-    wordsForTask,
+    wordsForTask: WORDS_MOCK_LIST,
     allWords: fakeData,
     goToTasks: jest.fn(),
   }
@@ -104,7 +36,7 @@ describe('check FindTranslation component', () => {
     expect(wrapper.state().currentWord).toEqual(currentWordIndex + 2)
     expect(wrapper.state().answersResult).toEqual([true, false])
 
-    wrapper.setState({ currentWord: wordsForTask.length - 1, })
+    wrapper.setState({ currentWord: props.wordsForTask.length - 1, })
     instance.toNextWord(true)
     expect(wrapper.exists('ResultPopup')).toBeTruthy()
     expect(wrapper.state().answersResult).toEqual([true, false, true])
@@ -156,15 +88,7 @@ describe('check Connector component', () => {
     defaultResult: true,
     toNextWord,
     possibleAnswers: ['всемогущий', 'рыба', 'дом', 'собака'],
-    currentWord: {
-      id: 2,
-      word: 'dog',
-      transcription: 'dɒɡ',
-      translation: ['собака'],
-      url: 'https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg',
-      examples: ['He dogged her every move.'],
-      tagName: 'secondTag',
-    },
+    currentWord: WORDS_MOCK_LIST[0],
     countWordsForTask: 5,
     answersResult: [],
   }
@@ -223,6 +147,9 @@ describe('check SelectableAnswer component', () => {
   })
 
   test('should check a result and pass to the next word', () => {
+    const textStyle = { color: '#ffffff', }
+    const backgroundStyle = { backgroundColor: '#339933', }
+
     const checkFunctionSpy = jest.spyOn(instance, 'check')
     const toNextWordSpy = jest.spyOn(instance, 'nextWord')
     instance.forceUpdate()
@@ -230,8 +157,8 @@ describe('check SelectableAnswer component', () => {
     wrapper.simulate('press')
 
     expect(checkFunctionSpy).toHaveBeenCalled()
-    expect(wrapper.state().btnColor).toEqual({ backgroundColor: '#339933', })
-    expect(wrapper.state().textColor).toEqual({ color: '#ffffff', })
+    expect(wrapper.state().btnColor).toEqual(backgroundStyle)
+    expect(wrapper.state().textColor).toEqual(textStyle)
     expect(toNextWordSpy).toHaveBeenCalledWith(true)
   })
 })

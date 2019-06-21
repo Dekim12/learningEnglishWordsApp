@@ -1,23 +1,16 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { WordDescriptionScreen, } from '../../screens/WordDescriptionScreen/WordDescriptionScreen'
+import { WORDS_MOCK_LIST, COMPONENT_ID, } from '../mock'
 
 describe('check WordDescriptionScreen', () => {
   const changeScreen = jest.fn()
   const deleteWord = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     changeScreen,
     deleteWord,
-    wordData: {
-      id: 1,
-      word: 'home',
-      transcription: 'hoʊm',
-      translation: ['дом', 'жилище'],
-      url: 'http://lokhousing.com/wp-content/uploads/2019/03/Home-1-.jpeg',
-      examples: ['Daddy went home to sleep'],
-      tagName: 'myTagList',
-    },
+    wordData: WORDS_MOCK_LIST[0],
   }
 
   let wrapper
@@ -38,7 +31,7 @@ describe('check WordDescriptionScreen', () => {
     expect(spy).toHaveBeenCalledWith(props.wordData.examples)
   })
 
-  test('should show loading indicator before an image will not load', () => {
+  test('should display an ActivityIndicator while loading image', () => {
     const spy = jest.spyOn(instance, 'handleLoad')
     instance.forceUpdate()
 

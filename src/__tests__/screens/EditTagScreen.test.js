@@ -1,48 +1,18 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { EditTagScreen, } from '../../screens/EditTagScreen/EditTagScreen'
-
-const tagWords = [
-  {
-    id: 1,
-    word: 'home',
-    transcription: 'hoʊm',
-    translation: ['дом', 'жилище'],
-    url: 'http://lokhousing.com/wp-content/uploads/2019/03/Home-1-.jpeg',
-    examples: ['Daddy went home to sleep'],
-    tagName: 'myTagList',
-  },
-  {
-    id: 2,
-    word: 'dog',
-    transcription: 'dɒɡ',
-    translation: ['собака', 'пес'],
-    url: 'https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg',
-    examples: ['He dogged her every move.'],
-    tagName: 'myTagList',
-  },
-  {
-    id: 3,
-    word: 'fish',
-    transcription: 'fɪʃ',
-    translation: ['рыба', 'рыбачить'],
-    url:
-      'https://www.fishkeepingworld.com/wp-content/uploads/2018/06/Clownfish.png',
-    examples: ['Did you catch any fish?'],
-    tagName: 'myTagList',
-  }
-]
+import { MOCK_WORDS_FOR_TAG, MOCK_TAG_LIST, COMPONENT_ID, } from '../mock'
 
 describe('check EditTagScreen', () => {
   const changeScreen = jest.fn()
   const editCurrentTag = jest.fn()
   const deleteCurrentTag = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     id: 1,
-    tagWords,
+    tagWords: MOCK_WORDS_FOR_TAG,
     tagName: 'myTagList',
-    tagsList: ['112', 'firstTag', 'fruits', 'myTagList', 'peoples'],
+    tagsList: MOCK_TAG_LIST,
     deleteCurrentTag,
     editCurrentTag,
     changeScreen,
@@ -59,7 +29,7 @@ describe('check EditTagScreen', () => {
     const state = wrapper.state()
 
     expect(state.currentName).toEqual(props.tagName)
-    expect(state.wordsList).toEqual(tagWords)
+    expect(state.wordsList).toEqual(props.tagWords)
   })
 
   test('should handle changes a tag name, submit and show an alert', () => {
@@ -90,9 +60,9 @@ describe('check EditTagScreen', () => {
     const generateSpy = jest.spyOn(instance, 'generateWordsList')
     instance.forceUpdate()
 
-    expect(generateSpy).toHaveBeenCalledWith(tagWords)
+    expect(generateSpy).toHaveBeenCalledWith(props.tagWords)
     expect(wrapper.find({ testID: 'tag-word-item', }).length).toEqual(
-      tagWords.length
+      props.tagWords.length
     )
   })
 
@@ -103,9 +73,9 @@ describe('check EditTagScreen', () => {
     const wordItem = wrapper.find({ testID: 'tag-word-item', }).first()
     wordItem.find('TouchableButton').simulate('press')
 
-    expect(deleteWordSpy).toHaveBeenCalledWith(tagWords[0].id)
-    expect(wrapper.state().deletedWordsList).toContain(tagWords[0].id)
-    expect(wrapper.state().wordsList).not.toContain(tagWords[0])
+    expect(deleteWordSpy).toHaveBeenCalledWith(props.tagWords[0].id)
+    expect(wrapper.state().deletedWordsList).toContain(props.tagWords[0].id)
+    expect(wrapper.state().wordsList).not.toContain(props.tagWords[0])
   })
 
   test('should edit a word', () => {

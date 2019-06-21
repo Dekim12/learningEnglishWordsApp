@@ -1,12 +1,13 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { TagsScreen, } from '../../screens/TagsScreen/TagsScreen'
+import { COMPONENT_ID, MOCK_TAG_LIST, } from '../mock'
 
 describe('check TagsScreen', () => {
   const changeScreen = jest.fn()
   const props = {
-    componentId: 1233,
-    tagsList: ['firstTag', 'nouns', 'myTag'],
+    componentId: COMPONENT_ID,
+    tagsList: MOCK_TAG_LIST,
     changeScreen,
     addTag: jest.fn(),
   }
@@ -23,17 +24,19 @@ describe('check TagsScreen', () => {
   })
 
   test('should open and close new tag popup', () => {
+    const newTagName = 'newTag'
+
     const spy = jest.spyOn(instance, 'openPopup')
     instance.forceUpdate()
 
     expect(wrapper.exists('NewTagPopup')).toBeFalsy()
     expect(wrapper.state().newTagName).toEqual('')
 
-    instance.togglePopup('newTag')
+    instance.togglePopup(newTagName)
     expect(wrapper.exists('NewTagPopup')).toBeTruthy()
-    expect(wrapper.state().newTagName).toEqual('newTag')
+    expect(wrapper.state().newTagName).toEqual(newTagName)
 
-    instance.togglePopup('newTag')
+    instance.togglePopup(newTagName)
     expect(wrapper.exists('NewTagPopup')).toBeFalsy()
 
     wrapper.find('TouchableButton').simulate('press')

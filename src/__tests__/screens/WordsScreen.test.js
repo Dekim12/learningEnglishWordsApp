@@ -1,13 +1,14 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { WordsScreen, } from '../../screens'
+import { COMPONENT_ID, } from '../mock'
 
 describe('check WordsScreen', () => {
   const wordId = 12
   const word = 'dog'
   const changeScreen = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     changeScreen,
   }
 
@@ -34,12 +35,14 @@ describe('check WordsScreen', () => {
   })
 
   test('should open the new word screen with correct params', () => {
-    instance.toNewWord('cat')
+    const nonexistentWord = 'cat'
+
+    instance.toNewWord(nonexistentWord)
 
     expect(changeScreen).toHaveBeenLastCalledWith(
       'createNewWord',
       props.componentId,
-      'cat'
+      nonexistentWord
     )
 
     wrapper.find('TouchableButton').simulate('press')

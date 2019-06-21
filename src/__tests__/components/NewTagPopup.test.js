@@ -32,7 +32,7 @@ describe('check NewTagPopup component', () => {
     expect(state.isNameExist).toBeFalsy()
   })
 
-  test('should handle user input a new tag name', () => {
+  test('should handle entering a new tag name', () => {
     const spy = jest.spyOn(instance, 'handleChangeText')
     instance.forceUpdate()
 
@@ -63,7 +63,7 @@ describe('check NewTagPopup component', () => {
     expect(closePopup).toHaveBeenCalledTimes(1)
   })
 
-  test('should not add an existed tag', () => {
+  test('should not add an existing tag', () => {
     const spy = jest.spyOn(instance, 'addNewTag')
     instance.forceUpdate()
 
@@ -94,7 +94,7 @@ describe('check NewTagPopup component', () => {
     expect(wrapper.state().name).toEqual('')
   })
 
-  test('should show an alert', () => {
+  test('should show an alert when the user entered an existing tag', () => {
     expect(wrapper.state().isNameExist).toBeFalsy()
     expect(wrapper.exists({ testID: 'tag-alert', })).toBeFalsy()
 

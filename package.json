@@ -85,10 +85,12 @@
       "node"
     ],
     "testPathIgnorePatterns": [
-      "\\\\node_modules\\\\"
+      "\\\\node_modules\\\\",
+      "/mock/"
     ],
     "coveragePathIgnorePatterns": [
       "/node_modules/",
+      "/mock/",
       "/jest"
     ]
   },

@@ -1,16 +1,7 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { EditWordScreen, } from '../../screens/EditWordScreen/EditWordScreen'
-
-const wordData = {
-  id: 1,
-  word: 'home',
-  transcription: 'hoʊm',
-  translation: ['дом', 'жилище'],
-  url: 'http://lokhousing.com/wp-content/uploads/2019/03/Home-1-.jpeg',
-  examples: ['Daddy went home to sleep'],
-  tagName: 'myTagList',
-}
+import { WORDS_MOCK_LIST, MOCK_TAG_LIST, COMPONENT_ID, } from '../mock'
 
 describe('check EditWordScreen', () => {
   const translationType = 'translationWord'
@@ -21,10 +12,10 @@ describe('check EditWordScreen', () => {
   const changeScreen = jest.fn()
   const editWord = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     id: 1,
-    tagsList: ['112', 'firstTag', 'fruits', 'myTagList'],
-    wordData,
+    tagsList: MOCK_TAG_LIST,
+    wordData: WORDS_MOCK_LIST[0],
     editWord,
     changeScreen,
   }
@@ -39,7 +30,7 @@ describe('check EditWordScreen', () => {
   test('should initialize the state correctly', () => {
     const { submit, ...stateData } = wrapper.state()
 
-    expect(stateData).toEqual(wordData)
+    expect(stateData).toEqual(props.wordData)
   })
 
   test('should generate translation and example items', () => {
@@ -48,15 +39,18 @@ describe('check EditWordScreen', () => {
 
     expect(generateSpy).toHaveBeenCalledTimes(2)
     expect(generateSpy).toHaveBeenCalledWith(
-      wordData.translation,
+      props.wordData.translation,
       translationType
     )
-    expect(generateSpy).toHaveBeenLastCalledWith(wordData.examples, exampleType)
+    expect(generateSpy).toHaveBeenLastCalledWith(
+      props.wordData.examples,
+      exampleType
+    )
     expect(wrapper.find({ testID: 'example-item', }).length).toEqual(
-      wordData.examples.length
+      props.wordData.examples.length
     )
     expect(wrapper.find({ testID: 'translation-item', }).length).toEqual(
-      wordData.translation.length
+      props.wordData.translation.length
     )
   })
 
@@ -70,8 +64,11 @@ describe('check EditWordScreen', () => {
       .find('TouchableButton')
       .simulate('press')
 
-    expect(deleteSpy).toHaveBeenCalledWith(wordData.examples[0], exampleType)
-    expect(wrapper.state().examples).not.toContain(wordData.examples[0])
+    expect(deleteSpy).toHaveBeenCalledWith(
+      props.wordData.examples[0],
+      exampleType
+    )
+    expect(wrapper.state().examples).not.toContain(props.wordData.examples[0])
 
     wrapper
       .find({ testID: 'translation-item', })
@@ -80,10 +77,12 @@ describe('check EditWordScreen', () => {
       .simulate('press')
 
     expect(deleteSpy).toHaveBeenLastCalledWith(
-      wordData.translation[0],
+      props.wordData.translation[0],
       translationType
     )
-    expect(wrapper.state().translation).not.toContain(wordData.examples[0])
+    expect(wrapper.state().translation).not.toContain(
+      props.wordData.examples[0]
+    )
   })
 
   test('should add translation or example', () => {
@@ -107,7 +106,10 @@ describe('check EditWordScreen', () => {
     const generateTags = jest.spyOn(instance, 'generateTags')
     instance.forceUpdate()
 
-    expect(generateTags).toHaveBeenCalledWith(wordData.tagName, props.tagsList)
+    expect(generateTags).toHaveBeenCalledWith(
+      props.wordData.tagName,
+      props.tagsList
+    )
     expect(wrapper.find({ testID: 'tag-item', }).length).toEqual(
       props.tagsList.length
     )

@@ -58,12 +58,12 @@ describe('check SearchInput component', () => {
     expect(onChange).toHaveBeenCalledWith('hello')
   })
 
-  test('should pass the placeholder from props', () => {
+  test('should display a correct placeholder', () => {
     const input = wrapper.find('TextInput')
     expect(input.props().placeholder).toEqual(props.placeholder)
   })
 
-  test('should show button and clear queryString in the state', () => {
+  test('should clear the input on pressing the clear button', () => {
     const spy = jest.spyOn(instance, 'clearInput')
     instance.forceUpdate()
 
@@ -75,7 +75,7 @@ describe('check SearchInput component', () => {
     expect(wrapper.state('queryString')).toEqual('')
   })
 
-  test('should clear queryString in the state after componentDidUpdate', () => {
+  test('clears search string when correctly props have been received', () => {
     instance.clearInput = jest.fn()
     instance.forceUpdate()
 

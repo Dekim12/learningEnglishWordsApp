@@ -18,18 +18,20 @@ describe('check PermissionPopup component', () => {
     mockResolve.mockClear()
   })
 
-  test('should render correct permission alert under different props', () => {
-    let alert = wrapper.find({ testID: 'permission-alert', })
+  test('should display PermissionPopup for a tag', () => {
+    const alert = wrapper.find({ testID: 'permission-alert', })
 
     expect(alert.render().text()).toBe(PERMISSION_QUESTIONS.tag)
+  })
 
+  test('should display PermissionPopup for a word', () => {
     wrapper.setProps({ isWord: true, })
-    alert = wrapper.find({ testID: 'permission-alert', })
+    const alert = wrapper.find({ testID: 'permission-alert', })
 
     expect(alert.render().text()).toBe(PERMISSION_QUESTIONS.word)
   })
 
-  test('should call necessary functions after a confirm of the permission', () => {
+  test('should invoke action or close popup depend on choice', () => {
     wrapper
       .find('TouchableButton')
       .at(0)
@@ -39,7 +41,7 @@ describe('check PermissionPopup component', () => {
     expect(mockRefresh).toHaveBeenCalledTimes(1)
   })
 
-  test('should call necessary functions after a reject of the permission', () => {
+  test('should call a callback if permission is confirmed', () => {
     wrapper
       .find('TouchableButton')
       .at(1)

@@ -36,7 +36,7 @@ describe('wordsReducer', () => {
     expect(wordsReducer(undefined, action)).toStrictEqual(expectedState)
   })
 
-  test('should updates single item in wordList after receiving the EDIT_WORD action', () => {
+  test('should update single item in wordList after receiving the EDIT_WORD action', () => {
     const newWordData = { id: 1, word: 'hello', translate: ['привет'], }
     const action = {
       type: EDIT_WORD,

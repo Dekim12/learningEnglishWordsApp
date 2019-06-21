@@ -1,46 +1,16 @@
 import React from 'react'
 import { shallow, } from 'enzyme'
 import { TagDetailsScreen, } from '../../screens/TagDetailsScreen/TagDetailsScreen'
-
-const tagsWordsList = [
-  {
-    id: 1,
-    word: 'home',
-    transcription: 'hoʊm',
-    translation: ['дом', 'жилище'],
-    url: 'http://lokhousing.com/wp-content/uploads/2019/03/Home-1-.jpeg',
-    examples: ['Daddy went home to sleep'],
-    tagName: 'myTagList',
-  },
-  {
-    id: 2,
-    word: 'dog',
-    transcription: 'dɒɡ',
-    translation: ['собака', 'пес'],
-    url: 'https://www.guidedogs.org/wp-content/uploads/2018/01/Mobile.jpg',
-    examples: ['He dogged her every move.'],
-    tagName: 'myTagList',
-  },
-  {
-    id: 3,
-    word: 'fish',
-    transcription: 'fɪʃ',
-    translation: ['рыба'],
-    url:
-      'https://www.fishkeepingworld.com/wp-content/uploads/2018/06/Clownfish.png',
-    examples: ['Did you catch any fish?'],
-    tagName: 'myTagList',
-  }
-]
+import { MOCK_WORDS_FOR_TAG, COMPONENT_ID, } from '../mock'
 
 describe('check TagDetailsScreen', () => {
   const changeScreen = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     tagName: 'myTagList',
     changeScreen,
     deleteWord: jest.fn(),
-    tagsWordsList,
+    tagsWordsList: MOCK_WORDS_FOR_TAG,
   }
 
   let wrapper
@@ -57,8 +27,10 @@ describe('check TagDetailsScreen', () => {
 
     wrapper.find('FlatList').render()
 
-    expect(instance.renderWords).toHaveBeenCalledTimes(3)
-    expect(keyExtractor).toHaveBeenCalledTimes(3)
+    expect(instance.renderWords).toHaveBeenCalledTimes(
+      props.tagsWordsList.length
+    )
+    expect(keyExtractor).toHaveBeenCalledTimes(props.tagsWordsList.length)
   })
 
   test('should pass to the new word screen', () => {

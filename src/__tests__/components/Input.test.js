@@ -25,21 +25,17 @@ describe('check Input component', () => {
   })
 
   test('should handle user input', () => {
-    instance.handleChangeText = jest.fn()
+    const handleSpy = jest.spyOn(instance, 'handleChangeText')
     instance.forceUpdate()
 
     wrapper.simulate('ChangeText', 'hello')
 
-    expect(instance.handleChangeText).toHaveBeenCalledTimes(1)
-    expect(instance.handleChangeText).toHaveBeenCalledWith('hello')
+    expect(handleSpy).toHaveBeenCalledTimes(1)
+    expect(handleSpy).toHaveBeenCalledWith('hello')
+    expect(wrapper.state().text).toEqual('hello')
   })
 
-  test('should handle user text and enter it to state', () => {
-    wrapper.simulate('ChangeText', 'hello')
-    expect(wrapper.state('text')).toEqual('hello')
-  })
-
-  test('should call handleSubmitEditing and call onSubmit depending on conditions', () => {
+  test('should handle submit and clear the input', () => {
     const spy = jest.spyOn(instance, 'handleSubmitEditing')
     instance.forceUpdate()
     wrapper.simulate('SubmitEditing')
@@ -57,7 +53,7 @@ describe('check Input component', () => {
     expect(wrapper.state('text')).toEqual('')
   })
 
-  test('should call handleSubmitEditing after componentDidUpdate', () => {
+  test('should call handleSubmitEditing when correctly props have been received', () => {
     const spy = jest.spyOn(instance, 'handleSubmitEditing')
     instance.forceUpdate()
 

@@ -21,14 +21,15 @@ describe('wordsActions', () => {
   })
 
   test('should dispatch the deleteWord action', () => {
+    const wordId = 12
     const expectedAction = [
       {
         type: actionTypes.DELETE_WORD,
-        payload: 12,
+        payload: wordId,
       }
     ]
 
-    store.dispatch(wordsActions.deleteWord(12))
+    store.dispatch(wordsActions.deleteWord(wordId))
     expect(store.getActions()).toStrictEqual(expectedAction)
   })
 

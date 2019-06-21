@@ -44,7 +44,7 @@ describe('check TagsList component', () => {
     expect(wrapper.state().clearInput).toBeFalsy()
   })
 
-  test('should filter tagList correctly', () => {
+  test('returns items filtered by a search string', () => {
     const filterFunction = jest.spyOn(instance, 'filterTagList')
     instance.forceUpdate()
 

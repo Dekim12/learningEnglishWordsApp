@@ -2,11 +2,12 @@ import React from 'react'
 import { shallow, } from 'enzyme'
 import { TasksScreen, } from '../../screens'
 import { TASK_NAMES_LIST, } from '../../constants'
+import { COMPONENT_ID, } from '../mock'
 
 describe('check TasksScreen', () => {
   const changeScreen = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     changeScreen,
   }
 

@@ -2,23 +2,17 @@ import React from 'react'
 import { shallow, } from 'enzyme'
 import { SettingsScreen, } from '../../screens/SettingsScreen/SettingsScreen'
 import { fakeData, } from '../../constants'
+import { MOCK_TAG_LIST, COMPONENT_ID, } from '../mock'
 
 describe('check SettingsScreen', () => {
   const changeScreen = jest.fn()
   const setSettings = jest.fn()
   const props = {
-    componentId: 1233,
+    componentId: COMPONENT_ID,
     amountOfWords: 5,
     allTags: false,
     isRandom: false,
-    tagsList: [
-      '112',
-      'firstTag',
-      'fruits',
-      'myTagList',
-      'peoples',
-      'secondTag'
-    ],
+    tagsList: MOCK_TAG_LIST,
     tagsForTask: ['112', 'myTagList'],
     wordsList: fakeData,
     setSettings,
@@ -51,13 +45,13 @@ describe('check SettingsScreen', () => {
 
     expect(wrapper.exists({ testID: 'words-amount-alert', })).toBeFalsy()
     expect(handleText).toHaveBeenCalledWith(correctInput)
-    expect(instance.newWordsAmount).toEqual(8)
+    expect(instance.newWordsAmount).toEqual(Number(correctInput))
 
     wrapper.find('TextInput').simulate('ChangeText', incorrectInput)
 
     expect(wrapper.exists({ testID: 'words-amount-alert', })).toBeTruthy()
     expect(handleText).toHaveBeenCalledWith(incorrectInput)
-    expect(instance.newWordsAmount).toEqual(8)
+    expect(instance.newWordsAmount).toEqual(Number(correctInput))
     expect(wrapper.state('isAmountCorrect')).toBeFalsy()
 
     wrapper.find('TextInput').simulate('ChangeText', correctInput)
@@ -137,7 +131,9 @@ describe('check SettingsScreen', () => {
   })
 
   test('should show alert wen total amount of words will be 0', () => {
-    expect(instance.defineTotalAmountOfWords()).toBe(7)
+    const amountOfWordsForTask = 7
+
+    expect(instance.defineTotalAmountOfWords()).toBe(amountOfWordsForTask)
     expect(wrapper.exists({ testID: 'tags-alert', })).toBeFalsy()
 
     wrapper.setState({ tagsForTask: [], })
