@@ -1,7 +1,18 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:jest/recommended"],
-  "plugins": ["react", "react-native", "jsx-a11y", "import", "jest"],
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-native",
+    "jsx-a11y",
+    "import",
+    "jest",
+    "flowtype"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
