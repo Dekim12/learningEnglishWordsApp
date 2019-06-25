@@ -21,7 +21,7 @@ describe('tasksActions', () => {
   })
 
   test('should dispatch the setSettings action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: SET_SETTINGS,
         payload: settings,
@@ -29,11 +29,11 @@ describe('tasksActions', () => {
     ]
 
     store.dispatch(tasksActions.setSettings(settings))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the setAnswers action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: SET_ANSWERS,
         payload: { allAnswers, rightAnswers, },
@@ -41,6 +41,6 @@ describe('tasksActions', () => {
     ]
 
     store.dispatch(tasksActions.setAnswers(allAnswers, rightAnswers))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 })

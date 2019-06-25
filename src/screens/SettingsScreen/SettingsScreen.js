@@ -1,4 +1,6 @@
-import React, { Component, } from 'react'
+// @flow
+
+import * as React from 'react'
 import {
   Text,
   View,
@@ -10,10 +12,33 @@ import uuidv4 from 'uuid/v4'
 import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import { setSettings, } from '../../redux/actions'
+import type { WordObj, } from '../../flowAliases'
 import styles from './style'
 
-class SettingsScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  allTags: boolean,
+  amountOfWords: number,
+  isRandom: boolean,
+  setSettings: typeof setSettings,
+  tagsForTask: Array<string> | empty,
+  tagsList: Array<string> | [],
+  wordsList: Array<WordObj> | []
+}
+
+type State = {
+  tagsForTask: Array<string> | [],
+  isRandom: boolean,
+  useAllTags: boolean,
+  isAmountCorrect: boolean
+}
+
+class SettingsScreen extends React.Component<Props, State> {
+  newWordsAmount: number
+
+  constructor(props: Props) {
     super(props)
     const { tagsForTask, amountOfWords, isRandom, allTags, } = this.props
 
@@ -27,7 +52,7 @@ class SettingsScreen extends Component {
     this.newWordsAmount = amountOfWords
   }
 
-  handleChangeText = (text) => {
+  handleChangeText = (text: string): void => {
     const { isAmountCorrect, } = this.state
 
     if (isNumber(text) && Number(text) !== 0) {
@@ -41,41 +66,46 @@ class SettingsScreen extends Component {
     }
   }
 
-  toggleTag = (tagName) => {
+  toggleTag = (tagName: string): void => {
     const { tagsForTask, } = this.state
     const { tagsList, } = this.props
 
     if (tagsForTask.indexOf(tagName) !== -1) {
       this.setState({
-        tagsForTask: tagsForTask.filter(tag => tag !== tagName),
+        tagsForTask: tagsForTask.filter((tag: string) => tag !== tagName),
         useAllTags: false,
       })
     } else {
-      const newList = tagsForTask.concat(tagName)
-      const isAllTags = tagsList.length === newList.length
+      const newList: Array<string> = tagsForTask.concat(tagName)
+      const isAllTags: boolean = tagsList.length === newList.length
 
       this.setState({ tagsForTask: newList, useAllTags: isAllTags, })
     }
   }
 
-  handlerAllTaskButton = () => {
+  handlerAllTaskButton = (): void => {
     const { useAllTags, } = this.state
     const { tagsList, } = this.props
 
     if (useAllTags) {
-      this.setState({ useAllTags: false, tagsForTask: [], })
+      const newState: { useAllTags: boolean, tagsForTask: [] } = {
+        useAllTags: false,
+        tagsForTask: [],
+      }
+
+      this.setState(newState)
     } else {
       this.setState({ useAllTags: true, tagsForTask: tagsList, })
     }
   }
 
-  generateTagsItems = (tagsList) => {
+  generateTagsItems = (tagsList: Array<string> | []): Array<React.Node> => {
     const { tagsForTask, } = this.state
 
-    return tagsList.map((tag) => {
-      const isTagSelected = tagsForTask.indexOf(tag) !== -1
+    return tagsList.map((tag: string) => {
+      const isTagSelected: boolean = tagsForTask.indexOf(tag) !== -1
 
-      const addTag = () => {
+      const addTag = (): void => {
         this.toggleTag(tag)
       }
 
@@ -96,7 +126,7 @@ class SettingsScreen extends Component {
     })
   }
 
-  defineTotalAmountOfWords = () => {
+  defineTotalAmountOfWords = (): number => {
     const { wordsList, } = this.props
     const { tagsForTask, useAllTags, } = this.state
 
@@ -104,7 +134,7 @@ class SettingsScreen extends Component {
       return wordsList.length
     }
 
-    return wordsList.reduce((sum, word) => {
+    return wordsList.reduce((sum: number, word: WordObj) => {
       if (tagsForTask.indexOf(word.tagName) !== -1) {
         return sum + 1
       }
@@ -112,16 +142,16 @@ class SettingsScreen extends Component {
     }, 0)
   }
 
-  handleRandom = () => {
+  handleRandom = (): void => {
     this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
   }
 
-  confirmSettings = () => {
-    const { setSettings, changeScreen, componentId, } = this.props
+  confirmSettings = (): void => {
+    const { changeScreen, componentId, } = this.props
     const { tagsForTask, isRandom, useAllTags, isAmountCorrect, } = this.state
 
     if (isAmountCorrect && this.defineTotalAmountOfWords()) {
-      setSettings({
+      this.props.setSettings({
         tagsForTask,
         allTags: useAllTags,
         random: isRandom,
@@ -136,7 +166,7 @@ class SettingsScreen extends Component {
     const { tagsList, amountOfWords, } = this.props
     const { useAllTags, isRandom, isAmountCorrect, } = this.state
 
-    const totalAmountOfWords = this.defineTotalAmountOfWords()
+    const totalAmountOfWords: number = this.defineTotalAmountOfWords()
 
     return (
       <KeyboardAvoidingView behavior='padding'>

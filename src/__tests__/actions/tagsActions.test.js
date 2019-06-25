@@ -15,7 +15,7 @@ describe('tagsActions', () => {
   })
 
   test('should dispatch the addTag action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: ADD_TAG,
         payload: tagName,
@@ -23,11 +23,11 @@ describe('tagsActions', () => {
     ]
 
     store.dispatch(tagsActions.addTag(tagName))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the editTag action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: EDIT_TAG,
         payload: { prevName, newName, },
@@ -35,11 +35,11 @@ describe('tagsActions', () => {
     ]
 
     store.dispatch(tagsActions.editTag(prevName, newName))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the deleteTag action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: DELETE_TAG,
         payload: tagName,
@@ -47,6 +47,6 @@ describe('tagsActions', () => {
     ]
 
     store.dispatch(tagsActions.deleteTag(tagName))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 })

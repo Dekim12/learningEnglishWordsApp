@@ -7,20 +7,7 @@ import {
   COUNT_WRONG_RANDOM_ANSWERS,
   ROUNDING_DEGREE,
 } from '../constants'
-
-type EmptyArr = []
-
-type WordObj =
-  | {
-      id: number,
-      word: string,
-      transcription: string,
-      translation: Array<string>,
-      url: ?string,
-      examples: Array<string> | EmptyArr,
-      tagName: string
-    }
-  | EmptyArr
+import type { WordObj, } from '../flowAliases'
 
 export const screenSize: {
   width: number,
@@ -40,7 +27,7 @@ export const getRandomColor = (): string => `rgb(${getRandomNumber(
   COLOR_VALUES.max
 )})`
 
-export const createLine = (arr: Array<string> | EmptyArr): string => {
+export const createLine = (arr: Array<string>): string => {
   if (!Array.isArray(arr) || !arr.length) {
     return ''
   }

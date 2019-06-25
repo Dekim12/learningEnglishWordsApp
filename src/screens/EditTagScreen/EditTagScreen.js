@@ -67,7 +67,7 @@ class EditTagScreen extends Component {
     const { editCurrentTag, tagName, changeScreen, componentId, } = this.props
     const { currentName, deletedWordsList, } = this.state
 
-    if (currentName || deletedWordsList.length) {
+    if ((currentName !== tagName && currentName) || deletedWordsList.length) {
       editCurrentTag(tagName, currentName, deletedWordsList)
     }
 
@@ -135,11 +135,15 @@ class EditTagScreen extends Component {
           <TouchableButton
             style={[styles.btn, styles.deleteBtn]}
             onPress={this.handlePermission}
-            testID = 'delete-tag-btn'
+            testID='delete-tag-btn'
           >
             <Text style={styles.btnText}>DELETE</Text>
           </TouchableButton>
-          <TouchableButton style={styles.btn} onPress={this.edit} testID='edit-tag-btn'>
+          <TouchableButton
+            style={styles.btn}
+            onPress={this.edit}
+            testID='edit-tag-btn'
+          >
             <Text style={styles.btnText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>

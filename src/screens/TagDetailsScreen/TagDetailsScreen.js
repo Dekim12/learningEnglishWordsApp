@@ -1,13 +1,29 @@
-import React, { Component, } from 'react'
+// @flow
+
+import * as React from 'react'
 import { Text, FlatList, ScrollView, View, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, PermissionPopup, } from '../../components'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { createLine, } from '../../utils'
+import { deleteWord, } from '../../redux/actions'
+import type { WordObj, } from '../../flowAliases'
 import styles from './style'
 
-class TagDetailsScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  deleteWord: typeof deleteWord,
+  tagsWordsList: Array<WordObj> | []
+}
+
+type State = {
+  permissionVisible: boolean,
+  permissionResolve: ?() => void
+}
+
+class TagDetailsScreen extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -16,10 +32,10 @@ class TagDetailsScreen extends Component {
     }
   }
 
-  renderWords = ({ item, }) => {
-    const { deleteWord, changeScreen, componentId, } = this.props
+  renderWords = ({ item, }: { item: WordObj }): React.Node => {
+    const { changeScreen, componentId, } = this.props
 
-    const deleteCurrentWord = () => this.setPermissionFunctions(() => deleteWord(item.id))
+    const deleteCurrentWord = (): void => this.setPermissionFunctions(() => this.props.deleteWord(item.id))
 
     const toWordScreen = () => changeScreen(
       MOVEMENT_FUNC_NAMES.wordDescription,
@@ -42,21 +58,21 @@ class TagDetailsScreen extends Component {
     )
   }
 
-  toCreateWordScreen = () => {
+  toCreateWordScreen = (): void => {
     const { changeScreen, componentId, } = this.props
     changeScreen(MOVEMENT_FUNC_NAMES.newWord, componentId)
   }
 
-  keyExtractor = () => uuidv4()
+  keyExtractor = (): string => uuidv4()
 
-  setPermissionFunctions = (resolve) => {
+  setPermissionFunctions = (resolve: () => void): void => {
     this.setState({
       permissionVisible: true,
       permissionResolve: resolve,
     })
   }
 
-  refreshPermission = () => {
+  refreshPermission = (): void => {
     this.setState({
       permissionVisible: false,
       permissionResolve: null,

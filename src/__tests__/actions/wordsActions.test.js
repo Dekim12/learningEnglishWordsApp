@@ -22,7 +22,7 @@ describe('wordsActions', () => {
 
   test('should dispatch the deleteWord action', () => {
     const wordId = 12
-    const expectedAction = [
+    const expectedActions = [
       {
         type: actionTypes.DELETE_WORD,
         payload: wordId,
@@ -30,11 +30,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.deleteWord(wordId))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the editWord action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: actionTypes.EDIT_WORD,
         payload: wordData,
@@ -42,11 +42,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.editWord(wordData))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the editWordsList action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: actionTypes.EDIT_WORDS_LIST,
         payload: { prevName, newName, deletedWordList: wordList, },
@@ -54,11 +54,11 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.editWordsList(prevName, newName, wordList))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 
   test('should dispatch the deleteWordList action', () => {
-    const expectedAction = [
+    const expectedActions = [
       {
         type: actionTypes.DELETE_WORDS_LIST,
         payload: tagName,
@@ -66,6 +66,6 @@ describe('wordsActions', () => {
     ]
 
     store.dispatch(wordsActions.deleteWordList(tagName))
-    expect(store.getActions()).toStrictEqual(expectedAction)
+    expect(store.getActions()).toStrictEqual(expectedActions)
   })
 })

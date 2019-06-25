@@ -1,12 +1,36 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import { EDIT_TYPES, MOVEMENT_FUNC_NAMES, } from '../../constants'
+import { editWord, } from '../../redux/actions'
+import type { WordObj, } from '../../flowAliases'
 import styles from './style'
 
-class EditWordScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  editWord: typeof editWord,
+  tagsList: Array<string> | [],
+  wordData: Array<WordObj> | []
+}
+
+type State = {
+  wordData: WordObj,
+  submit: boolean
+  // id: number,
+  // word: string,
+  // transcription: string,
+  // translation: Array<string> | [],
+  // url: ?string,
+  // examples: StringsList,
+  // tagName: string
+}
+
+class EditWordScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     const { wordData, } = this.props

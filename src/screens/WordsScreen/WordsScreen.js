@@ -1,23 +1,35 @@
-import React, { Component, } from 'react'
+// @flow
+
+import * as React from 'react'
 import { View, StatusBar, } from 'react-native'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import styles from './style'
 
-class WordsScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...Array<mixed>) => void
+}
+
+type State = {
+  permissionVisible: boolean,
+  permissionResolve: ?() => void
+}
+
+class WordsScreen extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = { permissionVisible: false, permissionResolve: null, }
   }
 
-  toDescription = (id, word) => {
+  toDescription = (id: number, word: string): void => {
     const { componentId, changeScreen, } = this.props
     changeScreen(MOVEMENT_FUNC_NAMES.wordDescription, componentId, id, word)
   }
 
-  toNewWord = (word) => {
+  toNewWord = (word: string): void => {
     const { componentId, changeScreen, } = this.props
     changeScreen(
       MOVEMENT_FUNC_NAMES.newWord,
@@ -26,14 +38,14 @@ class WordsScreen extends Component {
     )
   }
 
-  setPermissionFunctions = (resolve) => {
+  setPermissionFunctions = (resolve: () => void): void => {
     this.setState({
       permissionVisible: true,
       permissionResolve: resolve,
     })
   }
 
-  refreshPermission = () => {
+  refreshPermission = (): void => {
     this.setState({
       permissionVisible: false,
       permissionResolve: null,

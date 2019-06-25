@@ -1,21 +1,29 @@
-import React, { useCallback, } from 'react'
+// @flow
+
+import * as React from 'react'
 import { Text, View, ScrollView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, } from '../../components'
 import { TASK_NAMES_LIST, MOVEMENT_FUNC_NAMES, } from '../../constants'
+import type { VoidFunction, } from '../../flowAliases'
 import styles from './style'
 
-const TasksScreen = ({ componentId, changeScreen, }) => {
-  const openSettings = useCallback(() => {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...Array<mixed>) => void
+}
+
+const TasksScreen = ({ componentId, changeScreen, }: Props) => {
+  const openSettings: VoidFunction = React.useCallback(() => {
     changeScreen(MOVEMENT_FUNC_NAMES.settings, componentId)
   }, [componentId])
 
-  const openStatistic = useCallback(() => {
+  const openStatistic: VoidFunction = React.useCallback(() => {
     changeScreen(MOVEMENT_FUNC_NAMES.statistic, componentId)
   }, [componentId])
 
-  const generateTasks = taskList => taskList.map((task) => {
-    const toCurrentTask = useCallback(() => {
+  const generateTasks = (taskList: Array<string>): Array<React.Node> => taskList.map((task: string) => {
+    const toCurrentTask: VoidFunction = React.useCallback(() => {
       changeScreen(MOVEMENT_FUNC_NAMES.task, componentId, task)
     }, [componentId, task])
 

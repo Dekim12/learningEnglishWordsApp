@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { Text, View, } from 'react-native'
 import { definePerformanceCoefficient, } from '../../utils'
@@ -8,13 +10,20 @@ import {
 } from '../../constants'
 import styles from './style'
 
+export type Props = {
+  tagsCount: number,
+  wordsCount: number,
+  allAnswers: number,
+  rightAnswers: number
+}
+
 const StatisticsScreen = ({
-  tagsList,
-  wordsList,
+  tagsCount,
+  wordsCount,
   allAnswers,
   rightAnswers,
-}) => {
-  const coefficient =
+}: Props) => {
+  const coefficient: number =
     allAnswers === rightAnswers
       ? MAX_COEFFICIENT
       : definePerformanceCoefficient(allAnswers, rightAnswers)
@@ -23,11 +32,11 @@ const StatisticsScreen = ({
     <View style={styles.container}>
       <View style={styles.statisticElem}>
         <Text style={styles.definition}>AMOUNT OF WORDS - </Text>
-        <Text style={styles.valueStyle}>{wordsList.length}</Text>
+        <Text style={styles.valueStyle}>{wordsCount}</Text>
       </View>
       <View style={[styles.statisticElem, styles.splitStyle]}>
         <Text style={styles.definition}>AMOUNT OF TAGS - </Text>
-        <Text style={styles.valueStyle}>{tagsList.length}</Text>
+        <Text style={styles.valueStyle}>{tagsCount}</Text>
       </View>
 
       <Text style={styles.definition}>CORRECT ANSWER RATE</Text>

@@ -85,7 +85,7 @@ describe('check EditTagScreen', () => {
     wrapper.find({ testID: 'edit-tag-btn', }).simulate('press')
 
     expect(editSpy).toHaveBeenCalled()
-    expect(editCurrentTag).toHaveBeenCalled()
+    expect(editCurrentTag).not.toHaveBeenCalled()
     expect(changeScreen).toHaveBeenCalledWith('goBack', props.componentId)
     editCurrentTag.mockClear()
 
