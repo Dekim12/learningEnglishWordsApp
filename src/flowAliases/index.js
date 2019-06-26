@@ -8,7 +8,7 @@ export type WordObj = {
   transcription: string,
   translation: Array<string>,
   url: ?string,
-  examples: StringsList,
+  examples: Array<string>,
   tagName: string
 }
 
@@ -21,7 +21,7 @@ export type SettingsObj = {
 
 export type VoidFunction = () => void
 
-//reducers
+//state
 export type WordState = {
   wordsList: Array<WordObj> | []
 }

@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component, } from 'react'
+import * as React from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
@@ -11,34 +11,44 @@ import styles from './style'
 
 type Props = {
   componentId: string,
-  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
   editWord: typeof editWord,
-  tagsList: Array<string> | [],
-  wordData: Array<WordObj> | []
+  tagsList: Array<string>,
+  wordData: WordObj
 }
 
 type State = {
-  wordData: WordObj,
-  submit: boolean
-  // id: number,
-  // word: string,
-  // transcription: string,
-  // translation: Array<string> | [],
-  // url: ?string,
-  // examples: StringsList,
-  // tagName: string
+  submit: boolean,
+  word: string,
+  transcription: string,
+  translation: Array<string>,
+  url: ?string,
+  examples: Array<string>,
+  tagName: string,
+  id: number
 }
 
-class EditWordScreen extends Component<Props, State> {
+class EditWordScreen extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
-    const { wordData, } = this.props
+    const {
+      wordData: { id, word, transcription, translation, url, examples, tagName, },
+    } = this.props
 
-    this.state = { ...wordData, submit: false, }
+    this.state = {
+      submit: false,
+      word,
+      transcription,
+      translation,
+      examples,
+      tagName,
+      url,
+      id,
+    }
   }
 
-  deleteWordOrExample = (value, type) => {
+  deleteWordOrExample = (value: string, type: string): void => {
     if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         translation: prevState.translation.filter(word => word !== value),
@@ -50,7 +60,7 @@ class EditWordScreen extends Component<Props, State> {
     }
   }
 
-  addTagOrUrl = (value, type) => {
+  addTagOrUrl = (value: string, type: string): void => {
     if (type === EDIT_TYPES.url) {
       this.setState({ url: value, })
     } else if (type === EDIT_TYPES.tag) {
@@ -60,7 +70,7 @@ class EditWordScreen extends Component<Props, State> {
     }
   }
 
-  addWordOrExample = (value, type) => {
+  addWordOrExample = (value: string, type: string): void => {
     if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         submit: false,
@@ -74,9 +84,12 @@ class EditWordScreen extends Component<Props, State> {
     }
   }
 
-  generateItem = (itemsList, type) => {
-    const currentStyle = {}
-    let testID = 'example-item'
+  generateItem = (
+    itemsList: Array<string>,
+    type: string
+  ): Array<React.Node> => {
+    const currentStyle: { item?: mixed, btn?: mixed } = {}
+    let testID: string = 'example-item'
 
     if (type === EDIT_TYPES.word) {
       currentStyle.item = styles.translationItem
@@ -87,8 +100,8 @@ class EditWordScreen extends Component<Props, State> {
       currentStyle.btn = styles.exampleButton
     }
 
-    return itemsList.map((item) => {
-      const deleteCurrentValue = () => this.deleteWordOrExample(item, type)
+    return itemsList.map((item: string) => {
+      const deleteCurrentValue = (): void => this.deleteWordOrExample(item, type)
 
       return (
         <View style={currentStyle.item} key={uuidv4()} testID={testID}>
@@ -104,11 +117,14 @@ class EditWordScreen extends Component<Props, State> {
     })
   }
 
-  generateTags = (currentTag, tagsList) => {
+  generateTags = (
+    currentTag: string,
+    tagsList: Array<string>
+  ): Array<React.Node> => {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
 
-    return tagsList.map((tag, index) => {
-      const addTag = () => this.addTagOrUrl(tag, EDIT_TYPES.tag)
+    return tagsList.map((tag: string, index: number) => {
+      const addTag = (): void => this.addTagOrUrl(tag, EDIT_TYPES.tag)
 
       return (
         <TouchableButton
@@ -133,12 +149,12 @@ class EditWordScreen extends Component<Props, State> {
     })
   }
 
-  setSubmit = () => this.setState({ submit: true, })
+  setSubmit = (): void => this.setState({ submit: true, })
 
-  edit = () => {
-    const { editWord, changeScreen, componentId, } = this.props
+  edit = (): void => {
+    const { changeScreen, componentId, } = this.props
     const { submit, ...newWordData } = this.state
-    editWord(newWordData)
+    this.props.editWord(newWordData)
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 

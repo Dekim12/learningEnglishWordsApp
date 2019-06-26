@@ -1,17 +1,37 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { FlatList, ScrollView, Text, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TagCard, SearchInput, TouchableButton, } from '../index'
 import styles from './style'
 
-class TagsList extends React.Component {
-  constructor(props) {
+type Props = {
+  toEdit: (tagName: string) => void,
+  toDetails: (tagName: string) => void,
+  addNewTag: (newTagName: string) => void,
+  tagsList: Array<string>
+}
+
+type State = {
+  searchString: string,
+  clearInput: boolean
+}
+
+class TagsList extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = { searchString: '', clearInput: false, }
   }
 
-  renderItems = ({ item, index, }) => {
+  renderItems = ({
+    item,
+    index,
+  }: {
+    item: string,
+    index: number
+  }): React.Node => {
     const { toDetails, toEdit, } = this.props
 
     return (
@@ -24,17 +44,17 @@ class TagsList extends React.Component {
     )
   }
 
-  keyExtractor = () => uuidv4()
+  keyExtractor = (): string => uuidv4()
 
-  filterTagList = (list, searchString) => list.filter(
-    elem => elem.toLowerCase().indexOf(searchString.toLowerCase()) > -1
+  filterTagList = (list: Array<string>, searchString: string): Array<string> => list.filter(
+    (elem: string) => elem.toLowerCase().indexOf(searchString.toLowerCase()) > -1
   )
 
-  updateSearchString = (text) => {
+  updateSearchString = (text: string): void => {
     this.setState({ searchString: text, clearInput: false, })
   }
 
-  addTag = () => {
+  addTag = (): void => {
     const { addNewTag, } = this.props
     const { searchString, } = this.state
 
@@ -46,7 +66,10 @@ class TagsList extends React.Component {
     const { tagsList, } = this.props
     const { searchString, clearInput, } = this.state
 
-    const filteredTags = this.filterTagList(tagsList, searchString)
+    const filteredTags: Array<string> = this.filterTagList(
+      tagsList,
+      searchString
+    )
 
     return (
       <ScrollView>

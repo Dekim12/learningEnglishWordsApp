@@ -1,12 +1,27 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { View, } from 'react-native'
 import { getRandomAnswers, } from '../../../utils'
 import { Connector, } from './Connector'
 import { ResultPopup, } from './ResultPopup'
+import type { WordObj, } from '../../../flowAliases'
 import styles from './style'
 
-class FindTranslation extends Component {
-  constructor(props) {
+type Props = {
+  allWords: Array<WordObj>,
+  wordsForTask: Array<WordObj>,
+  goToTasks: (allAnswers: number, rightAnswers: number) => void
+}
+
+type State = {
+  currentWord: number,
+  answersResult: Array<boolean>,
+  hasTaskDone: boolean
+}
+
+class FindTranslation extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -16,7 +31,7 @@ class FindTranslation extends Component {
     }
   }
 
-  toNextWord = (isCorrectResult) => {
+  toNextWord = (isCorrectResult: boolean): void => {
     const { wordsForTask, } = this.props
     const { currentWord, } = this.state
 
@@ -37,7 +52,7 @@ class FindTranslation extends Component {
     const { allWords, wordsForTask, goToTasks, } = this.props
     const { currentWord, answersResult, hasTaskDone, } = this.state
 
-    const possibleAnswers = getRandomAnswers(
+    const possibleAnswers: Array<string> = getRandomAnswers(
       wordsForTask[currentWord].translation,
       allWords
     )

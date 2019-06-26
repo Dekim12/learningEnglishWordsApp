@@ -53,7 +53,7 @@ describe('check Input component', () => {
     expect(wrapper.state('text')).toEqual('')
   })
 
-  test('should call handleSubmitEditing when correctly props have been received', () => {
+  test('should call handleSubmitEditing when correct props have been received', () => {
     const spy = jest.spyOn(instance, 'handleSubmitEditing')
     instance.forceUpdate()
 

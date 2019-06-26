@@ -19,7 +19,7 @@ import styles from './style'
 
 type Props = {
   componentId: string,
-  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
   deleteWord: typeof deleteWord,
   wordData: WordObj
 }

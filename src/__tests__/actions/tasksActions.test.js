@@ -13,9 +13,6 @@ describe('tasksActions', () => {
     amountOfWords: 3,
   }
 
-  const allAnswers = 12
-  const rightAnswers = 10
-
   beforeEach(() => {
     store.clearActions()
   })
@@ -33,6 +30,9 @@ describe('tasksActions', () => {
   })
 
   test('should dispatch the setAnswers action', () => {
+    const allAnswers = 12
+    const rightAnswers = 10
+
     const expectedActions = [
       {
         type: SET_ANSWERS,

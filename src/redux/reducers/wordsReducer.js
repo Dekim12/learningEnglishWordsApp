@@ -1,3 +1,5 @@
+// @flow
+
 import { sortBy, } from 'lodash'
 import {
   fakeData,
@@ -6,20 +8,27 @@ import {
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
+import type { WordObj, WordAction, } from '../../flowAliases'
 
-const initialState = {
+type State = {
+  +wordsList: Array<WordObj>
+}
+
+const initialState: State = {
   wordsList: sortBy(fakeData, data => data.word),
 }
 
-const wordsReducer = (state = initialState, action) => {
+const wordsReducer = (state: State = initialState, action: WordAction) => {
   switch (action.type) {
     case DELETE_WORD: {
-      const newList = state.wordsList.filter(word => word.id !== action.payload)
+      const newList: Array<WordObj> = state.wordsList.filter(
+        (word: WordObj) => word.id !== action.payload
+      )
 
       return { ...state, wordsList: newList, }
     }
     case EDIT_WORD: {
-      const newList = state.wordsList.map((word) => {
+      const newList: Array<WordObj> = state.wordsList.map((word: WordObj) => {
         if (word.id === action.payload.id) {
           return action.payload
         }
@@ -30,11 +39,11 @@ const wordsReducer = (state = initialState, action) => {
     case EDIT_WORDS_LIST: {
       const { prevName, newName, deletedWordList, } = action.payload
 
-      const filteredList = state.wordsList.filter(
-        word => deletedWordList.indexOf(word.id) === -1
+      const filteredList: Array<WordObj> = state.wordsList.filter(
+        (word: WordObj) => deletedWordList.indexOf(word.id) === -1
       )
 
-      filteredList.forEach((word) => {
+      filteredList.forEach((word: WordObj) => {
         if (word.tagName === prevName) {
           word.tagName = newName
         }
@@ -43,8 +52,8 @@ const wordsReducer = (state = initialState, action) => {
       return { ...state, wordsList: filteredList, }
     }
     case DELETE_WORDS_LIST: {
-      const newList = state.wordsList.filter(
-        word => word.tagName !== action.payload
+      const newList: Array<WordObj> = state.wordsList.filter(
+        (word: WordObj) => word.tagName !== action.payload
       )
 
       return { ...state, wordsList: newList, }

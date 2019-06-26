@@ -1,8 +1,16 @@
-import React, { Component, } from 'react'
+// @flow
+
+import * as React from 'react'
 import { Navigation, } from 'react-native-navigation'
 import * as movementFunctions from '../../navigation/stacks/movementFunctions'
 
-export const NavigationChecker = WrappedComponent => class extends Component {
+type Config = {}
+
+type State = { isActive: boolean }
+
+export const NavigationChecker = (
+  WrappedComponent: React.AbstractComponent<Config>
+): React.AbstractComponent<Config> => class extends React.Component<Config, State> {
   constructor(props) {
     super(props)
     Navigation.events().bindComponent(this)
@@ -12,11 +20,11 @@ export const NavigationChecker = WrappedComponent => class extends Component {
     }
   }
 
-    componentDidAppear = () => {
+    componentDidAppear = (): void => {
       this.setState({ isActive: true, })
     }
 
-    changeScreen = (functionName, ...params) => {
+    changeScreen = (functionName: string, ...params: any): void => {
       const { isActive, } = this.state
 
       if (isActive) {

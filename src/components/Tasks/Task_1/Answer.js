@@ -1,11 +1,24 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { Text, } from 'react-native'
 import { TouchableButton, } from '../../index'
 import { ANSWER_DELAY, } from '../../../constants'
 import styles from './style'
 
-class SelectableAnswer extends Component {
-  constructor(props) {
+type Props = {
+  checkResult: (result: boolean) => void,
+  isRightAnswer: boolean,
+  currentAnswer: string
+}
+
+type State = {
+  btnColor: { backgroundColor?: string },
+  textColor: { color?: string }
+}
+
+class SelectableAnswer extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -14,7 +27,7 @@ class SelectableAnswer extends Component {
     }
   }
 
-  nextWord = (isRight) => {
+  nextWord = (isRight: boolean): Promise<void> => {
     const { checkResult, } = this.props
 
     return new Promise(() => {
@@ -22,7 +35,7 @@ class SelectableAnswer extends Component {
     })
   }
 
-  check = async () => {
+  check = async (): Promise<void> => {
     const { isRightAnswer, } = this.props
 
     this.setState({

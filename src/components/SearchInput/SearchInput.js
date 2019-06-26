@@ -1,10 +1,23 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { TextInput, View, } from 'react-native'
 import { TouchableButton, Icon, } from '../index'
 import styles from './style'
 
-class SearchInput extends Component {
-  constructor(props) {
+type Props = {
+  onChange: (text: string) => void,
+  clearInput: () => void,
+  placeholder: string
+}
+
+type State = {
+  isFocused: boolean,
+  queryString: string
+}
+
+class SearchInput extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -13,11 +26,11 @@ class SearchInput extends Component {
     }
   }
 
-  handleInputFocus = () => this.setState({ isFocused: true, })
+  handleInputFocus = (): void => this.setState({ isFocused: true, })
 
-  handleInputEdit = () => this.setState({ isFocused: false, })
+  handleInputEdit = (): void => this.setState({ isFocused: false, })
 
-  handleSubmitEditing = () => {
+  handleSubmitEditing = (): void => {
     const { onChange, } = this.props
     const { queryString, } = this.state
 
@@ -26,21 +39,21 @@ class SearchInput extends Component {
     }
   }
 
-  handleChangeText = (text) => {
+  handleChangeText = (text: string): void => {
     const { onChange, } = this.props
 
     this.setState({ queryString: text, })
     onChange(text.replace(/^\s+|\s+$/g, ''))
   }
 
-  clearInput = () => {
+  clearInput = (): void => {
     const { onChange, } = this.props
 
     this.setState({ queryString: '', })
     onChange('')
   }
 
-  componentDidUpdate = () => {
+  componentDidUpdate = (): void => {
     const { clearInput, } = this.props
 
     if (clearInput) {

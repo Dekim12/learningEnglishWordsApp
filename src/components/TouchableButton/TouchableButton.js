@@ -1,7 +1,15 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { TouchableOpacity, } from 'react-native'
 
-const TouchableButton = ({ onPress, style, children, }) => (
+type Props = {
+  onPress: () => void,
+  style: mixed,
+  children: Array<React.Node>
+}
+
+const TouchableButton = ({ onPress, style, children, }: Props) => (
   <TouchableOpacity onPress={onPress} style={style} activeOpacity={0.7}>
     {children}
   </TouchableOpacity>

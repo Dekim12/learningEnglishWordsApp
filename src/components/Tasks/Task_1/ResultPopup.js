@@ -1,18 +1,26 @@
+// @flow
+
 import React, { useCallback, } from 'react'
 import { View, StyleSheet, Text, } from 'react-native'
-import { TouchableButton, } from '../../index'
+import { TouchableButton, } from '../..'
+import type { VoidFunction, } from '../../../flowAliases'
 
-const ResultPopup = ({ result, goToTasks, }) => {
-  const rightAnswers = result.reduce((sum, elem) => {
+type Props = {
+  result: Array<boolean>,
+  goToTasks: (allAnswers: number, rightAnswers: number) => void
+}
+
+const ResultPopup = ({ result, goToTasks, }: Props) => {
+  const rightAnswers: number = result.reduce((sum: number, elem: boolean) => {
     if (elem) {
       return sum + 1
     }
     return sum
   }, 0)
 
-  const wrongAnswers = result.length - rightAnswers
+  const wrongAnswers: number = result.length - rightAnswers
 
-  const finishTask = useCallback(() => {
+  const finishTask: VoidFunction = useCallback(() => {
     goToTasks(result.length, rightAnswers)
   }, [result.length, rightAnswers])
 

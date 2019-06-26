@@ -1,12 +1,38 @@
-import React, { Component, } from 'react'
+// @flow
+
+import * as React from 'react'
 import { ScrollView, Text, View, TextInput, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import type { WordObj, } from '../../flowAliases'
 import styles from './style'
 
-class EditTagScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  tagName: string,
+  tagWords: Array<WordObj>,
+  tagsList: Array<string>,
+  deleteCurrentTag: () => void,
+  editCurrentTag: (
+    prevName: string,
+    newName: string,
+    deletedWordList: Array<number>
+  ) => void
+}
+
+type State = {
+  currentName: string,
+  wordsList: Array<WordObj>,
+  deletedWordsList: Array<number>,
+  isTagExist: boolean,
+  changeInputQuery: string,
+  permissionVisible: boolean
+}
+
+class EditTagScreen extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     const { tagName, tagWords, } = this.props
 
@@ -20,10 +46,10 @@ class EditTagScreen extends Component {
     }
   }
 
-  handleChangeText = (text) => {
+  handleChangeText = (text: string): void => {
     const { tagsList, tagName, } = this.props
 
-    const replacedText = text.replace(/^\s+|\s+$/g, '')
+    const replacedText: string = text.replace(/^\s+|\s+$/g, '')
 
     if (tagsList.indexOf(replacedText) >= 0 && replacedText !== tagName) {
       this.setState({ isTagExist: true, changeInputQuery: text, })
@@ -32,7 +58,7 @@ class EditTagScreen extends Component {
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = (): void => {
     const { currentName, isTagExist, changeInputQuery, } = this.state
 
     if (changeInputQuery && changeInputQuery !== currentName && !isTagExist) {
@@ -42,13 +68,13 @@ class EditTagScreen extends Component {
     }
   }
 
-  deleteWord = id => this.setState(prevState => ({
+  deleteWord = (id: number): void => this.setState(prevState => ({
     deletedWordsList: prevState.deletedWordsList.concat(id),
     wordsList: prevState.wordsList.filter(word => word.id !== id),
   }))
 
-  generateWordsList = words => words.map(({ word, id, }) => {
-    const deleteCurrentWord = () => this.deleteWord(id)
+  generateWordsList = (words: Array<WordObj>): Array<React.Node> => words.map(({ word, id, }: { word: string, id: number }) => {
+    const deleteCurrentWord = (): void => this.deleteWord(id)
 
     return (
       <View style={styles.wordItem} key={uuidv4()} testID='tag-word-item'>
@@ -63,7 +89,7 @@ class EditTagScreen extends Component {
     )
   })
 
-  edit = () => {
+  edit = (): void => {
     const { editCurrentTag, tagName, changeScreen, componentId, } = this.props
     const { currentName, deletedWordsList, } = this.state
 
@@ -74,15 +100,15 @@ class EditTagScreen extends Component {
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
-  refreshPermission = () => this.setState({
+  refreshPermission = (): void => this.setState({
     permissionVisible: false,
   })
 
-  handlePermission = () => this.setState({
+  handlePermission = (): void => this.setState({
     permissionVisible: true,
   })
 
-  deleteTag = () => {
+  deleteTag = (): void => {
     const { deleteCurrentTag, changeScreen, componentId, } = this.props
 
     deleteCurrentTag()

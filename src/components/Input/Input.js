@@ -1,8 +1,22 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { TextInput, } from 'react-native'
 
-class Input extends Component {
-  constructor(props) {
+type Props = {
+  onSubmit: (value: string, type: string) => void,
+  type: string,
+  submit: boolean,
+  placeholder: string,
+  style: mixed
+}
+
+type State = {
+  text: string
+}
+
+class Input extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -10,7 +24,7 @@ class Input extends Component {
     }
   }
 
-  handleSubmitEditing = () => {
+  handleSubmitEditing = (): void => {
     const { onSubmit, type, } = this.props
     const { text, } = this.state
 
@@ -20,7 +34,7 @@ class Input extends Component {
     }
   }
 
-  handleChangeText = (text) => {
+  handleChangeText = (text: string): void => {
     this.setState({ text, })
   }
 

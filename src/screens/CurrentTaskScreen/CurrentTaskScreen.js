@@ -1,15 +1,25 @@
+// @flow
+
 import React from 'react'
 import { ScrollView, } from 'react-native'
 import { TASK_LIST, } from '../../constants'
+import type { WordObj, } from '../../flowAliases'
 import styles from './style'
+
+type Props = {
+  wordsForTask: Array<WordObj>,
+  taskName: string,
+  wordsList: Array<WordObj>,
+  goToTasks: (allAnswers: number, rightAnswers: number) => void
+}
 
 const CurrentTaskScreen = ({
   wordsForTask,
   taskName,
   wordsList,
   goToTasks,
-}) => {
-  const Task = TASK_LIST[taskName]
+}: Props) => {
+  const Task: string = TASK_LIST[taskName]
 
   return (
     <ScrollView

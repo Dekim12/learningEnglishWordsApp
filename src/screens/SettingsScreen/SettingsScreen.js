@@ -18,18 +18,18 @@ import styles from './style'
 
 type Props = {
   componentId: string,
-  changeScreen: (functionName: string, ...Array<mixed>) => void,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
   allTags: boolean,
   amountOfWords: number,
   isRandom: boolean,
   setSettings: typeof setSettings,
-  tagsForTask: Array<string> | empty,
-  tagsList: Array<string> | [],
-  wordsList: Array<WordObj> | []
+  tagsForTask: Array<string>,
+  tagsList: Array<string>,
+  wordsList: Array<WordObj>
 }
 
 type State = {
-  tagsForTask: Array<string> | [],
+  tagsForTask: Array<string>,
   isRandom: boolean,
   useAllTags: boolean,
   isAmountCorrect: boolean
@@ -88,18 +88,16 @@ class SettingsScreen extends React.Component<Props, State> {
     const { tagsList, } = this.props
 
     if (useAllTags) {
-      const newState: { useAllTags: boolean, tagsForTask: [] } = {
+      this.setState({
         useAllTags: false,
         tagsForTask: [],
-      }
-
-      this.setState(newState)
+      })
     } else {
       this.setState({ useAllTags: true, tagsForTask: tagsList, })
     }
   }
 
-  generateTagsItems = (tagsList: Array<string> | []): Array<React.Node> => {
+  generateTagsItems = (tagsList: Array<string>): Array<React.Node> => {
     const { tagsForTask, } = this.state
 
     return tagsList.map((tag: string) => {

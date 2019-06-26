@@ -75,7 +75,7 @@ describe('check SearchInput component', () => {
     expect(wrapper.state('queryString')).toEqual('')
   })
 
-  test('clears search string when correctly props have been received', () => {
+  test('clears search string when receiving a needed prop', () => {
     instance.clearInput = jest.fn()
     instance.forceUpdate()
 
