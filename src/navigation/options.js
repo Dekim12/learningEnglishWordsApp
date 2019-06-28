@@ -41,4 +41,7 @@ export const defaultOptions = {
     selectedFontSize: 18,
     fontFamily: 'Norwester',
   },
+  overlay: {
+    interceptTouchOutside: true,
+  },
 }

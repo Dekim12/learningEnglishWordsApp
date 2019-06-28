@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     borderColor: '#ffcc80',
     borderRadius: 7,
   },
-  createBtnText: { color: 'white', fontSize: 30, fontFamily: 'FFF_Tusj', },
+  createBtnText: { color: '#ffffff', fontSize: 30, fontFamily: 'FFF_Tusj', },
   inputStyle: {
     alignSelf: 'stretch',
     paddingHorizontal: 20,
