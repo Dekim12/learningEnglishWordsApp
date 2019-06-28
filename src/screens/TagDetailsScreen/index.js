@@ -2,6 +2,7 @@
 
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { TagDetailsScreen, } from './TagDetailsScreen'
 import { deleteWord, } from '../../redux/actions'
 import type { WordState, RootState, WordObjType, } from '../../flowAliases'
@@ -10,7 +11,7 @@ const mapStateToProps = (state: RootState): WordState => ({
   wordsList: state.wordsDataState.wordsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     deleteWord,
   },

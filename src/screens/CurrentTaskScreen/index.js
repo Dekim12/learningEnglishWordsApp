@@ -2,6 +2,7 @@
 
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { CurrentTaskScreen, } from './CurrentTaskScreen'
 import { setAnswers, } from '../../redux/actions'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
@@ -26,7 +27,7 @@ const mapStateToProps = (state: RootState): CurrentTaskProps => ({
   allTags: state.tasksState.allTags,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     setAnswers,
   },

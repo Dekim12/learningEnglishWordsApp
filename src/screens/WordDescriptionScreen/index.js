@@ -2,6 +2,7 @@
 
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { find, } from 'lodash'
 import { WordDescriptionScreen, } from './WordDescriptionScreen'
 import { deleteWord, } from '../../redux/actions'
@@ -11,7 +12,7 @@ const mapStateToProps = (state: RootState): WordState => ({
   wordsList: state.wordsDataState.wordsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     deleteWord,
   },

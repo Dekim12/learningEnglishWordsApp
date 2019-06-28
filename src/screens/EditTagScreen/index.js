@@ -2,6 +2,7 @@
 
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { EditTagScreen, } from './EditTagScreen'
 import {
   editTag,
@@ -23,7 +24,7 @@ const mapStateToProps = (state: RootState): EditTagProps => ({
   tagsList: state.tagsState.tagsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     editTag,
     editWordsList,

@@ -2,6 +2,7 @@
 
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { SettingsScreen, } from './SettingsScreen'
 import { setSettings, } from '../../redux/actions'
 import type { RootState, WordObjType, } from '../../flowAliases'
@@ -24,7 +25,7 @@ const mapStateToProps = (state: RootState): SettingsContainerProps => ({
   isRandom: state.tasksState.random,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     setSettings,
   },
