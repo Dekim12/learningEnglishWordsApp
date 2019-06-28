@@ -1,1 +1,22 @@
+[ignore]
+.*/android/.*
+.*/coverage/.*
+.*/ios/.*
+.*/src/__tests__/.*
+.*/node_modules/fbjs/.*
+.*/node_modules/react-native/Libraries/Components/View.*
 
+[untyped]
+.*/node_modules/react-native/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+emoji=true
+module.system=haste
+
+[strict]

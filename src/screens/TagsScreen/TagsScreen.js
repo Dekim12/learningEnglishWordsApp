@@ -1,32 +1,51 @@
+// @flow
+
 import React, { Component, } from 'react'
 import { View, } from 'react-native'
 import { TouchableButton, Icon, NewTagPopup, } from '../../components'
 import { TagsListContainer, } from '../../redux/containers'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import { addTag, } from '../../redux/actions'
 import styles from './style'
 
-class TagsScreen extends Component {
-  state = { isNewTag: false, newTagName: '', }
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  addTag: typeof addTag,
+  tagsList: Array<string>
+}
 
-  toDetails = (tagName) => {
+type State = {
+  isNewTag: boolean,
+  newTagName: string
+}
+
+class TagsScreen extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = { isNewTag: false, newTagName: '', }
+  }
+
+  toDetails = (tagName: string): void => {
     const { changeScreen, componentId, } = this.props
     changeScreen(MOVEMENT_FUNC_NAMES.tagDetails, componentId, tagName)
   }
 
-  toEdit = (tagName) => {
+  toEdit = (tagName: string): void => {
     const { changeScreen, componentId, } = this.props
     changeScreen(MOVEMENT_FUNC_NAMES.editTag, componentId, tagName)
   }
 
-  togglePopup = newTagName => this.setState(prevState => ({ isNewTag: !prevState.isNewTag, newTagName, }))
+  togglePopup = (newTagName: string): void => this.setState(prevState => ({ isNewTag: !prevState.isNewTag, newTagName, }))
 
-  openPopup = () => this.setState(prevState => ({
+  openPopup = (): void => this.setState(prevState => ({
     isNewTag: !prevState.isNewTag,
     newTagName: '',
   }))
 
   render() {
-    const { addTag, tagsList, } = this.props
+    const { tagsList, } = this.props
     const { isNewTag, newTagName, } = this.state
 
     return (
@@ -43,7 +62,7 @@ class TagsScreen extends Component {
           <NewTagPopup
             closePopup={this.openPopup}
             name={newTagName}
-            addTag={addTag}
+            addTag={this.props.addTag}
             tagsList={tagsList}
           />
         )}

@@ -20,6 +20,10 @@ export const COUNT_WRONG_RANDOM_ANSWERS = {
   necessary: 3,
 }
 export const ROUNDING_DEGREE = 10
+export const PERCENT_DIVIDER = 1000
+
+export const START_DATE = 4
+export const END_DATE = 15
 
 export const MOVEMENT_FUNC_NAMES = {
   back: 'goBack',
@@ -31,4 +35,15 @@ export const MOVEMENT_FUNC_NAMES = {
   task: 'openTask',
   editTag: 'toEditTag',
   tagDetails: 'toTagDetails',
+}
+
+export const DEVICE_INFO_PROPERTY_NAMES = {
+  version: 'OS version',
+  level: 'API level',
+  battery: 'Battery level',
+  appName: 'App name',
+  appDate: 'App was installed',
+  isCamera: 'Is camera',
+  airplaneMode: 'Is airplane mode',
+  isEmulator: 'Is emulator',
 }

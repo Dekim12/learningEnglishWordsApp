@@ -1,32 +1,48 @@
+// @flow
+
 import React from 'react'
 import { View, Text, TextInput, KeyboardAvoidingView, } from 'react-native'
 import { Icon, TouchableButton, } from '../index'
+import { addTag, } from '../../redux/actions'
 import styles from './style'
 
-class NewTagPopup extends React.Component {
-  constructor(props) {
+type Props = {
+  name: string,
+  tagsList: Array<string>,
+  addTag: typeof addTag,
+  closePopup: () => void
+}
+
+type State = {
+  name: string,
+  isNameExist: boolean
+}
+
+class NewTagPopup extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     const { name, } = this.props
 
     this.state = { name, isNameExist: false, }
   }
 
-  handleChangeText = (name) => {
+  handleChangeText = (name: string): void => {
     const { tagsList, } = this.props
 
-    const isNameExist = tagsList.indexOf(name.replace(/^\s+|\s+$/g, '')) >= 0
+    const isNameExist: boolean =
+      tagsList.indexOf(name.replace(/^\s+|\s+$/g, '')) >= 0
     this.setState({ name, isNameExist, })
   }
 
-  addNewTag = () => {
+  addNewTag = (): void => {
     const { name, isNameExist, } = this.state
-    const { addTag, closePopup, } = this.props
+    const { closePopup, } = this.props
 
-    const preparedTagName = name.replace(/^\s+|\s+$/g, '')
+    const preparedTagName: string = name.replace(/^\s+|\s+$/g, '')
 
     if (!isNameExist && preparedTagName) {
-      addTag(preparedTagName)
-      closePopup('')
+      this.props.addTag(preparedTagName)
+      closePopup()
     } else if (!preparedTagName) {
       this.setState({ name: '', })
     }
@@ -53,7 +69,9 @@ class NewTagPopup extends React.Component {
             onChangeText={this.handleChangeText}
           />
           {isNameExist && (
-            <Text style={styles.alert}>This tag name already exists.</Text>
+            <Text style={styles.alert} testID='tag-alert'>
+              This tag name already exists.
+            </Text>
           )}
           <TouchableButton style={styles.createBtn} onPress={this.addNewTag}>
             <Text style={styles.createBtnText}>CREATE TAG</Text>

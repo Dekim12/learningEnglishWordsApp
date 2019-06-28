@@ -1,13 +1,18 @@
+// @flow
+
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { TagDetailsScreen, } from './TagDetailsScreen'
 import { deleteWord, } from '../../redux/actions'
+import type { RootState, WordObjType, } from '../../flowAliases'
+import type { WordsState, } from '../../redux/reducers/wordsReducer'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState): WordsState => ({
   wordsList: state.wordsDataState.wordsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     deleteWord,
   },
@@ -18,7 +23,9 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, } = stateProps
   const { tagName, } = ownProps
 
-  const tagsWordsList = wordsList.filter(word => word.tagName === tagName)
+  const tagsWordsList: Array<WordObjType> = wordsList.filter(
+    (word: WordObjType) => word.tagName === tagName
+  )
 
   return { ...dispatchProps, ...ownProps, tagsWordsList, tagName, }
 }

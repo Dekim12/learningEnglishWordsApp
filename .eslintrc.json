@@ -1,14 +1,22 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb",
-  "plugins": ["react", "react-native", "jsx-a11y", "import"],
+  "extends": [
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "react",
+    "react-native",
+    "jsx-a11y",
+    "import",
+    "jest",
+    "flowtype"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     }
-  },
-  "env": {
-    "react-native/react-native": true
   },
   "rules": {
     "react-native/no-unused-styles": 0,
@@ -47,6 +55,8 @@
     "no-param-reassign": "warn",
     "no-restricted-globals": "warn",
     "no-plusplus": "off",
+    "import/no-extraneous-dependencies": "off",
+    "react/destructuring-assignment": "off",
     "comma-dangle": [
       "error",
       {
@@ -64,5 +74,9 @@
     "expect": "off",
     "describe": "off",
     "navigator": "off"
+  },
+  "env": {
+    "react-native/react-native": true,
+    "jest/globals": true
   }
 }

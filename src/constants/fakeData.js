@@ -3,17 +3,12 @@ export const fakeTagList = [
   'secondTag',
   'sfjk',
   '112',
-  'sdlfjakljasdlfjlsfgd fgdlsgfsdf',
   'firstTag',
   'peoples',
   'verbs',
   'fruits',
-  'sfds sf hgh 1154f',
-  'dffjkkdkf',
-  '1111111',
   'TTTshdf',
-  'tTgs',
-  'tttttt'
+  'tTgs'
 ]
 
 export const fakeData = [

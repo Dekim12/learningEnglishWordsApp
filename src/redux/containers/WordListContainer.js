@@ -1,13 +1,18 @@
+// @flow
+
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { WordList, } from '../../components/WordsList/WordsList'
 import { deleteWord, } from '../actions'
+import type { RootState, } from '../../flowAliases'
+import type { WordsState, } from '../reducers/wordsReducer'
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState): WordsState => ({
   wordsList: state.wordsDataState.wordsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     deleteWord,
   },

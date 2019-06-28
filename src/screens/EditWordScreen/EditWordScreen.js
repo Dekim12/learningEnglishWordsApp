@@ -1,21 +1,56 @@
+// @flow
+
 import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
+import type { ViewStyleProp, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import { EDIT_TYPES, MOVEMENT_FUNC_NAMES, } from '../../constants'
-
+import { editWord, } from '../../redux/actions'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
-class EditWordScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  editWord: typeof editWord,
+  tagsList: Array<string>,
+  wordData: WordObjType
+}
+
+type State = {
+  submit: boolean,
+  word: string,
+  transcription: string,
+  translation: Array<string>,
+  url: ?string,
+  examples: Array<string>,
+  tagName: string,
+  id: number
+}
+
+class EditWordScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
-    const { wordData, } = this.props
+    const {
+      wordData: { id, word, transcription, translation, url, examples, tagName, },
+    } = this.props
 
-    this.state = { ...wordData, submit: false, }
+    this.state = {
+      submit: false,
+      word,
+      transcription,
+      translation,
+      examples,
+      tagName,
+      url,
+      id,
+    }
   }
 
-  deleteWordOrExample = (value, type) => {
+  deleteWordOrExample = (value: string, type: string): void => {
     if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         translation: prevState.translation.filter(word => word !== value),
@@ -27,7 +62,7 @@ class EditWordScreen extends Component {
     }
   }
 
-  addTagOrUrl = (value, type) => {
+  addTagOrUrl = (value: string, type: string): void => {
     if (type === EDIT_TYPES.url) {
       this.setState({ url: value, })
     } else if (type === EDIT_TYPES.tag) {
@@ -37,7 +72,7 @@ class EditWordScreen extends Component {
     }
   }
 
-  addWordOrExample = (value, type) => {
+  addWordOrExample = (value: string, type: string): void => {
     if (type === EDIT_TYPES.word) {
       this.setState(prevState => ({
         submit: false,
@@ -51,22 +86,24 @@ class EditWordScreen extends Component {
     }
   }
 
-  generateItem = (itemsList, type) => {
-    const currentStyle = {}
+  generateItem = (itemsList: Array<string>, type: string): Array<Node> => {
+    const currentStyle: { item?: ViewStyleProp, btn?: ViewStyleProp } = {}
+    let testID: string = 'example-item'
 
     if (type === EDIT_TYPES.word) {
       currentStyle.item = styles.translationItem
       currentStyle.btn = styles.deleteItemBtn
+      testID = 'translation-item'
     } else {
       currentStyle.item = styles.exampleItem
       currentStyle.btn = styles.exampleButton
     }
 
-    return itemsList.map((item) => {
-      const deleteCurrentValue = () => this.deleteWordOrExample(item, type)
+    return itemsList.map((item: string) => {
+      const deleteCurrentValue = (): void => this.deleteWordOrExample(item, type)
 
       return (
-        <View style={currentStyle.item} key={uuidv4()}>
+        <View style={currentStyle.item} key={uuidv4()} testID={testID}>
           <Text style={styles.itemText}>{item}</Text>
           <TouchableButton
             style={currentStyle.btn}
@@ -79,11 +116,11 @@ class EditWordScreen extends Component {
     })
   }
 
-  generateTags = (currentTag, tagsList) => {
+  generateTags = (currentTag: string, tagsList: Array<string>): Array<Node> => {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
 
-    return tagsList.map((tag, index) => {
-      const addTag = () => this.addTagOrUrl(tag, EDIT_TYPES.tag)
+    return tagsList.map((tag: string, index: number) => {
+      const addTag = (): void => this.addTagOrUrl(tag, EDIT_TYPES.tag)
 
       return (
         <TouchableButton
@@ -93,6 +130,7 @@ class EditWordScreen extends Component {
           ]}
           key={uuidv4()}
           onPress={addTag}
+          testID='tag-item'
         >
           <Text
             style={[
@@ -107,13 +145,12 @@ class EditWordScreen extends Component {
     })
   }
 
-  setSubmit = () => this.setState({ submit: true, })
+  setSubmit = (): void => this.setState({ submit: true, })
 
-  edit = () => {
-    const { editWord, changeScreen, componentId, } = this.props
-    const newWord = { ...this.state, }
-    delete newWord.submit
-    editWord(newWord)
+  edit = (): void => {
+    const { changeScreen, componentId, } = this.props
+    const { submit, ...newWordData } = this.state
+    this.props.editWord(newWordData)
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
@@ -182,7 +219,11 @@ class EditWordScreen extends Component {
           <View style={[styles.translationBlock, styles.tagsBlock]}>
             {this.generateTags(tagName, tagsList)}
           </View>
-          <TouchableButton style={styles.editBtn} onPress={this.edit}>
+          <TouchableButton
+            style={styles.editBtn}
+            onPress={this.edit}
+            testID='edit-word-btn'
+          >
             <Text style={styles.editText}>EDIT</Text>
           </TouchableButton>
         </ScrollView>

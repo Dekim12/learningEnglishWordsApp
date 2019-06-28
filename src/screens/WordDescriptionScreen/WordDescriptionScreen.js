@@ -1,4 +1,7 @@
+// @flow
+
 import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import {
   ScrollView,
   Text,
@@ -11,12 +14,30 @@ import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { getRandomColor, createLine, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import { deleteWord, } from '../../redux/actions'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
-class WordDescriptionScreen extends Component {
-  state = { loading: true, permissionVisible: false, }
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  deleteWord: typeof deleteWord,
+  wordData: WordObjType
+}
 
-  renderExamples = list => list.map(item => (
+type State = {
+  loading: boolean,
+  permissionVisible: boolean
+}
+
+class WordDescriptionScreen extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = { loading: true, permissionVisible: false, }
+  }
+
+  renderExamples = (list: Array<string>): Array<Node> => list.map((item: string) => (
     <View style={styles.exampleBlock} key={uuidv4()}>
       <View
         style={[styles.exampleLabel, { backgroundColor: getRandomColor(), }]}
@@ -25,28 +46,28 @@ class WordDescriptionScreen extends Component {
     </View>
   ))
 
-  handleLoad = () => {
+  handleLoad = (): void => {
     this.setState({ loading: false, })
   }
 
-  deleteCurrentWord = () => {
-    const { deleteWord, wordData, changeScreen, componentId, } = this.props
+  deleteCurrentWord = (): void => {
+    const { wordData, changeScreen, componentId, } = this.props
 
-    deleteWord(wordData.id)
+    this.props.deleteWord(wordData.id)
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }
 
-  toEditWordScreen = () => {
+  toEditWordScreen = (): void => {
     const { wordData, componentId, changeScreen, } = this.props
 
     changeScreen(MOVEMENT_FUNC_NAMES.editWord, componentId, wordData.id)
   }
 
-  handlePermission = () => this.setState({
+  handlePermission = (): void => this.setState({
     permissionVisible: true,
   })
 
-  refreshPermission = () => this.setState({
+  refreshPermission = (): void => this.setState({
     permissionVisible: false,
   })
 

@@ -1,9 +1,22 @@
+// @flow
+
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { SettingsScreen, } from './SettingsScreen'
 import { setSettings, } from '../../redux/actions'
+import type { RootState, WordObjType, } from '../../flowAliases'
 
-const mapStateToProps = state => ({
+type SettingsContainerProps = {
+  tagsList: Array<string>,
+  wordsList: Array<WordObjType>,
+  allTags: boolean,
+  tagsForTask: Array<string>,
+  amountOfWords: number,
+  isRandom: boolean
+}
+
+const mapStateToProps = (state: RootState): SettingsContainerProps => ({
   tagsList: state.tagsState.tagsList,
   wordsList: state.wordsDataState.wordsList,
   allTags: state.tasksState.allTags,
@@ -12,17 +25,21 @@ const mapStateToProps = state => ({
   isRandom: state.tasksState.random,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     setSettings,
   },
   dispatch
 )
 
-const mergeProps = (stateProps, dispatchProps, ownProps) => {
+const mergeProps = (
+  stateProps: SettingsContainerProps,
+  dispatchProps,
+  ownProps
+) => {
   const { allTags, tagsList, tagsForTask, } = stateProps
 
-  let newList = tagsForTask
+  let newList: Array<string> = tagsForTask
 
   if (allTags) {
     newList = tagsList

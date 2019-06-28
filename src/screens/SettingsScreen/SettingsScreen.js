@@ -1,4 +1,7 @@
+// @flow
+
 import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import {
   Text,
   View,
@@ -10,10 +13,33 @@ import uuidv4 from 'uuid/v4'
 import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import { setSettings, } from '../../redux/actions'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
-class SettingsScreen extends Component {
-  constructor(props) {
+type Props = {
+  componentId: string,
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  allTags: boolean,
+  amountOfWords: number,
+  isRandom: boolean,
+  setSettings: typeof setSettings,
+  tagsForTask: Array<string>,
+  tagsList: Array<string>,
+  wordsList: Array<WordObjType>
+}
+
+type State = {
+  tagsForTask: Array<string>,
+  isRandom: boolean,
+  useAllTags: boolean,
+  isAmountCorrect: boolean
+}
+
+class SettingsScreen extends Component<Props, State> {
+  newWordsAmount: number
+
+  constructor(props: Props) {
     super(props)
     const { tagsForTask, amountOfWords, isRandom, allTags, } = this.props
 
@@ -27,11 +53,11 @@ class SettingsScreen extends Component {
     this.newWordsAmount = amountOfWords
   }
 
-  handleChangeText = (text) => {
+  handleChangeText = (text: string): void => {
     const { isAmountCorrect, } = this.state
 
     if (isNumber(text) && Number(text) !== 0) {
-      this.newWordsAmount = text
+      this.newWordsAmount = Number(text)
 
       if (!isAmountCorrect) {
         this.setState({ isAmountCorrect: true, })
@@ -41,41 +67,44 @@ class SettingsScreen extends Component {
     }
   }
 
-  toggleTag = (tagName) => {
+  toggleTag = (tagName: string): void => {
     const { tagsForTask, } = this.state
     const { tagsList, } = this.props
 
     if (tagsForTask.indexOf(tagName) !== -1) {
       this.setState({
-        tagsForTask: tagsForTask.filter(tag => tag !== tagName),
+        tagsForTask: tagsForTask.filter((tag: string) => tag !== tagName),
         useAllTags: false,
       })
     } else {
-      const newList = tagsForTask.concat(tagName)
-      const isAllTags = tagsList.length === newList.length
+      const newList: Array<string> = tagsForTask.concat(tagName)
+      const isAllTags: boolean = tagsList.length === newList.length
 
       this.setState({ tagsForTask: newList, useAllTags: isAllTags, })
     }
   }
 
-  handlerAllTaskButton = () => {
+  handlerAllTaskButton = (): void => {
     const { useAllTags, } = this.state
     const { tagsList, } = this.props
 
     if (useAllTags) {
-      this.setState({ useAllTags: false, tagsForTask: [], })
+      this.setState({
+        useAllTags: false,
+        tagsForTask: [],
+      })
     } else {
       this.setState({ useAllTags: true, tagsForTask: tagsList, })
     }
   }
 
-  generateTagsItems = (tagsList) => {
+  generateTagsItems = (tagsList: Array<string>): Array<Node> => {
     const { tagsForTask, } = this.state
 
-    return tagsList.map((tag) => {
-      const isTagSelected = tagsForTask.indexOf(tag) !== -1
+    return tagsList.map((tag: string) => {
+      const isTagSelected: boolean = tagsForTask.indexOf(tag) !== -1
 
-      const addTag = () => {
+      const addTag = (): void => {
         this.toggleTag(tag)
       }
 
@@ -84,6 +113,7 @@ class SettingsScreen extends Component {
           style={[styles.tagItem, isTagSelected && styles.activeTag]}
           onPress={addTag}
           key={uuidv4()}
+          testID='tag-btn'
         >
           <Text
             style={[styles.textStyle, isTagSelected && styles.activeOrderStyle]}
@@ -95,7 +125,7 @@ class SettingsScreen extends Component {
     })
   }
 
-  defineTotalAmountOfWords = () => {
+  defineTotalAmountOfWords = (): number => {
     const { wordsList, } = this.props
     const { tagsForTask, useAllTags, } = this.state
 
@@ -103,7 +133,7 @@ class SettingsScreen extends Component {
       return wordsList.length
     }
 
-    return wordsList.reduce((sum, word) => {
+    return wordsList.reduce((sum: number, word: WordObjType) => {
       if (tagsForTask.indexOf(word.tagName) !== -1) {
         return sum + 1
       }
@@ -111,14 +141,16 @@ class SettingsScreen extends Component {
     }, 0)
   }
 
-  handleRandom = () => this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
+  handleRandom = (): void => {
+    this.setState(prevState => ({ isRandom: !prevState.isRandom, }))
+  }
 
-  confirmSettings = () => {
-    const { setSettings, changeScreen, componentId, } = this.props
+  confirmSettings = (): void => {
+    const { changeScreen, componentId, } = this.props
     const { tagsForTask, isRandom, useAllTags, isAmountCorrect, } = this.state
 
     if (isAmountCorrect && this.defineTotalAmountOfWords()) {
-      setSettings({
+      this.props.setSettings({
         tagsForTask,
         allTags: useAllTags,
         random: isRandom,
@@ -133,7 +165,7 @@ class SettingsScreen extends Component {
     const { tagsList, amountOfWords, } = this.props
     const { useAllTags, isRandom, isAmountCorrect, } = this.state
 
-    const totalAmountOfWords = this.defineTotalAmountOfWords()
+    const totalAmountOfWords: number = this.defineTotalAmountOfWords()
 
     return (
       <KeyboardAvoidingView behavior='padding'>
@@ -152,6 +184,7 @@ class SettingsScreen extends Component {
               useAllTags && styles.activeTag
             ]}
             onPress={this.handlerAllTaskButton}
+            testID='all-tags-btn'
           >
             <Text
               style={[styles.textStyle, useAllTags && styles.allTagsActive]}
@@ -164,7 +197,9 @@ class SettingsScreen extends Component {
             <Text style={styles.valueStyle}>{totalAmountOfWords}</Text>
           </View>
           {!totalAmountOfWords && (
-            <Text style={styles.alert}>Please select some tag with words.</Text>
+            <Text style={styles.alert} testID='tags-alert'>
+              Please select some tag with words.
+            </Text>
           )}
           <View style={styles.wordsBlock}>
             <Text style={styles.definition}>FOR TRAINING - </Text>
@@ -182,7 +217,7 @@ class SettingsScreen extends Component {
             />
           </View>
           {!isAmountCorrect && (
-            <Text style={styles.alert}>
+            <Text style={styles.alert} testID='words-amount-alert'>
               New amount of words is not correct.
             </Text>
           )}
@@ -193,6 +228,7 @@ class SettingsScreen extends Component {
             <TouchableButton
               style={[styles.orderItem, !isRandom && styles.activeTag]}
               onPress={isRandom ? this.handleRandom : null}
+              testID='cancel-random-btn'
             >
               <Text
                 style={[styles.textStyle, !isRandom && styles.activeOrderStyle]}
@@ -203,6 +239,7 @@ class SettingsScreen extends Component {
             <TouchableButton
               style={[styles.orderItem, isRandom && styles.activeTag]}
               onPress={!isRandom ? this.handleRandom : null}
+              testID='add-random-btn'
             >
               <Text
                 style={[styles.textStyle, isRandom && styles.activeOrderStyle]}
@@ -214,6 +251,7 @@ class SettingsScreen extends Component {
           <TouchableButton
             style={styles.editBtn}
             onPress={this.confirmSettings}
+            testID='confirm-btn'
           >
             <Text style={styles.editText}>CONFIRM</Text>
           </TouchableButton>

@@ -1,5 +1,8 @@
+// @flow
+
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { EditTagScreen, } from './EditTagScreen'
 import {
   editTag,
@@ -7,13 +10,18 @@ import {
   deleteWordList,
   deleteTag,
 } from '../../redux/actions'
+import type { WordObjType, RootState, } from '../../flowAliases'
+import type { TagsState, } from '../../redux/reducers/tagsReducer'
+import type { WordsState, } from '../../redux/reducers/wordsReducer'
 
-const mapStateToProps = state => ({
+type EditTagProps = WordsState & TagsState
+
+const mapStateToProps = (state: RootState): EditTagProps => ({
   wordsList: state.wordsDataState.wordsList,
   tagsList: state.tagsState.tagsList,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     editTag,
     editWordsList,
@@ -27,9 +35,15 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, tagsList, } = stateProps
   const { tagName, } = ownProps
 
-  const tagWords = wordsList.filter(word => word.tagName === tagName)
+  const tagWords: Array<WordObjType> = wordsList.filter(
+    word => word.tagName === tagName
+  )
 
-  const editCurrentTag = (prevName, newName, deletedWordList) => {
+  const editCurrentTag = (
+    prevName: string,
+    newName: string,
+    deletedWordList: Array<number>
+  ) => {
     dispatchProps.editTag(prevName, newName)
 
     if (tagWords.length) {
@@ -37,7 +51,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
     }
   }
 
-  const deleteCurrentTag = () => {
+  const deleteCurrentTag = (): void => {
     dispatchProps.deleteTag(tagName)
 
     if (tagWords.length) {

@@ -1,6 +1,26 @@
-import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
+// @flow
 
-const initialState = {
+import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
+import type { SettingsObj, ReduxAction, } from '../../flowAliases'
+
+type TaskActionPayload =
+  | SettingsObj
+  | { allAnswers: number, rightAnswers: number }
+
+export type TasksAction = ReduxAction & {
+  payload: TaskActionPayload
+}
+
+export type TasksState = {
+  +allTags: boolean,
+  +tagsForTask: Array<string>,
+  +amountOfWords: number,
+  +random: boolean,
+  +allAnswers: number,
+  +rightAnswers: number
+}
+
+const initialState: TasksState = {
   allTags: true,
   tagsForTask: [],
   amountOfWords: 5,
@@ -9,7 +29,10 @@ const initialState = {
   rightAnswers: 0,
 }
 
-const tasksReducer = (state = initialState, action) => {
+const tasksReducer = (
+  state: TasksState = initialState,
+  action: TasksAction
+) => {
   switch (action.type) {
     case SET_SETTINGS: {
       return { ...state, ...action.payload, }
@@ -17,8 +40,8 @@ const tasksReducer = (state = initialState, action) => {
     case SET_ANSWERS: {
       const { allAnswers, rightAnswers, } = state
 
-      const newAllAnswers = allAnswers + action.payload.allAnswers
-      const newRightAnswers = rightAnswers + action.payload.rightAnswers
+      const newAllAnswers: number = allAnswers + action.payload.allAnswers
+      const newRightAnswers: number = rightAnswers + action.payload.rightAnswers
 
       return {
         ...state,

@@ -1,11 +1,24 @@
+// @flow
+
 import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
+import type { Dispatch, } from 'redux'
 import { CurrentTaskScreen, } from './CurrentTaskScreen'
 import { setAnswers, } from '../../redux/actions'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { getNecessaryWords, } from '../../utils'
+import type { RootState, WordObjType, } from '../../flowAliases'
 
-const mapStateToProps = state => ({
+type CurrentTaskProps = {
+  wordsList: Array<WordObjType>,
+  tagsList: Array<string>,
+  tagsForTask: Array<string>,
+  amountOfWords: number,
+  random: boolean,
+  allTags: boolean
+}
+
+const mapStateToProps = (state: RootState): CurrentTaskProps => ({
   wordsList: state.wordsDataState.wordsList,
   tagsList: state.tagsState.tagsList,
   tagsForTask: state.tasksState.tagsForTask,
@@ -14,7 +27,7 @@ const mapStateToProps = state => ({
   allTags: state.tasksState.allTags,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators(
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
   {
     setAnswers,
   },
@@ -33,12 +46,12 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
 
   const { changeScreen, componentId, } = ownProps
 
-  const necessaryTags = allTags ? tagsList : tagsForTask
-  const wordsForLearning = wordsList.filter(
-    word => necessaryTags.indexOf(word.tagName) >= 0
+  const necessaryTags: Array<string> = allTags ? tagsList : tagsForTask
+  const wordsForLearning: Array<WordObjType> = wordsList.filter(
+    (word: WordObjType) => necessaryTags.indexOf(word.tagName) >= 0
   )
 
-  const goToTasks = (allAnswers, rightAnswers) => {
+  const goToTasks = (allAnswers: number, rightAnswers: number): void => {
     dispatchProps.setAnswers(allAnswers, rightAnswers)
     changeScreen(MOVEMENT_FUNC_NAMES.back, componentId)
   }

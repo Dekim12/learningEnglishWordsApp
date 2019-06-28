@@ -1,20 +1,34 @@
+// @flow
+
 import {
   DELETE_WORD,
   EDIT_WORD,
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
+import type { WordObjType, } from '../../flowAliases'
+import type { WordAction, } from '../reducers/wordsReducer'
 
-export const deleteWord = id => ({ type: DELETE_WORD, payload: id, })
+export const deleteWord = (id: number): WordAction => ({
+  type: DELETE_WORD,
+  payload: id,
+})
 
-export const editWord = newWord => ({ type: EDIT_WORD, payload: newWord, })
+export const editWord = (newWord: WordObjType): WordAction => ({
+  type: EDIT_WORD,
+  payload: newWord,
+})
 
-export const editWordsList = (prevName, newName, deletedWordList) => ({
+export const editWordsList = (
+  prevName: string,
+  newName: string,
+  deletedWordList: Array<number>
+): WordAction => ({
   type: EDIT_WORDS_LIST,
   payload: { prevName, newName, deletedWordList, },
 })
 
-export const deleteWordList = tagName => ({
+export const deleteWordList = (tagName: string): WordAction => ({
   type: DELETE_WORDS_LIST,
   payload: tagName,
 })

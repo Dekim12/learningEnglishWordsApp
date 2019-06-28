@@ -1,14 +1,23 @@
+// @flow
+
 import React from 'react'
 import { Text, } from 'react-native'
 import { Icon, TouchableButton, } from '../index'
 import styles from './style'
 
-const TagCard = ({ name, toEdit, isFirstCard, toDetails, }) => {
-  const openDetails = () => {
+type Props = {
+  name: string,
+  isFirstCard: boolean,
+  toEdit: (tagName: string) => void,
+  toDetails: (tagName: string) => void
+}
+
+const TagCard = ({ name, toEdit, isFirstCard, toDetails, }: Props) => {
+  const openDetails = (): void => {
     toDetails(name)
   }
 
-  const editTag = () => {
+  const editTag = (): void => {
     toEdit(name)
   }
 

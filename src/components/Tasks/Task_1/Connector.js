@@ -1,20 +1,37 @@
+// @flow
+
 import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { Text, View, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { createLine, } from '../../../utils'
 import { SelectableAnswer, } from './Answer'
 import { ProgressBar, } from './ProgressBar'
+import type { WordObjType, } from '../../../flowAliases'
 import styles from './style'
 
-class Connector extends Component {
-  constructor(props) {
+type Props = {
+  defaultResult: boolean,
+  toNextWord: (isCorrectResult: boolean) => void,
+  possibleAnswers: Array<string>,
+  currentWord: WordObjType,
+  countWordsForTask: number,
+  answersResult: Array<boolean>
+}
+
+type State = {
+  currentResult: boolean
+}
+
+class Connector extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     const { defaultResult, } = this.props
 
     this.state = { currentResult: defaultResult, }
   }
 
-  checkResult = (result) => {
+  checkResult = (result: boolean): void => {
     const { toNextWord, } = this.props
     const { currentResult, } = this.state
 
@@ -28,7 +45,10 @@ class Connector extends Component {
     }
   }
 
-  generateAnswersButtons = (answers, currentWord) => answers.map(answer => (
+  generateAnswersButtons = (
+    answers: Array<string>,
+    currentWord: Array<string>
+  ): Array<Node> => answers.map((answer: string) => (
     <SelectableAnswer
       checkResult={this.checkResult}
       isRightAnswer={createLine(currentWord) === answer}

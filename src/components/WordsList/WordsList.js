@@ -1,12 +1,31 @@
-import React from 'react'
+// @flow
+
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { FlatList, ScrollView, Text, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { WordCard, SearchInput, TouchableButton, } from '../index'
 import createFuse from '../../utils/fuse'
+import type { WordObjType, } from '../../flowAliases'
+import { deleteWord, } from '../../redux/actions'
 import styles from './style'
 
-class WordList extends React.Component {
-  constructor(props) {
+type Props = {
+  wordsList: Array<WordObjType>,
+  openDescription: (id: number, word: string) => void,
+  setPermission: (resolve: () => void) => void,
+  addNewWord: (word: string) => void,
+  deleteWord: typeof deleteWord
+}
+
+type State = {
+  searchString: string
+}
+
+class WordList extends Component<Props, State> {
+  fuse: { options: mixed, list: Array<WordObjType>, ...any }
+
+  constructor(props: Props) {
     super(props)
     const { wordsList, } = this.props
 
@@ -15,11 +34,17 @@ class WordList extends React.Component {
     this.fuse = createFuse(wordsList)
   }
 
-  renderItems = ({ item, index, }) => {
-    const { openDescription, deleteWord, setPermission, } = this.props
+  renderItems = ({
+    item,
+    index,
+  }: {
+    item: WordObjType,
+    index: number
+  }): Node => {
+    const { openDescription, setPermission, } = this.props
 
-    const deleteCurrentWord = () => {
-      const resolve = () => deleteWord(item.id)
+    const deleteCurrentWord = (): void => {
+      const resolve = (): void => this.props.deleteWord(item.id)
       setPermission(resolve)
     }
 
@@ -33,13 +58,13 @@ class WordList extends React.Component {
     )
   }
 
-  keyExtractor = () => uuidv4()
+  keyExtractor = (): string => uuidv4()
 
-  updateSearchString = (text) => {
+  updateSearchString = (text: string): void => {
     this.setState({ searchString: text, })
   }
 
-  addWord = () => {
+  addWord = (): void => {
     const { addNewWord, } = this.props
     const { searchString, } = this.state
 
@@ -50,7 +75,7 @@ class WordList extends React.Component {
     const { wordsList, } = this.props
     const { searchString, } = this.state
 
-    const filteredDataList = this.fuse.search(searchString)
+    const filteredDataList: Array<WordObjType> = this.fuse.search(searchString)
 
     return (
       <ScrollView>

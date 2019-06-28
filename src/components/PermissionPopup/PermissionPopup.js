@@ -1,11 +1,19 @@
+// @flow
+
 import React from 'react'
 import { View, Text, } from 'react-native'
 import { TouchableButton, } from '../index'
 import { PERMISSION_QUESTIONS, } from '../../constants'
 import styles from './style'
 
-const PermissionPopup = ({ isWord, resolve, refresh, }) => {
-  const confirm = () => {
+type Props = {
+  isWord: boolean,
+  resolve: () => void,
+  refresh: () => void
+}
+
+const PermissionPopup = ({ isWord, resolve, refresh, }: Props) => {
+  const confirm = (): void => {
     resolve()
     refresh()
   }
@@ -13,7 +21,7 @@ const PermissionPopup = ({ isWord, resolve, refresh, }) => {
   return (
     <View style={styles.container}>
       <View style={styles.popupBlock}>
-        <Text style={styles.headline}>
+        <Text style={styles.headline} testID='permission-alert'>
           {isWord ? PERMISSION_QUESTIONS.word : PERMISSION_QUESTIONS.tag}
         </Text>
         <View style={styles.bottomsBlock}>

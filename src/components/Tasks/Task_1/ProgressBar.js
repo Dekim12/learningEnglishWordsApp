@@ -1,20 +1,32 @@
+// @flow
+
 import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { View, StyleSheet, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { screenSize, } from '../../../utils'
 
-class ProgressBar extends Component {
-  constructor(props) {
+type Props = {
+  answersResults: Array<boolean>,
+  countWords: number
+}
+
+type State = {
+  partWidth: number
+}
+
+class ProgressBar extends Component<Props, State> {
+  constructor(props: Props) {
     super(props)
     const { countWords, } = this.props
 
     this.state = { partWidth: screenSize.width / countWords, }
   }
 
-  generateProgressParts = (partsList) => {
+  generateProgressParts = (partsList: Array<boolean>): Array<Node> => {
     const { partWidth, } = this.state
 
-    return partsList.map(isCorrect => (
+    return partsList.map((isCorrect: boolean) => (
       <View
         style={[
           { width: partWidth, },
@@ -25,11 +37,11 @@ class ProgressBar extends Component {
     ))
   }
 
-  handleLayout = (event) => {
+  handleLayout = (event: any): void => {
     const { countWords, } = this.props
     const { partWidth, } = this.state
 
-    const currentWidth = event.nativeEvent.layout.width / countWords
+    const currentWidth: number = event.nativeEvent.layout.width / countWords
 
     if (partWidth !== currentWidth) {
       this.setState({ partWidth: currentWidth, })
