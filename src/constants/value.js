@@ -36,3 +36,14 @@ export const MOVEMENT_FUNC_NAMES = {
   editTag: 'toEditTag',
   tagDetails: 'toTagDetails',
 }
+
+export const DEVICE_INFO_PROPERTY_NAMES = {
+  version: 'OS version',
+  level: 'API level',
+  battery: 'Battery level',
+  appName: 'App name',
+  appDate: 'App was installed',
+  isCamera: 'Is camera',
+  airplaneMode: 'Is airplane mode',
+  isEmulator: 'Is emulator',
+}
