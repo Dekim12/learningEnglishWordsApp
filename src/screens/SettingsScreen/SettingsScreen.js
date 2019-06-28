@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import {
   Text,
   View,
@@ -13,7 +14,7 @@ import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { setSettings, } from '../../redux/actions'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
@@ -25,7 +26,7 @@ type Props = {
   setSettings: typeof setSettings,
   tagsForTask: Array<string>,
   tagsList: Array<string>,
-  wordsList: Array<WordObj>
+  wordsList: Array<WordObjType>
 }
 
 type State = {
@@ -35,7 +36,7 @@ type State = {
   isAmountCorrect: boolean
 }
 
-class SettingsScreen extends React.Component<Props, State> {
+class SettingsScreen extends Component<Props, State> {
   newWordsAmount: number
 
   constructor(props: Props) {
@@ -97,7 +98,7 @@ class SettingsScreen extends React.Component<Props, State> {
     }
   }
 
-  generateTagsItems = (tagsList: Array<string>): Array<React.Node> => {
+  generateTagsItems = (tagsList: Array<string>): Array<Node> => {
     const { tagsForTask, } = this.state
 
     return tagsList.map((tag: string) => {
@@ -132,7 +133,7 @@ class SettingsScreen extends React.Component<Props, State> {
       return wordsList.length
     }
 
-    return wordsList.reduce((sum: number, word: WordObj) => {
+    return wordsList.reduce((sum: number, word: WordObjType) => {
       if (tagsForTask.indexOf(word.tagName) !== -1) {
         return sum + 1
       }

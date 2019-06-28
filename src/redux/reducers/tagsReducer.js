@@ -23,6 +23,10 @@ const tagsReducer = (state: State = initialState, action: TagAction) => {
       return { ...state, tagsList: newTagList, }
     }
     case EDIT_TAG: {
+      if (typeof action.payload === 'string') {
+        return state
+      }
+
       const { prevName, newName, } = action.payload
 
       const newTagsList: Array<string> = state.tagsList.map((tag: string) => {

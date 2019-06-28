@@ -1,12 +1,14 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { ScrollView, Text, View, KeyboardAvoidingView, } from 'react-native'
+import type { ViewStyleProp, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, Input, } from '../../components'
 import { EDIT_TYPES, MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { editWord, } from '../../redux/actions'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
@@ -14,7 +16,7 @@ type Props = {
   changeScreen: (functionName: string, ...args: Array<any>) => void,
   editWord: typeof editWord,
   tagsList: Array<string>,
-  wordData: WordObj
+  wordData: WordObjType
 }
 
 type State = {
@@ -28,7 +30,7 @@ type State = {
   id: number
 }
 
-class EditWordScreen extends React.Component<Props, State> {
+class EditWordScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -84,11 +86,8 @@ class EditWordScreen extends React.Component<Props, State> {
     }
   }
 
-  generateItem = (
-    itemsList: Array<string>,
-    type: string
-  ): Array<React.Node> => {
-    const currentStyle: { item?: mixed, btn?: mixed } = {}
+  generateItem = (itemsList: Array<string>, type: string): Array<Node> => {
+    const currentStyle: { item?: ViewStyleProp, btn?: ViewStyleProp } = {}
     let testID: string = 'example-item'
 
     if (type === EDIT_TYPES.word) {
@@ -117,10 +116,7 @@ class EditWordScreen extends React.Component<Props, State> {
     })
   }
 
-  generateTags = (
-    currentTag: string,
-    tagsList: Array<string>
-  ): Array<React.Node> => {
+  generateTags = (currentTag: string, tagsList: Array<string>): Array<Node> => {
     const currentTagIndex = tagsList.findIndex(item => item === currentTag)
 
     return tagsList.map((tag: string, index: number) => {

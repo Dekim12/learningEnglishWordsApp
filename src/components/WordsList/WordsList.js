@@ -1,16 +1,17 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { FlatList, ScrollView, Text, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { WordCard, SearchInput, TouchableButton, } from '../index'
 import createFuse from '../../utils/fuse'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import { deleteWord, } from '../../redux/actions'
 import styles from './style'
 
 type Props = {
-  wordsList: Array<WordObj>,
+  wordsList: Array<WordObjType>,
   openDescription: (id: number, word: string) => void,
   setPermission: (resolve: () => void) => void,
   addNewWord: (word: string) => void,
@@ -21,8 +22,8 @@ type State = {
   searchString: string
 }
 
-class WordList extends React.Component<Props, State> {
-  fuse: { options: mixed, list: Array<WordObj>, ...any }
+class WordList extends Component<Props, State> {
+  fuse: { options: mixed, list: Array<WordObjType>, ...any }
 
   constructor(props: Props) {
     super(props)
@@ -37,9 +38,9 @@ class WordList extends React.Component<Props, State> {
     item,
     index,
   }: {
-    item: WordObj,
+    item: WordObjType,
     index: number
-  }): React.Node => {
+  }): Node => {
     const { openDescription, setPermission, } = this.props
 
     const deleteCurrentWord = (): void => {
@@ -74,7 +75,7 @@ class WordList extends React.Component<Props, State> {
     const { wordsList, } = this.props
     const { searchString, } = this.state
 
-    const filteredDataList: Array<WordObj> = this.fuse.search(searchString)
+    const filteredDataList: Array<WordObjType> = this.fuse.search(searchString)
 
     return (
       <ScrollView>

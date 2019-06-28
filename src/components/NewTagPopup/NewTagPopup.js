@@ -8,7 +8,7 @@ import styles from './style'
 
 type Props = {
   name: string,
-  tagsList: Array<string> | [],
+  tagsList: Array<string>,
   addTag: typeof addTag,
   closePopup: () => void
 }

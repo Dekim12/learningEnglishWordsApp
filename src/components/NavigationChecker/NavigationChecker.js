@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { AbstractComponent, } from 'react'
 import { Navigation, } from 'react-native-navigation'
 import * as movementFunctions from '../../navigation/stacks/movementFunctions'
 
@@ -9,8 +10,8 @@ type Config = {}
 type State = { isActive: boolean }
 
 export const NavigationChecker = (
-  WrappedComponent: React.AbstractComponent<Config>
-): React.AbstractComponent<Config> => class extends React.Component<Config, State> {
+  WrappedComponent: AbstractComponent<Config>
+): AbstractComponent<Config> => class extends Component<Config, State> {
   constructor(props) {
     super(props)
     Navigation.events().bindComponent(this)

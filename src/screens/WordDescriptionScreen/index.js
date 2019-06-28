@@ -5,7 +5,7 @@ import { bindActionCreators, } from 'redux'
 import { find, } from 'lodash'
 import { WordDescriptionScreen, } from './WordDescriptionScreen'
 import { deleteWord, } from '../../redux/actions'
-import type { WordState, RootState, WordObj, } from '../../flowAliases'
+import type { WordState, RootState, WordObjType, } from '../../flowAliases'
 
 const mapStateToProps = (state: RootState): WordState => ({
   wordsList: state.wordsDataState.wordsList,
@@ -22,7 +22,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, } = stateProps
   const { id, } = ownProps
 
-  const wordData: WordObj = find(
+  const wordData: WordObjType = find(
     wordsList,
     currentWord => currentWord.id === id
   )

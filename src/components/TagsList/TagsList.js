@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { FlatList, ScrollView, Text, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TagCard, SearchInput, TouchableButton, } from '../index'
@@ -18,20 +19,14 @@ type State = {
   clearInput: boolean
 }
 
-class TagsList extends React.Component<Props, State> {
+class TagsList extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
     this.state = { searchString: '', clearInput: false, }
   }
 
-  renderItems = ({
-    item,
-    index,
-  }: {
-    item: string,
-    index: number
-  }): React.Node => {
+  renderItems = ({ item, index, }: { item: string, index: number }): Node => {
     const { toDetails, toEdit, } = this.props
 
     return (

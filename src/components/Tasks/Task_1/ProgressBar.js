@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { View, StyleSheet, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { screenSize, } from '../../../utils'
@@ -14,7 +15,7 @@ type State = {
   partWidth: number
 }
 
-class ProgressBar extends React.Component<Props, State> {
+class ProgressBar extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     const { countWords, } = this.props
@@ -22,7 +23,7 @@ class ProgressBar extends React.Component<Props, State> {
     this.state = { partWidth: screenSize.width / countWords, }
   }
 
-  generateProgressParts = (partsList: Array<boolean>): Array<React.Node> => {
+  generateProgressParts = (partsList: Array<boolean>): Array<Node> => {
     const { partWidth, } = this.state
 
     return partsList.map((isCorrect: boolean) => (

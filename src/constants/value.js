@@ -20,6 +20,10 @@ export const COUNT_WRONG_RANDOM_ANSWERS = {
   necessary: 3,
 }
 export const ROUNDING_DEGREE = 10
+export const PERCENT_DIVIDER = 1000
+
+export const START_DATE = 4
+export const END_DATE = 15
 
 export const MOVEMENT_FUNC_NAMES = {
   back: 'goBack',

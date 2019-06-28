@@ -1,20 +1,21 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { Text, FlatList, ScrollView, View, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { Icon, TouchableButton, PermissionPopup, } from '../../components'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { createLine, } from '../../utils'
 import { deleteWord, } from '../../redux/actions'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
   componentId: string,
   changeScreen: (functionName: string, ...args: Array<any>) => void,
   deleteWord: typeof deleteWord,
-  tagsWordsList: Array<WordObj> | []
+  tagsWordsList: Array<WordObjType>
 }
 
 type State = {
@@ -22,7 +23,7 @@ type State = {
   permissionResolve: ?() => void
 }
 
-class TagDetailsScreen extends React.Component<Props, State> {
+class TagDetailsScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -32,7 +33,7 @@ class TagDetailsScreen extends React.Component<Props, State> {
     }
   }
 
-  renderWords = ({ item, }: { item: WordObj }): React.Node => {
+  renderWords = ({ item, }: { item: WordObjType }): Node => {
     const { changeScreen, componentId, } = this.props
 
     const deleteCurrentWord = (): void => this.setPermissionFunctions(() => this.props.deleteWord(item.id))

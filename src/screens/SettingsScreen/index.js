@@ -4,18 +4,18 @@ import { connect, } from 'react-redux'
 import { bindActionCreators, } from 'redux'
 import { SettingsScreen, } from './SettingsScreen'
 import { setSettings, } from '../../redux/actions'
-import type { RootState, WordObj, } from '../../flowAliases'
+import type { RootState, WordObjType, } from '../../flowAliases'
 
-type StateProps = {
-  tagsList: Array<string> | [],
-  wordsList: Array<WordObj> | [],
+type SettingsContainerProps = {
+  tagsList: Array<string>,
+  wordsList: Array<WordObjType>,
   allTags: boolean,
-  tagsForTask: Array<string> | [],
+  tagsForTask: Array<string>,
   amountOfWords: number,
   isRandom: boolean
 }
 
-const mapStateToProps = (state: RootState): StateProps => ({
+const mapStateToProps = (state: RootState): SettingsContainerProps => ({
   tagsList: state.tagsState.tagsList,
   wordsList: state.wordsDataState.wordsList,
   allTags: state.tasksState.allTags,
@@ -31,10 +31,14 @@ const mapDispatchToProps = dispatch => bindActionCreators(
   dispatch
 )
 
-const mergeProps = (stateProps: StateProps, dispatchProps, ownProps) => {
+const mergeProps = (
+  stateProps: SettingsContainerProps,
+  dispatchProps,
+  ownProps
+) => {
   const { allTags, tagsList, tagsForTask, } = stateProps
 
-  let newList: Array<string> | [] = tagsForTask
+  let newList: Array<string> = tagsForTask
 
   if (allTags) {
     newList = tagsList

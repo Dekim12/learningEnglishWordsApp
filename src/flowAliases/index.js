@@ -1,8 +1,8 @@
 // @flow
 
-type StringsList = Array<string> | []
+type StringsList = Array<string>
 
-export type WordObj = {
+export type WordObjType = {
   id: number,
   word: string,
   transcription: string,
@@ -23,7 +23,7 @@ export type VoidFunction = () => void
 
 //state
 export type WordState = {
-  wordsList: Array<WordObj> | []
+  wordsList: Array<WordObjType>
 }
 
 export type TagsState = {
@@ -45,23 +45,25 @@ export type RootState = {
   tasksState: TasksState
 }
 
+type ReduxAction = {
+  type: string
+}
+
 //words actions
 type WordActionPayload =
   | string
   | number
-  | WordObj
-  | { prevName: string, newName: string, deletedWordList: Array<number> | [] }
+  | WordObjType
+  | { prevName: string, newName: string, deletedWordList: Array<number> }
 
-export type WordAction = {
-  type: string,
+export type WordAction = ReduxAction & {
   payload: WordActionPayload
 }
 
 //tags actions
 type TagActionPayload = string | { prevName: string, newName: string }
 
-export type TagAction = {
-  type: string,
+export type TagAction = ReduxAction & {
   payload: TagActionPayload
 }
 
@@ -70,7 +72,25 @@ type TaskActionPayload =
   | SettingsObj
   | { allAnswers: number, rightAnswers: number }
 
-export type TasksAction = {
-  type: string,
+export type TasksAction = ReduxAction & {
   payload: TaskActionPayload
+}
+
+export type DeviceInfoType = {
+  OS?: string,
+  'OS version'?: string,
+  'API level'?: string,
+  Type?: string,
+  Name?: string,
+  Model?: string,
+  Brand?: string,
+  Country?: string,
+  Manufacturer?: string,
+  Timezone?: string,
+  'Battery level'?: string,
+  'App name'?: string,
+  'App was installed'?: string,
+  'Is camera'?: boolean,
+  'Is airplane mode'?: boolean,
+  'Is emulator'?: boolean
 }

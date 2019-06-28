@@ -10,15 +10,15 @@ import {
   deleteTag,
 } from '../../redux/actions'
 import type {
-  WordObj,
+  WordObjType,
   WordState,
   TagsState,
   RootState,
 } from '../../flowAliases'
 
-type State = WordState & TagsState
+type EditTagProps = WordState & TagsState
 
-const mapStateToProps = (state: RootState): State => ({
+const mapStateToProps = (state: RootState): EditTagProps => ({
   wordsList: state.wordsDataState.wordsList,
   tagsList: state.tagsState.tagsList,
 })
@@ -37,7 +37,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, tagsList, } = stateProps
   const { tagName, } = ownProps
 
-  const tagWords: Array<WordObj> = wordsList.filter(
+  const tagWords: Array<WordObjType> = wordsList.filter(
     word => word.tagName === tagName
   )
 

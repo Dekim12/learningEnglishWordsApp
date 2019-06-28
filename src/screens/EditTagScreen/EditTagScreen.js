@@ -1,18 +1,19 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import { ScrollView, Text, View, TextInput, } from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
   componentId: string,
   changeScreen: (functionName: string, ...args: Array<any>) => void,
   tagName: string,
-  tagWords: Array<WordObj>,
+  tagWords: Array<WordObjType>,
   tagsList: Array<string>,
   deleteCurrentTag: () => void,
   editCurrentTag: (
@@ -24,14 +25,14 @@ type Props = {
 
 type State = {
   currentName: string,
-  wordsList: Array<WordObj>,
+  wordsList: Array<WordObjType>,
   deletedWordsList: Array<number>,
   isTagExist: boolean,
   changeInputQuery: string,
   permissionVisible: boolean
 }
 
-class EditTagScreen extends React.Component<Props, State> {
+class EditTagScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     const { tagName, tagWords, } = this.props
@@ -73,7 +74,7 @@ class EditTagScreen extends React.Component<Props, State> {
     wordsList: prevState.wordsList.filter(word => word.id !== id),
   }))
 
-  generateWordsList = (words: Array<WordObj>): Array<React.Node> => words.map(({ word, id, }: { word: string, id: number }) => {
+  generateWordsList = (words: Array<WordObjType>): Array<Node> => words.map(({ word, id, }: { word: string, id: number }) => {
     const deleteCurrentWord = (): void => this.deleteWord(id)
 
     return (

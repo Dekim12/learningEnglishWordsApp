@@ -12,7 +12,7 @@ type Props = {
   componentId: string,
   changeScreen: (functionName: string, ...args: Array<any>) => void,
   addTag: typeof addTag,
-  tagsList: Array<string> | []
+  tagsList: Array<string>
 }
 
 type State = {

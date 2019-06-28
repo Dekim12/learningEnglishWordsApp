@@ -6,15 +6,15 @@ import { find, } from 'lodash'
 import { EditWordScreen, } from './EditWordScreen'
 import { editWord, } from '../../redux/actions'
 import type {
-  WordObj,
+  WordObjType,
   WordState,
   TagsState,
   RootState,
 } from '../../flowAliases'
 
-type State = WordState & TagsState
+type EditWordProps = WordState & TagsState
 
-const mapStateToProps = (state: RootState): State => ({
+const mapStateToProps = (state: RootState): EditWordProps => ({
   wordsList: state.wordsDataState.wordsList,
   tagsList: state.tagsState.tagsList,
 })
@@ -30,7 +30,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
   const { wordsList, tagsList, } = stateProps
   const { id, } = ownProps
 
-  const wordData: WordObj = find(wordsList, word => word.id === id)
+  const wordData: WordObjType = find(wordsList, word => word.id === id)
 
   return { wordData, tagsList, ...dispatchProps, ...ownProps, }
 }

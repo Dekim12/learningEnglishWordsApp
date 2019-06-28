@@ -7,7 +7,7 @@ import {
   COUNT_WRONG_RANDOM_ANSWERS,
   ROUNDING_DEGREE,
 } from '../constants'
-import type { WordObj, } from '../flowAliases'
+import type { WordObjType, } from '../flowAliases'
 
 export const screenSize: {
   width: number,
@@ -38,10 +38,10 @@ export const createLine = (arr: Array<string>): string => {
 export const isNumber = (n: any): boolean => !isNaN(parseFloat(n)) && isFinite(n)
 
 export const takeRandomWords = (
-  list: Array<WordObj> = [],
+  list: Array<WordObjType> = [],
   wordsCount: number = 0
-): Array<WordObj> => {
-  const newWordList: Array<WordObj> = []
+): Array<WordObjType> => {
+  const newWordList: Array<WordObjType> = []
   const maxIndex: number = list.length > wordsCount ? wordsCount : list.length
 
   while (newWordList.length !== maxIndex) {
@@ -57,9 +57,9 @@ export const takeRandomWords = (
 
 export const getNecessaryWords = (
   amount: number = 0,
-  wordsList: Array<WordObj> = [],
+  wordsList: Array<WordObjType> = [],
   random: boolean
-): Array<WordObj> => {
+): Array<WordObjType> => {
   if (random) {
     return takeRandomWords(wordsList, amount)
   }
@@ -80,16 +80,16 @@ export const shuffle = (arr: Array<string> = []): Array<string> => {
 
 export const getRandomAnswers = (
   valueArr: Array<string>,
-  answersArr: Array<WordObj>
+  answersArr: Array<WordObjType>
 ): Array<string> => {
   const rightAnswer: string = createLine(valueArr)
-  const answers: Array<WordObj> = takeRandomWords(
+  const answers: Array<WordObjType> = takeRandomWords(
     answersArr,
     COUNT_WRONG_RANDOM_ANSWERS.possible
   )
 
   const wrongAnswers: Array<string> = answers
-    .map((word: WordObj): string => createLine(word.translation))
+    .map((word: WordObjType): string => createLine(word.translation))
     .filter((translation: string): boolean => translation !== rightAnswer)
 
   return shuffle(

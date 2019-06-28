@@ -2,13 +2,14 @@
 
 import React, { Component, } from 'react'
 import { TextInput, } from 'react-native'
+import type { ViewStyleProp, } from 'react-native'
 
 type Props = {
   onSubmit: (value: string, type: string) => void,
   type: string,
   submit: boolean,
   placeholder: string,
-  style: mixed
+  style: ViewStyleProp
 }
 
 type State = {

@@ -8,10 +8,10 @@ import {
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
-import type { WordObj, WordAction, } from '../../flowAliases'
+import type { WordObjType, WordAction, } from '../../flowAliases'
 
 type State = {
-  +wordsList: Array<WordObj>
+  +wordsList: Array<WordObjType>
 }
 
 const initialState: State = {
@@ -21,29 +21,31 @@ const initialState: State = {
 const wordsReducer = (state: State = initialState, action: WordAction) => {
   switch (action.type) {
     case DELETE_WORD: {
-      const newList: Array<WordObj> = state.wordsList.filter(
-        (word: WordObj) => word.id !== action.payload
+      const newList: Array<WordObjType> = state.wordsList.filter(
+        (word: WordObjType) => word.id !== action.payload
       )
 
       return { ...state, wordsList: newList, }
     }
     case EDIT_WORD: {
-      const newList: Array<WordObj> = state.wordsList.map((word: WordObj) => {
-        if (word.id === action.payload.id) {
-          return action.payload
+      const newList: Array<WordObjType> = state.wordsList.map(
+        (word: WordObjType) => {
+          if (word.id === action.payload.id) {
+            return action.payload
+          }
+          return word
         }
-        return word
-      })
+      )
       return { ...state, wordsList: newList, }
     }
     case EDIT_WORDS_LIST: {
       const { prevName, newName, deletedWordList, } = action.payload
 
-      const filteredList: Array<WordObj> = state.wordsList.filter(
-        (word: WordObj) => deletedWordList.indexOf(word.id) === -1
+      const filteredList: Array<WordObjType> = state.wordsList.filter(
+        (word: WordObjType) => deletedWordList.indexOf(word.id) === -1
       )
 
-      filteredList.forEach((word: WordObj) => {
+      filteredList.forEach((word: WordObjType) => {
         if (word.tagName === prevName) {
           word.tagName = newName
         }
@@ -52,8 +54,8 @@ const wordsReducer = (state: State = initialState, action: WordAction) => {
       return { ...state, wordsList: filteredList, }
     }
     case DELETE_WORDS_LIST: {
-      const newList: Array<WordObj> = state.wordsList.filter(
-        (word: WordObj) => word.tagName !== action.payload
+      const newList: Array<WordObjType> = state.wordsList.filter(
+        (word: WordObjType) => word.tagName !== action.payload
       )
 
       return { ...state, wordsList: newList, }

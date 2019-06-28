@@ -41,7 +41,7 @@ subprojects { subproject ->
         if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
             android {
                 variantFilter { variant ->
-                   def names = variant.flavors*.name
+                  def names = variant.flavors*.name
                     if (names.contains("reactNative51") || names.contains("reactNative55")) {
                         setIgnore(true)
                     }

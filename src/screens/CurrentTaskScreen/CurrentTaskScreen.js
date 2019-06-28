@@ -3,13 +3,13 @@
 import React from 'react'
 import { ScrollView, } from 'react-native'
 import { TASK_LIST, } from '../../constants'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
-  wordsForTask: Array<WordObj>,
+  wordsForTask: Array<WordObjType>,
   taskName: string,
-  wordsList: Array<WordObj>,
+  wordsList: Array<WordObjType>,
   goToTasks: (allAnswers: number, rightAnswers: number) => void
 }
 

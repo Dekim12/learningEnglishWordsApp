@@ -7,6 +7,7 @@ export const setSettings = (settingsObject: SettingsObj): TasksAction => ({
   type: SET_SETTINGS,
   payload: settingsObject,
 })
+
 export const setAnswers = (
   allAnswers: number,
   rightAnswers: number

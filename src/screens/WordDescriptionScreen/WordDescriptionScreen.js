@@ -1,6 +1,7 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
+import type { Node, } from 'react'
 import {
   ScrollView,
   Text,
@@ -14,14 +15,14 @@ import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import { getRandomColor, createLine, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
 import { deleteWord, } from '../../redux/actions'
-import type { WordObj, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
 type Props = {
   componentId: string,
   changeScreen: (functionName: string, ...args: Array<any>) => void,
   deleteWord: typeof deleteWord,
-  wordData: WordObj
+  wordData: WordObjType
 }
 
 type State = {
@@ -29,14 +30,14 @@ type State = {
   permissionVisible: boolean
 }
 
-class WordDescriptionScreen extends React.Component<Props, State> {
+class WordDescriptionScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
     this.state = { loading: true, permissionVisible: false, }
   }
 
-  renderExamples = (list: Array<string> | []): Array<React.Node> => list.map((item: string) => (
+  renderExamples = (list: Array<string>): Array<Node> => list.map((item: string) => (
     <View style={styles.exampleBlock} key={uuidv4()}>
       <View
         style={[styles.exampleLabel, { backgroundColor: getRandomColor(), }]}

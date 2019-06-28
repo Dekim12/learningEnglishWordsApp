@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react'
+import React, { Component, } from 'react'
 import { View, StatusBar, } from 'react-native'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
@@ -17,7 +17,7 @@ type State = {
   permissionResolve: ?() => void
 }
 
-class WordsScreen extends React.Component<Props, State> {
+class WordsScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
 

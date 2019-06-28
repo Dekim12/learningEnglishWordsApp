@@ -3,9 +3,9 @@
 import { connect, } from 'react-redux'
 import { StatisticsScreen, } from './StatisticsScreen'
 import type { RootState, } from '../../flowAliases'
-import type { Props, } from './StatisticsScreen'
+import type { StatisticScreenProps, } from './StatisticsScreen'
 
-const mapStateToProps = (state: RootState): Props => ({
+const mapStateToProps = (state: RootState): StatisticScreenProps => ({
   tagsCount: state.tagsState.tagsList.length,
   wordsCount: state.wordsDataState.wordsList.length,
   allAnswers: state.tasksState.allAnswers,

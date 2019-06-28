@@ -6,14 +6,14 @@ import {
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
-import type { WordAction, WordObj, } from '../../flowAliases'
+import type { WordAction, WordObjType, } from '../../flowAliases'
 
 export const deleteWord = (id: number): WordAction => ({
   type: DELETE_WORD,
   payload: id,
 })
 
-export const editWord = (newWord: WordObj): WordAction => ({
+export const editWord = (newWord: WordObjType): WordAction => ({
   type: EDIT_WORD,
   payload: newWord,
 })
@@ -21,7 +21,7 @@ export const editWord = (newWord: WordObj): WordAction => ({
 export const editWordsList = (
   prevName: string,
   newName: string,
-  deletedWordList: Array<number> | []
+  deletedWordList: Array<number>
 ): WordAction => ({
   type: EDIT_WORDS_LIST,
   payload: { prevName, newName, deletedWordList, },

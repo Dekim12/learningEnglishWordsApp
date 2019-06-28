@@ -5,12 +5,12 @@ import { View, } from 'react-native'
 import { getRandomAnswers, } from '../../../utils'
 import { Connector, } from './Connector'
 import { ResultPopup, } from './ResultPopup'
-import type { WordObj, } from '../../../flowAliases'
+import type { WordObjType, } from '../../../flowAliases'
 import styles from './style'
 
 type Props = {
-  allWords: Array<WordObj>,
-  wordsForTask: Array<WordObj>,
+  allWords: Array<WordObjType>,
+  wordsForTask: Array<WordObjType>,
   goToTasks: (allAnswers: number, rightAnswers: number) => void
 }
 
