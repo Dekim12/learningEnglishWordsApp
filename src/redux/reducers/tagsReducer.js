@@ -2,9 +2,15 @@
 
 import { sortBy, } from 'lodash'
 import { fakeTagList, ADD_TAG, EDIT_TAG, DELETE_TAG, } from '../../constants'
-import type { TagAction, } from '../../flowAliases'
+import type { ReduxAction, } from '../../flowAliases'
 
-type TagsState = {
+type TagActionPayload = string | { prevName: string, newName: string }
+
+export type TagAction = ReduxAction & {
+  payload: TagActionPayload
+}
+
+export type TagsState = {
   +tagsList: Array<string>
 }
 

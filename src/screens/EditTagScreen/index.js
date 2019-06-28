@@ -10,14 +10,11 @@ import {
   deleteWordList,
   deleteTag,
 } from '../../redux/actions'
-import type {
-  WordObjType,
-  WordState,
-  TagsState,
-  RootState,
-} from '../../flowAliases'
+import type { WordObjType, RootState, } from '../../flowAliases'
+import type { TagsState, } from '../../redux/reducers/tagsReducer'
+import type { WordsState, } from '../../redux/reducers/wordsReducer'
 
-type EditTagProps = WordState & TagsState
+type EditTagProps = WordsState & TagsState
 
 const mapStateToProps = (state: RootState): EditTagProps => ({
   wordsList: state.wordsDataState.wordsList,

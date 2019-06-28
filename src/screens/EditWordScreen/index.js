@@ -6,14 +6,11 @@ import type { Dispatch, } from 'redux'
 import { find, } from 'lodash'
 import { EditWordScreen, } from './EditWordScreen'
 import { editWord, } from '../../redux/actions'
-import type {
-  WordObjType,
-  WordState,
-  TagsState,
-  RootState,
-} from '../../flowAliases'
+import type { WordObjType, RootState, } from '../../flowAliases'
+import type { WordsState, } from '../../redux/reducers/wordsReducer'
+import type { TagsState, } from '../../redux/reducers/tagsReducer'
 
-type EditWordProps = WordState & TagsState
+type EditWordProps = WordsState & TagsState
 
 const mapStateToProps = (state: RootState): EditWordProps => ({
   wordsList: state.wordsDataState.wordsList,

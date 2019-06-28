@@ -6,7 +6,8 @@ import {
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
-import type { WordAction, WordObjType, } from '../../flowAliases'
+import type { WordObjType, } from '../../flowAliases'
+import type { WordAction, } from '../reducers/wordsReducer'
 
 export const deleteWord = (id: number): WordAction => ({
   type: DELETE_WORD,

@@ -1,6 +1,7 @@
 // @flow
-
-type StringsList = Array<string>
+import type { TasksState, } from '../redux/reducers/tasksReducer'
+import type { TagsState, } from '../redux/reducers/tagsReducer'
+import type { WordsState, } from '../redux/reducers/wordsReducer'
 
 export type WordObjType = {
   id: number,
@@ -16,64 +17,19 @@ export type SettingsObj = {
   allTags: boolean,
   amountOfWords: number,
   random: boolean,
-  tagsForTask: StringsList
+  tagsForTask: Array<string>
 }
 
 export type VoidFunction = () => void
 
-//state
-export type WordState = {
-  wordsList: Array<WordObjType>
-}
-
-export type TagsState = {
-  tagsList: StringsList
-}
-
-export type TasksState = {
-  allTags: boolean,
-  tagsForTask: StringsList,
-  amountOfWords: number,
-  random: boolean,
-  allAnswers: number,
-  rightAnswers: number
-}
-
 export type RootState = {
-  wordsDataState: WordState,
+  wordsDataState: WordsState,
   tagsState: TagsState,
   tasksState: TasksState
 }
 
-type ReduxAction = {
+export type ReduxAction = {
   type: string
-}
-
-//words actions
-type WordActionPayload =
-  | string
-  | number
-  | WordObjType
-  | { prevName: string, newName: string, deletedWordList: Array<number> }
-
-export type WordAction = ReduxAction & {
-  payload: WordActionPayload
-}
-
-//tags actions
-type TagActionPayload = string | { prevName: string, newName: string }
-
-export type TagAction = ReduxAction & {
-  payload: TagActionPayload
-}
-
-//tasks actions
-type TaskActionPayload =
-  | SettingsObj
-  | { allAnswers: number, rightAnswers: number }
-
-export type TasksAction = ReduxAction & {
-  payload: TaskActionPayload
 }
 
 export type DeviceInfoType = {

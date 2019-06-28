@@ -5,9 +5,10 @@ import { bindActionCreators, } from 'redux'
 import type { Dispatch, } from 'redux'
 import { TagDetailsScreen, } from './TagDetailsScreen'
 import { deleteWord, } from '../../redux/actions'
-import type { WordState, RootState, WordObjType, } from '../../flowAliases'
+import type { RootState, WordObjType, } from '../../flowAliases'
+import type { WordsState, } from '../../redux/reducers/wordsReducer'
 
-const mapStateToProps = (state: RootState): WordState => ({
+const mapStateToProps = (state: RootState): WordsState => ({
   wordsList: state.wordsDataState.wordsList,
 })
 

@@ -1,9 +1,17 @@
 // @flow
 
 import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
-import type { TasksAction, } from '../../flowAliases'
+import type { SettingsObj, ReduxAction, } from '../../flowAliases'
 
-type TasksState = {
+type TaskActionPayload =
+  | SettingsObj
+  | { allAnswers: number, rightAnswers: number }
+
+export type TasksAction = ReduxAction & {
+  payload: TaskActionPayload
+}
+
+export type TasksState = {
   +allTags: boolean,
   +tagsForTask: Array<string>,
   +amountOfWords: number,

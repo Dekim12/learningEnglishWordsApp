@@ -1,7 +1,7 @@
 // @flow
 
 import { ADD_TAG, EDIT_TAG, DELETE_TAG, } from '../../constants'
-import type { TagAction, } from '../../flowAliases'
+import type { TagAction, } from '../reducers/tagsReducer'
 
 export const addTag = (name: string): TagAction => ({
   type: ADD_TAG,

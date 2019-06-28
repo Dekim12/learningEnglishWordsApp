@@ -1,7 +1,8 @@
 // @flow
 
 import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
-import type { SettingsObj, TasksAction, } from '../../flowAliases'
+import type { SettingsObj, } from '../../flowAliases'
+import type { TasksAction, } from '../reducers/tasksReducer'
 
 export const setSettings = (settingsObject: SettingsObj): TasksAction => ({
   type: SET_SETTINGS,

@@ -8,9 +8,19 @@ import {
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
 } from '../../constants'
-import type { WordObjType, WordAction, } from '../../flowAliases'
+import type { WordObjType, ReduxAction, } from '../../flowAliases'
 
-type WordsState = {
+type WordActionPayload =
+  | string
+  | number
+  | WordObjType
+  | { prevName: string, newName: string, deletedWordList: Array<number> }
+
+export type WordAction = ReduxAction & {
+  payload: WordActionPayload
+}
+
+export type WordsState = {
   +wordsList: Array<WordObjType>
 }
 
