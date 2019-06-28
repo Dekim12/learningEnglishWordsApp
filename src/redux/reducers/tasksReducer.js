@@ -3,7 +3,7 @@
 import { SET_SETTINGS, SET_ANSWERS, } from '../../constants'
 import type { TasksAction, } from '../../flowAliases'
 
-type State = {
+type TasksState = {
   +allTags: boolean,
   +tagsForTask: Array<string>,
   +amountOfWords: number,
@@ -12,7 +12,7 @@ type State = {
   +rightAnswers: number
 }
 
-const initialState: State = {
+const initialState: TasksState = {
   allTags: true,
   tagsForTask: [],
   amountOfWords: 5,
@@ -21,7 +21,10 @@ const initialState: State = {
   rightAnswers: 0,
 }
 
-const tasksReducer = (state: State = initialState, action: TasksAction) => {
+const tasksReducer = (
+  state: TasksState = initialState,
+  action: TasksAction
+) => {
   switch (action.type) {
     case SET_SETTINGS: {
       return { ...state, ...action.payload, }

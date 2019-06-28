@@ -4,15 +4,15 @@ import { sortBy, } from 'lodash'
 import { fakeTagList, ADD_TAG, EDIT_TAG, DELETE_TAG, } from '../../constants'
 import type { TagAction, } from '../../flowAliases'
 
-type State = {
+type TagsState = {
   +tagsList: Array<string>
 }
 
-const initialState: State = {
+const initialState: TagsState = {
   tagsList: sortBy(fakeTagList, tag => tag.toLowerCase()),
 }
 
-const tagsReducer = (state: State = initialState, action: TagAction) => {
+const tagsReducer = (state: TagsState = initialState, action: TagAction) => {
   switch (action.type) {
     case ADD_TAG: {
       const newTagList: Array<string> = sortBy(

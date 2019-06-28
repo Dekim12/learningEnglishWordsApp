@@ -10,15 +10,15 @@ import {
 } from '../../constants'
 import type { WordObjType, WordAction, } from '../../flowAliases'
 
-type State = {
+type WordsState = {
   +wordsList: Array<WordObjType>
 }
 
-const initialState: State = {
+const initialState: WordsState = {
   wordsList: sortBy(fakeData, data => data.word),
 }
 
-const wordsReducer = (state: State = initialState, action: WordAction) => {
+const wordsReducer = (state: WordsState = initialState, action: WordAction) => {
   switch (action.type) {
     case DELETE_WORD: {
       const newList: Array<WordObjType> = state.wordsList.filter(
