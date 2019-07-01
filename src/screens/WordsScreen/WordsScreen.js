@@ -4,6 +4,7 @@ import React, { Component, } from 'react'
 import { View, StatusBar, } from 'react-native'
 import NetInfo from '@react-native-community/netinfo'
 import { Navigation, } from 'react-native-navigation'
+import type { NetInfoConnectedState, } from '@react-native-community/netinfo'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
 import {
@@ -15,15 +16,9 @@ import styles from './style'
 
 type OverlayObjType = {
   component: {
-    name: String,
+    name: string,
     id: string
   }
-}
-
-type NetStateType = {
-  details: ?{ cellularGeneration: string, isConnectionExpensive: boolean },
-  isConnected: boolean,
-  type: ?string
 }
 
 type Props = {
@@ -46,7 +41,7 @@ class WordsScreen extends Component<Props, State> {
     this.connectionIndicator = true
   }
 
-  connectionHandler = (netState: NetStateType): void => {
+  connectionHandler = (netState: NetInfoConnectedState): void => {
     if (!netState.isConnected) {
       this.connectionIndicator = false
       const overlayObj: OverlayObjType = {
