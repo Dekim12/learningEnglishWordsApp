@@ -3,7 +3,8 @@ import { StyleSheet, } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingBottom: 60,
     alignItems: 'center',
     backgroundColor: '#100E17',
     justifyContent: 'center',
@@ -18,26 +19,10 @@ const styles = StyleSheet.create({
   },
   solutionText: {
     marginTop: 10,
-    fontSize: 19,
+    fontSize: 20,
     fontFamily: 'OpenSans',
-    color: '#BEBEBE',
+    color: '#D97604',
     textAlign: 'center',
-  },
-  reloadBtn: {
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    marginTop: 25,
-    marginBottom: 15,
-    backgroundColor: '#D97604',
-    borderWidth: 1,
-    borderColor: '#ffebcc',
-    borderRadius: 7,
-  },
-  btnText: {
-    fontSize: 30,
-    fontFamily: 'FFF_Tusj',
-    textAlign: 'center',
-    color: '#ffffff',
   },
 })
 
