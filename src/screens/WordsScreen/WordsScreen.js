@@ -41,8 +41,8 @@ class WordsScreen extends Component<Props, State> {
     this.connectionIndicator = true
   }
 
-  connectionHandler = (netState: NetInfoConnectedState): void => {
-    if (!netState.isConnected) {
+  connectionHandler = ({ isConnected, }: NetInfoConnectedState): void => {
+    if (!isConnected) {
       this.connectionIndicator = false
       const overlayObj: OverlayObjType = {
         component: {
@@ -52,7 +52,8 @@ class WordsScreen extends Component<Props, State> {
       }
 
       Navigation.showOverlay(overlayObj)
-    } else if (netState.isConnected && !this.connectionIndicator) {
+    } else if (isConnected && !this.connectionIndicator) {
+      this.connectionIndicator = true
       Navigation.dismissOverlay(NET_CONNECTION_ID)
     }
   }
