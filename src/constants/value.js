@@ -47,3 +47,5 @@ export const DEVICE_INFO_PROPERTY_NAMES = {
   airplaneMode: 'Is airplane mode',
   isEmulator: 'Is emulator',
 }
+
+export const NET_CONNECTION_ID = 'NetConnectionOverlay'

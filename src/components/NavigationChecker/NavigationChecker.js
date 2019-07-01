@@ -12,17 +12,25 @@ type State = { isActive: boolean }
 export const NavigationChecker = (
   WrappedComponent: AbstractComponent<Config>
 ): AbstractComponent<Config> => class extends Component<Config, State> {
-  constructor(props) {
-    super(props)
-    Navigation.events().bindComponent(this)
+    navigationEventListener: ?() => void
 
-    this.state = {
-      isActive: true,
+    constructor(props) {
+      super(props)
+      this.navigationEventListener = Navigation.events().bindComponent(this)
+
+      this.state = {
+        isActive: true,
+      }
     }
-  }
 
     componentDidAppear = (): void => {
       this.setState({ isActive: true, })
+    }
+
+    componentWillUnmount = (): void => {
+      if (this.navigationEventListener) {
+        this.navigationEventListener.remove()
+      }
     }
 
     changeScreen = (functionName: string, ...params: any): void => {

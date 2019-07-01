@@ -2,10 +2,24 @@
 
 import React, { Component, } from 'react'
 import { View, StatusBar, } from 'react-native'
+import NetInfo from '@react-native-community/netinfo'
+import { Navigation, } from 'react-native-navigation'
+import type { NetInfoConnectedState, } from '@react-native-community/netinfo'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
-import { MOVEMENT_FUNC_NAMES, } from '../../constants'
+import {
+  MOVEMENT_FUNC_NAMES,
+  NET_CONNECTION_SCREEN,
+  NET_CONNECTION_ID,
+} from '../../constants'
 import styles from './style'
+
+type OverlayObjType = {
+  component: {
+    name: string,
+    id: string
+  }
+}
 
 type Props = {
   componentId: string,
@@ -18,10 +32,34 @@ type State = {
 }
 
 class WordsScreen extends Component<Props, State> {
+  connectionIndicator: boolean
+
   constructor(props: Props) {
     super(props)
 
     this.state = { permissionVisible: false, permissionResolve: null, }
+    this.connectionIndicator = true
+  }
+
+  connectionHandler = ({ isConnected, }: NetInfoConnectedState): void => {
+    if (!isConnected) {
+      this.connectionIndicator = false
+      const overlayObj: OverlayObjType = {
+        component: {
+          name: NET_CONNECTION_SCREEN,
+          id: NET_CONNECTION_ID,
+        },
+      }
+
+      Navigation.showOverlay(overlayObj)
+    } else if (isConnected && !this.connectionIndicator) {
+      this.connectionIndicator = true
+      Navigation.dismissOverlay(NET_CONNECTION_ID)
+    }
+  }
+
+  componentDidMount = (): void => {
+    NetInfo.addEventListener(this.connectionHandler)
   }
 
   toDescription = (id: number, word: string): void => {

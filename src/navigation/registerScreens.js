@@ -12,6 +12,7 @@ import {
   SettingsContainer,
   StatisticsContainer,
   CurrentTaskContainer,
+  NetConnectionScreen,
 } from '../screens'
 
 import {
@@ -26,6 +27,7 @@ import {
   SETTINGS_SCREEN,
   STATISTIC_SCREEN,
   CURRENT_TASK_SCREEN,
+  NET_CONNECTION_SCREEN,
 } from '../constants'
 
 const registerScreens = () => {
@@ -40,6 +42,7 @@ const registerScreens = () => {
   Navigation.registerComponent(SETTINGS_SCREEN, () => WrappedComponent(SettingsContainer))
   Navigation.registerComponent(STATISTIC_SCREEN, () => WrappedComponent(StatisticsContainer))
   Navigation.registerComponent(CURRENT_TASK_SCREEN, () => WrappedComponent(CurrentTaskContainer))
+  Navigation.registerComponent(NET_CONNECTION_SCREEN, () => WrappedComponent(NetConnectionScreen))
 }
 
 export default registerScreens
