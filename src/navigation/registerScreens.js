@@ -4,7 +4,6 @@ import {
   WordsScreen,
   TasksScreen,
   TagsScreenContainer,
-  NewWordScreen,
   WordDescriptionContainer,
   EditWordContainer,
   TagDetailsContainer,
@@ -13,6 +12,7 @@ import {
   StatisticsContainer,
   CurrentTaskContainer,
   NetConnectionScreen,
+  NewWordScreenContainer,
 } from '../screens'
 
 import {
@@ -34,7 +34,7 @@ const registerScreens = () => {
   Navigation.registerComponent(ROOT_WORDS_SCREEN, () => WrappedComponent(WordsScreen))
   Navigation.registerComponent(ROOT_TAGS_SCREEN, () => WrappedComponent(TagsScreenContainer))
   Navigation.registerComponent(ROOT_TASKS_SCREEN, () => WrappedComponent(TasksScreen))
-  Navigation.registerComponent(NEW_WORD_SCREEN, () => WrappedComponent(NewWordScreen))
+  Navigation.registerComponent(NEW_WORD_SCREEN, () => WrappedComponent(NewWordScreenContainer))
   Navigation.registerComponent(WORDS_DETAILS_SCREEN, () => WrappedComponent(WordDescriptionContainer))
   Navigation.registerComponent(EDIT_WORD_SCREEN, () => WrappedComponent(EditWordContainer))
   Navigation.registerComponent(TAG_DETAILS_SCREEN, () => WrappedComponent(TagDetailsContainer))

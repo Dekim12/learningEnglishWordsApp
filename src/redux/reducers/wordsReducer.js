@@ -7,6 +7,7 @@ import {
   EDIT_WORD,
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
+  ADD_WORD,
 } from '../../constants'
 import type { WordObjType, ReduxAction, } from '../../flowAliases'
 
@@ -67,6 +68,11 @@ const wordsReducer = (state: WordsState = initialState, action: WordAction) => {
       const newList: Array<WordObjType> = state.wordsList.filter(
         (word: WordObjType) => word.tagName !== action.payload
       )
+
+      return { ...state, wordsList: newList, }
+    }
+    case ADD_WORD: {
+      const newList: Array<WordObjType> = state.wordsList.concat(action.payload)
 
       return { ...state, wordsList: newList, }
     }

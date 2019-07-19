@@ -147,7 +147,7 @@ class EditWordScreen extends Component<Props, State> {
 
   setSubmit = (): void => this.setState({ submit: true, })
 
-  edit = (): void => {
+  confirm = (): void => {
     const { changeScreen, componentId, } = this.props
     const { submit, ...newWordData } = this.state
     this.props.editWord(newWordData)
@@ -221,10 +221,10 @@ class EditWordScreen extends Component<Props, State> {
           </View>
           <TouchableButton
             style={styles.editBtn}
-            onPress={this.edit}
+            onPress={this.confirm}
             testID='edit-word-btn'
           >
-            <Text style={styles.editText}>EDIT</Text>
+            <Text style={styles.editText}>CONFIRM</Text>
           </TouchableButton>
         </ScrollView>
       </KeyboardAvoidingView>

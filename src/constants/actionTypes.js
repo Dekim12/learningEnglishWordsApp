@@ -1,5 +1,6 @@
 const DELETE_WORD = 'DELETE_WORD'
 const EDIT_WORD = 'EDIT_WORD'
+const ADD_WORD = 'ADD_WORD'
 const ADD_TAG = 'ADD_TAG'
 const EDIT_TAG = 'EDIT_TAG'
 const EDIT_WORDS_LIST = 'EDIT_WORDS_LIST'
@@ -18,4 +19,5 @@ export {
   DELETE_TAG,
   SET_SETTINGS,
   SET_ANSWERS,
+  ADD_WORD,
 }

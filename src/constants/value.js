@@ -1,4 +1,6 @@
 export const EDIT_TYPES = {
+  definition: 'definitionWord',
+  transcription: 'wordTranscription',
   word: 'translationWord',
   string: 'exampleString',
   url: 'urlString',

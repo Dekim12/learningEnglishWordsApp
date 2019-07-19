@@ -5,6 +5,7 @@ import {
   EDIT_WORD,
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
+  ADD_WORD,
 } from '../../constants'
 import type { WordObjType, } from '../../flowAliases'
 import type { WordAction, } from '../reducers/wordsReducer'
@@ -31,4 +32,9 @@ export const editWordsList = (
 export const deleteWordList = (tagName: string): WordAction => ({
   type: DELETE_WORDS_LIST,
   payload: tagName,
+})
+
+export const addNewWord = (newWord: WordObjType): WordAction => ({
+  type: ADD_WORD,
+  payload: newWord,
 })
