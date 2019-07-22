@@ -10,8 +10,8 @@ import { getNecessaryWords, } from '../../utils'
 import type { RootState, WordObjType, } from '../../flowAliases'
 
 type CurrentTaskProps = {
-  wordsList: Array<WordObjType>,
-  tagsList: Array<string>,
+  wordsList: ?Array<WordObjType>,
+  tagsList: ?Array<string>,
   tagsForTask: Array<string>,
   amountOfWords: number,
   random: boolean,
