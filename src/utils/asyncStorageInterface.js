@@ -39,7 +39,7 @@ export const asyncStorageInterface: InterfaceType = {
         settingsKeyValue
       ])
     } catch (error) {
-      alert(error)
+      console.warn(error)
     }
   },
   getWords: async () => {
@@ -48,7 +48,7 @@ export const asyncStorageInterface: InterfaceType = {
 
       return JSON.parse(data)
     } catch (error) {
-      alert(error)
+      console.warn(error)
     }
   },
   getTags: async () => {
@@ -57,7 +57,7 @@ export const asyncStorageInterface: InterfaceType = {
 
       return JSON.parse(data)
     } catch (error) {
-      alert(error)
+      console.warn(error)
     }
   },
   getSettings: async () => {
@@ -68,7 +68,7 @@ export const asyncStorageInterface: InterfaceType = {
 
       return JSON.parse(data)
     } catch (error) {
-      alert(error)
+      console.warn(error)
     }
   },
   getKeys: async () => {
@@ -78,7 +78,7 @@ export const asyncStorageInterface: InterfaceType = {
 
       return keys
     } catch (error) {
-      alert(error)
+      console.warn(error)
     }
   },
 }

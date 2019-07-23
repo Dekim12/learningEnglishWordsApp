@@ -55,6 +55,6 @@ export const getWordsList = () => async (dispatch: Dispatch): Promise<void> => {
       dispatch(setWordsList(response))
     }
   } catch (error) {
-    alert(error)
+    console.warn(error)
   }
 }

@@ -33,6 +33,6 @@ export const getSettingsList = () => async (
       dispatch(setSettings(response))
     }
   } catch (error) {
-    alert(error)
+    console.warn(error)
   }
 }

@@ -33,6 +33,6 @@ export const getTagsList = () => async (dispatch: Dispatch): Promise<void> => {
       dispatch(setTagsList(response))
     }
   } catch (error) {
-    alert(error)
+    console.warn(error)
   }
 }
