@@ -30,6 +30,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Chunkfive',
     color: '#ffffff',
   },
+  loadingBlock: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 50,
+  },
 })
 
 export default styles

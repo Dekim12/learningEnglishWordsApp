@@ -1,7 +1,7 @@
 import { Navigation, } from 'react-native-navigation'
 import { WrappedComponent, } from '../utils/rnnUtils'
 import {
-  WordsScreen,
+  WordsScreenContainer,
   TasksScreen,
   TagsScreenContainer,
   WordDescriptionContainer,
@@ -31,7 +31,7 @@ import {
 } from '../constants'
 
 const registerScreens = () => {
-  Navigation.registerComponent(ROOT_WORDS_SCREEN, () => WrappedComponent(WordsScreen))
+  Navigation.registerComponent(ROOT_WORDS_SCREEN, () => WrappedComponent(WordsScreenContainer))
   Navigation.registerComponent(ROOT_TAGS_SCREEN, () => WrappedComponent(TagsScreenContainer))
   Navigation.registerComponent(ROOT_TASKS_SCREEN, () => WrappedComponent(TasksScreen))
   Navigation.registerComponent(NEW_WORD_SCREEN, () => WrappedComponent(NewWordScreenContainer))

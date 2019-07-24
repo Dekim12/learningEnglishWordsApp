@@ -2,15 +2,23 @@
 
 import React, { Component, } from 'react'
 import type { Node, } from 'react'
-import { FlatList, ScrollView, Text, } from 'react-native'
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  ActivityIndicator,
+  View,
+} from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { TagCard, SearchInput, TouchableButton, } from '../index'
+import { getTagsList, } from '../../redux/actions'
 import styles from './style'
 
 type Props = {
   toEdit: (tagName: string) => void,
   toDetails: (tagName: string) => void,
   addNewTag: (newTagName: string) => void,
+  getTagsList: typeof getTagsList,
   tagsList: Array<string>
 }
 
@@ -24,6 +32,10 @@ class TagsList extends Component<Props, State> {
     super(props)
 
     this.state = { searchString: '', clearInput: false, }
+  }
+
+  componentDidMount = () => {
+    this.props.getTagsList()
   }
 
   renderItems = ({ item, index, }: { item: string, index: number }): Node => {
@@ -60,6 +72,14 @@ class TagsList extends Component<Props, State> {
   render() {
     const { tagsList, } = this.props
     const { searchString, clearInput, } = this.state
+
+    if (!tagsList) {
+      return (
+        <View style={styles.loadingBlock}>
+          <ActivityIndicator size='large' color='#2d862d' />
+        </View>
+      )
+    }
 
     const filteredTags: Array<string> = this.filterTagList(
       tagsList,

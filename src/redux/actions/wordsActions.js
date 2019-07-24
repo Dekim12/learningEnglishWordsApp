@@ -1,12 +1,15 @@
 // @flow
 
+import type { Dispatch, } from 'redux'
 import {
   DELETE_WORD,
   EDIT_WORD,
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
   ADD_WORD,
+  SET_WORD_LIST,
 } from '../../constants'
+import { asyncStorageInterface, } from '../../utils/asyncStorageInterface'
 import type { WordObjType, } from '../../flowAliases'
 import type { WordAction, } from '../reducers/wordsReducer'
 
@@ -38,3 +41,20 @@ export const addNewWord = (newWord: WordObjType): WordAction => ({
   type: ADD_WORD,
   payload: newWord,
 })
+
+const setWordsList = (data: Array<WordObjType>): WordAction => ({
+  type: SET_WORD_LIST,
+  payload: data,
+})
+
+export const getWordsList = () => async (dispatch: Dispatch): Promise<void> => {
+  try {
+    const response: ?Array<WordObjType> = await asyncStorageInterface.getWords()
+
+    if (response) {
+      dispatch(setWordsList(response))
+    }
+  } catch (error) {
+    console.warn(error)
+  }
+}

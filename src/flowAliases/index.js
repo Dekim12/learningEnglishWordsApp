@@ -14,10 +14,10 @@ export type WordObjType = {
 }
 
 export type SettingsObj = {
-  allTags: boolean,
-  amountOfWords: number,
-  random: boolean,
-  tagsForTask: Array<string>
+  +allTags: boolean,
+  +amountOfWords: number,
+  +random: boolean,
+  +tagsForTask: Array<string>
 }
 
 export type VoidFunction = () => void

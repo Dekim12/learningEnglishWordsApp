@@ -13,7 +13,7 @@ import uuidv4 from 'uuid/v4'
 import { TouchableButton, } from '../../components'
 import { isNumber, } from '../../utils'
 import { MOVEMENT_FUNC_NAMES, } from '../../constants'
-import { setSettings, } from '../../redux/actions'
+import { setSettings, getSettingsList, } from '../../redux/actions'
 import type { WordObjType, } from '../../flowAliases'
 import styles from './style'
 
@@ -24,6 +24,7 @@ type Props = {
   amountOfWords: number,
   isRandom: boolean,
   setSettings: typeof setSettings,
+  getSettingsList: typeof getSettingsList,
   tagsForTask: Array<string>,
   tagsList: Array<string>,
   wordsList: Array<WordObjType>
@@ -65,6 +66,10 @@ class SettingsScreen extends Component<Props, State> {
     } else {
       this.setState({ isAmountCorrect: false, })
     }
+  }
+
+  componentDidMount = (): void => {
+    this.props.getSettingsList()
   }
 
   toggleTag = (tagName: string): void => {

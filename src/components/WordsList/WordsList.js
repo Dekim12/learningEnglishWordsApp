@@ -2,12 +2,18 @@
 
 import React, { Component, } from 'react'
 import type { Node, } from 'react'
-import { FlatList, ScrollView, Text, } from 'react-native'
+import {
+  FlatList,
+  ScrollView,
+  Text,
+  View,
+  ActivityIndicator,
+} from 'react-native'
 import uuidv4 from 'uuid/v4'
 import { WordCard, SearchInput, TouchableButton, } from '../index'
 import createFuse from '../../utils/fuse'
 import type { WordObjType, } from '../../flowAliases'
-import { deleteWord, } from '../../redux/actions'
+import { deleteWord, getWordsList, } from '../../redux/actions'
 import styles from './style'
 
 type Props = {
@@ -15,7 +21,8 @@ type Props = {
   openDescription: (id: number, word: string) => void,
   setPermission: (resolve: () => void) => void,
   addNewWord: (word: string) => void,
-  deleteWord: typeof deleteWord
+  deleteWord: typeof deleteWord,
+  getWordsList: typeof getWordsList
 }
 
 type State = {
@@ -27,11 +34,12 @@ class WordList extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props)
-    const { wordsList, } = this.props
 
     this.state = { searchString: '', }
+  }
 
-    this.fuse = createFuse(wordsList)
+  componentDidMount = () => {
+    this.props.getWordsList()
   }
 
   renderItems = ({
@@ -75,7 +83,16 @@ class WordList extends Component<Props, State> {
     const { wordsList, } = this.props
     const { searchString, } = this.state
 
-    const filteredDataList: Array<WordObjType> = this.fuse.search(searchString)
+    if (!wordsList) {
+      return (
+        <View style={styles.loadingBlock}>
+          <ActivityIndicator size='large' color='#2d862d' />
+        </View>
+      )
+    }
+
+    const fuse = createFuse(wordsList)
+    const filteredDataList: Array<WordObjType> = fuse.search(searchString)
 
     return (
       <ScrollView>

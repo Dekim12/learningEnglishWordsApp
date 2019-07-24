@@ -2,12 +2,12 @@
 
 import { sortBy, } from 'lodash'
 import {
-  fakeData,
   DELETE_WORD,
   EDIT_WORD,
   EDIT_WORDS_LIST,
   DELETE_WORDS_LIST,
   ADD_WORD,
+  SET_WORD_LIST,
 } from '../../constants'
 import type { WordObjType, ReduxAction, } from '../../flowAliases'
 
@@ -16,21 +16,25 @@ type WordActionPayload =
   | number
   | WordObjType
   | { prevName: string, newName: string, deletedWordList: Array<number> }
+  | Array<WordObjType>
 
 export type WordAction = ReduxAction & {
   payload: WordActionPayload
 }
 
 export type WordsState = {
-  +wordsList: Array<WordObjType>
+  +wordsList: ?Array<WordObjType>
 }
 
 const initialState: WordsState = {
-  wordsList: sortBy(fakeData, data => data.word),
+  wordsList: null,
 }
 
 const wordsReducer = (state: WordsState = initialState, action: WordAction) => {
   switch (action.type) {
+    case SET_WORD_LIST: {
+      return { ...state, wordsList: action.payload, }
+    }
     case DELETE_WORD: {
       const newList: Array<WordObjType> = state.wordsList.filter(
         (word: WordObjType) => word.id !== action.payload
@@ -72,7 +76,10 @@ const wordsReducer = (state: WordsState = initialState, action: WordAction) => {
       return { ...state, wordsList: newList, }
     }
     case ADD_WORD: {
-      const newList: Array<WordObjType> = state.wordsList.concat(action.payload)
+      const newList: Array<WordObjType> = sortBy(
+        state.wordsList.concat(action.payload),
+        data => data.word
+      )
 
       return { ...state, wordsList: newList, }
     }

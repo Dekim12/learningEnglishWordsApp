@@ -1,25 +1,31 @@
 // @flow
 
 import { sortBy, } from 'lodash'
-import { fakeTagList, ADD_TAG, EDIT_TAG, DELETE_TAG, } from '../../constants'
+import { ADD_TAG, EDIT_TAG, DELETE_TAG, SET_TAG_LIST, } from '../../constants'
 import type { ReduxAction, } from '../../flowAliases'
 
-type TagActionPayload = string | { prevName: string, newName: string }
+type TagActionPayload =
+  | string
+  | { prevName: string, newName: string }
+  | Array<string>
 
 export type TagAction = ReduxAction & {
   payload: TagActionPayload
 }
 
 export type TagsState = {
-  +tagsList: Array<string>
+  +tagsList: ?Array<string>
 }
 
 const initialState: TagsState = {
-  tagsList: sortBy(fakeTagList, tag => tag.toLowerCase()),
+  tagsList: null,
 }
 
 const tagsReducer = (state: TagsState = initialState, action: TagAction) => {
   switch (action.type) {
+    case SET_TAG_LIST: {
+      return { ...state, tagsList: action.payload, }
+    }
     case ADD_TAG: {
       const newTagList: Array<string> = sortBy(
         state.tagsList.concat(action.payload),

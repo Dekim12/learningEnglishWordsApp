@@ -1,17 +1,20 @@
 // @flow
 
 import React, { Component, } from 'react'
-import { View, StatusBar, } from 'react-native'
+import { View, StatusBar, AppState, } from 'react-native'
 import NetInfo from '@react-native-community/netinfo'
 import { Navigation, } from 'react-native-navigation'
 import type { NetInfoConnectedState, } from '@react-native-community/netinfo'
 import { WordListContainer, } from '../../redux/containers/WordListContainer'
 import { TouchableButton, Icon, PermissionPopup, } from '../../components'
+import { asyncStorageInterface, } from '../../utils/asyncStorageInterface'
 import {
   MOVEMENT_FUNC_NAMES,
   NET_CONNECTION_SCREEN,
   NET_CONNECTION_ID,
 } from '../../constants'
+import type { WordObjType, } from '../../flowAliases'
+import type { TasksState, } from '../../redux/reducers/tasksReducer'
 import styles from './style'
 
 type OverlayObjType = {
@@ -23,7 +26,10 @@ type OverlayObjType = {
 
 type Props = {
   componentId: string,
-  changeScreen: (functionName: string, ...args: Array<any>) => void
+  changeScreen: (functionName: string, ...args: Array<any>) => void,
+  tagsList: ?Array<string>,
+  wordsList: ?Array<WordObjType>,
+  settings: ?TasksState
 }
 
 type State = {
@@ -58,8 +64,16 @@ class WordsScreen extends Component<Props, State> {
     }
   }
 
+  handleAppStateChange = (nextAppState: string): void => {
+    const { wordsList, tagsList, settings, } = this.props
+    if (nextAppState === 'background' && wordsList && tagsList) {
+      asyncStorageInterface.setData(wordsList, tagsList, settings)
+    }
+  }
+
   componentDidMount = (): void => {
     NetInfo.addEventListener(this.connectionHandler)
+    AppState.addEventListener('change', this.handleAppStateChange)
   }
 
   toDescription = (id: number, word: string): void => {

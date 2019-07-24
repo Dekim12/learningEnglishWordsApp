@@ -51,3 +51,9 @@ export const DEVICE_INFO_PROPERTY_NAMES = {
 }
 
 export const NET_CONNECTION_ID = 'NetConnectionOverlay'
+
+export const ASYNC_STORAGE_KEYS = {
+  words: 'words',
+  tags: 'tags',
+  settings: 'settings',
+}

@@ -20,7 +20,7 @@ export type TasksState = {
   +rightAnswers: number
 }
 
-const initialState: TasksState = {
+export const initialState: TasksState = {
   allTags: true,
   tagsForTask: [],
   amountOfWords: 5,
